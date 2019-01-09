@@ -2,7 +2,7 @@ define(CLASS_PLATFORMS, "KWs0")
 define(CLASS_CROSSINGS, "KWs1")
 
 define(spr_ground, 1011)
-define(spr_snow_ground, 1037)
+define(spr_ground_snow, 1037)
 
 define(PLATFORM_START, 0x00)
 define(HP_A, 0x00)

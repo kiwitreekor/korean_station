@@ -1340,6 +1340,7 @@ layout(BUILDING_HIGH, stn_building(spr_building_high, spr_building_high_snow, 50
 // tinfo_trackconnect rsh 8 = tinfo_trackexist
 def(32, sw_building_layout) tinfo_trackconnect(shiftmask(8, 12),
 	cbr(2) if(4)
+	cbr(20) if(12)
 	cbr(0) else
 )
 

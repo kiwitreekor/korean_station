@@ -1703,21 +1703,26 @@ definestation(OVERPASS_START, {"High Platform A + Overpass", "High Platform B + 
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
+definestation(OVERPASS_TRACK, "Overpass",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+)
+
 layout(OVERPASS_HP_A,
 	passenger_graphic_A(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground
 	)
 	passenger_graphic_A(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground_snow
@@ -1726,19 +1731,19 @@ layout(OVERPASS_HP_A,
 
 layout(OVERPASS_HP_B,
 	passenger_graphic_B(
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground
 	)
 	passenger_graphic_B(
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground_snow
@@ -1747,36 +1752,49 @@ layout(OVERPASS_HP_B,
 
 layout(OVERPASS_HP_C,
 	passenger_graphic_C(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground
 	)
 	passenger_graphic_C(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(16, 3, 8)),
 		3, spr_ground_snow
 	)
 )
 
+layout(OVERPASS_TRACK,
+	tile(
+		ground(spr_ground+1)
+		regular(spr_overpass+4,            xyz( 7, 0,14), dxdydz( 3,16, 8))
+	)
+	tile(
+		ground(spr_ground)
+		regular(spr_overpass+5,            xyz( 0, 7,14), dxdydz(16, 3, 8))
+	)
+)
+
 makestation(OVERPASS_HP_A, default(ref(sw_platform)))
 makestation(OVERPASS_HP_B, default(ref(sw_platform)))
 makestation(OVERPASS_HP_C, default(ref(sw_platform)))
+
+makestation(OVERPASS_TRACK, default(ref(sprset_default)))
 
 // string definitions
 classnames(PLATFORM_START,

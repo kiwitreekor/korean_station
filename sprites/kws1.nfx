@@ -351,6 +351,20 @@ spriteblock(
 		sprite(spr_building_pole,
 			   buildings.png    8bpp  50  160 32 27 -31 -12 normal)
 		sprite(buildings.png    8bpp 130  160 32 27   1 -12 normal)
+//overpass
+		sprite(spr_overpass,
+			   platforms.png    8bpp 600  200 49 31 -31 -13 normal)
+		sprite(platforms.png    8bpp 670  200 49 31 -17 -13 normal)
+		sprite(platforms.png    8bpp 600  250 53 42 -46 -24 normal)
+		sprite(platforms.png    8bpp 670  250 53 42  -5 -24 normal)
+		sprite(platforms.png    8bpp 600  350 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  350 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  380 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  380 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  410 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  410 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  440 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  440 38 25 -31  -7 normal)
 	)
 )
 
@@ -378,24 +392,6 @@ spriteblock(
 
 def(1, sprset_ground) spriteset(little(0), lots(0))
 
-definestation(HP_A, "High Platform A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
-layout(HP_A,
-	passenger_graphic_A(
-		regular(spr_platform,   xyz(0,0,0), dxdydz(16, 6,3)),
-		regular(spr_platform+1, xyz(0,0,0), dxdydz( 6,16,3)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_snow,   xyz(0,0,0), dxdydz(16, 6,3)),
-		regular(spr_platform_snow+1, xyz(0,0,0), dxdydz( 6,16,3)),
-		3, spr_ground_snow
-	)
-)
-
 def(22, sw_terrain_snow) tinfo_terrain(
 	cbr(1) if(SNOW)
 	cbr(0) else
@@ -419,19 +415,41 @@ def(23, sw_passenger_snow) calculate({subroutine(sw_terrain_snow,) * 10 + subrou
 	cbfail() else
 )
 
-def(21, sw_normal) callback(
+def(21, sw_platform) callback(
 	ref(sw_passenger_snow) if(CB_LAYOUT)
 	ref(sprset_default) else
 )
 
-makestation(HP_A,
-	default(ref(sw_normal))
+// platforms
+
+definestation(PLATFORM_START, {"High Platform A", "High Platform B", "High Platform C"
+	, "High Platform A + Roof A", "High Platform B + Roof A", "High Platform C + Roof A"
+	, "High Platform A + Roof B", "High Platform B + Roof B", "High Platform C + Roof B"
+	, "Low Platform A", "Low Platform B", "Low Platform C"
+	, "Low Platform A + Roof A", "Low Platform B + Roof A", "Low Platform C + Roof A"
+	, "Low Platform A + Roof B", "Low Platform B + Roof B", "Low Platform C + Roof B"
+	, "Low Asphalt Platform A", "Low Asphalt Platform B", "Low Asphalt Platform C"
+	, "Low Asphalt Platform A + Roof A", "Low Asphalt Platform B + Roof A", "Low Asphalt Platform C + Roof A"
+	, "Low Asphalt Platform A + Roof B", "Low Asphalt Platform B + Roof B", "Low Asphalt Platform C + Roof B"},
+	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
+		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
+		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, 
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
-
-definestation(HP_B, "High Platform B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
+layout(HP_A,
+	passenger_graphic_A(
+		regular(spr_platform,   xyz(0,0,0), dxdydz(16, 6,3)),
+		regular(spr_platform+1, xyz(0,0,0), dxdydz( 6,16,3)),
+		3, spr_ground
+	)
+	passenger_graphic_A(
+		regular(spr_platform_snow,   xyz(0,0,0), dxdydz(16, 6,3)),
+		regular(spr_platform_snow+1, xyz(0,0,0), dxdydz( 6,16,3)),
+		3, spr_ground_snow
+	)
 )
 
 layout(HP_B,
@@ -445,16 +463,6 @@ layout(HP_B,
 		regular(spr_platform_snow+3, xyz(10, 0,0), dxdydz( 6,16,3)),
 		3, spr_ground_snow
 	)
-)
-
-makestation(HP_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_C, "High Platform C",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(HP_C,
@@ -474,16 +482,6 @@ layout(HP_C,
 	)
 )
 
-makestation(HP_C,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_A_RF_A, "High Platform A + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(HP_A_RF_A,
 	passenger_graphic_A(
 		regular(spr_platform_s,   xyz(0,0, 0), dxdydz(16, 6, 3))
@@ -501,16 +499,6 @@ layout(HP_A_RF_A,
 	)
 )
 
-makestation(HP_A_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_B_RF_A, "High Platform B + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(HP_B_RF_A,
 	passenger_graphic_B(
 		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
@@ -526,16 +514,6 @@ layout(HP_B_RF_A,
 		roofA_B2_snow(3),
 		3, spr_ground_snow
 	)
-)
-
-makestation(HP_B_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_C_RF_A, "High Platform C + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(HP_C_RF_A,
@@ -563,16 +541,6 @@ layout(HP_C_RF_A,
 	)
 )
 
-makestation(HP_C_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_A_RF_B, "High Platform A + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(HP_A_RF_B,
 	passenger_graphic_A(
 		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
@@ -590,16 +558,6 @@ layout(HP_A_RF_B,
 	)
 )
 
-makestation(HP_A_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_B_RF_B, "High Platform B + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(HP_B_RF_B,
 	passenger_graphic_B(
 		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
@@ -615,16 +573,6 @@ layout(HP_B_RF_B,
 		roofB_B2_snow(3),
 		3, spr_ground_snow
 	)
-)
-
-makestation(HP_B_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(HP_C_RF_B, "High Platform C + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(HP_C_RF_B,
@@ -652,16 +600,6 @@ layout(HP_C_RF_B,
 	)
 )
 
-makestation(HP_C_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_A, "Low Platform A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_A,
 	passenger_graphic_A(
 		regular(spr_platform_l, xyz(0,0,0), dxdydz(16,6,1)),
@@ -675,16 +613,6 @@ layout(LP_A,
 	)
 )
 
-makestation(LP_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_B, "Low Platform B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_B,
 	passenger_graphic_B(
 		regular(spr_platform_l+2, xyz(0,10,0), dxdydz(16,6,1)),
@@ -696,16 +624,6 @@ layout(LP_B,
 		regular(spr_platform_l_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LP_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_C, "Low Platform C",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LP_C,
@@ -725,16 +643,6 @@ layout(LP_C,
 	)
 )
 
-makestation(LP_C,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_A_RF_A, "Low Platform A + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_A_RF_A,
 	passenger_graphic_A(
 		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
@@ -752,16 +660,6 @@ layout(LP_A_RF_A,
 	)
 )
 
-makestation(LP_A_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_B_RF_A, "Low Platform B + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_B_RF_A,
 	passenger_graphic_B(
 		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
@@ -777,16 +675,6 @@ layout(LP_B_RF_A,
 		roofA_B2_snow(1),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LP_B_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_C_RF_A, "Low Platform C + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LP_C_RF_A,
@@ -814,16 +702,6 @@ layout(LP_C_RF_A,
 	)
 )
 
-makestation(LP_C_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_A_RF_B, "Low Platform A + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_A_RF_B,
 	passenger_graphic_A(
 		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
@@ -841,16 +719,6 @@ layout(LP_A_RF_B,
 	)
 )
 
-makestation(LP_A_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_B_RF_B, "Low Platform B + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LP_B_RF_B,
 	passenger_graphic_B(
 		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
@@ -866,16 +734,6 @@ layout(LP_B_RF_B,
 		roofB_B2_snow(1),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LP_B_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LP_C_RF_B, "Low Platform C + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LP_C_RF_B,
@@ -907,16 +765,6 @@ layout(LP_C_RF_B,
 	)
 )
 
-makestation(LP_C_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_A, "Low Asphalt Platform A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_A,
 	passenger_graphic_A(
 		regular(spr_platform_la, xyz(0,0,0), dxdydz(16,6,1)),
@@ -930,16 +778,6 @@ layout(LAP_A,
 	)
 )
 
-makestation(LAP_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_B, "Low Asphalt Platform B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_B,
 	passenger_graphic_B(
 		regular(spr_platform_la+2, xyz(0,10,0), dxdydz(16,6,1)),
@@ -951,16 +789,6 @@ layout(LAP_B,
 		regular(spr_platform_la_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LAP_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_C, "Low Asphalt Platform C",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LAP_C,
@@ -980,16 +808,6 @@ layout(LAP_C,
 	)
 )
 
-makestation(LAP_C,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_A_RF_A, "Low Asphalt Platform A + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_A_RF_A,
 	passenger_graphic_A(
 		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
@@ -1007,16 +825,6 @@ layout(LAP_A_RF_A,
 	)
 )
 
-makestation(LAP_A_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_B_RF_A, "Low Asphalt Platform B + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_B_RF_A,
 	passenger_graphic_B(
 		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
@@ -1032,16 +840,6 @@ layout(LAP_B_RF_A,
 		roofA_B2_snow(1),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LAP_B_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_C_RF_A, "Low Asphalt Platform C + Roof A",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LAP_C_RF_A,
@@ -1069,16 +867,6 @@ layout(LAP_C_RF_A,
 	)
 )
 
-makestation(LAP_C_RF_A,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_A_RF_B, "Low Asphalt Platform A + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_A_RF_B,
 	passenger_graphic_A(
 		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
@@ -1096,16 +884,6 @@ layout(LAP_A_RF_B,
 	)
 )
 
-makestation(LAP_A_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_B_RF_B, "Low Asphalt Platform B + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
-)
-
 layout(LAP_B_RF_B,
 	passenger_graphic_B(
 		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
@@ -1121,16 +899,6 @@ layout(LAP_B_RF_B,
 		roofB_B2_snow(1),
 		1, spr_ground_snow
 	)
-)
-
-makestation(LAP_B_RF_B,
-	default(ref(sw_normal))
-)
-
-
-definestation(LAP_C_RF_B, "Low Asphalt Platform C + Roof B",
-	class(CLASS_PLATFORMS)
-	callbacks(CB_LAYOUT)
 )
 
 layout(LAP_C_RF_B,
@@ -1158,9 +926,43 @@ layout(LAP_C_RF_B,
 	)
 )
 
-makestation(LAP_C_RF_B,
-	default(ref(sw_normal))
-)
+makestation(HP_A, default(ref(sw_platform)))
+makestation(HP_B, default(ref(sw_platform)))
+makestation(HP_C, default(ref(sw_platform)))
+
+makestation(HP_A_RF_A, default(ref(sw_platform)))
+makestation(HP_B_RF_A, default(ref(sw_platform)))
+makestation(HP_C_RF_A, default(ref(sw_platform)))
+
+makestation(HP_A_RF_B, default(ref(sw_platform)))
+makestation(HP_B_RF_B, default(ref(sw_platform)))
+makestation(HP_C_RF_B, default(ref(sw_platform)))
+
+makestation(LP_A, default(ref(sw_platform)))
+makestation(LP_B, default(ref(sw_platform)))
+makestation(LP_C, default(ref(sw_platform)))
+
+makestation(LP_A_RF_A, default(ref(sw_platform)))
+makestation(LP_B_RF_A, default(ref(sw_platform)))
+makestation(LP_C_RF_A, default(ref(sw_platform)))
+
+makestation(LP_A_RF_B, default(ref(sw_platform)))
+makestation(LP_B_RF_B, default(ref(sw_platform)))
+makestation(LP_C_RF_B, default(ref(sw_platform)))
+
+makestation(LAP_A, default(ref(sw_platform)))
+makestation(LAP_B, default(ref(sw_platform)))
+makestation(LAP_C, default(ref(sw_platform)))
+
+makestation(LAP_A_RF_A, default(ref(sw_platform)))
+makestation(LAP_B_RF_A, default(ref(sw_platform)))
+makestation(LAP_C_RF_A, default(ref(sw_platform)))
+
+makestation(LAP_A_RF_B, default(ref(sw_platform)))
+makestation(LAP_B_RF_B, default(ref(sw_platform)))
+makestation(LAP_C_RF_B, default(ref(sw_platform)))
+
+// crossings
 
 definestation(LP_A_CR, {"Low Platform A + Crossing", "Low Platform B + Crossing", "Low Platform C + Crossing",
 	"Low Platform A + Roof A + Crossing", "Low Platform B + Roof A + Crossing", "Low Platform C + Roof A + Crossing",
@@ -1374,7 +1176,7 @@ makestation(BUILDING_HIGH,
 	default(ref(sw_building_cb))
 )
 
-// building overpasses
+// modular station overpasses
 definestation(BUILDING_LOW_HP_A, {"High Platform A + Low Overpass", "High Platform B + Low Overpass", "High Platform C + Low Overpass",
 	"High Platform A + High Overpass", "High Platform B + High Overpass", "High Platform C + High Overpass"},
 	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
@@ -1868,24 +1670,113 @@ layout(BUILDING_HIGH_LAP_C,
 	)
 )
 
-makestation(BUILDING_LOW_HP_A, default(ref(sw_normal)))
-makestation(BUILDING_LOW_HP_B, default(ref(sw_normal)))
-makestation(BUILDING_LOW_HP_C, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_HP_A, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_HP_B, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_HP_C, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LP_A, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LP_B, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LP_C, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LP_A, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LP_B, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LP_C, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LAP_A, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LAP_B, default(ref(sw_normal)))
-makestation(BUILDING_LOW_LAP_C, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LAP_A, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LAP_B, default(ref(sw_normal)))
-makestation(BUILDING_HIGH_LAP_C, default(ref(sw_normal)))
+makestation(BUILDING_LOW_HP_A, default(ref(sw_platform)))
+makestation(BUILDING_LOW_HP_B, default(ref(sw_platform)))
+makestation(BUILDING_LOW_HP_C, default(ref(sw_platform)))
+
+makestation(BUILDING_HIGH_HP_A, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_HP_B, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_HP_C, default(ref(sw_platform)))
+
+makestation(BUILDING_LOW_LP_A, default(ref(sw_platform)))
+makestation(BUILDING_LOW_LP_B, default(ref(sw_platform)))
+makestation(BUILDING_LOW_LP_C, default(ref(sw_platform)))
+
+makestation(BUILDING_HIGH_LP_A, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_LP_B, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_LP_C, default(ref(sw_platform)))
+
+makestation(BUILDING_LOW_LAP_A, default(ref(sw_platform)))
+makestation(BUILDING_LOW_LAP_B, default(ref(sw_platform)))
+makestation(BUILDING_LOW_LAP_C, default(ref(sw_platform)))
+
+makestation(BUILDING_HIGH_LAP_A, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_LAP_B, default(ref(sw_platform)))
+makestation(BUILDING_HIGH_LAP_C, default(ref(sw_platform)))
+
+
+// overpasses
+definestation(OVERPASS_START, {"High Platform A + Overpass", "High Platform B + Overpass", "High Platform C + Overpass",
+	"Low Platform A + Overpass", "Low Platform B + Overpass", "Low Platform C + Overpass",
+	"Low Asphalt Platform A + Overpass", "Low Asphalt Platform B + Overpass", "Low Asphalt Platform C + Overpass"},
+	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
+)
+
+layout(OVERPASS_HP_A,
+	passenger_graphic_A(
+		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground
+	)
+	passenger_graphic_A(
+		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground_snow
+	)
+)
+
+layout(OVERPASS_HP_B,
+	passenger_graphic_B(
+		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground
+	)
+	passenger_graphic_B(
+		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground_snow
+	)
+)
+
+layout(OVERPASS_HP_C,
+	passenger_graphic_C(
+		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
+		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
+		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground
+	)
+	passenger_graphic_C(
+		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
+		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
+		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,16, 8)),
+		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
+		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
+		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(16, 3, 8)),
+		3, spr_ground_snow
+	)
+)
+
+makestation(OVERPASS_HP_A, default(ref(sw_platform)))
+makestation(OVERPASS_HP_B, default(ref(sw_platform)))
+makestation(OVERPASS_HP_C, default(ref(sw_platform)))
 
 // string definitions
 classnames(PLATFORM_START,
@@ -1963,4 +1854,12 @@ stationnames(BUILDING_LOW_HP_A,
 	, "Low Asphalt Platform A + Low Overpass", "Low Asphalt Platform B + Low Overpass", "Low Asphalt Platform C + Low Overpass"
 	, "Low Asphalt Platform A + High Overpass", "Low Asphalt Platform B + High Overpass", "Low Asphalt Platform C + High Overpass"}
 )
-	
+
+stationnames(OVERPASS_START,
+	{KR, UTF8 "고상홈 A + 육교", UTF8 "고상홈 B + 육교", UTF8 "고상홈 C + 육교"
+	, UTF8 "저상홈 A + 육교", UTF8 "저상홈 B + 육교", UTF8 "저상홈 C + 육교"
+	, UTF8 "아스팔트 저상홈 A + 육교", UTF8 "아스팔트 저상홈 B + 육교", UTF8 "아스팔트 저상홈 C + 육교"},
+	{ALL, "High Platform A + Overpass", "High Platform B + Overpass", "High Platform C + Overpass"
+	, "Low Platform A + Overpass", "Low Platform B + Overpass", "Low Platform C + Overpass"
+	, "Low Asphalt Platform A + Overpass", "Low Asphalt Platform B + Overpass", "Low Asphalt Platform C + Overpass"}
+)

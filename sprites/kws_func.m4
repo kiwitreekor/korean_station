@@ -3,20 +3,11 @@ define(passenger_graphic, {
 		ground($5+1)
 		$1
 	)
-	tile(
-		ground($5)
-		$2
-	)
 forloop(X, {
 	tile(
 		ground($5+1)
 		$1
 		$3
-	)
-	tile(
-		ground($5)
-		$2
-		$4
 	)
 }, 0 .. 3)
 })

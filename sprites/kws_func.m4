@@ -205,199 +205,243 @@ define(crossing_C,{
 
 define(stn_building, {
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+1, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+2, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+3, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+4, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+4, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+5, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+7, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+6, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+6, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+7, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+5, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+8, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+8, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+9, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+11, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+10, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+10, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+11, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+9, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+12, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($1+13, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+1, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+1, xyoff(0,0))
 		regular($2, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+2, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+2, xyoff(0,0))
 		regular($2+1, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+3, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+3, xyoff(0,0))
 		regular($2+2, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+4, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+4, xyoff(0,0))
 		regular($2+3, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+5, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+5, xyoff(0,0))
 		regular($2+4, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+5, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+5, xyoff(0,0))
 		regular($2+4, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+6, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+6, xyoff(0,0))
 		regular($2+5, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+8, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+8, xyoff(0,0))
 		regular($2+7, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+7, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+7, xyoff(0,0))
 		regular($2+6, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+7, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+7, xyoff(0,0))
 		regular($2+6, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+8, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+8, xyoff(0,0))
 		regular($2+7, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+6, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+6, xyoff(0,0))
 		regular($2+5, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+9, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+9, xyoff(0,0))
 		regular($2+8, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+9, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+9, xyoff(0,0))
 		regular($2+8, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+10, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+10, xyoff(0,0))
 		regular($2+9, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+12, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+12, xyoff(0,0))
 		regular($2+11, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+11, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+11, xyoff(0,0))
 		regular($2+10, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+11, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+11, xyoff(0,0))
 		regular($2+10, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building+12, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building+12, xyoff(0,0))
 		regular($2+11, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building+10, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building+10, xyoff(0,0))
 		regular($2+9, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground+1)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($2+12, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 	tile(
-		ground(spr_ground_building, CUSTOM)
+		ground(spr_ground)
+		notransp(spr_ground_building, xyoff(0,0))
 		regular($2+13, xyz(0,0,0), dxdydz(16,16,$3))
 	)
 })

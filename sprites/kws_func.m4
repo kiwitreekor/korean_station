@@ -22,7 +22,7 @@ forloop(X, {
 })
 
 define(passenger_graphic_A, {
-	passenger_graphic($1,$2,
+	passenger_graphic({$1},{$2},
 		{regular(spr_passengers+4*X,   xyz( 0, 0,$3), dxdydz(16, 6,6))},
 		{regular(spr_passengers+1+4*X, xyz( 0, 0,$3), dxdydz( 6,16,6))},
 		$4
@@ -30,7 +30,7 @@ define(passenger_graphic_A, {
 })
 
 define(passenger_graphic_B, {
-	passenger_graphic($1,$2,
+	passenger_graphic({$1},{$2},
 		{regular(spr_passengers+2+4*X, xyz( 0,10,$3), dxdydz(16, 6,6))},
 		{regular(spr_passengers+3+4*X, xyz(10, 0,$3), dxdydz( 6,16,6))},
 		$4
@@ -38,7 +38,7 @@ define(passenger_graphic_B, {
 })
 
 define(passenger_graphic_C, {
-	passenger_graphic($1,$2,
+	passenger_graphic({$1},{$2},
 		{regular(spr_passengers+4*X,   xyz( 0, 0,$3), dxdydz(16, 6,6))}
 		{regular(spr_passengers+2+4*X, xyz( 0,10,$3), dxdydz(16, 6,6))},
 		{regular(spr_passengers+1+4*X, xyz( 0, 0,$3), dxdydz( 6,16,6))}
@@ -49,55 +49,55 @@ define(passenger_graphic_C, {
 
 define(platform_graphic_A, {
 	passenger_graphic_A(
-		regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))
-		$3, 
-		regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))
-		$4, 
+		{regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))}
+		{$3}, 
+		{regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
+		{$4}, 
 		$7, spr_ground
 	)
 	passenger_graphic_A(
-		regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))
-		$5, 
-		regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))
-		$6, 
+		{regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))}
+		{$5}, 
+		{regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
+		{$6}, 
 		$7, spr_ground_snow
 	)
 })
 
 define(platform_graphic_B, {
 	passenger_graphic_B(
-		regular($1+2, xyz(0,10, 0), dxdydz(16, 6, $7))
-		$3, 
-		regular($1+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))
-		$4, 
+		{regular($1+2, xyz(0,10, 0), dxdydz(16, 6, $7))}
+		{$3}, 
+		{regular($1+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))}
+		{$4}, 
 		$7, spr_ground
 	)
 	passenger_graphic_B(
-		regular($2+2, xyz( 0,10, 0), dxdydz(16, 6, $7))
-		$5, 
-		regular($2+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))
-		$6, 
+		{regular($2+2, xyz( 0,10, 0), dxdydz(16, 6, $7))}
+		{$5}, 
+		{regular($2+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))}
+		{$6}, 
 		$7, spr_ground_snow
 	)
 })
 
 define(platform_graphic_C, {
 	passenger_graphic_C(
-		regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))
-		regular($1+2, xyz(0,10, 0), dxdydz(16, 6, $7))
-		$3, 
-		regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))
-		regular($1+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))
-		$4, 
+		{regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($1+2, xyz(0,10, 0), dxdydz(16, 6, $7))}
+		{$3}, 
+		{regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
+		{regular($1+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))}
+		{$4}, 
 		$7, spr_ground
 	)
 	passenger_graphic_C(
-		regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))
-		regular($2+2, xyz( 0,10, 0), dxdydz(16, 6, $7))
-		$5, 
-		regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))
-		regular($2+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))
-		$6, 
+		{regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($2+2, xyz( 0,10, 0), dxdydz(16, 6, $7))}
+		{$5}, 
+		{regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
+		{regular($2+3, xyz(10, 0, 0), dxdydz( 6, 16, $7))}
+		{$6},
 		$7, spr_ground_snow
 	)
 })
@@ -111,43 +111,43 @@ define(platform_graphic_B_snowdiff, {platform_graphic_B($1,$2,$3$5,$4$6,$3$7,$4$
 define(platform_graphic_C_snowdiff, {platform_graphic_C($1,$2,$3$5,$4$6,$3$7,$4$8,$9)})
 
 define(roofA_A1_base, {
-	regular($3, xyz(0,0,$1), dxdydz(16,0,10))
-	regular($2, xyz(0,0,10+$1), dxdydz(16,6,3))
+	{regular($3, xyz(0,0,$1), dxdydz(16,0,10))}
+	{regular($2, xyz(0,0,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofA_A2_base, {
-	regular($3+1, xyz(0,0,$1), dxdydz(0,16,10))
-	regular($2+1, xyz(0,0,10+$1), dxdydz(6,16,3))
+	{regular($3+1, xyz(0,0,$1), dxdydz(0,16,10))}
+	{regular($2+1, xyz(0,0,10+$1), dxdydz(6,16,3))}
 })
 
 define(roofA_B1_base, {
-	regular($3+2, xyz(0,16,$1), dxdydz(16,0,10))
-	regular($2+2, xyz(0,10,10+$1), dxdydz(16,6,3))
+	{regular($3+2, xyz(0,16,$1), dxdydz(16,0,10))}
+	{regular($2+2, xyz(0,10,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofA_B2_base, {
-	regular($3+3, xyz(16,0,$1), dxdydz(0,16,10))
-	regular($2+3, xyz(10,0,10+$1), dxdydz(6,16,3))
+	{regular($3+3, xyz(16,0,$1), dxdydz(0,16,10))}
+	{regular($2+3, xyz(10,0,10+$1), dxdydz(6,16,3))}
 })
 
 define(roofB_A1_base, {
-	regular($3+4, xyz(0,3,$1), dxdydz(16,0,10))
-	regular($2+4, xyz(0,0,10+$1), dxdydz(16,6,3))
+	{regular($3+4, xyz(0,3,$1), dxdydz(16,0,10))}
+	{regular($2+4, xyz(0,0,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofB_A2_base, {
-	regular($3+5, xyz(3,0,$1), dxdydz(0,16,10))
-	regular($2+5, xyz(0,0,10+$1), dxdydz(6,16,3))
+	{regular($3+5, xyz(3,0,$1), dxdydz(0,16,10))}
+	{regular($2+5, xyz(0,0,10+$1), dxdydz(6,16,3))}
 })
 
 define(roofB_B1_base, {
-	regular($3+6, xyz(0,13,$1), dxdydz(16,0,10))
-	regular($2+6, xyz(0,10,10+$1), dxdydz(16,6,3))
+	{regular($3+6, xyz(0,13,$1), dxdydz(16,0,10))}
+	{regular($2+6, xyz(0,10,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofB_B2_base, {
-	regular($3+7, xyz(13,0,$1), dxdydz(0,16,10))
-	regular($2+7, xyz(10,0,10+$1), dxdydz(6,16,3))
+	{regular($3+7, xyz(13,0,$1), dxdydz(0,16,10))}
+	{regular($2+7, xyz(10,0,10+$1), dxdydz(6,16,3))}
 })
 
 define(roofA_A1, {roofA_A1_base($1, spr_roofs, spr_poles)})
@@ -172,96 +172,96 @@ define(roofB_B2_snow, {roofB_B2_base($1, spr_roofs_snow, spr_poles)})
 
 define(crossing_A,{
 	passenger_graphic_A(
-		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
-		regular($1, xyz(0,0,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
-		regular($1+1, xyz(0,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))}
+		{regular($1, xyz(0,0,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))}
+		{regular($1+1, xyz(0,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_A(
-		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
-		regular($1+4, xyz(0,0,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
-		regular($1+5, xyz(0,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))}
+		{regular($1+4, xyz(0,0,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))}
+		{regular($1+5, xyz(0,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_A(
-		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
-		regular($1+8, xyz(0,0,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
-		regular($1+9, xyz(0,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))}
+		{regular($1+8, xyz(0,0,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))}
+		{regular($1+9, xyz(0,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 })
 
 define(crossing_B,{
 	passenger_graphic_B(
-		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
-		regular($1+2, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
-		regular($1+3, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))}
+		{regular($1+2, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))}
+		{regular($1+3, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_B(
-		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
-		regular($1+6, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
-		regular($1+7, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))}
+		{regular($1+6, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))}
+		{regular($1+7, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_B(
-		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
-		regular($1+10, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
-		regular($1+11, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))}
+		{regular($1+10, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))}
+		{regular($1+11, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 })
 
 define(crossing_C,{
 	passenger_graphic_C(
-		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
-		regular($1, xyz(0,0,0), dxdydz(16,6,1))
-		regular($1+2, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
-		regular($1+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular($1+3, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))}
+		{regular($1, xyz(0,0,0), dxdydz(16,6,1))}
+		{regular($1+2, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))}
+		{regular($1+1, xyz(0,0,0), dxdydz(6,16,1))}
+		{regular($1+3, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_C(
-		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
-		regular($1+4, xyz(0,0,0), dxdydz(16,6,1))
-		regular($1+6, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
-		regular($1+5, xyz(0,0,0), dxdydz(6,16,1))
-		regular($1+7, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))}
+		{regular($1+4, xyz(0,0,0), dxdydz(16,6,1))}
+		{regular($1+6, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))}
+		{regular($1+5, xyz(0,0,0), dxdydz(6,16,1))}
+		{regular($1+7, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 	passenger_graphic_C(
-		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
-		regular($1+8, xyz(0,0,0), dxdydz(16,6,1))
-		regular($1+10, xyz(0,10,0), dxdydz(16,6,1))
-		$2,
-		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
-		regular($1+9, xyz(0,0,0), dxdydz(6,16,1))
-		regular($1+11, xyz(10,0,0), dxdydz(6,16,1))
-		$3,
+		{regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))}
+		{regular($1+8, xyz(0,0,0), dxdydz(16,6,1))}
+		{regular($1+10, xyz(0,10,0), dxdydz(16,6,1))}
+		{$2},
+		{regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))}
+		{regular($1+9, xyz(0,0,0), dxdydz(6,16,1))}
+		{regular($1+11, xyz(10,0,0), dxdydz(6,16,1))}
+		{$3},
 		1, $4
 	)
 })
@@ -512,39 +512,39 @@ define(stn_building, {
 define(signA_platformA, {
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8)),
+		{regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8)),
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))},
 		$3
 	)
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8)),
+		{regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 	
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8)),
+		{regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8)),
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8)),
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))},
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))},
 		$3
 	)
 	platform_graphic_A_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14, -1, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8)),
+		{regular(spr_signA, xyz(14, -1, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 })
@@ -552,20 +552,20 @@ define(signA_platformA, {
 define(signA_platformB, {
 	platform_graphic_B_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 	platform_graphic_B_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8)),
+		{regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8))},
 		$3
 	)
 	platform_graphic_B_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8)),
+		{regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 	
@@ -575,89 +575,89 @@ define(signA_platformB, {
 define(signA_platformC, {
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8)), 
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8))}, 
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8)), 
-		$3
-	)
-	
-	platform_graphic_C_nosnow(
-		$1, $2,
-		regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8)),
-		$3
-	)
-	platform_graphic_C_nosnow(
-		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8)), 
-		$3
-	)
-	platform_graphic_C_nosnow(
-		$1, $2,
-		regular(spr_signA, xyz(14, -1, $3), dxdydz( 0, 3, 8))
-		regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8))
-		regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 	
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA, xyz( 2, 12, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+1, xyz(12, 2, $3), dxdydz( 3, 0, 8))},
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8)),
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+2, xyz( 7, 16, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA+3, xyz(16, 7, $3), dxdydz( 0, 3, 8))}, 
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz(14, -1, $3), dxdydz( 0, 3, 8))}
+		{regular(spr_signA, xyz(14, 12, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8))}
+		{regular(spr_signA+1, xyz(12, 14, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 	
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8)),
-		regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz( 2, 1, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz( 1, 2, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8)), 
-		regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8)), 
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))},
 		$3
 	)
 	platform_graphic_C_nosnow(
 		$1, $2,
-		regular(spr_signA, xyz(14,-1, $3), dxdydz( 0, 3, 8)), 
-		regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8)), 
+		{regular(spr_signA, xyz(14, 1, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz( 1, 14, $3), dxdydz( 3, 0, 8))}, 
+		$3
+	)
+	
+	platform_graphic_C_nosnow(
+		$1, $2,
+		{regular(spr_signA, xyz( 2, -1, $3), dxdydz( 0, 3, 8))},
+		{regular(spr_signA+1, xyz(-1, 2, $3), dxdydz( 3, 0, 8))}, 
+		$3
+	)
+	platform_graphic_C_nosnow(
+		$1, $2,
+		{regular(spr_signA+2, xyz( 7, 0, $3), dxdydz( 3, 0, 8))}, 
+		{regular(spr_signA+3, xyz( 0, 7, $3), dxdydz( 0, 3, 8))}, 
+		$3
+	)
+	platform_graphic_C_nosnow(
+		$1, $2,
+		{regular(spr_signA, xyz(14,-1, $3), dxdydz( 0, 3, 8))}, 
+		{regular(spr_signA+1, xyz(-1, 14, $3), dxdydz( 3, 0, 8))}, 
 		$3
 	)
 })

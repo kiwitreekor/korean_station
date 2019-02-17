@@ -74,7 +74,7 @@ grfinit("KW" 00 02,
 	)
 )
 textmode_off()
-asl_off()
+asl_on()
 deflabel(skip_no_shadow)
 deflabel(skip_shadow)
 

@@ -80,7 +80,7 @@ deflabel(skip_shadow)
 
 spriteblock(
 	set(
-//normal
+// normal
 		sprite(spr_platform, 
 		       platforms.png    8bpp  10   10 44 24 -31  -3 normal) //high platform A
 		sprite(platforms.png    8bpp  60   10 44 24 -11  -3 normal)
@@ -96,7 +96,7 @@ spriteblock(
 		sprite(platforms.png    8bpp  60   90 44 22 -11  -1 normal)
 		sprite(platforms.png    8bpp 110   90 44 22 -31  -1 normal) //low asphalt platform B
 		sprite(platforms.png    8bpp 160   90 44 22 -11  -1 normal)
-//shadowed
+// shadowed
 		sprite(spr_platform_s,
 			   platforms.png    8bpp  10  400 44 24 -31  -3 normal) //high platform A
 		sprite(platforms.png    8bpp  60  400 44 24 -11  -3 normal)
@@ -112,7 +112,7 @@ spriteblock(
 		sprite(platforms.png    8bpp  60  480 44 22 -11  -1 normal)
 		sprite(platforms.png    8bpp 110  480 44 22 -31  -1 normal) //low asphalt platform B
 		sprite(platforms.png    8bpp 160  480 44 22 -11  -1 normal)
-//snow
+// snow
 		sprite(spr_platform_snow, 
 		       platforms.png    8bpp  10  780 44 24 -31  -3 normal) //high platform A
 		sprite(platforms.png    8bpp  60  780 44 24 -11  -3 normal)
@@ -128,7 +128,7 @@ spriteblock(
 		sprite(platforms.png    8bpp  60  860 44 22 -11  -1 normal)
 		sprite(platforms.png    8bpp 110  860 44 22 -31  -1 normal) //low asphalt platform B
 		sprite(platforms.png    8bpp 160  860 44 22 -11  -1 normal)
-//passengers
+// passengers
 		sprite(spr_passengers, 
 			   platforms.png    8bpp 500  100 44 19 -31  -1 normal) //passenger 1, platform A
 		sprite(platforms.png    8bpp 550  100 44 19 -11  -1 normal)
@@ -146,7 +146,7 @@ spriteblock(
 		sprite(platforms.png    8bpp 550   10 44 19 -11  -1 normal)
 		sprite(platforms.png    8bpp 600   10 44 19 -31  -1 normal) //passenger 4, platform B
 		sprite(platforms.png    8bpp 650   10 44 19 -11  -1 normal)
-//roofs
+// roof
 		sprite(spr_roofs,
 			   roofs.png        8bpp  10   10 44 20 -31  -2 normal) //roof A, platform A
 		sprite(roofs.png        8bpp  60   10 44 20 -11  -2 normal)
@@ -156,7 +156,7 @@ spriteblock(
 		sprite(roofs.png        8bpp  60  200 44 24 -11  -6 normal)
 		sprite(roofs.png        8bpp 110  200 44 24 -31  -6 normal) //roof B, platform B
 		sprite(roofs.png        8bpp 160  200 44 24 -11  -6 normal)
-//roofs with snow
+// roof with snow
 		sprite(spr_roofs_snow,
 			   roofs.png        8bpp  10  100 44 20 -31  -2 normal) //roof A, platform A
 		sprite(roofs.png        8bpp  60  100 44 20 -11  -2 normal)
@@ -166,7 +166,7 @@ spriteblock(
 		sprite(roofs.png        8bpp  60  290 44 24 -11  -6 normal)
 		sprite(roofs.png        8bpp 110  290 44 24 -31  -6 normal) //roof B, platform B
 		sprite(roofs.png        8bpp 160  290 44 24 -11  -6 normal)
-//poles
+// pole
 		sprite(spr_poles,
 			   roofs.png        8bpp  10   60 33 25 -31  -9 normal) //poles for roof A, platform A
 		sprite(roofs.png        8bpp  60   60 33 25   0  -9 normal)
@@ -176,7 +176,7 @@ spriteblock(
 		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
 		sprite(roofs.png        8bpp  10  250 33 28 -32 -12 normal) //poles for roof B, platform B
 		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
-//crossings
+// crossing
 		sprite(spr_platform_c,
 			   platforms.png    8bpp  10  140 44 22 -31  -1 normal) //low crossing A (mid)
 		sprite(platforms.png    8bpp  60  140 44 22 -11  -1 normal)
@@ -203,7 +203,7 @@ spriteblock(
 		sprite(platforms.png    8bpp  60  340 44 22 -11  -1 normal)
 		sprite(platforms.png    8bpp 110  340 44 22 -31  -1 normal) //low asphalt crossing B (front)
 		sprite(platforms.png    8bpp 160  340 44 22 -11  -1 normal)
-//crossings, shadow
+// crossing, shadow
 		sprite(spr_platform_cs,
 			   platforms.png    8bpp  10  530 44 22 -31  -1 normal) //low crossing A (mid)
 		sprite(platforms.png    8bpp  60  530 44 22 -11  -1 normal)
@@ -233,7 +233,7 @@ spriteblock(
 		sprite(spr_crossing,
 			   platforms.png    8bpp 230  140 38 18  -5   0 normal) //crossing
 		sprite(platforms.png    8bpp 280  140 38 18 -31   0 normal)
-//crossings, snow
+// crossing, snow
 		sprite(spr_platform_c_snow,
 			   platforms.png    8bpp  10  910 44 22 -31  -1 normal) //low crossing A (mid)
 		sprite(platforms.png    8bpp  60  910 44 22 -11  -1 normal)
@@ -260,7 +260,7 @@ spriteblock(
 		sprite(platforms.png    8bpp  60 1110 44 22 -11  -1 normal)
 		sprite(platforms.png    8bpp 110 1110 44 22 -31  -1 normal) //low asphalt crossing B (front)
 		sprite(platforms.png    8bpp 160 1110 44 22 -11  -1 normal)
-//buildings
+// building
 		sprite(spr_bdoverpass_low,
 			   buildings.png    8bpp  10   10 64 47 -31 -16 normal) //low overpass
 		sprite(buildings.png    8bpp  90   10 64 47 -31 -16 normal) 
@@ -301,7 +301,7 @@ spriteblock(
 		sprite(spr_building_high_full,
 			   buildings.png    8bpp 490   80 64 91 -31 -60 normal) //high building block
 		sprite(buildings.png    8bpp 570   80 64 91 -31 -60 normal)
-//buildings, snow
+// building, snow
 		sprite(spr_bdoverpass_low_snow,
 			   buildings.png    8bpp  10  610 64 47 -31 -16 normal) //low overpass
 		sprite(buildings.png    8bpp  90  610 64 47 -31 -16 normal) 
@@ -342,7 +342,7 @@ spriteblock(
 		sprite(spr_building_high_full_snow,
 			   buildings.png    8bpp 490  680 64 91 -31 -60 normal) //high building block
 		sprite(buildings.png    8bpp 570  680 64 91 -31 -60 normal)
-//pole
+// pole
 		sprite(spr_building_pole_hp,
 			   buildings.png    8bpp  10  160 32 24 -31  -9 normal) //for high platforms
 		sprite(buildings.png    8bpp  90  160 32 24   1  -9 normal)
@@ -352,7 +352,7 @@ spriteblock(
 		sprite(spr_building_pole,
 			   buildings.png    8bpp  50  160 32 27 -31 -12 normal)
 		sprite(buildings.png    8bpp 130  160 32 27   1 -12 normal)
-//overpass
+// overpass
 		sprite(spr_overpass,
 			   platforms.png    8bpp 600  200 49 31 -31 -13 normal)
 		sprite(platforms.png    8bpp 670  200 49 31 -17 -13 normal)
@@ -415,7 +415,37 @@ spriteblock(
 		sprite(roofs.png        8bpp  60  350 44 24 -11  -6 normal)
 		sprite(roofs.png        8bpp 110  350 44 24 -31  -6 normal) //roof B, platform B
 		sprite(roofs.png        8bpp 160  350 44 24 -11  -6 normal)
-//custom grounds
+// facilities
+		sprite(spr_signA,
+			   platforms.png    8bpp 500  220  5  9   0  -7 normal) //station sign A, end
+		sprite(platforms.png    8bpp 510  220  5  9  -5  -7 normal)
+		sprite(platforms.png    8bpp 520  220  5  9  -5  -7 normal) //station sign A, middle
+		sprite(platforms.png    8bpp 530  220  5  9   0  -7 normal)
+		sprite(spr_signB,
+			   platforms.png    8bpp 500  200 11 10 -10  -5 normal) //station sign B
+		sprite(platforms.png    8bpp 520  200 11 10   0  -5 normal)
+		sprite(spr_signC,
+			   platforms.png    8bpp 500  320 12 18   0 -18 normal) //station sign C, platform A
+		sprite(platforms.png    8bpp 520  320 12 18 -10 -18 normal)
+		sprite(platforms.png    8bpp 540  320 12 20   0 -15 normal) //station sign C, platform B
+		sprite(platforms.png    8bpp 560  320 12 20 -10 -15 normal)
+		sprite(platforms.png    8bpp 500  350 11  8   0  -3 normal) //station sign C, platform A, roof
+		sprite(platforms.png    8bpp 520  350 11  8 -10  -3 normal)
+		sprite(platforms.png    8bpp 540  350 10  8   0  -3 normal) //station sign C, platform B, roof
+		sprite(platforms.png    8bpp 560  350 10  8 -10  -3 normal)
+		sprite(spr_led,
+			   platforms.png    8bpp 500  240  6  5   0  -4 normal) //station LED
+		sprite(platforms.png    8bpp 510  240  6  5  -6  -4 normal)
+		sprite(spr_waitingroom,
+			   platforms.png    8bpp 500  260 24 19  -8  -8 normal) //waiting room
+		sprite(platforms.png    8bpp 530  260 24 19 -16  -8 normal)
+		sprite(spr_waitingroom_glass,
+			   platforms.png    8bpp 500  290 24 19  -8  -8 normal) //waiting room, glass
+		sprite(platforms.png    8bpp 530  290 24 19 -16  -8 normal)
+		sprite(spr_light,
+			   platforms.png    8bpp 500  370 10 19   0 -17 normal) //light
+		sprite(platforms.png    8bpp 520  370 10 19   0 -17 normal)
+// custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  10  800 64 31 -31   0 normal) //snow
@@ -454,7 +484,7 @@ def(20, sw_passenger) cargowaiting(PASS,
 	cbr(0) else
 )
 
-def(23, sw_passenger_snow) calculate({subroutine(sw_terrain_snow,) * 10 + subroutine(sw_passenger,)},
+def(23, sw_passenger_snow) calculate({subroutine(sw_terrain_snow) * 10 + subroutine(sw_passenger)},
 	cbfail() else
 )
 
@@ -465,15 +495,7 @@ def(21, sw_platform) callback(
 
 // platforms
 
-definestation(PLATFORM_START, {"High Platform A", "High Platform B", "High Platform C"
-	, "High Platform A + Roof A", "High Platform B + Roof A", "High Platform C + Roof A"
-	, "High Platform A + Roof B", "High Platform B + Roof B", "High Platform C + Roof B"
-	, "Low Platform A", "Low Platform B", "Low Platform C"
-	, "Low Platform A + Roof A", "Low Platform B + Roof A", "Low Platform C + Roof A"
-	, "Low Platform A + Roof B", "Low Platform B + Roof B", "Low Platform C + Roof B"
-	, "Low Asphalt Platform A", "Low Asphalt Platform B", "Low Asphalt Platform C"
-	, "Low Asphalt Platform A + Roof A", "Low Asphalt Platform B + Roof A", "Low Asphalt Platform C + Roof A"
-	, "Low Asphalt Platform A + Roof B", "Low Asphalt Platform B + Roof B", "Low Asphalt Platform C + Roof B"},
+definestation(PLATFORM_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
 	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
 		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
 		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
@@ -482,490 +504,237 @@ definestation(PLATFORM_START, {"High Platform A", "High Platform B", "High Platf
 		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
-layout(HP_A,
-	passenger_graphic_A(
-		regular(spr_platform,   xyz(0,0,0), dxdydz(16, 6,3)),
-		regular(spr_platform+1, xyz(0,0,0), dxdydz( 6,16,3)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_snow,   xyz(0,0,0), dxdydz(16, 6,3)),
-		regular(spr_platform_snow+1, xyz(0,0,0), dxdydz( 6,16,3)),
-		3, spr_ground_snow
-	)
-)
-
-layout(HP_B,
-	passenger_graphic_B(
-		regular(spr_platform+2, xyz( 0,10,0), dxdydz(16, 6,3)),
-		regular(spr_platform+3, xyz(10, 0,0), dxdydz( 6,16,3)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_snow+2, xyz( 0,10,0), dxdydz(16, 6,3)),
-		regular(spr_platform_snow+3, xyz(10, 0,0), dxdydz( 6,16,3)),
-		3, spr_ground_snow
-	)
-)
-
-layout(HP_C,
-	passenger_graphic_C(
-		regular(spr_platform,   xyz( 0, 0,0), dxdydz(16, 6,3))
-		regular(spr_platform+2, xyz( 0,10,0), dxdydz(16, 6,3)),
-		regular(spr_platform+1, xyz( 0, 0,0), dxdydz( 6,16,3))
-		regular(spr_platform+3, xyz(10, 0,0), dxdydz( 6,16,3)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_snow,   xyz( 0, 0,0), dxdydz(16, 6,3))
-		regular(spr_platform_snow+2, xyz( 0,10,0), dxdydz(16, 6,3)),
-		regular(spr_platform_snow+1, xyz( 0, 0,0), dxdydz( 6,16,3))
-		regular(spr_platform_snow+3, xyz(10, 0,0), dxdydz( 6,16,3)),
-		3, spr_ground_snow
-	)
-)
+layout(HP_A, platform_graphic_A_nosnow(spr_platform, spr_platform_snow,,, 3))
+layout(HP_B, platform_graphic_B_nosnow(spr_platform, spr_platform_snow,,, 3))
+layout(HP_C, platform_graphic_C_nosnow(spr_platform, spr_platform_snow,,, 3))
 
 layout(HP_A_RF_A,
-	passenger_graphic_A(
-		regular(spr_platform_s,   xyz(0,0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		roofA_A1(3),
-		regular(spr_platform_s+1, xyz(0,0, 0), dxdydz( 6,16, 3))
 		roofA_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,   xyz(0,0, 0), dxdydz(16, 6, 3))
 		roofA_A1_snow(3),
-		regular(spr_platform_s+1, xyz(0,0, 0), dxdydz( 6,16, 3))
 		roofA_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(HP_B_RF_A,
-	passenger_graphic_B(
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		roofA_B1(3),
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
 		roofA_B1_snow(3),
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(HP_C_RF_A,
-	passenger_graphic_C(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		roofA_A1(3)
 		roofA_B1(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofA_A2(3)
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
 		roofA_A1_snow(3)
 		roofA_B1_snow(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofA_A2_snow(3)
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(HP_A_RF_B,
-	passenger_graphic_A(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		roofB_A1(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
 		roofB_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
 		roofB_A1_snow(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
 		roofB_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(HP_B_RF_B,
-	passenger_graphic_B(
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		roofB_B1(3),
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
 		roofB_B1_snow(3),
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(HP_C_RF_B,
-	passenger_graphic_C(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		roofB_A1(3)
 		roofB_B1(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofB_A2(3)
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s, xyz(0,0,0), dxdydz(16,6,3))
-		regular(spr_platform_s+2, xyz(0,10,0), dxdydz(16,6,3))
 		roofB_A1_snow(3)
 		roofB_B1_snow(3),
-		regular(spr_platform_s+1, xyz(0,0,0), dxdydz(6,16,3))
-		regular(spr_platform_s+3, xyz(10,0,0), dxdydz(6,16,3))
 		roofB_A2_snow(3)
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
-layout(LP_A,
-	passenger_graphic_A(
-		regular(spr_platform_l, xyz(0,0,0), dxdydz(16,6,1)),
-		regular(spr_platform_l+1, xyz(0,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_l_snow, xyz(0,0,0), dxdydz(16,6,1)),
-		regular(spr_platform_l_snow+1, xyz(0,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
-
-layout(LP_B,
-	passenger_graphic_B(
-		regular(spr_platform_l+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_l+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_l_snow+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_l_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
-
-layout(LP_C,
-	passenger_graphic_C(
-		regular(spr_platform_l, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_l+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_l+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_l+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_l_snow, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_l_snow+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_l_snow+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_l_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
+layout(LP_A, platform_graphic_A_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
+layout(LP_B, platform_graphic_B_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
+layout(LP_C, platform_graphic_C_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
 
 layout(LP_A_RF_A,
-	passenger_graphic_A(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
+	platform_graphic_A(
+		spr_platform_sl, spr_platform_sl,
 		roofA_A1(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofA_A2(1),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
 		roofA_A1_snow(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofA_A2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LP_B_RF_A,
-	passenger_graphic_B(
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_B(
+		spr_platform_sl, spr_platform_sl,
 		roofA_B1(1),
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofA_B1_snow(1),
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LP_C_RF_A,
-	passenger_graphic_C(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_C(
+		spr_platform_sl, spr_platform_sl,
 		roofA_A1(1)
 		roofA_B1(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_A2(1)
 		roofA_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofA_A1_snow(1)
 		roofA_B1_snow(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_A2_snow(1)
 		roofA_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LP_A_RF_B,
-	passenger_graphic_A(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
+	platform_graphic_A(
+		spr_platform_sl, spr_platform_sl,
 		roofB_A1(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofB_A2(1),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
 		roofB_A1_snow(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofB_A2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LP_B_RF_B,
-	passenger_graphic_B(
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_B(
+		spr_platform_sl, spr_platform_sl,
 		roofB_B1(1),
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofB_B1_snow(1),
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LP_C_RF_B,
-	passenger_graphic_C(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_C(
+		spr_platform_sl, spr_platform_sl,
 		roofB_A1(1)
 		roofB_B1(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
-		regular(spr_poles+5, xyz(3,0,1), dxdydz(0,16,10))
-		regular(spr_roofs+5, xyz(0,0,11), dxdydz(6,16,3))
 		roofB_A2(1)
 		roofB_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sl, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sl+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofB_A1_snow(1)
 		roofB_B1_snow(1),
-		regular(spr_platform_sl+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sl+3, xyz(10,0,0), dxdydz(6,16,1))
-		regular(spr_poles+5, xyz(3,0,1), dxdydz(0,16,10))
-		regular(spr_roofs+5, xyz(0,0,11), dxdydz(6,16,3))
 		roofB_A2_snow(1)
 		roofB_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
-layout(LAP_A,
-	passenger_graphic_A(
-		regular(spr_platform_la, xyz(0,0,0), dxdydz(16,6,1)),
-		regular(spr_platform_la+1, xyz(0,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_la_snow, xyz(0,0,0), dxdydz(16,6,1)),
-		regular(spr_platform_la_snow+1, xyz(0,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
-
-layout(LAP_B,
-	passenger_graphic_B(
-		regular(spr_platform_la+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_la+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_la_snow+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_la_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
-
-layout(LAP_C,
-	passenger_graphic_C(
-		regular(spr_platform_la, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_la+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_la+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_la+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_la_snow, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_la_snow+2, xyz(0,10,0), dxdydz(16,6,1)),
-		regular(spr_platform_la_snow+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_la_snow+3, xyz(10,0,0), dxdydz(6,16,1)),
-		1, spr_ground_snow
-	)
-)
+layout(LAP_A, platform_graphic_A_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
+layout(LAP_B, platform_graphic_B_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
+layout(LAP_C, platform_graphic_C_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
 
 layout(LAP_A_RF_A,
-	passenger_graphic_A(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
+	platform_graphic_A(
+		spr_platform_sla, spr_platform_sla,
 		roofA_A1(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofA_A2(1),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
 		roofA_A1_snow(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofA_A2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LAP_B_RF_A,
-	passenger_graphic_B(
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_B(
+		spr_platform_sla, spr_platform_sla,
 		roofA_B1(1),
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofA_B1_snow(1),
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LAP_C_RF_A,
-	passenger_graphic_C(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_C(
+		spr_platform_sla, spr_platform_sla,
 		roofA_A1(1)
 		roofA_B1(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_A2(1)
 		roofA_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofA_A1_snow(1)
 		roofA_B1_snow(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofA_A2_snow(1)
 		roofA_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LAP_A_RF_B,
-	passenger_graphic_A(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
+	platform_graphic_A(
+		spr_platform_sla, spr_platform_sla,
 		roofB_A1(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofB_A2(1),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
 		roofB_A1_snow(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
 		roofB_A2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LAP_B_RF_B,
-	passenger_graphic_B(
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_B(
+		spr_platform_sla, spr_platform_sla,
 		roofB_B1(1),
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofB_B1_snow(1),
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(LAP_C_RF_B,
-	passenger_graphic_C(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
+	platform_graphic_C(
+		spr_platform_sla, spr_platform_sla,
 		roofB_A1(1)
 		roofB_B1(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_A2(1)
 		roofB_B2(1),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sla, xyz(0,0,0), dxdydz(16,6,1))
-		regular(spr_platform_sla+2, xyz(0,10,0), dxdydz(16,6,1))
 		roofB_A1_snow(1)
 		roofB_B1_snow(1),
-		regular(spr_platform_sla+1, xyz(0,0,0), dxdydz(6,16,1))
-		regular(spr_platform_sla+3, xyz(10,0,0), dxdydz(6,16,1))
 		roofB_A2_snow(1)
 		roofB_B2_snow(1),
-		1, spr_ground_snow
+		1
 	)
 )
 
@@ -1007,30 +776,23 @@ makestation(LAP_C_RF_B, default(ref(sw_platform)))
 
 // crossings
 
-definestation(LP_A_CR, {"Low Platform A + Crossing", "Low Platform B + Crossing", "Low Platform C + Crossing",
-	"Low Platform A + Roof A + Crossing", "Low Platform B + Roof A + Crossing", "Low Platform C + Roof A + Crossing",
-	"Low Platform A + Roof B + Crossing", "Low Platform B + Roof B + Crossing", "Low Platform C + Roof B + Crossing"},
+definestation(CROSSING_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
 	class(CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
+		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
+		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
+		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
 		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
 		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
+		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
+		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
+		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
 		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
 		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME})
 	anim_triggers({BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
 		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC})
-)
-
-definestation(LAP_A_CR, {"Low Asphalt Platform A + Crossing", "Low Asphalt Platform B + Crossing", "Low Asphalt Platform C + Crossing",
-	"Low Asphalt Platform A + Roof A + Crossing", "Low Asphalt Platform B + Roof A + Crossing", "Low Asphalt Platform C + Roof A + Crossing",
-	"Low Asphalt Platform A + Roof B + Crossing", "Low Asphalt Platform B + Roof B + Crossing", "Low Asphalt Platform C + Roof B + Crossing"},
-	class(CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS)
-	callbacks({CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME})
-	anim_triggers({BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
+		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
+		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
 		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
 		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC})
 )
@@ -1069,7 +831,7 @@ def(27, sw_pos) plt_pos(
 	ref(25) else
 )
 
-def(26, sw_calc_crossing_layout) calculate({subroutine(sw_terrain_snow,) * 3 + subroutine(sw_pos) * 10 + subroutine(sw_passenger,)},
+def(26, sw_calc_crossing_layout) calculate({subroutine(sw_terrain_snow) * 3 + subroutine(sw_pos) * 10 + subroutine(sw_passenger)},
 	cbfail() else
 )
 
@@ -1104,7 +866,7 @@ makestation(LAP_A_CR_RF_B, default(ref(sw_crossing)))
 makestation(LAP_B_CR_RF_B, default(ref(sw_crossing)))
 makestation(LAP_C_CR_RF_B, default(ref(sw_crossing)))
 
-definestation(CRS, "Crossing",
+definestation(CRS, "",
 	class(CLASS_CROSSINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers(BUILT, PERIODIC)
@@ -1159,19 +921,17 @@ def(29) tinfo_statid(pos(0,-1),shiftmask(0,0x1FF),
 	cbr(0) else
 )
 
-def(28) callback(
+def(28, sw_crossing_track_cb) callback(
 	ref(29) if(CB_LAYOUT)
 	ref(30) if(CB_ACONTROL)
 	ref(30) if(CB_AFRAME)
 	ref(sprset_default) else
 )
 
-makestation(CRS,
-	default(ref(28))
-)
+makestation(CRS, default(ref(sw_crossing_track_cb)))
 
 // building blocks
-definestation(BUILDING_LOW, {"Low Building Block", "High Building Block"},
+definestation(BUILDING_LOW, {"", ""},
 	class(CLASS_BUILDINGS, CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT})
 	nontrack(TTD_ALLTILES, TTD_ALLTILES)
@@ -1191,7 +951,7 @@ def(32) tinfo_statid(pos(0, -1),
 	cbr(2)
 )
 
-def(34) calculate({tinfo_trackconnect() >> 10 AND 3 OR subroutine(32,) OR subroutine(33,)},
+def(34) calculate({tinfo_trackconnect() >> 10 AND 3 OR subroutine(32) OR subroutine(33)},
 	cbfail() else
 )
 
@@ -1202,7 +962,7 @@ def(31, sw_building_layout) subroutine(34,
 	cbr(0) else
 )
 
-def(30, sw_building_snow) calculate({subroutine(sw_terrain_snow,) * 22 + subroutine(sw_building_layout,)},
+def(30, sw_building_snow) calculate({subroutine(sw_terrain_snow) * 22 + subroutine(sw_building_layout)},
 	cbfail() else
 )
 
@@ -1228,496 +988,289 @@ makestation(BUILDING_HIGH,
 )
 
 // modular station overpasses
-definestation(BUILDING_LOW_HP_A, {"High Platform A + Low Overpass", "High Platform B + Low Overpass", "High Platform C + Low Overpass",
-	"High Platform A + High Overpass", "High Platform B + High Overpass", "High Platform C + High Overpass"},
+definestation(BUILDING_LOW_HP_A, {"", "", "", "", "", ""},
 	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
-definestation(BUILDING_LOW_LP_A, {"Low Platform A + Low Overpass", "Low Platform B + Low Overpass", "Low Platform C + Low Overpass",
-	"Low Platform A + High Overpass", "Low Platform B + High Overpass", "Low Platform C + High Overpass"},
+definestation(BUILDING_LOW_LP_A, {"", "", "", "", "", ""},
 	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
-definestation(BUILDING_LOW_LAP_A, {"Low Asphalt Platform A + Low Overpass", "Low Asphalt Platform B + Low Overpass", "Low Asphalt Platform C + Low Overpass",
-	"Low Asphalt Platform A + High Overpass", "Low Asphalt Platform B + High Overpass", "Low Asphalt Platform C + High Overpass"},
+definestation(BUILDING_LOW_LAP_A, {"", "", "", "", "", ""},
 	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
 
 layout(BUILDING_LOW_HP_A,
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
+		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(BUILDING_LOW_HP_B,
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
+		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(BUILDING_LOW_HP_C,
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_C_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
+		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9)),
+		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
+		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(BUILDING_HIGH_HP_A,
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
-		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
 		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
-		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
-		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
-		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,14)),
-		3, spr_ground_snow
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
+		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
+		3
 	)
 )
 
 layout(BUILDING_HIGH_HP_B,
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
+		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(BUILDING_HIGH_HP_C,
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_C_snowdiff(
+		spr_platform_s, spr_platform_s,
 		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
+		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9)),
+		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
+		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_building_pole_hp,      xyz( 0, 0, 3), dxdydz(16, 0, 9))
-		regular(spr_building_pole_hp,      xyz( 0,16, 3), dxdydz(16, 0, 9))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_building_pole_hp+1,    xyz( 0, 0, 3), dxdydz( 0,16, 9))
-		regular(spr_building_pole_hp+1,    xyz(16, 0, 3), dxdydz( 0,16, 9))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(BUILDING_LOW_LP_A,
-	passenger_graphic_A(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
+	platform_graphic_A_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_LOW_LP_B,
-	passenger_graphic_B(
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_LOW_LP_C,
-	passenger_graphic_C(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LP_A,
-	passenger_graphic_A(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
+	platform_graphic_A_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LP_B,
-	passenger_graphic_B(
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LP_C,
-	passenger_graphic_C(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sl,           xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sl+2,         xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sl+1,         xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sl+3,         xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_LOW_LAP_A,
-	passenger_graphic_A(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
+	platform_graphic_A_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_LOW_LAP_B,
-	passenger_graphic_B(
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_LOW_LAP_C,
-	passenger_graphic_C(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LAP_A,
-	passenger_graphic_A(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
+	platform_graphic_A_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
-		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12)),
 		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
-		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
-		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,14)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12))
-		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,14)),
-		1, spr_ground_snow
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz( 0,16,12)),
+		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
+		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LAP_B,
-	passenger_graphic_B(
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz( 0,16,12))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground_snow
+		1
 	)
 )
 
 layout(BUILDING_HIGH_LAP_C,
-	passenger_graphic_C(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
 		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
+		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11)),
+		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
+		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11)),
 		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_sla,          xyz( 0, 0, 0), dxdydz(16, 6, 1))
-		regular(spr_platform_sla+2,        xyz( 0,10, 0), dxdydz(16, 6, 1))
-		regular(spr_building_pole_lp,      xyz( 0, 0, 1), dxdydz(16, 0,11))
-		regular(spr_building_pole_lp,      xyz( 0,16, 1), dxdydz(16, 0,11))
 		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38)),
-		regular(spr_platform_sla+1,        xyz( 0, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_platform_sla+3,        xyz(10, 0, 0), dxdydz( 6,16, 1))
-		regular(spr_building_pole_lp+1,    xyz( 0, 0, 1), dxdydz( 0,16,11))
-		regular(spr_building_pole_lp+1,    xyz(16, 0, 1), dxdydz( 0,16,11))
 		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38)),
-		1, spr_ground_snow
+		1
 	)
 )
 
@@ -1747,610 +1300,410 @@ makestation(BUILDING_HIGH_LAP_C, default(ref(sw_platform)))
 
 
 // overpasses
-definestation(OVERPASS_START, {"High Platform A + Overpass", "High Platform B + Overpass", "High Platform C + Overpass",
-	"Low Platform A + Overpass", "Low Platform B + Overpass", "Low Platform C + Overpass",
-	"Low Asphalt Platform A + Overpass", "Low Asphalt Platform B + Overpass", "Low Asphalt Platform C + Overpass"},
+definestation(OVERPASS_START, {"", "", "", "", "", "", "", "", ""},
 	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 	include_lengths({1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3})
 )
 
-definestation(OVERPASS_TRACK, "Overpass",
-	class(CLASS_PLATFORMS)
-	callbacks({CB_LAYOUT})
-	include_lengths(1)
+definestation(OVERPASS_TRACK, {"", ""},
+	class(CLASS_PLATFORMS, CLASS_WAYPOINT)
+	callbacks({CB_LAYOUT}, {CB_LAYOUT})
+	include_lengths(1, 1)
 )
 
 layout(OVERPASS_HP_A,
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_overpass_snow+6,       xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass_snow+7,       xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
+		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform_snow,         xyz( 0, 0, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+1,       xyz( 0, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_snow,         xyz( 0, 0, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+1,       xyz( 0, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground
+		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
 )
 
 layout(OVERPASS_HP_B,
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass_snow+8,       xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass_snow+9,       xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
+		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform_snow+2,       xyz( 0,10, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+3,       xyz(10, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground_snow
-	)
-	passenger_graphic_B(
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_snow+2,       xyz( 0,10, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+3,       xyz(10, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground_snow
+		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
 )
 
 layout(OVERPASS_HP_C,
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19))
 		regular(spr_overpass_snow+10,      xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19))
 		regular(spr_overpass_snow+11,      xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_C(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
+		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
-	passenger_graphic_C(
-		regular(spr_platform_snow,         xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_snow+2,       xyz( 0,10, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+1,       xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_snow+3,       xyz(10, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground_snow
-	)
-	passenger_graphic_C(
-		regular(spr_platform,              xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform+2,            xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform, spr_platform_snow,
 		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0)),
-		regular(spr_platform+1,            xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform+3,            xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_snow,         xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_snow+2,       xyz( 0,10, 0), dxdydz(16, 6, 3)),
-		regular(spr_platform_snow+1,       xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_snow+3,       xyz(10, 0, 0), dxdydz( 6,16, 3)),
-		3, spr_ground_snow
+		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0)),,,
+		3
 	)
 )
 
 layout(OVERPASS_HP_A_RF_A,
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass,        xyz( 0, 0,13), dxdydz(16, 6, 3))
 		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass+1,      xyz( 0, 0,13), dxdydz( 6,16, 3))
 		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass_snow,   xyz( 0, 0,13), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+6,       xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass_snow+1, xyz( 0, 0,13), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+7,       xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofA_A1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofA_A1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofA_A1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofA_A1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(OVERPASS_HP_B_RF_A,
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass+2,      xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass+3,      xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+8,       xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass_snow+2, xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+9,       xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass_snow+3, xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_B1(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_B1_snow(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_B1(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_B1_snow(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(OVERPASS_HP_C_RF_A,
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass,        xyz( 0, 0,13), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass+2,      xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass+1,      xyz( 0, 0,13), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass+3,      xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass_snow,   xyz( 0, 0,13), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+10,      xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass_snow+2, xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass_snow+1, xyz( 0, 0,13), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+11,      xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass_snow+3, xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground_snow
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+		3
+	)	
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_A1(3)
 		roofA_B1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2(3)
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_A1_snow(3)
 		roofA_B1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2_snow(3)
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_A1(3)
 		roofA_B1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2(3)
 		roofA_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofA_A1_snow(3)
 		roofA_B1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofA_A2_snow(3)
 		roofA_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(OVERPASS_HP_A_RF_B,
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass+4,      xyz( 0, 0,13), dxdydz(16, 6, 3))
 		regular(spr_overpass+6,            xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass+5,      xyz( 0, 0,13), dxdydz( 6,16, 3))
 		regular(spr_overpass+7,            xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass_snow+4, xyz( 0, 0,13), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+6,       xyz( 7, 0,14), dxdydz( 3,16, 8)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass_snow+5, xyz( 0, 0,13), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+7,       xyz( 0, 7,14), dxdydz(16, 3, 8)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofB_A1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofB_A1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
+	platform_graphic_A(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofB_A1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2(3),
-		3, spr_ground
-	)
-	passenger_graphic_A(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
 		roofB_A1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(OVERPASS_HP_B_RF_B,
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass+8,            xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass+6,      xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+9,            xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass+7,      xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+8,       xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass_snow+6, xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+9,       xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass_snow+7, xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_B1(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_B1_snow(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+	platform_graphic_B(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_B1(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_B(
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_B1_snow(3),
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
 layout(OVERPASS_HP_C_RF_B,
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
 		regular(spr_overpass,              xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass+4,      xyz( 0, 0,13), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass+10,           xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass+6,      xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass+2,            xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+1,            xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass+5,      xyz( 0, 0,13), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass+11,           xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass+7,      xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass+3,            xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow,         xyz( 0, 0, 3), dxdydz(16, 3,19))
 		regular(spr_roofs_overpass_snow+4, xyz( 0, 0,13), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
 		regular(spr_overpass_snow+10,      xyz( 7, 0,14), dxdydz( 3,10, 8))
 		regular(spr_roofs_overpass_snow+6, xyz( 0,10,13), dxdydz(16, 3, 3))
 		regular(spr_overpass_snow+2,       xyz( 0,13, 3), dxdydz(16, 3,19)),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+1,       xyz( 0, 0, 3), dxdydz( 3,16,19))
 		regular(spr_roofs_overpass_snow+5, xyz( 0, 0,13), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
 		regular(spr_overpass_snow+11,      xyz( 0, 7,14), dxdydz(10, 3, 8))
 		regular(spr_roofs_overpass_snow+7, xyz(10, 0,13), dxdydz( 3,16, 3))
 		regular(spr_overpass_snow+3,       xyz(13, 0, 3), dxdydz( 3,16,19)),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0))
-		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_A1(3)
 		roofB_B1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2(3)
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide,        xyz( 0, 0, 3), dxdydz(16, 6, 0))
-		regular(spr_overpass_guide+4,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+4,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_A1_snow(3)
 		roofB_B1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+1,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+5,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+1,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+5,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2_snow(3)
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
-		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+	platform_graphic_C(
+		spr_platform_s, spr_platform_s,
+		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_A1(3)
 		roofB_B1(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2(3)
 		roofB_B2(3),
-		3, spr_ground
-	)
-	passenger_graphic_C(
-		regular(spr_platform_s,            xyz( 0, 0, 0), dxdydz(16, 6, 3))
-		regular(spr_platform_s+2,          xyz( 0,10, 0), dxdydz(16, 6, 3))
-		regular(spr_overpass_guide+2,      xyz( 0, 0, 3), dxdydz(16, 6, 0))
-		regular(spr_overpass_guide+6,      xyz( 0,10, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+2,    xyz( 0, 0, 3), dxdydz(16, 6, 0))
+		regular(spr_overpass_guide_s+6,    xyz( 0,10, 3), dxdydz(16, 6, 0))
 		roofB_A1_snow(3)
 		roofB_B1_snow(3),
-		regular(spr_platform_s+1,          xyz( 0, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_platform_s+3,          xyz(10, 0, 0), dxdydz( 6,16, 3))
-		regular(spr_overpass_guide+3,      xyz( 0, 0, 3), dxdydz( 6,16, 0))
-		regular(spr_overpass_guide+7,      xyz(10, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+3,    xyz( 0, 0, 3), dxdydz( 6,16, 0))
+		regular(spr_overpass_guide_s+7,    xyz(10, 0, 3), dxdydz( 6,16, 0))
 		roofB_A2_snow(3)
 		roofB_B2_snow(3),
-		3, spr_ground_snow
+		3
 	)
 )
 
@@ -2374,6 +1727,8 @@ layout(OVERPASS_TRACK,
 	)
 )
 
+copylayout(OVERPASS_TRACK, OVERPASS_TRACK_WAYP)
+
 def(33) plt_posrev(
 	self(
 		cbr(1) if(0)
@@ -2388,7 +1743,7 @@ def(32, sw_overpass_platform_layout) plt_midpos(
 	)
 )
 
-def(31, sw_overpass_platform_snow) calculate({subroutine(sw_overpass_platform_layout) * 20 + subroutine(sw_passenger_snow,)},
+def(31, sw_overpass_platform_snow) calculate({subroutine(sw_overpass_platform_layout) * 20 + subroutine(sw_passenger_snow)},
 	cbfail() else
 )
 
@@ -2397,7 +1752,7 @@ def(30, sw_overpass_platform_cb) callback(
 	ref(sprset_default) else
 )
 
-def(29, sw_overpass_track_snow) calculate({subroutine(sw_terrain_snow,) * 2},
+def(29, sw_overpass_track_snow) calculate({subroutine(sw_terrain_snow) * 2},
 	cbfail() else
 )
 
@@ -2419,11 +1774,352 @@ makestation(OVERPASS_HP_B_RF_B, default(ref(sw_overpass_platform_cb)))
 makestation(OVERPASS_HP_C_RF_B, default(ref(sw_overpass_platform_cb)))
 
 makestation(OVERPASS_TRACK, default(ref(sw_overpass_track_cb)))
+makestation(OVERPASS_TRACK_WAYP, default(ref(sw_overpass_track_cb)))
+
+// facilites
+
+definestation(PLATFORM_FACILITIES_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+	class(CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES)
+	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
+)
+
+layout(SIGN_A_HP_A, signA_platformA(spr_platform, spr_platform_snow, 3))
+layout(SIGN_A_HP_B, signA_platformB(spr_platform, spr_platform_snow, 3))
+layout(SIGN_A_HP_C, signA_platformC(spr_platform, spr_platform_snow, 3))
+
+layout(SIGN_A_LP_A, signA_platformA(spr_platform+4, spr_platform_snow+4, 1))
+layout(SIGN_A_LP_B, signA_platformB(spr_platform+4, spr_platform_snow+4, 1))
+layout(SIGN_A_LP_C, signA_platformC(spr_platform+4, spr_platform_snow+4, 1))
+
+layout(SIGN_A_LAP_A, signA_platformA(spr_platform+8, spr_platform_snow+8, 1))
+layout(SIGN_A_LAP_B, signA_platformB(spr_platform+8, spr_platform_snow+8, 1))
+layout(SIGN_A_LAP_C, signA_platformC(spr_platform+8, spr_platform_snow+8, 1))
+
+layout(SIGN_B_HP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_s, spr_platform_s,
+		regular(spr_signB, xyz( 6,16, 8), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 8), dxdydz( 0, 5, 4)),
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_B_HP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_s, spr_platform_s,
+		regular(spr_signB, xyz( 6,16, 8), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 8), dxdydz( 0, 5, 4)),
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_B_HP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_s, spr_platform_s,
+		regular(spr_signB, xyz( 6,13, 7), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 7), dxdydz( 0, 5, 4)),
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_B_HP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_s, spr_platform_s,
+		regular(spr_signB, xyz( 6,13, 7), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 7), dxdydz( 0, 5, 4)),
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_B_LP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		regular(spr_signB, xyz( 6,16, 6), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 6), dxdydz( 0, 5, 4)),
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		regular(spr_signB, xyz( 6,16, 6), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 6), dxdydz( 0, 5, 4)),
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		regular(spr_signB, xyz( 6,13, 5), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 5), dxdydz( 0, 5, 4)),
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		regular(spr_signB, xyz( 6,13, 5), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 5), dxdydz( 0, 5, 4)),
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LAP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		regular(spr_signB, xyz( 6,16, 6), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 6), dxdydz( 0, 5, 4)),
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LAP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		regular(spr_signB, xyz( 6,16, 6), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(16, 6, 6), dxdydz( 0, 5, 4)),
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LAP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		regular(spr_signB, xyz( 6,13, 5), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 5), dxdydz( 0, 5, 4)),
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_B_LAP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		regular(spr_signB, xyz( 6,13, 5), dxdydz( 5, 0, 4)),
+		regular(spr_signB+1, xyz(13, 6, 5), dxdydz( 0, 5, 4)),
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_HP_A, 
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		regular(spr_signC, xyz(8,0,3), dxdydz(0,5,18)),
+		regular(spr_signC+1, xyz(0,8,3), dxdydz(5,0,18)), 
+		3
+	)
+)
+layout(SIGN_C_HP_B, 
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		regular(spr_signC+2, xyz(8,11,3), dxdydz(0,5,18)),
+		regular(spr_signC+3, xyz(11,8,3), dxdydz(5,0,18)),
+		3
+	)
+)
+layout(SIGN_C_HP_C, 
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		regular(spr_signC, xyz(8,0,3), dxdydz(0,5,18))
+		regular(spr_signC+2, xyz(8,11,3), dxdydz(0,5,18)),
+		regular(spr_signC+1, xyz(0,8,3), dxdydz(5,0,18))
+		regular(spr_signC+3, xyz(11,8,3), dxdydz(5,0,18)),
+		3
+	)
+)
+
+
+def(39, sw_check_stasignA_pB) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
+	cbr(1) if(0x100+SIGN_A_HP_A)
+	cbr(1) if(0x100+SIGN_A_HP_C)
+	cbr(1) if(0x100+SIGN_A_LP_A)
+	cbr(1) if(0x100+SIGN_A_LP_C)
+	cbr(1) if(0x100+SIGN_A_LAP_A)
+	cbr(1) if(0x100+SIGN_A_LAP_C)
+	cbr(0) else
+)
+
+def(38, sw_check_stasignA_pA) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
+	cbr(1) if(0x100+SIGN_A_HP_B)
+	cbr(1) if(0x100+SIGN_A_HP_C)
+	cbr(1) if(0x100+SIGN_A_LP_B)
+	cbr(1) if(0x100+SIGN_A_LP_C)
+	cbr(1) if(0x100+SIGN_A_LAP_B)
+	cbr(1) if(0x100+SIGN_A_LAP_C)
+	cbr(0) else
+)
+
+def(37, sw_check_stasignA_pC) calculate({subroutine(sw_check_stasignA_pB) * 2 + subroutine(sw_check_stasignA_pA)},
+	cbfail() else
+)
+
+def(33) plt_posrev(
+	cbr(2) if(0)
+	cbr(1) else
+)
+
+def(32, sw_check_stasign_pos) plt_pos(
+	cbr(0) if(0)
+	ref(33) else
+)
+
+def(41, sw_stasignA_pC) calculate({subroutine(sw_check_stasignA_pC) * 3 + subroutine(sw_check_stasign_pos)},
+	cbfail() else
+)
+
+def(40, sw_stasignA_pB) subroutine(sw_check_stasignA_pB,
+	cbr(3) if(1)
+	ref(32) else
+)
+
+def(35, sw_stasignA_pA) calculate({subroutine(sw_check_stasignA_pA) * 3 + subroutine(sw_check_stasign_pos)},
+	cbfail() else
+)
+
+def(34, sw_stasignA_layout) tinfo_statid(pos(0, 0), shiftmask(0,0x1FF),
+	ref(sw_stasignA_pA) if(0x100+SIGN_A_HP_A)
+	ref(sw_stasignA_pB) if(0x100+SIGN_A_HP_B)
+	ref(sw_stasignA_pC) if(0x100+SIGN_A_HP_C)
+	ref(sw_stasignA_pA) if(0x100+SIGN_A_LP_A)
+	ref(sw_stasignA_pB) if(0x100+SIGN_A_LP_B)
+	ref(sw_stasignA_pC) if(0x100+SIGN_A_LP_C)
+	ref(sw_stasignA_pA) if(0x100+SIGN_A_LAP_A)
+	ref(sw_stasignA_pB) if(0x100+SIGN_A_LAP_B)
+	ref(sw_stasignA_pC) if(0x100+SIGN_A_LAP_C)
+	cbfail() else
+)
+
+def(31, sw_stasignA_snow) calculate({subroutine(sw_stasignA_layout) * 20 + subroutine(sw_passenger_snow)},
+	cbfail() else
+)
+
+def(30, sw_stasignA_cb) callback(
+	ref(sw_stasignA_snow) if(CB_LAYOUT)
+	ref(sprset_default) else
+)
+
+def(36, sw_stasignA_menu_cb) callback(
+	cbr(20) if(CB_LAYOUT)
+	ref(sprset_default) else
+)
+
+makestation(SIGN_A_HP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_HP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_HP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+
+makestation(SIGN_A_LP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_LP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_LP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+
+makestation(SIGN_A_LAP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_LAP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_A_LAP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+
+makestation(SIGN_B_HP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_B_HP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_B_HP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_B_HP_C_RF_B, default(ref(sw_platform)))
+
+makestation(SIGN_B_LP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_B_LP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_B_LP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_B_LP_C_RF_B, default(ref(sw_platform)))
+
+makestation(SIGN_B_LAP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_B_LAP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_B_LAP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_B_LAP_C_RF_B, default(ref(sw_platform)))
+
+makestation(SIGN_C_HP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_C_HP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_C_HP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+
 
 // string definitions
 classnames(PLATFORM_START,
-	{KR, UTF8 "[KWS] 승강장"},
-	{ALL, "[KWS] Platforms"}
+	{KR, UTF8 "[KSS] 승강장"},
+	{ALL, "[KSS] Platforms"}
 )
 
 stationnames(PLATFORM_START,
@@ -2448,8 +2144,8 @@ stationnames(PLATFORM_START,
 )
 
 classnames(CROSSING_START,
-	{KR, UTF8 "[KWS] 건널목"},
-	{ALL, "[KWS] Crossings"}
+	{KR, UTF8 "[KSS] 건널목"},
+	{ALL, "[KSS] Crossings"}
 )
 
 stationnames(CROSSING_START,
@@ -2473,8 +2169,8 @@ stationnames(CRS,
 )
 
 classnames(BUILDING_START,
-	{KR, UTF8 "[KWS] 역사 건물"},
-	{ALL, "[KWS] Modular Stations"}
+	{KR, UTF8 "[KSS] 역사 건물"},
+	{ALL, "[KSS] Modular Stations"}
 )
 
 stationnames(BUILDING_START,
@@ -2518,4 +2214,9 @@ stationnames(OVERPASS_START,
 	, "Low Asphalt Platform A + Overpass + Roof A", "Low Asphalt Platform B + Overpass + Roof A", "Low Asphalt Platform C + Overpass + Roof A"
 	, "Low Asphalt Platform A + Overpass + Roof B", "Low Asphalt Platform B + Overpass + Roof B", "Low Asphalt Platform C + Overpass + Roof B"
 	, "Overpass"}
+)
+
+classnames(PLATFORM_FACILITIES_START,
+	{KR, UTF8 "[KSS] 시설물"},
+	{ALL, "[KSS] Facilities"}
 )

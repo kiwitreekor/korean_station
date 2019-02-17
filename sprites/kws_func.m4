@@ -102,13 +102,13 @@ define(platform_graphic_C, {
 	)
 })
 
-define(platform_graphic_A_nosnow, {platform_graphic_A($1,$2,$3,$4,$3,$4,$5)})
-define(platform_graphic_B_nosnow, {platform_graphic_B($1,$2,$3,$4,$3,$4,$5)})
-define(platform_graphic_C_nosnow, {platform_graphic_C($1,$2,$3,$4,$3,$4,$5)})
+define(platform_graphic_A_nosnow, {platform_graphic_A($1,$2,{$3},{$4},{$3},{$4},$5)})
+define(platform_graphic_B_nosnow, {platform_graphic_B($1,$2,{$3},{$4},{$3},{$4},$5)})
+define(platform_graphic_C_nosnow, {platform_graphic_C($1,$2,{$3},{$4},{$3},{$4},$5)})
 
-define(platform_graphic_A_snowdiff, {platform_graphic_A($1,$2,$3$5,$4$6,$3$7,$4$8,$9)})
-define(platform_graphic_B_snowdiff, {platform_graphic_B($1,$2,$3$5,$4$6,$3$7,$4$8,$9)})
-define(platform_graphic_C_snowdiff, {platform_graphic_C($1,$2,$3$5,$4$6,$3$7,$4$8,$9)})
+define(platform_graphic_A_snowdiff, {platform_graphic_A($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
+define(platform_graphic_B_snowdiff, {platform_graphic_B($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
+define(platform_graphic_C_snowdiff, {platform_graphic_C($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
 
 define(roofA_A1_base, {
 	{regular($3, xyz(0,0,$1), dxdydz(16,0,10))}

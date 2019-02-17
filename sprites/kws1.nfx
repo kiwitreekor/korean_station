@@ -2111,9 +2111,9 @@ makestation(SIGN_B_LAP_C_RF_A, default(ref(sw_platform)))
 makestation(SIGN_B_LAP_B_RF_B, default(ref(sw_platform)))
 makestation(SIGN_B_LAP_C_RF_B, default(ref(sw_platform)))
 
-makestation(SIGN_C_HP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_C_HP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_C_HP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
+makestation(SIGN_C_HP_A, default(ref(sw_platform)))
+makestation(SIGN_C_HP_B, default(ref(sw_platform)))
+makestation(SIGN_C_HP_C, default(ref(sw_platform)))
 
 
 // string definitions

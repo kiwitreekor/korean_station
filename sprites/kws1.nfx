@@ -1778,13 +1778,19 @@ makestation(OVERPASS_TRACK_WAYP, default(ref(sw_overpass_track_cb)))
 
 // facilites
 
-definestation(PLATFORM_FACILITIES_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
+definestation(PLATFORM_FACILITIES_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
 	class(CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
 		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES)
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
+		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES)
 	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
 		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
+		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
 )
 
 layout(SIGN_A_HP_A, signA_platformA(spr_platform, spr_platform_snow, 3))
@@ -2006,6 +2012,330 @@ layout(SIGN_C_HP_C,
 	)
 )
 
+layout(SIGN_C_HP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_HP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_HP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_HP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+4, xyz(16,0,12), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,12), dxdydz(5,0,3))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_HP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+6, xyz(16,11,12), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,12), dxdydz(5,0,3))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_HP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_signC+4, xyz(16,0,12), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,12), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,12), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,12), dxdydz(5,0,3))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(SIGN_C_LP_A, 
+	platform_graphic_A_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_signC, xyz(8,0,1), dxdydz(0,5,18))},
+		{regular(spr_signC+1, xyz(0,8,1), dxdydz(5,0,18))}, 
+		1
+	)
+)
+layout(SIGN_C_LP_B, 
+	platform_graphic_B_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_signC+2, xyz(8,11,1), dxdydz(0,5,18))},
+		{regular(spr_signC+3, xyz(11,8,1), dxdydz(5,0,18))},
+		1
+	)
+)
+layout(SIGN_C_LP_C, 
+	platform_graphic_C_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_signC, xyz(8,0,1), dxdydz(0,5,18))}
+		{regular(spr_signC+2, xyz(8,11,1), dxdydz(0,5,18))},
+		{regular(spr_signC+1, xyz(0,8,1), dxdydz(5,0,18))}
+		{regular(spr_signC+3, xyz(11,8,1), dxdydz(5,0,18))},
+		1
+	)
+)
+
+layout(SIGN_C_LP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+4, xyz(16,0,8), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,8), dxdydz(5,0,3))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+6, xyz(16,11,8), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,8), dxdydz(5,0,3))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+4, xyz(16,0,8), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,8), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,8), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,8), dxdydz(5,0,3))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_A, 
+	platform_graphic_A_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_signC, xyz(8,0,1), dxdydz(0,5,18))},
+		{regular(spr_signC+1, xyz(0,8,1), dxdydz(5,0,18))}, 
+		1
+	)
+)
+layout(SIGN_C_LAP_B, 
+	platform_graphic_B_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_signC+2, xyz(8,11,1), dxdydz(0,5,18))},
+		{regular(spr_signC+3, xyz(11,8,1), dxdydz(5,0,18))},
+		1
+	)
+)
+layout(SIGN_C_LAP_C, 
+	platform_graphic_C_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_signC, xyz(8,0,1), dxdydz(0,5,18))}
+		{regular(spr_signC+2, xyz(8,11,1), dxdydz(0,5,18))},
+		{regular(spr_signC+1, xyz(0,8,1), dxdydz(5,0,18))}
+		{regular(spr_signC+3, xyz(11,8,1), dxdydz(5,0,18))},
+		1
+	)
+)
+
+layout(SIGN_C_LAP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+4, xyz(16,0,8), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,8), dxdydz(5,0,3))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+6, xyz(16,11,8), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,8), dxdydz(5,0,3))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+4, xyz(16,0,8), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,8), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,8), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,8), dxdydz(5,0,3))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(SIGN_C_LAP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_signC+4, xyz(16,0,10), dxdydz(0,5,3))}
+		{regular(spr_signC+6, xyz(16,11,10), dxdydz(0,5,3))},
+		{regular(spr_signC+5, xyz(0,16,10), dxdydz(5,0,3))}
+		{regular(spr_signC+7, xyz(11,16,10), dxdydz(5,0,3))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
 
 def(39, sw_check_stasignA_pB) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
 	cbr(1) if(0x100+SIGN_A_HP_A)
@@ -2114,6 +2444,38 @@ makestation(SIGN_B_LAP_C_RF_B, default(ref(sw_platform)))
 makestation(SIGN_C_HP_A, default(ref(sw_platform)))
 makestation(SIGN_C_HP_B, default(ref(sw_platform)))
 makestation(SIGN_C_HP_C, default(ref(sw_platform)))
+
+makestation(SIGN_C_HP_A_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_HP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_HP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_C_HP_A_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_HP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_HP_C_RF_B, default(ref(sw_platform)))
+
+makestation(SIGN_C_LP_A, default(ref(sw_platform)))
+makestation(SIGN_C_LP_B, default(ref(sw_platform)))
+makestation(SIGN_C_LP_C, default(ref(sw_platform)))
+
+makestation(SIGN_C_LP_A_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_LP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_LP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_C_LP_A_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_LP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_LP_C_RF_B, default(ref(sw_platform)))
+
+makestation(SIGN_C_LAP_A, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_B, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_C, default(ref(sw_platform)))
+
+makestation(SIGN_C_LAP_A_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_B_RF_A, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_C_RF_A, default(ref(sw_platform)))
+
+makestation(SIGN_C_LAP_A_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_B_RF_B, default(ref(sw_platform)))
+makestation(SIGN_C_LAP_C_RF_B, default(ref(sw_platform)))
 
 
 // string definitions

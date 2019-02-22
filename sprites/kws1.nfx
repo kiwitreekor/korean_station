@@ -503,14 +503,11 @@ def(21, sw_platform) callback(
 
 // platforms
 
-definestation(PLATFORM_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
-		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
-		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, 
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+)}, PLATFORM_START .. PLATFORM_END)
 
 layout(HP_A, platform_graphic_A_nosnow(spr_platform, spr_platform_snow,,, 3))
 layout(HP_B, platform_graphic_B_nosnow(spr_platform, spr_platform_snow,,, 3))
@@ -746,64 +743,16 @@ layout(LAP_C_RF_B,
 	)
 )
 
-makestation(HP_A, default(ref(sw_platform)))
-makestation(HP_B, default(ref(sw_platform)))
-makestation(HP_C, default(ref(sw_platform)))
-
-makestation(HP_A_RF_A, default(ref(sw_platform)))
-makestation(HP_B_RF_A, default(ref(sw_platform)))
-makestation(HP_C_RF_A, default(ref(sw_platform)))
-
-makestation(HP_A_RF_B, default(ref(sw_platform)))
-makestation(HP_B_RF_B, default(ref(sw_platform)))
-makestation(HP_C_RF_B, default(ref(sw_platform)))
-
-makestation(LP_A, default(ref(sw_platform)))
-makestation(LP_B, default(ref(sw_platform)))
-makestation(LP_C, default(ref(sw_platform)))
-
-makestation(LP_A_RF_A, default(ref(sw_platform)))
-makestation(LP_B_RF_A, default(ref(sw_platform)))
-makestation(LP_C_RF_A, default(ref(sw_platform)))
-
-makestation(LP_A_RF_B, default(ref(sw_platform)))
-makestation(LP_B_RF_B, default(ref(sw_platform)))
-makestation(LP_C_RF_B, default(ref(sw_platform)))
-
-makestation(LAP_A, default(ref(sw_platform)))
-makestation(LAP_B, default(ref(sw_platform)))
-makestation(LAP_C, default(ref(sw_platform)))
-
-makestation(LAP_A_RF_A, default(ref(sw_platform)))
-makestation(LAP_B_RF_A, default(ref(sw_platform)))
-makestation(LAP_C_RF_A, default(ref(sw_platform)))
-
-makestation(LAP_A_RF_B, default(ref(sw_platform)))
-makestation(LAP_B_RF_B, default(ref(sw_platform)))
-makestation(LAP_C_RF_B, default(ref(sw_platform)))
+forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_A .. LAP_C_RF_B)
 
 // crossings
 
-definestation(CROSSING_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-	class(CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS,
-		CLASS_CROSSINGS, CLASS_CROSSINGS, CLASS_CROSSINGS)
-	callbacks({CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME},
-		{CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME}, {CB_LAYOUT, CB_AFRAME})
-	anim_triggers({BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC},
-		{BUILT, PERIODIC}, {BUILT, PERIODIC}, {BUILT, PERIODIC})
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_CROSSINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_triggers({BUILT, PERIODIC})
+)}, LP_A_CR .. LAP_C_CR_RF_B)
 
 layout(LP_A_CR, crossing_A(spr_platform_c,,,spr_ground) crossing_A(spr_platform_c_snow,,,spr_ground_snow))
 layout(LP_B_CR, crossing_B(spr_platform_c,,,spr_ground) crossing_B(spr_platform_c_snow,,,spr_ground_snow))
@@ -850,29 +799,7 @@ def(24, sw_crossing) callback(
 	ref(sprset_default) else
 )
 
-makestation(LP_A_CR, default(ref(sw_crossing)))
-makestation(LP_B_CR, default(ref(sw_crossing)))
-makestation(LP_C_CR, default(ref(sw_crossing)))
-
-makestation(LP_A_CR_RF_A, default(ref(sw_crossing)))
-makestation(LP_B_CR_RF_A, default(ref(sw_crossing)))
-makestation(LP_C_CR_RF_A, default(ref(sw_crossing)))
-
-makestation(LP_A_CR_RF_B, default(ref(sw_crossing)))
-makestation(LP_B_CR_RF_B, default(ref(sw_crossing)))
-makestation(LP_C_CR_RF_B, default(ref(sw_crossing)))
-
-makestation(LAP_A_CR, default(ref(sw_crossing)))
-makestation(LAP_B_CR, default(ref(sw_crossing)))
-makestation(LAP_C_CR, default(ref(sw_crossing)))
-
-makestation(LAP_A_CR_RF_A, default(ref(sw_crossing)))
-makestation(LAP_B_CR_RF_A, default(ref(sw_crossing)))
-makestation(LAP_C_CR_RF_A, default(ref(sw_crossing)))
-
-makestation(LAP_A_CR_RF_B, default(ref(sw_crossing)))
-makestation(LAP_B_CR_RF_B, default(ref(sw_crossing)))
-makestation(LAP_C_CR_RF_B, default(ref(sw_crossing)))
+forloop(X, {makestation(X, default(ref(sw_crossing)))}, LP_A_CR .. LAP_C_CR_RF_B)
 
 definestation(CRS, "",
 	class(CLASS_CROSSINGS)
@@ -985,31 +912,18 @@ def(29, sw_building_menu_cb) callback(
 )
 
 // spriteset links
-makestation(BUILDING_LOW,
+forloop(X, {
+makestation(X,
 	link(ref(sw_building_menu_cb), MENU)
 	default(ref(sw_building_cb))
-)
-
-makestation(BUILDING_HIGH,
-	link(ref(sw_building_menu_cb), MENU)
-	default(ref(sw_building_cb))
-)
+)}, BUILDING_LOW .. BUILDING_HIGH)
 
 // modular station overpasses
-definestation(BUILDING_LOW_HP_A, {"", "", "", "", "", ""},
-	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-)
-
-definestation(BUILDING_LOW_LP_A, {"", "", "", "", "", ""},
-	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-)
-
-definestation(BUILDING_LOW_LAP_A, {"", "", "", "", "", ""},
-	class(CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS, CLASS_BUILDINGS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+)}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
 
 
 layout(BUILDING_LOW_HP_A,
@@ -1282,43 +1196,16 @@ layout(BUILDING_HIGH_LAP_C,
 	)
 )
 
-makestation(BUILDING_LOW_HP_A, default(ref(sw_platform)))
-makestation(BUILDING_LOW_HP_B, default(ref(sw_platform)))
-makestation(BUILDING_LOW_HP_C, default(ref(sw_platform)))
-
-makestation(BUILDING_HIGH_HP_A, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_HP_B, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_HP_C, default(ref(sw_platform)))
-
-makestation(BUILDING_LOW_LP_A, default(ref(sw_platform)))
-makestation(BUILDING_LOW_LP_B, default(ref(sw_platform)))
-makestation(BUILDING_LOW_LP_C, default(ref(sw_platform)))
-
-makestation(BUILDING_HIGH_LP_A, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_LP_B, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_LP_C, default(ref(sw_platform)))
-
-makestation(BUILDING_LOW_LAP_A, default(ref(sw_platform)))
-makestation(BUILDING_LOW_LAP_B, default(ref(sw_platform)))
-makestation(BUILDING_LOW_LAP_C, default(ref(sw_platform)))
-
-makestation(BUILDING_HIGH_LAP_A, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_LAP_B, default(ref(sw_platform)))
-makestation(BUILDING_HIGH_LAP_C, default(ref(sw_platform)))
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
 
 
 // overpasses
-definestation(OVERPASS_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-	class(CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
-		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS,
-		CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS, CLASS_PLATFORMS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-	include_lengths({1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3},
-		{1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3},
-		{1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3}, {1,2,3})
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+	include_lengths({1,2,3})
+)}, OVERPASS_START .. OVERPASS_END)
 
 definestation(OVERPASS_TRACK, {"", ""},
 	class(CLASS_PLATFORMS, CLASS_WAYPOINT)
@@ -2469,61 +2356,16 @@ def(28, sw_overpass_track_cb) callback(
 	ref(sprset_default) else
 )
 
-makestation(OVERPASS_HP_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_C, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_HP_A_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_B_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_C_RF_A, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_HP_A_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_B_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_HP_C_RF_B, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LP_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_C, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LP_A_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_B_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_C_RF_A, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LP_A_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_B_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LP_C_RF_B, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LAP_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_C, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LAP_A_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_B_RF_A, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_C_RF_A, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_LAP_A_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_B_RF_B, default(ref(sw_overpass_platform_cb)))
-makestation(OVERPASS_LAP_C_RF_B, default(ref(sw_overpass_platform_cb)))
-
-makestation(OVERPASS_TRACK, default(ref(sw_overpass_track_cb)))
-makestation(OVERPASS_TRACK_WAYP, default(ref(sw_overpass_track_cb)))
+forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
 
 // facilites
 
-definestation(PLATFORM_FACILITIES_START, {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""},
-	class(CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES,
-		CLASS_FACILITIES, CLASS_FACILITIES, CLASS_FACILITIES)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT},
-		{CB_LAYOUT}, {CB_LAYOUT}, {CB_LAYOUT})
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_FACILITIES)
+	callbacks({CB_LAYOUT})
+)}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
 
 layout(SIGN_A_HP_A, signA_platformA(spr_platform, spr_platform_snow, 3))
 layout(SIGN_A_HP_B, signA_platformB(spr_platform, spr_platform_snow, 3))
@@ -3068,6 +2910,276 @@ layout(SIGN_C_LAP_C_RF_B,
 	)
 )
 
+layout(LED_HP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,1,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,10), dxdydz(3,0,3))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+)
+
+layout(LED_HP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,12,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,10), dxdydz(3,0,3))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(LED_HP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,1,10),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,10),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,10), dxdydz(3,0,3))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(LED_HP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,1,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,10), dxdydz(3,0,3))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+)
+
+layout(LED_HP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,12,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,10), dxdydz(3,0,3))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(LED_HP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_s,
+		{regular(spr_led,   xyz(16,1,10),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,10), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,10),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,10), dxdydz(3,0,3))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(LED_LP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,1,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8), dxdydz(3,0,3))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(LED_LP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,1,8),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,1,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8), dxdydz(3,0,3))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(LED_LP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_l, spr_platform_sl,
+		{regular(spr_led,   xyz(16,1,8),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,1,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8), dxdydz(3,0,3))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,1,8),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,1,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8), dxdydz(3,0,3))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(LED_LAP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_la, spr_platform_sla,
+		{regular(spr_led,   xyz(16,1,8),  dxdydz(0,3,3))}
+		{regular(spr_led,   xyz(16,12,8), dxdydz(0,3,3))},
+		{regular(spr_led+1, xyz(1,16,8),  dxdydz(3,0,3))}
+		{regular(spr_led+1, xyz(12,16,8), dxdydz(3,0,3))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
 
 def(39, sw_check_stasignA_pB) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
 	cbr(1) if(0x100+SIGN_A_HP_A)
@@ -3143,71 +3255,8 @@ def(36, sw_stasignA_menu_cb) callback(
 	ref(sprset_default) else
 )
 
-makestation(SIGN_A_HP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_HP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_HP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-
-makestation(SIGN_A_LP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_LP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_LP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-
-makestation(SIGN_A_LAP_A, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_LAP_B, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-makestation(SIGN_A_LAP_C, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))
-
-makestation(SIGN_B_HP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_B_HP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_B_HP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_B_HP_C_RF_B, default(ref(sw_platform)))
-
-makestation(SIGN_B_LP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_B_LP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_B_LP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_B_LP_C_RF_B, default(ref(sw_platform)))
-
-makestation(SIGN_B_LAP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_B_LAP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_B_LAP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_B_LAP_C_RF_B, default(ref(sw_platform)))
-
-makestation(SIGN_C_HP_A, default(ref(sw_platform)))
-makestation(SIGN_C_HP_B, default(ref(sw_platform)))
-makestation(SIGN_C_HP_C, default(ref(sw_platform)))
-
-makestation(SIGN_C_HP_A_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_HP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_HP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_C_HP_A_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_HP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_HP_C_RF_B, default(ref(sw_platform)))
-
-makestation(SIGN_C_LP_A, default(ref(sw_platform)))
-makestation(SIGN_C_LP_B, default(ref(sw_platform)))
-makestation(SIGN_C_LP_C, default(ref(sw_platform)))
-
-makestation(SIGN_C_LP_A_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_LP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_LP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_C_LP_A_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_LP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_LP_C_RF_B, default(ref(sw_platform)))
-
-makestation(SIGN_C_LAP_A, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_B, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_C, default(ref(sw_platform)))
-
-makestation(SIGN_C_LAP_A_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_B_RF_A, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_C_RF_A, default(ref(sw_platform)))
-
-makestation(SIGN_C_LAP_A_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_B_RF_B, default(ref(sw_platform)))
-makestation(SIGN_C_LAP_C_RF_B, default(ref(sw_platform)))
+forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_LAP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. LED_LAP_C_RF_B)
 
 
 // string definitions

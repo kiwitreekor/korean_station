@@ -24,18 +24,6 @@ grfinit("KW" 00 02,
 	
 	grfparameter(
 		grfsetting(
-			settype(BOOL,0,PARAM_PBS,1)
-			setname(
-				ALL, "Show path dark if path is reserved",
-				KR, UTF8 "열차가 지날 경로를 어둡게 보여주기"
-			)
-			setdescription(
-				ALL, "This setting only affects to the junction stations." CRLF "It would be look little weirdly.",
-				KR, UTF8 "이 설정은 분기기가 설치된 승강장에만 적용됩니다." CRLF "다소 부자연스럽게 작동할 수 있습니다."
-			)
-			setdefault(1)
-		)
-		grfsetting(
 			settype(BOOL,0,PARAM_PSDSFX,1)
 			setname(
 				ALL, "Play sound effects when screendoor closes or opens", 
@@ -445,13 +433,13 @@ spriteblock(
 			   platforms.png    8bpp 500  240  6  5   0  -4 normal) //station LED
 		sprite(platforms.png    8bpp 510  240  6  5  -6  -4 normal)
 		sprite(spr_waitingroom,
-			   platforms.png    8bpp 500  260 24 19  -8  -8 normal) //waiting room
-		sprite(platforms.png    8bpp 530  260 24 19 -16  -8 normal)
+			   platforms.png    8bpp 500  260 24 19 -16  -8 normal) //waiting room
+		sprite(platforms.png    8bpp 530  260 24 19  -8  -8 normal)
 		sprite(spr_waitingroom_glass,
-			   platforms.png    8bpp 500  290 24 19  -8  -8 normal) //waiting room, glass
-		sprite(platforms.png    8bpp 530  290 24 19 -16  -8 normal)
+			   platforms.png    8bpp 500  290 24 19 -16  -8 normal) //waiting room, glass
+		sprite(platforms.png    8bpp 530  290 24 19  -8  -8 normal)
 		sprite(spr_light,
-			   platforms.png    8bpp 500  370 10 19   0 -17 normal) //light
+			   platforms.png    8bpp 500  370 10 19  -8 -17 normal) //light
 		sprite(platforms.png    8bpp 520  370 10 19   0 -17 normal)
 // custom grounds
 		sprite(spr_ground_building,
@@ -3180,6 +3168,522 @@ layout(LED_LAP_C_RF_B,
 	)
 )
 
+layout(WAITINGROOM_HP_A,
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_B,
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_C,
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_HP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform,
+		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(WAITINGROOM_LP_A,
+	platform_graphic_A_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_B,
+	platform_graphic_B_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_C,
+	platform_graphic_C_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_sl, spr_platform_sl,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_A,
+	platform_graphic_A_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_B,
+	platform_graphic_B_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_C,
+	platform_graphic_C_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		roofA_A1(1),
+		roofA_A2(1),
+		roofA_A1_snow(1),
+		roofA_A2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofA_B1(1),
+		roofA_B2(1),
+		roofA_B1_snow(1),
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofA_A1(1)
+		roofA_B1(1),
+		roofA_A2(1)
+		roofA_B2(1),
+		roofA_A1_snow(1)
+		roofA_B1_snow(1),
+		roofA_A2_snow(1)
+		roofA_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		roofB_A1(1),
+		roofB_A2(1),
+		roofB_A1_snow(1),
+		roofB_A2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofB_B1(1),
+		roofB_B2(1),
+		roofB_B1_snow(1),
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(WAITINGROOM_LAP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform_sla, spr_platform_sla,
+		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		roofB_A1(1)
+		roofB_B1(1),
+		roofB_A2(1)
+		roofB_B2(1),
+		roofB_A1_snow(1)
+		roofB_B1_snow(1),
+		roofB_A2_snow(1)
+		roofB_B2_snow(1),
+		1
+	)
+)
+
+layout(LIGHT_HP_A,
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_light, xyz(6,0,3), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,3), dxdydz(0,4,18))},
+		3
+	)
+)
+
+layout(LIGHT_HP_B,
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_light, xyz(6,16,3), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(16,6,3), dxdydz(0,4,18))},
+		3
+	)
+)
+
+layout(LIGHT_HP_C,
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_light, xyz(6,0,3), dxdydz(4,0,18))}
+		{regular(spr_light, xyz(6,16,3), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,3), dxdydz(0,4,18))}
+		{regular(spr_light+1, xyz(16,6,3), dxdydz(0,4,18))},
+		3
+	)
+)
+
+layout(LIGHT_LP_A,
+	platform_graphic_A_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
+layout(LIGHT_LP_B,
+	platform_graphic_B_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
+layout(LIGHT_LP_C,
+	platform_graphic_C_nosnow(
+		spr_platform_l, spr_platform_l_snow,
+		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))}
+		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))}
+		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
+layout(LIGHT_LAP_A,
+	platform_graphic_A_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
+layout(LIGHT_LAP_B,
+	platform_graphic_B_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
+layout(LIGHT_LAP_C,
+	platform_graphic_C_nosnow(
+		spr_platform_la, spr_platform_la_snow,
+		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))}
+		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
+		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))}
+		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
+		1
+	)
+)
+
 
 def(39, sw_check_stasignA_pB) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
 	cbr(1) if(0x100+SIGN_A_HP_A)
@@ -3256,13 +3760,15 @@ def(36, sw_stasignA_menu_cb) callback(
 )
 
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_LAP_C)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. LED_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. LIGHT_LAP_C)
+
+
 
 
 // string definitions
 classnames(PLATFORM_START,
-	{KR, UTF8 "[KSS] 승강장"},
-	{ALL, "[KSS] Platforms"}
+	{KR, UTF8 "[KWS] 승강장"},
+	{ALL, "[KWS] Platforms"}
 )
 
 stationnames(PLATFORM_START,
@@ -3287,8 +3793,8 @@ stationnames(PLATFORM_START,
 )
 
 classnames(CROSSING_START,
-	{KR, UTF8 "[KSS] 건널목"},
-	{ALL, "[KSS] Crossings"}
+	{KR, UTF8 "[KWS] 건널목"},
+	{ALL, "[KWS] Crossings"}
 )
 
 stationnames(CROSSING_START,
@@ -3312,8 +3818,8 @@ stationnames(CRS,
 )
 
 classnames(BUILDING_START,
-	{KR, UTF8 "[KSS] 역사 건물"},
-	{ALL, "[KSS] Modular Stations"}
+	{KR, UTF8 "[KWS] 역사 건물"},
+	{ALL, "[KWS] Modular Stations"}
 )
 
 stationnames(BUILDING_START,
@@ -3360,6 +3866,81 @@ stationnames(OVERPASS_START,
 )
 
 classnames(PLATFORM_FACILITIES_START,
-	{KR, UTF8 "[KSS] 시설물"},
-	{ALL, "[KSS] Facilities"}
+	{KR, UTF8 "[KWS] 시설물"},
+	{ALL, "[KWS] Facilities"}
+)
+
+stationnames(PLATFORM_FACILITIES_START,
+	{KR, UTF8 "고상홈 A + 역명판 A", UTF8 "고상홈 B + 역명판 A", UTF8 "고상홈 C + 역명판 A"
+	, UTF8 "저상홈 A + 역명판 A", UTF8 "저상홈 B + 역명판 A", UTF8 "저상홈 C + 역명판 A"
+	, UTF8 "아스팔트 저상홈 A + 역명판 A", UTF8 "아스팔트 저상홈 B + 역명판 A", UTF8 "아스팔트 저상홈 C + 역명판 A"
+	, UTF8 "고상홈 B + 지붕 A + 역명판 B", UTF8 "고상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "고상홈 B + 지붕 B + 역명판 B", UTF8 "고상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "저상홈 B + 지붕 A + 역명판 B", UTF8 "저상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "저상홈 B + 지붕 B + 역명판 B", UTF8 "저상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "아스팔트 저상홈 B + 지붕 A + 역명판 B", UTF8 "아스팔트 저상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "아스팔트 저상홈 B + 지붕 B + 역명판 B", UTF8 "아스팔트 저상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "고상홈 A + 표지판", UTF8 "고상홈 B + 표지판", UTF8 "고상홈 C + 표지판"
+	, UTF8 "고상홈 A + 지붕 A + 표지판", UTF8 "고상홈 B + 지붕 A + 표지판", UTF8 "고상홈 C + 지붕 A + 표지판"
+	, UTF8 "고상홈 A + 지붕 B + 표지판", UTF8 "고상홈 B + 지붕 B + 표지판", UTF8 "고상홈 C + 지붕 B + 표지판"
+	, UTF8 "저상홈 A + 표지판", UTF8 "저상홈 B + 표지판", UTF8 "저상홈 C + 표지판"
+	, UTF8 "저상홈 A + 지붕 A + 표지판", UTF8 "저상홈 B + 지붕 A + 표지판", UTF8 "저상홈 C + 지붕 A + 표지판"
+	, UTF8 "저상홈 A + 지붕 B + 표지판", UTF8 "저상홈 B + 지붕 B + 표지판", UTF8 "저상홈 C + 지붕 B + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 표지판", UTF8 "아스팔트 저상홈 B + 표지판", UTF8 "아스팔트 저상홈 C + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 표지판", UTF8 "아스팔트 저상홈 B + 지붕 A + 표지판", UTF8 "아스팔트 저상홈 C + 지붕 A + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 표지판", UTF8 "아스팔트 저상홈 B + 지붕 B + 표지판", UTF8 "아스팔트 저상홈 C + 지붕 B + 표지판"
+	, UTF8 "고상홈 A + 지붕 A + 전광판", UTF8 "고상홈 B + 지붕 A + 전광판", UTF8 "고상홈 C + 지붕 A + 전광판"
+	, UTF8 "고상홈 A + 지붕 B + 전광판", UTF8 "고상홈 B + 지붕 B + 전광판", UTF8 "고상홈 C + 지붕 B + 전광판"
+	, UTF8 "저상홈 A + 지붕 A + 전광판", UTF8 "저상홈 B + 지붕 A + 전광판", UTF8 "저상홈 C + 지붕 A + 전광판"
+	, UTF8 "저상홈 A + 지붕 B + 전광판", UTF8 "저상홈 B + 지붕 B + 전광판", UTF8 "저상홈 C + 지붕 B + 전광판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 전광판", UTF8 "아스팔트 저상홈 B + 지붕 A + 전광판", UTF8 "아스팔트 저상홈 C + 지붕 A + 전광판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 전광판", UTF8 "아스팔트 저상홈 B + 지붕 B + 전광판", UTF8 "아스팔트 저상홈 C + 지붕 B + 전광판"
+	, UTF8 "고상홈 A + 고객대기실", UTF8 "고상홈 B + 고객대기실", UTF8 "고상홈 C + 고객대기실"
+	, UTF8 "고상홈 A + 지붕 A + 고객대기실", UTF8 "고상홈 B + 지붕 A + 고객대기실", UTF8 "고상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "고상홈 A + 지붕 B + 고객대기실", UTF8 "고상홈 B + 지붕 B + 고객대기실", UTF8 "고상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "저상홈 A + 고객대기실", UTF8 "저상홈 B + 고객대기실", UTF8 "저상홈 C + 고객대기실"
+	, UTF8 "저상홈 A + 지붕 A + 고객대기실", UTF8 "저상홈 B + 지붕 A + 고객대기실", UTF8 "저상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "저상홈 A + 지붕 B + 고객대기실", UTF8 "저상홈 B + 지붕 B + 고객대기실", UTF8 "저상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 고객대기실", UTF8 "아스팔트 저상홈 B + 고객대기실", UTF8 "아스팔트 저상홈 C + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 고객대기실", UTF8 "아스팔트 저상홈 B + 지붕 A + 고객대기실", UTF8 "아스팔트 저상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 B + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "고상홈 A + 가로등", UTF8 "고상홈 B + 가로등", UTF8 "고상홈 C + 가로등"
+	, UTF8 "저상홈 A + 가로등", UTF8 "저상홈 B + 가로등", UTF8 "저상홈 C + 가로등"
+	, UTF8 "아스팔트 저상홈 A + 가로등", UTF8 "아스팔트 저상홈 B + 가로등", UTF8 "아스팔트 저상홈 C + 가로등"},
+	{ALL, "High Platform A + Sign A", "High Platform B + Sign A", "High Platform C + Sign A"
+	, "Low Platform A + Sign A", "Low Platform B + Sign A", "Low Platform C + Sign A"
+	, "Low Asphalt Platform A + Sign A", "Low Asphalt Platform B + Sign A", "Low Asphalt Platform C + Sign A"
+	, "High Platform B + Roof A + Sign B", "High Platform C + Roof A + Sign B"
+	, "High Platform B + Roof B + Sign B", "High Platform C + Roof B + Sign B"
+	, "Low Platform B + Roof A + Sign B", "Low Platform C + Roof A + Sign B"
+	, "Low Platform B + Roof B + Sign B", "Low Platform C + Roof B + Sign B"
+	, "Low Asphalt Platform B + Roof A + Sign B", "Low Asphalt Platform C + Roof A + Sign B"
+	, "Low Asphalt Platform B + Roof B + Sign B", "Low Asphalt Platform C + Roof B + Sign B"
+	, "High Platform A + Sign C", "High Platform B + Sign C", "High Platform C + Sign C"
+	, "High Platform A + Roof A + Sign C", "High Platform B + Roof A + Sign C", "High Platform C + Roof A + Sign C"
+	, "High Platform A + Roof B + Sign C", "High Platform B + Roof B + Sign C", "High Platform C + Roof B + Sign C"
+	, "Low Platform A + Sign C", "Low Platform B + Sign C", "Low Platform C + Sign C"
+	, "Low Platform A + Roof A + Sign C", "Low Platform B + Roof A + Sign C", "Low Platform C + Roof A + Sign C"
+	, "Low Platform A + Roof B + Sign C", "Low Platform B + Roof B + Sign C", "Low Platform C + Roof B + Sign C"
+	, "Low Asphalt Platform A + Sign C", "Low Asphalt Platform B + Sign C", "Low Asphalt Platform C + Sign C"
+	, "Low Asphalt Platform A + Roof A + Sign C", "Low Asphalt Platform B + Roof A + Sign C", "Low Asphalt Platform C + Roof A + Sign C"
+	, "Low Asphalt Platform A + Roof B + Sign C", "Low Asphalt Platform B + Roof B + Sign C", "Low Asphalt Platform C + Roof B + Sign C"
+	, "High Platform A + Roof A + LED", "High Platform B + Roof A + LED", "High Platform C + Roof A + LED"
+	, "High Platform A + Roof B + LED", "High Platform B + Roof B + LED", "High Platform C + Roof B + LED"
+	, "Low Platform A + Roof A + LED", "Low Platform B + Roof A + LED", "Low Platform C + Roof A + LED"
+	, "Low Platform A + Roof B + LED", "Low Platform B + Roof B + LED", "Low Platform C + Roof B + LED"
+	, "Low Asphalt Platform A + Roof A + LED", "Low Asphalt Platform B + Roof A + LED", "Low Asphalt Platform C + Roof A + LED"
+	, "Low Asphalt Platform A + Roof B + LED", "Low Asphalt Platform B + Roof B + LED", "Low Asphalt Platform C + Roof B + LED"
+	, "High Platform A + Waiting room", "High Platform B + Waiting room", "High Platform C + Waiting room"
+	, "High Platform A + Roof A + Waiting room", "High Platform B + Roof A + Waiting room", "High Platform C + Roof A + Waiting room"
+	, "High Platform A + Roof B + Waiting room", "High Platform B + Roof B + Waiting room", "High Platform C + Roof B + Waiting room"
+	, "Low Platform A + Waiting room", "Low Platform B + Waiting room", "Low Platform C + Waiting room"
+	, "Low Platform A + Roof A + Waiting room", "Low Platform B + Roof A + Waiting room", "Low Platform C + Roof A + Waiting room"
+	, "Low Platform A + Roof B + Waiting room", "Low Platform B + Roof B + Waiting room", "Low Platform C + Roof B + Waiting room"
+	, "Low Asphalt Platform A + Waiting room", "Low Asphalt Platform B + Waiting room", "Low Asphalt Platform C + Waiting room"
+	, "Low Asphalt Platform A + Roof A + Waiting room", "Low Asphalt Platform B + Roof A + Waiting room", "Low Asphalt Platform C + Roof A + Waiting room"
+	, "Low Asphalt Platform A + Roof B + Waiting room", "Low Asphalt Platform B + Roof B + Waiting room", "Low Asphalt Platform C + Roof B + Waiting room"
+	, "High Platform A + Light", "High Platform B + Light", "High Platform C + Light"
+	, "Low Platform A + Light", "Low Platform B + Light", "Low Platform C + Light"
+	, "Low Asphalt Platform A + Light", "Low Asphalt Platform B + Light", "Low Asphalt Platform C + Light"}
 )

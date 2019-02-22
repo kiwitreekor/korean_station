@@ -2335,7 +2335,7 @@ layout(OVERPASS_LAP_B_RF_B,
 		1
 	)
 	platform_graphic_B_snowdiff(
-		spr_platform_sl, spr_platform_sl,
+		spr_platform_sla, spr_platform_sla,
 		{regular(spr_overpass_guide_s+4,    xyz( 0,10, 1), dxdydz(16, 6, 0))},
 		{regular(spr_overpass_guide_s+5,    xyz(10, 0, 1), dxdydz( 6,16, 0))},
 		roofB_B1(1),
@@ -2345,7 +2345,7 @@ layout(OVERPASS_LAP_B_RF_B,
 		1
 	)
 	platform_graphic_B_snowdiff(
-		spr_platform_sl, spr_platform_sl,
+		spr_platform_sla, spr_platform_sla,
 		{regular(spr_overpass_guide_s+6,    xyz( 0,10, 1), dxdydz(16, 6, 0))},
 		{regular(spr_overpass_guide_s+7,    xyz(10, 0, 1), dxdydz( 6,16, 0))},
 		roofB_B1(1),

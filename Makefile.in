@@ -3,7 +3,7 @@
 V = sprites\kws
 
 # include macro files, header, trains, names etc
-INCLUDES = sprites\kws.m4 sprites\kws_func.m4
+INCLUDES = sprites\kws.m4 sprites\kws_func.m4 sprites\strings.nfx
 
 # .nfo target files
 NFOFILES = $V1.nfo

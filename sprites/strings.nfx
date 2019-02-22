@@ -1,0 +1,213 @@
+define(STR_GRF_NAME, {"Kiwitree Korean Station Set v0.5-alpha"})
+define(STR_GRF_NAME_KR, {UTF8 "키위트리 한국역 세트 v0.5-alpha"})
+define(STR_GRF_DESC, {UTF8 "copyright 2017 - 2019 " T_WHITE "kiwitree" 
+	CRLF T_LGRAY "Bug Report: " T_LBLUE "kiwitreekor@gmail.com" 
+	CRLF T_BLACK "License: " T_WHITE "CC-BY-NC-SA 3.0" 
+	CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version." 
+	CRLF CRLF T_ORANGE "This version is not compatible with v0.4 and below. Please be careful when you update the NewGRF."
+})
+define(STR_GRF_DESC_KR, {UTF8 "copyright 2017 " T_WHITE "kiwitree" 
+	CRLF T_LGRAY "버그 제보: " T_LBLUE "kiwitreekor@gmail.com" 
+	CRLF T_BLACK "라이선스: " T_WHITE "CC-BY-NC-SA 3.0" 
+	CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다." 
+	CRLF CRLF T_ORANGE "v0.4 이하와 호환되지 않습니다. 업데이트 시 주의하십시오."
+})
+
+define(STR_PARAM_PSDSFX_NAME, {
+	ALL, "Play sound effects when screendoor closes or opens"
+	, KR, UTF8 "스크린도어가 열리고 닫힐 때 효과음 재생"
+})
+define(STR_PARAM_PSDSFX_DESC, {
+	ALL, "If you set this setting on, it will make sound when screendoor closes or opens.", 
+	KR, UTF8 "이 매개 변수를 '예'로 설정하면 스크린도어가 열리고 닫힐 때 효과음이 나게 됩니다."
+})
+define(STR_PARAM_PASSENGER_NAME, {
+	ALL, "Show passenger graphics by waiting amount", 
+	KR, UTF8 "승객 그래픽 보이기"
+})
+define(STR_PARAM_PASSENGER_DESC, {
+	ALL, "If you set this setting on, it will show passenger graphics by waiting amount.", 
+	KR, UTF8 "역에 대기하고 있는 승객을 그래픽으로 보여줍니다."
+})
+define(STR_PARAM_SHADOW_NAME, {
+	ALL, "Make shadow under roof", 
+	KR, UTF8 "지붕 밑 승강장을 어둡게 보이기"
+})
+define(STR_PARAM_SHADOW_DESC, {
+	ALL, "If you set this setting on, platform under roof will shown dark.", 
+	KR, UTF8 "지붕 밑의 승강장을 어둡게 표시합니다."
+})
+
+
+define(STR_CLASS_PLATFORMS, {
+	{KR, UTF8 "[KWS] 승강장"},
+	{ALL, "[KWS] Platforms"}
+})
+
+define(STR_PLATFORMS, {
+	{KR, UTF8 "고상홈 A", UTF8 "고상홈 B", UTF8 "고상홈 C"
+	, UTF8 "고상홈 A + 지붕 A", UTF8 "고상홈 B + 지붕 A", UTF8 "고상홈 C + 지붕 A"
+	, UTF8 "고상홈 A + 지붕 B", UTF8 "고상홈 B + 지붕 B", UTF8 "고상홈 C + 지붕 B"
+	, UTF8 "저상홈 A", UTF8 "저상홈 B", UTF8 "저상홈 C"
+	, UTF8 "저상홈 A + 지붕 A", UTF8 "저상홈 B + 지붕 A", UTF8 "저상홈 C + 지붕 A"
+	, UTF8 "저상홈 A + 지붕 B", UTF8 "저상홈 B + 지붕 B", UTF8 "저상홈 C + 지붕 B"
+	, UTF8 "아스팔트 저상홈 A", UTF8 "아스팔트 저상홈 B", UTF8 "아스팔트 저상홈 C"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A", UTF8 "아스팔트 저상홈 B + 지붕 A", UTF8 "아스팔트 저상홈 C + 지붕 A"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B", UTF8 "아스팔트 저상홈 B + 지붕 B", UTF8 "아스팔트 저상홈 C + 지붕 B"},
+	{ALL, "High Platform A", "High Platform B", "High Platform C"
+	, "High Platform A + Roof A", "High Platform B + Roof A", "High Platform C + Roof A"
+	, "High Platform A + Roof B", "High Platform B + Roof B", "High Platform C + Roof B"
+	, "Low Platform A", "Low Platform B", "Low Platform C"
+	, "Low Platform A + Roof A", "Low Platform B + Roof A", "Low Platform C + Roof A"
+	, "Low Platform A + Roof B", "Low Platform B + Roof B", "Low Platform C + Roof B"
+	, "Low Asphalt Platform A", "Low Asphalt Platform B", "Low Asphalt Platform C"
+	, "Low Asphalt Platform A + Roof A", "Low Asphalt Platform B + Roof A", "Low Asphalt Platform C + Roof A"
+	, "Low Asphalt Platform A + Roof B", "Low Asphalt Platform B + Roof B", "Low Asphalt Platform C + Roof B"}
+})
+
+define(STR_CLASS_CROSSINGS, {
+	{KR, UTF8 "[KWS] 건널목"},
+	{ALL, "[KWS] Crossings"}
+})
+
+define(STR_CROSSINGS, {
+	{KR, UTF8 "저상홈 A + 건널목", UTF8 "저상홈 B + 건널목", UTF8 "저상홈 C + 건널목"
+	, UTF8 "저상홈 A + 지붕 A + 건널목", UTF8 "저상홈 B + 지붕 A + 건널목", UTF8 "저상홈 C + 지붕 A + 건널목"
+	, UTF8 "저상홈 A + 지붕 B + 건널목", UTF8 "저상홈 B + 지붕 B + 건널목", UTF8 "저상홈 C + 지붕 B + 건널목"
+	, UTF8 "아스팔트 저상홈 A + 건널목", UTF8 "아스팔트 저상홈 B + 건널목", UTF8 "아스팔트 저상홈 C + 건널목"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 건널목", UTF8 "아스팔트 저상홈 B + 지붕 A + 건널목", UTF8 "아스팔트 저상홈 C + 지붕 A + 건널목"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 건널목", UTF8 "아스팔트 저상홈 B + 지붕 B + 건널목", UTF8 "아스팔트 저상홈 C + 지붕 B + 건널목"
+	, UTF8 "건널목"},
+	{ALL, "Low Platform A + Crossing", "Low Platform B + Crossing", "Low Platform C + Crossing"
+	, "Low Platform A + Roof A + Crossing", "Low Platform B + Roof A + Crossing", "Low Platform C + Roof A + Crossing"
+	, "Low Platform A + Roof B + Crossing", "Low Platform B + Roof B + Crossing", "Low Platform C + Roof B + Crossing"
+	, "Low Asphalt Platform A + Crossing", "Low Asphalt Platform B + Crossing", "Low Asphalt Platform C + Crossing"
+	, "Low Asphalt Platform A + Roof A + Crossing", "Low Asphalt Platform B + Roof A + Crossing", "Low Asphalt Platform C + Roof A + Crossing"
+	, "Low Asphalt Platform A + Roof B + Crossing", "Low Asphalt Platform B + Roof B + Crossing", "Low Asphalt Platform C + Roof B + Crossing"
+	, "Crossing"}
+})
+
+define(STR_CLASS_BUILDINGS, {
+	{KR, UTF8 "[KWS] 역사 건물"},
+	{ALL, "[KWS] Modular Stations"}
+})
+
+define(STR_BUILDINGS, {
+	{KR, UTF8 "저층 역사", UTF8 "고층 역사"
+	, UTF8 "고상홈 A + 저층 선상역사", UTF8 "고상홈 B + 저층 선상역사", UTF8 "고상홈 C + 저층 선상역사"
+	, UTF8 "고상홈 A + 고층 선상역사", UTF8 "고상홈 B + 고층 선상역사", UTF8 "고상홈 C + 고층 선상역사"
+	, UTF8 "저상홈 A + 저층 선상역사", UTF8 "저상홈 B + 저층 선상역사", UTF8 "저상홈 C + 저층 선상역사"
+	, UTF8 "저상홈 A + 고층 선상역사", UTF8 "저상홈 B + 고층 선상역사", UTF8 "저상홈 C + 고층 선상역사"
+	, UTF8 "아스팔트 저상홈 A + 저층 선상역사", UTF8 "아스팔트 저상홈 B + 저층 선상역사", UTF8 "아스팔트 저상홈 C + 저층 선상역사"
+	, UTF8 "아스팔트 저상홈 A + 고층 선상역사", UTF8 "아스팔트 저상홈 B + 고층 선상역사", UTF8 "아스팔트 저상홈 C + 고층 선상역사"},
+	{ALL, "Low Building Block", "High Building Block"
+	, "High Platform A + Low Overpass", "High Platform B + Low Overpass", "High Platform C + Low Overpass"
+	, "High Platform A + High Overpass", "High Platform B + High Overpass", "High Platform C + High Overpass"
+	, "Low Platform A + Low Overpass", "Low Platform B + Low Overpass", "Low Platform C + Low Overpass"
+	, "Low Platform A + High Overpass", "Low Platform B + High Overpass", "Low Platform C + High Overpass"
+	, "Low Asphalt Platform A + Low Overpass", "Low Asphalt Platform B + Low Overpass", "Low Asphalt Platform C + Low Overpass"
+	, "Low Asphalt Platform A + High Overpass", "Low Asphalt Platform B + High Overpass", "Low Asphalt Platform C + High Overpass"}
+})
+
+define(STR_OVERPASS, {
+	{KR, UTF8 "고상홈 A + 육교", UTF8 "고상홈 B + 육교", UTF8 "고상홈 C + 육교"
+	, UTF8 "고상홈 A + 육교 + 지붕 A", UTF8 "고상홈 B + 육교 + 지붕 A", UTF8 "고상홈 C + 육교 + 지붕 A"
+	, UTF8 "고상홈 A + 육교 + 지붕 B", UTF8 "고상홈 B + 육교 + 지붕 B", UTF8 "고상홈 C + 육교 + 지붕 B"
+	, UTF8 "저상홈 A + 육교", UTF8 "저상홈 B + 육교", UTF8 "저상홈 C + 육교"
+	, UTF8 "저상홈 A + 육교 + 지붕 A", UTF8 "저상홈 B + 육교 + 지붕 A", UTF8 "저상홈 C + 육교 + 지붕 A"
+	, UTF8 "저상홈 A + 육교 + 지붕 B", UTF8 "저상홈 B + 육교 + 지붕 B", UTF8 "저상홈 C + 육교 + 지붕 B"
+	, UTF8 "아스팔트 저상홈 A + 육교", UTF8 "아스팔트 저상홈 B + 육교", UTF8 "아스팔트 저상홈 C + 육교"
+	, UTF8 "아스팔트 저상홈 A + 육교 + 지붕 A", UTF8 "아스팔트 저상홈 B + 육교 + 지붕 A", UTF8 "아스팔트 저상홈 C + 육교 + 지붕 A"
+	, UTF8 "아스팔트 저상홈 A + 육교 + 지붕 B", UTF8 "아스팔트 저상홈 B + 육교 + 지붕 B", UTF8 "아스팔트 저상홈 C + 육교 + 지붕 B"
+	, UTF8 "육교"},
+	{ALL, "High Platform A + Overpass", "High Platform B + Overpass", "High Platform C + Overpass"
+	, "High Platform A + Overpass + Roof A", "High Platform B + Overpass + Roof A", "High Platform C + Overpass + Roof A"
+	, "High Platform A + Overpass + Roof B", "High Platform B + Overpass + Roof B", "High Platform C + Overpass + Roof B"
+	, "Low Platform A + Overpass", "Low Platform B + Overpass", "Low Platform C + Overpass"
+	, "Low Platform A + Overpass + Roof A", "Low Platform B + Overpass + Roof A", "Low Platform C + Overpass + Roof A"
+	, "Low Platform A + Overpass + Roof B", "Low Platform B + Overpass + Roof B", "Low Platform C + Overpass + Roof B"
+	, "Low Asphalt Platform A + Overpass + Roof B", "Low Asphalt Platform B + Overpass + Roof B", "Low Asphalt Platform C + Overpass + Roof B"
+	, "Low Asphalt Platform A + Overpass + Roof A", "Low Asphalt Platform B + Overpass + Roof A", "Low Asphalt Platform C + Overpass + Roof A"
+	, "Low Asphalt Platform A + Overpass + Roof B", "Low Asphalt Platform B + Overpass + Roof B", "Low Asphalt Platform C + Overpass + Roof B"
+	, "Overpass"}
+})
+
+define(STR_CLASS_FACILITIES, {
+	{KR, UTF8 "[KWS] 시설물"},
+	{ALL, "[KWS] Facilities"}
+})
+
+define(STR_FACILITIES, {
+	{KR, UTF8 "고상홈 A + 역명판 A", UTF8 "고상홈 B + 역명판 A", UTF8 "고상홈 C + 역명판 A"
+	, UTF8 "저상홈 A + 역명판 A", UTF8 "저상홈 B + 역명판 A", UTF8 "저상홈 C + 역명판 A"
+	, UTF8 "아스팔트 저상홈 A + 역명판 A", UTF8 "아스팔트 저상홈 B + 역명판 A", UTF8 "아스팔트 저상홈 C + 역명판 A"
+	, UTF8 "고상홈 B + 지붕 A + 역명판 B", UTF8 "고상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "고상홈 B + 지붕 B + 역명판 B", UTF8 "고상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "저상홈 B + 지붕 A + 역명판 B", UTF8 "저상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "저상홈 B + 지붕 B + 역명판 B", UTF8 "저상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "아스팔트 저상홈 B + 지붕 A + 역명판 B", UTF8 "아스팔트 저상홈 C + 지붕 A + 역명판 B"
+	, UTF8 "아스팔트 저상홈 B + 지붕 B + 역명판 B", UTF8 "아스팔트 저상홈 C + 지붕 B + 역명판 B"
+	, UTF8 "고상홈 A + 표지판", UTF8 "고상홈 B + 표지판", UTF8 "고상홈 C + 표지판"
+	, UTF8 "고상홈 A + 지붕 A + 표지판", UTF8 "고상홈 B + 지붕 A + 표지판", UTF8 "고상홈 C + 지붕 A + 표지판"
+	, UTF8 "고상홈 A + 지붕 B + 표지판", UTF8 "고상홈 B + 지붕 B + 표지판", UTF8 "고상홈 C + 지붕 B + 표지판"
+	, UTF8 "저상홈 A + 표지판", UTF8 "저상홈 B + 표지판", UTF8 "저상홈 C + 표지판"
+	, UTF8 "저상홈 A + 지붕 A + 표지판", UTF8 "저상홈 B + 지붕 A + 표지판", UTF8 "저상홈 C + 지붕 A + 표지판"
+	, UTF8 "저상홈 A + 지붕 B + 표지판", UTF8 "저상홈 B + 지붕 B + 표지판", UTF8 "저상홈 C + 지붕 B + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 표지판", UTF8 "아스팔트 저상홈 B + 표지판", UTF8 "아스팔트 저상홈 C + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 표지판", UTF8 "아스팔트 저상홈 B + 지붕 A + 표지판", UTF8 "아스팔트 저상홈 C + 지붕 A + 표지판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 표지판", UTF8 "아스팔트 저상홈 B + 지붕 B + 표지판", UTF8 "아스팔트 저상홈 C + 지붕 B + 표지판"
+	, UTF8 "고상홈 A + 지붕 A + 전광판", UTF8 "고상홈 B + 지붕 A + 전광판", UTF8 "고상홈 C + 지붕 A + 전광판"
+	, UTF8 "고상홈 A + 지붕 B + 전광판", UTF8 "고상홈 B + 지붕 B + 전광판", UTF8 "고상홈 C + 지붕 B + 전광판"
+	, UTF8 "저상홈 A + 지붕 A + 전광판", UTF8 "저상홈 B + 지붕 A + 전광판", UTF8 "저상홈 C + 지붕 A + 전광판"
+	, UTF8 "저상홈 A + 지붕 B + 전광판", UTF8 "저상홈 B + 지붕 B + 전광판", UTF8 "저상홈 C + 지붕 B + 전광판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 전광판", UTF8 "아스팔트 저상홈 B + 지붕 A + 전광판", UTF8 "아스팔트 저상홈 C + 지붕 A + 전광판"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 전광판", UTF8 "아스팔트 저상홈 B + 지붕 B + 전광판", UTF8 "아스팔트 저상홈 C + 지붕 B + 전광판"
+	, UTF8 "고상홈 A + 고객대기실", UTF8 "고상홈 B + 고객대기실", UTF8 "고상홈 C + 고객대기실"
+	, UTF8 "고상홈 A + 지붕 A + 고객대기실", UTF8 "고상홈 B + 지붕 A + 고객대기실", UTF8 "고상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "고상홈 A + 지붕 B + 고객대기실", UTF8 "고상홈 B + 지붕 B + 고객대기실", UTF8 "고상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "저상홈 A + 고객대기실", UTF8 "저상홈 B + 고객대기실", UTF8 "저상홈 C + 고객대기실"
+	, UTF8 "저상홈 A + 지붕 A + 고객대기실", UTF8 "저상홈 B + 지붕 A + 고객대기실", UTF8 "저상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "저상홈 A + 지붕 B + 고객대기실", UTF8 "저상홈 B + 지붕 B + 고객대기실", UTF8 "저상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 고객대기실", UTF8 "아스팔트 저상홈 B + 고객대기실", UTF8 "아스팔트 저상홈 C + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 고객대기실", UTF8 "아스팔트 저상홈 B + 지붕 A + 고객대기실", UTF8 "아스팔트 저상홈 C + 지붕 A + 고객대기실"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 B + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 C + 지붕 B + 고객대기실"
+	, UTF8 "고상홈 A + 가로등", UTF8 "고상홈 B + 가로등", UTF8 "고상홈 C + 가로등"
+	, UTF8 "저상홈 A + 가로등", UTF8 "저상홈 B + 가로등", UTF8 "저상홈 C + 가로등"
+	, UTF8 "아스팔트 저상홈 A + 가로등", UTF8 "아스팔트 저상홈 B + 가로등", UTF8 "아스팔트 저상홈 C + 가로등"},
+	{ALL, "High Platform A + Sign A", "High Platform B + Sign A", "High Platform C + Sign A"
+	, "Low Platform A + Sign A", "Low Platform B + Sign A", "Low Platform C + Sign A"
+	, "Low Asphalt Platform A + Sign A", "Low Asphalt Platform B + Sign A", "Low Asphalt Platform C + Sign A"
+	, "High Platform B + Roof A + Sign B", "High Platform C + Roof A + Sign B"
+	, "High Platform B + Roof B + Sign B", "High Platform C + Roof B + Sign B"
+	, "Low Platform B + Roof A + Sign B", "Low Platform C + Roof A + Sign B"
+	, "Low Platform B + Roof B + Sign B", "Low Platform C + Roof B + Sign B"
+	, "Low Asphalt Platform B + Roof A + Sign B", "Low Asphalt Platform C + Roof A + Sign B"
+	, "Low Asphalt Platform B + Roof B + Sign B", "Low Asphalt Platform C + Roof B + Sign B"
+	, "High Platform A + Sign C", "High Platform B + Sign C", "High Platform C + Sign C"
+	, "High Platform A + Roof A + Sign C", "High Platform B + Roof A + Sign C", "High Platform C + Roof A + Sign C"
+	, "High Platform A + Roof B + Sign C", "High Platform B + Roof B + Sign C", "High Platform C + Roof B + Sign C"
+	, "Low Platform A + Sign C", "Low Platform B + Sign C", "Low Platform C + Sign C"
+	, "Low Platform A + Roof A + Sign C", "Low Platform B + Roof A + Sign C", "Low Platform C + Roof A + Sign C"
+	, "Low Platform A + Roof B + Sign C", "Low Platform B + Roof B + Sign C", "Low Platform C + Roof B + Sign C"
+	, "Low Asphalt Platform A + Sign C", "Low Asphalt Platform B + Sign C", "Low Asphalt Platform C + Sign C"
+	, "Low Asphalt Platform A + Roof A + Sign C", "Low Asphalt Platform B + Roof A + Sign C", "Low Asphalt Platform C + Roof A + Sign C"
+	, "Low Asphalt Platform A + Roof B + Sign C", "Low Asphalt Platform B + Roof B + Sign C", "Low Asphalt Platform C + Roof B + Sign C"
+	, "High Platform A + Roof A + LED", "High Platform B + Roof A + LED", "High Platform C + Roof A + LED"
+	, "High Platform A + Roof B + LED", "High Platform B + Roof B + LED", "High Platform C + Roof B + LED"
+	, "Low Platform A + Roof A + LED", "Low Platform B + Roof A + LED", "Low Platform C + Roof A + LED"
+	, "Low Platform A + Roof B + LED", "Low Platform B + Roof B + LED", "Low Platform C + Roof B + LED"
+	, "Low Asphalt Platform A + Roof A + LED", "Low Asphalt Platform B + Roof A + LED", "Low Asphalt Platform C + Roof A + LED"
+	, "Low Asphalt Platform A + Roof B + LED", "Low Asphalt Platform B + Roof B + LED", "Low Asphalt Platform C + Roof B + LED"
+	, "High Platform A + Waiting room", "High Platform B + Waiting room", "High Platform C + Waiting room"
+	, "High Platform A + Roof A + Waiting room", "High Platform B + Roof A + Waiting room", "High Platform C + Roof A + Waiting room"
+	, "High Platform A + Roof B + Waiting room", "High Platform B + Roof B + Waiting room", "High Platform C + Roof B + Waiting room"
+	, "Low Platform A + Waiting room", "Low Platform B + Waiting room", "Low Platform C + Waiting room"
+	, "Low Platform A + Roof A + Waiting room", "Low Platform B + Roof A + Waiting room", "Low Platform C + Roof A + Waiting room"
+	, "Low Platform A + Roof B + Waiting room", "Low Platform B + Roof B + Waiting room", "Low Platform C + Roof B + Waiting room"
+	, "Low Asphalt Platform A + Waiting room", "Low Asphalt Platform B + Waiting room", "Low Asphalt Platform C + Waiting room"
+	, "Low Asphalt Platform A + Roof A + Waiting room", "Low Asphalt Platform B + Roof A + Waiting room", "Low Asphalt Platform C + Roof A + Waiting room"
+	, "Low Asphalt Platform A + Roof B + Waiting room", "Low Asphalt Platform B + Roof B + Waiting room", "Low Asphalt Platform C + Roof B + Waiting room"
+	, "High Platform A + Light", "High Platform B + Light", "High Platform C + Light"
+	, "Low Platform A + Light", "Low Platform B + Light", "Low Platform C + Light"
+	, "Low Asphalt Platform A + Light", "Low Asphalt Platform B + Light", "Low Asphalt Platform C + Light"}
+})

@@ -1,8 +1,8 @@
-define(STR_GRF_VERSION, {"v0.5-alpha"})
+define(STR_GRF_VERSION, {"v0.5-beta"})
 define(STR_GRF_CONTACT, {"kiwitreekor@gmail.com"})
 define(STR_GRF_LICENSE, {"CC-BY-NC-SA 3.0"})
 
-define(GRF_STABLE, 0)
+define(GRF_STABLE, 1)
 
 define(STR_GRF_NAME, {"Kiwitree Korean Station Set " STR_GRF_VERSION})
 define(STR_GRF_NAME_KR, {UTF8 "키위트리 한국역 세트 " STR_GRF_VERSION})

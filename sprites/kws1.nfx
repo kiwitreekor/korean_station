@@ -6,7 +6,7 @@ setfeature(_STATION)
 setpath(sprites/gfx)
 
 textmode_on()
-grfinit("KW" 00 02,
+grfinit("KW" 00 01,
 	grfname(ALL, STR_GRF_NAME)
 	grfname(KR, STR_GRF_NAME_KR)
 	grfdescription(ALL, STR_GRF_DESC)
@@ -411,11 +411,24 @@ spriteblock(
 			   platforms.png    8bpp 500  260 24 19 -16  -8 normal) //waiting room
 		sprite(platforms.png    8bpp 530  260 24 19  -8  -8 normal)
 		sprite(spr_waitingroom_glass,
-			   platforms.png    8bpp 500  290 24 19 -16  -8 normal) //waiting room, glass
-		sprite(platforms.png    8bpp 530  290 24 19  -8  -8 normal)
+			   platforms.png    8bpp 500  290 24 19   0   0 normal) //waiting room, glass
+		sprite(platforms.png    8bpp 530  290 24 19   0   0 normal)
 		sprite(spr_light,
 			   platforms.png    8bpp 500  370 10 19  -8 -17 normal) //light
 		sprite(platforms.png    8bpp 520  370 10 19   0 -17 normal)
+// psd
+		sprite(spr_psd,
+			   platforms.png    8bpp 500  900 32 23 -31  -8 normal) //psd, platform B
+		sprite(platforms.png    8bpp 500  930 32 23   1  -8 normal)
+		sprite(platforms.png    8bpp 500  980 32 23 -31  -8 normal) //psd, platform A
+		sprite(platforms.png    8bpp 500 1010 32 23   1  -8 normal)
+		sprite(spr_psd_glass,
+			   platforms.png    8bpp 650  900 32 21   0   0 normal) //psd, glass
+		sprite(platforms.png    8bpp 650  930 32 21   0   0 normal)
+		sprite(platforms.png    8bpp 690  900 32 21   0   0 normal)
+		sprite(platforms.png    8bpp 690  930 32 21   0   0 normal)
+		sprite(platforms.png    8bpp 730  900 32 21   0   0 normal)
+		sprite(platforms.png    8bpp 730  930 32 21   0   0 normal)
 // custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)
@@ -435,6 +448,12 @@ spriteblock(
 )
 
 def(0, sprset_default) spriteset(little(0), lots(0))
+
+setpath(sounds)
+soundtable(
+	defsnd(snd_psd_open, PSD_open.wav)
+	defsnd(snd_psd_close, PSD_close.wav)
+)
 
 def(22, sw_terrain_snow) tinfo_terrain(
 	cbr(1) if(SNOW)
@@ -3147,9 +3166,9 @@ layout(WAITINGROOM_HP_A,
 	platform_graphic_A_nosnow(
 		spr_platform, spr_platform_snow,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		3
 	)
 )
@@ -3158,9 +3177,9 @@ layout(WAITINGROOM_HP_B,
 	platform_graphic_B_nosnow(
 		spr_platform, spr_platform_snow,
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		3
 	)
 )
@@ -3169,13 +3188,13 @@ layout(WAITINGROOM_HP_C,
 	platform_graphic_C_nosnow(
 		spr_platform, spr_platform_snow,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		3
 	)
 )
@@ -3184,9 +3203,9 @@ layout(WAITINGROOM_HP_A_RF_A,
 	platform_graphic_A_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(3),
 		roofA_A2(3),
 		roofA_A1_snow(3),
@@ -3199,9 +3218,9 @@ layout(WAITINGROOM_HP_B_RF_A,
 	platform_graphic_B_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_B1(3),
 		roofA_B2(3),
 		roofA_B1_snow(3),
@@ -3214,13 +3233,13 @@ layout(WAITINGROOM_HP_C_RF_A,
 	platform_graphic_C_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(3)
 		roofA_B1(3),
 		roofA_A2(3)
@@ -3237,9 +3256,9 @@ layout(WAITINGROOM_HP_A_RF_B,
 	platform_graphic_A_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(3),
 		roofB_A2(3),
 		roofB_A1_snow(3),
@@ -3252,9 +3271,9 @@ layout(WAITINGROOM_HP_B_RF_B,
 	platform_graphic_B_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_B1(3),
 		roofB_B2(3),
 		roofB_B1_snow(3),
@@ -3267,13 +3286,13 @@ layout(WAITINGROOM_HP_C_RF_B,
 	platform_graphic_C_snowdiff(
 		spr_platform, spr_platform,
 		{regular(spr_waitingroom, xyz(4,0,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,3), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,3), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,3), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,3), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,3), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,3), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(3)
 		roofB_B1(3),
 		roofB_A2(3)
@@ -3290,9 +3309,9 @@ layout(WAITINGROOM_LP_A,
 	platform_graphic_A_nosnow(
 		spr_platform_l, spr_platform_l_snow,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3301,9 +3320,9 @@ layout(WAITINGROOM_LP_B,
 	platform_graphic_B_nosnow(
 		spr_platform_l, spr_platform_l_snow,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3312,13 +3331,13 @@ layout(WAITINGROOM_LP_C,
 	platform_graphic_C_nosnow(
 		spr_platform_l, spr_platform_l_snow,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3327,9 +3346,9 @@ layout(WAITINGROOM_LP_A_RF_A,
 	platform_graphic_A_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(1),
 		roofA_A2(1),
 		roofA_A1_snow(1),
@@ -3342,9 +3361,9 @@ layout(WAITINGROOM_LP_B_RF_A,
 	platform_graphic_B_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_B1(1),
 		roofA_B2(1),
 		roofA_B1_snow(1),
@@ -3357,13 +3376,13 @@ layout(WAITINGROOM_LP_C_RF_A,
 	platform_graphic_C_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(1)
 		roofA_B1(1),
 		roofA_A2(1)
@@ -3380,9 +3399,9 @@ layout(WAITINGROOM_LP_A_RF_B,
 	platform_graphic_A_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(1),
 		roofB_A2(1),
 		roofB_A1_snow(1),
@@ -3395,9 +3414,9 @@ layout(WAITINGROOM_LP_B_RF_B,
 	platform_graphic_B_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_B1(1),
 		roofB_B2(1),
 		roofB_B1_snow(1),
@@ -3410,13 +3429,13 @@ layout(WAITINGROOM_LP_C_RF_B,
 	platform_graphic_C_snowdiff(
 		spr_platform_sl, spr_platform_sl,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(1)
 		roofB_B1(1),
 		roofB_A2(1)
@@ -3433,9 +3452,9 @@ layout(WAITINGROOM_LAP_A,
 	platform_graphic_A_nosnow(
 		spr_platform_la, spr_platform_la_snow,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3444,9 +3463,9 @@ layout(WAITINGROOM_LAP_B,
 	platform_graphic_B_nosnow(
 		spr_platform_la, spr_platform_la_snow,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3455,13 +3474,13 @@ layout(WAITINGROOM_LAP_C,
 	platform_graphic_C_nosnow(
 		spr_platform_la, spr_platform_la_snow,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		1
 	)
 )
@@ -3470,9 +3489,9 @@ layout(WAITINGROOM_LAP_A_RF_A,
 	platform_graphic_A_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(1),
 		roofA_A2(1),
 		roofA_A1_snow(1),
@@ -3485,9 +3504,9 @@ layout(WAITINGROOM_LAP_B_RF_A,
 	platform_graphic_B_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_B1(1),
 		roofA_B2(1),
 		roofA_B1_snow(1),
@@ -3500,13 +3519,13 @@ layout(WAITINGROOM_LAP_C_RF_A,
 	platform_graphic_C_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofA_A1(1)
 		roofA_B1(1),
 		roofA_A2(1)
@@ -3523,9 +3542,9 @@ layout(WAITINGROOM_LAP_A_RF_B,
 	platform_graphic_A_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(1),
 		roofB_A2(1),
 		roofB_A1_snow(1),
@@ -3538,9 +3557,9 @@ layout(WAITINGROOM_LAP_B_RF_B,
 	platform_graphic_B_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_B1(1),
 		roofB_B2(1),
 		roofB_B1_snow(1),
@@ -3553,13 +3572,13 @@ layout(WAITINGROOM_LAP_C_RF_B,
 	platform_graphic_C_snowdiff(
 		spr_platform_sla, spr_platform_sla,
 		{regular(spr_waitingroom, xyz(4,0,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,0,1), dxdydz(8,4,8))}
+		{glass(spr_waitingroom_glass, xyoff(0,0))}
 		{regular(spr_waitingroom, xyz(4,12,1), dxdydz(8,4,8))}
-		{glass(spr_waitingroom_glass, xyz(4,12,1), dxdydz(8,4,8))},
+		{glass(spr_waitingroom_glass, xyoff(0,0))},
 		{regular(spr_waitingroom+1, xyz(0,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(0,4,1), dxdydz(4,8,8))}
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))}
 		{regular(spr_waitingroom+1, xyz(12,4,1), dxdydz(4,8,8))}
-		{glass(spr_waitingroom_glass+1, xyz(12,4,1), dxdydz(4,8,8))},
+		{glass(spr_waitingroom_glass+1, xyoff(0,0))},
 		roofB_A1(1)
 		roofB_B1(1),
 		roofB_A2(1)
@@ -3737,6 +3756,443 @@ def(36, sw_stasignA_menu_cb) callback(
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_LAP_C)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. LIGHT_LAP_C)
 
+// psd
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+)}, PSD_START .. PSD_END)
+
+layout(PSD_HP_A,
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		3
+	)
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		3
+	)
+	platform_graphic_A_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		3
+	)
+)
+
+layout(PSD_HP_B,
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		3
+	)
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		3
+	)
+	platform_graphic_B_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		3
+	)
+)
+
+layout(PSD_HP_C,
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		3
+	)
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		3
+	)
+	platform_graphic_C_nosnow(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		3
+	)
+)
+
+layout(PSD_HP_A_RF_A,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofA_A1(3),
+		roofA_A2(3),
+		roofA_A1_snow(3),
+		roofA_A2_snow(3),
+		3
+	)
+)
+
+layout(PSD_HP_B_RF_A,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofA_B1(3),
+		roofA_B2(3),
+		roofA_B1_snow(3),
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(PSD_HP_C_RF_A,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofA_A1(3)
+		roofA_B1(3),
+		roofA_A2(3)
+		roofA_B2(3),
+		roofA_A1_snow(3)
+		roofA_B1_snow(3),
+		roofA_A2_snow(3)
+		roofA_B2_snow(3),
+		3
+	)
+)
+
+layout(PSD_HP_A_RF_B,
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+	platform_graphic_A_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofB_A1(3),
+		roofB_A2(3),
+		roofB_A1_snow(3),
+		roofB_A2_snow(3),
+		3
+	)
+)
+
+layout(PSD_HP_B_RF_B,
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+	platform_graphic_B_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofB_B1(3),
+		roofB_B2(3),
+		roofB_B1_snow(3),
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+layout(PSD_HP_C_RF_B,
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+1, xyoff(0,2))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+2, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+3, xyoff(0,2))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+	platform_graphic_C_snowdiff(
+		spr_platform, spr_platform_snow,
+		{regular(spr_psd+2, xyz(0,6,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))}
+		{regular(spr_psd, xyz(0,10,3), dxdydz(16,0,8))}
+		{glass(spr_psd_glass+4, xyoff(0,2))},
+		{regular(spr_psd+3, xyz(6,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))}
+		{regular(spr_psd+1, xyz(10,0,3), dxdydz(0,16,8))}
+		{glass(spr_psd_glass+5, xyoff(0,2))},
+		roofB_A1(3)
+		roofB_B1(3),
+		roofB_A2(3)
+		roofB_B2(3),
+		roofB_A1_snow(3)
+		roofB_B1_snow(3),
+		roofB_A2_snow(3)
+		roofB_B2_snow(3),
+		3
+	)
+)
+
+def(33, sw_psd_layout) anim_frame(
+	cbr(1) if(1)
+	cbr(1) if(5)
+	cbr(2) if(2 .. 4)
+	cbr(0) else
+)
+
+skipif(1, getowngrfparameter(0), BITCLR, PARAM_PSDSFX)
+def(32, sw_psd_animframe) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT, _S_snd_psd_open) if(1)
+	animframe(A_NEXT, _S_snd_psd_close) if(4)
+	animframe(A_NEXT) else
+)
+skipif(1, getowngrfparameter(0), BITSET, PARAM_PSDSFX)
+def(32, sw_psd_animframe) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT) else
+)
+
+def(35, sw_psd_animctrl_leave) anim_frame(
+	animcontrol(6) if(0)
+	animcontrol(5) if(1)
+	animcontrol(4) else
+)
+
+def(34, sw_psd_animctrl) anim_trigger(
+	animcontrol(1) if(ARRIVE)
+	ref(sw_psd_animctrl_leave) if(LEAVE)
+	animcontrol(A_NOP) else
+)
+
+def(31, sw_psd_snow) calculate({subroutine(sw_psd_layout) * 20 + subroutine(sw_passenger_snow)},
+	cbfail() else
+)
+
+def(30, sw_psd_cb) callback(
+	ref(sw_psd_snow) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sprset_default) else
+)
+
+def(36, sw_psd_menu_cb) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sprset_default) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
+
+
 classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
 stationnames(PLATFORM_START, STR_PLATFORMS)
 stationnames(OVERPASS_START, STR_OVERPASS)
@@ -3749,3 +4205,6 @@ stationnames(BUILDING_START, STR_BUILDINGS)
 
 classnames(PLATFORM_FACILITIES_START, STR_CLASS_FACILITIES)
 stationnames(PLATFORM_FACILITIES_START, STR_FACILITIES)
+
+classnames(PSD_START, STR_CLASS_PSD)
+stationnames(PSD_START, STR_PSD)

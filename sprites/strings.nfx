@@ -1,15 +1,21 @@
-define(STR_GRF_NAME, {"Kiwitree Korean Station Set v0.5-alpha"})
-define(STR_GRF_NAME_KR, {UTF8 "키위트리 한국역 세트 v0.5-alpha"})
+define(STR_GRF_VERSION, {"v0.5-alpha"})
+define(STR_GRF_CONTACT, {"kiwitreekor@gmail.com"})
+define(STR_GRF_LICENSE, {"CC-BY-NC-SA 3.0"})
+
+define(GRF_STABLE, 0)
+
+define(STR_GRF_NAME, {"Kiwitree Korean Station Set " STR_GRF_VERSION})
+define(STR_GRF_NAME_KR, {UTF8 "키위트리 한국역 세트 " STR_GRF_VERSION})
 define(STR_GRF_DESC, {UTF8 "copyright 2017 - 2019 " T_WHITE "kiwitree" 
-	CRLF T_LGRAY "Bug Report: " T_LBLUE "kiwitreekor@gmail.com" 
-	CRLF T_BLACK "License: " T_WHITE "CC-BY-NC-SA 3.0" 
-	CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version." 
+	CRLF T_LGRAY "Bug Report: " T_LBLUE STR_GRF_CONTACT 
+	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
+	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version."}, "")
 	CRLF CRLF T_ORANGE "This version is not compatible with v0.4 and below. Please be careful when you update the NewGRF."
 })
 define(STR_GRF_DESC_KR, {UTF8 "copyright 2017 " T_WHITE "kiwitree" 
-	CRLF T_LGRAY "버그 제보: " T_LBLUE "kiwitreekor@gmail.com" 
-	CRLF T_BLACK "라이선스: " T_WHITE "CC-BY-NC-SA 3.0" 
-	CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다." 
+	CRLF T_LGRAY "버그 제보: " T_LBLUE STR_GRF_CONTACT 
+	CRLF T_BLACK "라이선스: " T_WHITE STR_GRF_LICENSE
+	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다."}, "")
 	CRLF CRLF T_ORANGE "v0.4 이하와 호환되지 않습니다. 업데이트 시 주의하십시오."
 })
 
@@ -34,8 +40,8 @@ define(STR_PARAM_SHADOW_NAME, {
 	KR, UTF8 "지붕 밑 승강장을 어둡게 보이기"
 })
 define(STR_PARAM_SHADOW_DESC, {
-	ALL, "If you set this setting on, platform under roof will shown dark.", 
-	KR, UTF8 "지붕 밑의 승강장을 어둡게 표시합니다."
+	ALL, "If you set this setting on, platform under roof will shown dark." CRLF T_RED "This parameter is not yet implemented.", 
+	KR, UTF8 "지붕 밑의 승강장을 어둡게 표시합니다." CRLF T_RED "이 매개 변수는 아직 구현되지 않았습니다."
 })
 
 
@@ -210,4 +216,18 @@ define(STR_FACILITIES, {
 	, "High Platform A + Light", "High Platform B + Light", "High Platform C + Light"
 	, "Low Platform A + Light", "Low Platform B + Light", "Low Platform C + Light"
 	, "Low Asphalt Platform A + Light", "Low Asphalt Platform B + Light", "Low Asphalt Platform C + Light"}
+})
+
+define(STR_CLASS_PSD, {
+	{KR, UTF8 "[KWS] PSD"},
+	{ALL, "[KWS] PSD"}
+})
+
+define(STR_PSD, {
+	{KR, UTF8 "고상홈 A + PSD", UTF8 "고상홈 B + PSD", UTF8 "고상홈 C + PSD"
+	, UTF8 "고상홈 A + 지붕 A + PSD", UTF8 "고상홈 B + 지붕 A + PSD", UTF8 "고상홈 C + 지붕 A + PSD"
+	, UTF8 "고상홈 A + 지붕 B + PSD", UTF8 "고상홈 B + 지붕 B + PSD", UTF8 "고상홈 C + 지붕 B + PSD"},
+	{ALL, "High Platform A + PSD", "High Platform B + PSD", "High Platform C + PSD"
+	, "High Platform A + Roof A + PSD", "High Platform B + Roof A + PSD", "High Platform C + Roof A + PSD"
+	, "High Platform A + Roof B + PSD", "High Platform B + Roof B + PSD", "High Platform C + Roof B + PSD"}
 })

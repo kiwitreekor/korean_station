@@ -3,6 +3,7 @@ define(CLASS_PLATFORMS, "KSS0")
 define(CLASS_CROSSINGS, "KSS1")
 define(CLASS_BUILDINGS, "KSS2")
 define(CLASS_FACILITIES, "KSS3")
+define(CLASS_PSD, "KSS4")
 
 define(spr_ground, 1011)
 define(spr_ground_snow, 1037)

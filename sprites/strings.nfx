@@ -43,6 +43,14 @@ define(STR_PARAM_SHADOW_DESC, {
 	ALL, "If you set this setting on, platform under roof will shown dark." CRLF T_RED "This parameter is not yet implemented.", 
 	KR, UTF8 "지붕 밑의 승강장을 어둡게 표시합니다." CRLF T_RED "이 매개 변수는 아직 구현되지 않았습니다."
 })
+define(STR_PARAM_BRIDGE_NAME, {
+	ALL, "Allow stations under bridges", 
+	KR, UTF8 "다리 밑에 역을 건설할 수 있도록 허용"
+})
+define(STR_PARAM_BRIDGE_DESC, {
+	ALL, "Allow stations to be built under bridges." CRLF CRLF T_RED "Caution! " T_WHITE "It works properly only on JGRPP v0.26.0 or later.", 
+	KR, UTF8 "일부 역 타일을 제외하고 역 위에 다리를 건설할 수 있도록 허용합니다." CRLF CRLF T_RED "주의! " T_WHITE "JGRPP v0.26.0 이후에서만 정상적으로 동작합니다."
+})
 
 
 define(STR_CLASS_PLATFORMS, {

@@ -34,6 +34,12 @@ grfinit("KW" 00 01,
 			setdescription(STR_PARAM_SHADOW_DESC)
 			setdefault(1)
 		)
+		grfsetting(
+			settype(BOOL,0,PARAM_BRIDGE,1)
+			setname(STR_PARAM_BRIDGE_NAME)
+			setdescription(STR_PARAM_BRIDGE_DESC)
+			setdefault(0)
+		)
 	)
 )
 textmode_off()
@@ -4219,7 +4225,7 @@ def(36, sw_psd_menu_cb) callback(
 
 forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
-skipif(5, PLATFORM, !=, NMF)
+skipif(5, getowngrfparameter(0), BITCLR, PARAM_BRIDGE)
 
 setproperties(PLATFORM_START .. CROSSING_END,
 	bridge_height({2,2,2,2})

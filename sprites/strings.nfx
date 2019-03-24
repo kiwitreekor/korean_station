@@ -158,7 +158,7 @@ define(STR_OVERPASS, {
 	, "Low Platform A + Overpass", "Low Platform B + Overpass", "Low Platform C + Overpass"
 	, "Low Platform A + Overpass + Roof A", "Low Platform B + Overpass + Roof A", "Low Platform C + Overpass + Roof A"
 	, "Low Platform A + Overpass + Roof B", "Low Platform B + Overpass + Roof B", "Low Platform C + Overpass + Roof B"
-	, "Low Asphalt Platform A + Overpass + Roof B", "Low Asphalt Platform B + Overpass + Roof B", "Low Asphalt Platform C + Overpass + Roof B"
+	, "Low Asphalt Platform A + Overpass", "Low Asphalt Platform B + Overpass", "Low Asphalt Platform C + Overpass"
 	, "Low Asphalt Platform A + Overpass + Roof A", "Low Asphalt Platform B + Overpass + Roof A", "Low Asphalt Platform C + Overpass + Roof A"
 	, "Low Asphalt Platform A + Overpass + Roof B", "Low Asphalt Platform B + Overpass + Roof B", "Low Asphalt Platform C + Overpass + Roof B"
 	, "Overpass"}

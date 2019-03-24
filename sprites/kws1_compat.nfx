@@ -681,9 +681,61 @@ layout(BUILDING_HIGH_LAP_C,
 	)
 )
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_LOW_HP_C)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_HIGH_HP_A .. BUILDING_HIGH_HP_C)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_LP_A .. BUILDING_HIGH_LAP_C)
+layout(BUILDING_LOW_TRACK,
+	tile(
+		ground(spr_ground+1)
+		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_low,        xyz( 0, 0,12), dxdydz(16,16,14))
+	)
+	tile(
+		ground(spr_ground)
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_low+1,      xyz( 0, 0,12), dxdydz(16,16,14))
+	)
+	tile(
+		ground(spr_ground_snow+1)
+		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_low_snow,   xyz( 0, 0,12), dxdydz(16,16,14))
+	)
+	tile(
+		ground(spr_ground_snow)
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_low_snow+1, xyz( 0, 0,12), dxdydz(16,16,14))
+	)
+)
+
+layout(BUILDING_HIGH_TRACK,
+	tile(
+		ground(spr_ground+1)
+		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_high,       xyz( 0, 0,12), dxdydz(16,16,38))
+	)
+	tile(
+		ground(spr_ground)
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_high+1,     xyz( 0, 0,12), dxdydz(16,16,38))
+	)
+	tile(
+		ground(spr_ground_snow+1)
+		regular(spr_building_pole,         xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole,         xyz( 0,16, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_high_snow,  xyz( 0, 0,12), dxdydz(16,16,38))
+	)
+	tile(
+		ground(spr_ground_snow)
+		regular(spr_building_pole+1,       xyz( 0, 0, 0), dxdydz(16, 0,12))
+		regular(spr_building_pole+1,       xyz(16, 0, 0), dxdydz(16, 0,12))
+		regular(spr_bdoverpass_high_snow+1,xyz( 0, 0,12), dxdydz(16,16,38))
+	)
+)
+
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
 
 // non-track tiles
 forloop(X, {

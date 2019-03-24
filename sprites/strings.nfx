@@ -125,20 +125,22 @@ define(STR_CLASS_BUILDINGS, {
 })
 
 define(STR_BUILDINGS, {
-	{KR, UTF8 "저층 역사", UTF8 "고층 역사"
+	{KR, UTF8 "저층 역사", UTF8 "고층 역사", "", ""
 	, UTF8 "고상홈 A + 저층 선상역사", UTF8 "고상홈 B + 저층 선상역사", UTF8 "고상홈 C + 저층 선상역사"
 	, UTF8 "고상홈 A + 고층 선상역사", UTF8 "고상홈 B + 고층 선상역사", UTF8 "고상홈 C + 고층 선상역사"
 	, UTF8 "저상홈 A + 저층 선상역사", UTF8 "저상홈 B + 저층 선상역사", UTF8 "저상홈 C + 저층 선상역사"
 	, UTF8 "저상홈 A + 고층 선상역사", UTF8 "저상홈 B + 고층 선상역사", UTF8 "저상홈 C + 고층 선상역사"
 	, UTF8 "아스팔트 저상홈 A + 저층 선상역사", UTF8 "아스팔트 저상홈 B + 저층 선상역사", UTF8 "아스팔트 저상홈 C + 저층 선상역사"
-	, UTF8 "아스팔트 저상홈 A + 고층 선상역사", UTF8 "아스팔트 저상홈 B + 고층 선상역사", UTF8 "아스팔트 저상홈 C + 고층 선상역사"},
-	{ALL, "Low Building Block", "High Building Block"
+	, UTF8 "아스팔트 저상홈 A + 고층 선상역사", UTF8 "아스팔트 저상홈 B + 고층 선상역사", UTF8 "아스팔트 저상홈 C + 고층 선상역사"
+	, UTF8 "저층 선상역사", UTF8 "고층 선상역사"},
+	{ALL, "Low Building Block", "High Building Block", "", ""
 	, "High Platform A + Low Overpass", "High Platform B + Low Overpass", "High Platform C + Low Overpass"
 	, "High Platform A + High Overpass", "High Platform B + High Overpass", "High Platform C + High Overpass"
 	, "Low Platform A + Low Overpass", "Low Platform B + Low Overpass", "Low Platform C + Low Overpass"
 	, "Low Platform A + High Overpass", "Low Platform B + High Overpass", "Low Platform C + High Overpass"
 	, "Low Asphalt Platform A + Low Overpass", "Low Asphalt Platform B + Low Overpass", "Low Asphalt Platform C + Low Overpass"
-	, "Low Asphalt Platform A + High Overpass", "Low Asphalt Platform B + High Overpass", "Low Asphalt Platform C + High Overpass"}
+	, "Low Asphalt Platform A + High Overpass", "Low Asphalt Platform B + High Overpass", "Low Asphalt Platform C + High Overpass"
+	, "Low Overpass", "High Overpass"}
 })
 
 define(STR_OVERPASS, {

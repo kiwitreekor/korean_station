@@ -182,14 +182,14 @@ define(roofB_B2_base, {
 })
 
 define(roofB_D1_base, {
-	{regular($3+4, xyz(0,3,$1), dxdydz(16,0,10))}
-	{regular($3+6, xyz(0,13,$1), dxdydz(16,0,10))}
+	{regular($3+4, xyz(0,4,$1), dxdydz(16,0,10))}
+	{regular($3+6, xyz(0,12,$1), dxdydz(16,0,10))}
 	{regular($2+4, xyz(0,0,10+$1), dxdydz(16,16,3))}
 })
 
 define(roofB_D2_base, {
-	{regular($3+5, xyz(3,0,$1), dxdydz(0,16,10))}
-	{regular($3+7, xyz(13,0,$1), dxdydz(0,16,10))}
+	{regular($3+5, xyz(4,0,$1), dxdydz(0,16,10))}
+	{regular($3+7, xyz(12,0,$1), dxdydz(0,16,10))}
 	{regular($2+5, xyz(0,0,10+$1), dxdydz(16,16,3))}
 })
 

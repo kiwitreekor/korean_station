@@ -12,8 +12,8 @@ grfinit("KW" 00 01,
 	grfdescription(ALL, STR_GRF_DESC)
 	grfdescription(KR, STR_GRF_DESC_KR)
 	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
-	grfversion(630)
-	grfminversion(630)
+	grfversion(640)
+	grfminversion(640)
 	
 	grfparameter(
 		grfsetting(

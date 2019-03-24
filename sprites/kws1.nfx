@@ -148,20 +148,28 @@ spriteblock(
 		sprite(roofs.png        8bpp  60   10 44 20 -11  -2 normal)
 		sprite(roofs.png        8bpp 110   10 44 26 -31  -5 normal) // roof A, platform B
 		sprite(roofs.png        8bpp 160   10 44 26 -11  -5 normal)
+		sprite(roofs.png        8bpp 300   10 64 34 -31  -2 normal) // roof A, non-track
+		sprite(roofs.png        8bpp 230   10 64 34 -31  -2 normal)
 		sprite(roofs.png        8bpp  10  200 44 24 -31  -6 normal) // roof B, platform A
 		sprite(roofs.png        8bpp  60  200 44 24 -11  -6 normal)
 		sprite(roofs.png        8bpp 110  200 44 24 -31  -6 normal) // roof B, platform B
 		sprite(roofs.png        8bpp 160  200 44 24 -11  -6 normal)
+		sprite(roofs.png        8bpp 300  200 64 34 -31  -6 normal) // roof B, non-track
+		sprite(roofs.png        8bpp 230  200 64 34 -31  -6 normal)
 // roof with snow
 		sprite(spr_roofs_snow,
 			   roofs.png        8bpp  10  100 44 20 -31  -2 normal) // roof A, platform A
 		sprite(roofs.png        8bpp  60  100 44 20 -11  -2 normal)
 		sprite(roofs.png        8bpp 110  100 44 26 -31  -5 normal) // roof A, platform B
 		sprite(roofs.png        8bpp 160  100 44 26 -11  -5 normal)
+		sprite(roofs.png        8bpp 300  100 64 34 -31  -2 normal) // roof A, non-track
+		sprite(roofs.png        8bpp 230  100 64 34 -31  -2 normal)
 		sprite(roofs.png        8bpp  10  290 44 24 -31  -6 normal) // roof B, platform A
 		sprite(roofs.png        8bpp  60  290 44 24 -11  -6 normal)
 		sprite(roofs.png        8bpp 110  290 44 24 -31  -6 normal) // roof B, platform B
 		sprite(roofs.png        8bpp 160  290 44 24 -11  -6 normal)
+		sprite(roofs.png        8bpp 300  290 64 34 -31  -6 normal) // roof B, non-track
+		sprite(roofs.png        8bpp 230  290 64 34 -31  -6 normal)
 // pole
 		sprite(spr_poles,
 			   roofs.png        8bpp  10   60 33 25 -31  -9 normal) // poles for roof A, platform A
@@ -1212,6 +1220,81 @@ layout(BUILDING_HIGH_LAP_C,
 )
 
 forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
+
+// non-track tiles
+forloop(X, {
+definestation(X, "",
+	class(CLASS_NONTRACK)
+	callbacks({CB_LAYOUT})
+)}, NONTRACK_START .. NONTRACK_END)
+
+layout(HP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_nontrack, spr_platform_snow_nontrack,,,3))
+layout(HP_NONTRACK_RF_A, 
+	platform_graphic_nontrack(
+		spr_platform_s_nontrack, spr_platform_s_nontrack,
+		roofA_D1(3),
+		roofA_D2(3),
+		roofA_D1_snow(3),
+		roofA_D2_snow(3),
+		3
+	)
+)
+layout(HP_NONTRACK_RF_B, 
+	platform_graphic_nontrack(
+		spr_platform_s_nontrack, spr_platform_s_nontrack,
+		roofB_D1(3),
+		roofB_D2(3),
+		roofB_D1_snow(3),
+		roofB_D2_snow(3),
+		3
+	)
+)
+
+layout(LP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_l_nontrack, spr_platform_l_snow_nontrack,,,1))
+layout(LP_NONTRACK_RF_A, 
+	platform_graphic_nontrack(
+		spr_platform_sl_nontrack, spr_platform_sl_nontrack,
+		roofA_D1(1),
+		roofA_D2(1),
+		roofA_D1_snow(1),
+		roofA_D2_snow(1),
+		1
+	)
+)
+layout(LP_NONTRACK_RF_B, 
+	platform_graphic_nontrack(
+		spr_platform_sl_nontrack, spr_platform_sl_nontrack,
+		roofB_D1(1),
+		roofB_D2(1),
+		roofB_D1_snow(1),
+		roofB_D2_snow(1),
+		1
+	)
+)
+
+layout(LAP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_la_nontrack, spr_platform_la_snow_nontrack,,,1))
+layout(LAP_NONTRACK_RF_A, 
+	platform_graphic_nontrack(
+		spr_platform_sla_nontrack, spr_platform_sla_nontrack,
+		roofA_D1(1),
+		roofA_D2(1),
+		roofA_D1_snow(1),
+		roofA_D2_snow(1),
+		1
+	)
+)
+layout(LAP_NONTRACK_RF_B, 
+	platform_graphic_nontrack(
+		spr_platform_sla_nontrack, spr_platform_sla_nontrack,
+		roofB_D1(1),
+		roofB_D2(1),
+		roofB_D1_snow(1),
+		roofB_D2_snow(1),
+		1
+	)
+)
+
+forloop(X, {makestation(X, default(ref(sw_platform)))}, NONTRACK_START .. NONTRACK_END)
 
 
 // overpasses
@@ -4257,6 +4340,9 @@ stationnames(CROSSING_START, STR_CROSSINGS)
 
 classnames(BUILDING_START, STR_CLASS_BUILDINGS)
 stationnames(BUILDING_START, STR_BUILDINGS)
+
+classnames(NONTRACK_START, STR_CLASS_NONTRACK)
+stationnames(NONTRACK_START, STR_NONTRACK)
 
 classnames(PLATFORM_FACILITIES_START, STR_CLASS_FACILITIES)
 stationnames(PLATFORM_FACILITIES_START, STR_FACILITIES)

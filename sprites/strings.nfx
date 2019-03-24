@@ -146,6 +146,20 @@ define(STR_OVERPASS, {
 	, "Overpass"}
 })
 
+define(STR_CLASS_NONTRACK, {
+	{KR, UTF8 "[KWS] 선로 없는 승강장"},
+	{ALL, "[KWS] Non-track Platforms"}
+})
+
+define(STR_NONTRACK, {
+	{KR, UTF8 "고상홈", UTF8 "고상홈 + 지붕 A", UTF8 "고상홈 + 지붕 B"
+	, UTF8 "저상홈", UTF8 "저상홈 + 지붕 A", UTF8 "저상홈 + 지붕 B"
+	, UTF8 "아스팔트 저상홈", UTF8 "아스팔트 저상홈 + 지붕 A", UTF8 "아스팔트 저상홈 + 지붕 B"},
+	{ALL, "High Platform", "High Platform + Roof A", "High Platform + Roof B"
+	, "Low Platform", "Low Platform + Roof A", "Low Platform + Roof B"
+	, "Low Asphalt Platform", "Low Asphalt Platform + Roof A", "Low Asphalt Platform + Roof B"}
+})
+
 define(STR_CLASS_FACILITIES, {
 	{KR, UTF8 "[KWS] 시설물"},
 	{ALL, "[KWS] Facilities"}

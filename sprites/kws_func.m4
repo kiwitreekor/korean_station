@@ -49,14 +49,14 @@ define(passenger_graphic_C, {
 
 define(platform_graphic_A, {
 	passenger_graphic_A(
-		{regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($1,   xyz(0, 0, 0), dxdydz(16, 6, $7))}
 		{$3}, 
 		{regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
 		{$4}, 
 		$7, spr_ground
 	)
 	passenger_graphic_A(
-		{regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($2,   xyz( 0, 0, 0), dxdydz(16, 6, $7))}
 		{$5}, 
 		{regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
 		{$6}, 
@@ -83,7 +83,7 @@ define(platform_graphic_B, {
 
 define(platform_graphic_C, {
 	passenger_graphic_C(
-		{regular($1, xyz(0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($1,   xyz(0, 0, 0), dxdydz(16, 6, $7))}
 		{regular($1+2, xyz(0,10, 0), dxdydz(16, 6, $7))}
 		{$3}, 
 		{regular($1+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
@@ -92,7 +92,7 @@ define(platform_graphic_C, {
 		$7, spr_ground
 	)
 	passenger_graphic_C(
-		{regular($2, xyz( 0, 0, 0), dxdydz(16, 6, $7))}
+		{regular($2,   xyz( 0, 0, 0), dxdydz(16, 6, $7))}
 		{regular($2+2, xyz( 0,10, 0), dxdydz(16, 6, $7))}
 		{$5}, 
 		{regular($2+1, xyz( 0, 0, 0), dxdydz( 6, 16, $7))}
@@ -102,13 +102,32 @@ define(platform_graphic_C, {
 	)
 })
 
+define(platform_graphic_nontrack, {
+	passenger_graphic_C(
+		{regular($1,   xyz(0, 0, 0), dxdydz(16, 16, $7))}
+		{$3}, 
+		{regular($1+1, xyz( 0, 0, 0), dxdydz(16, 16, $7))}
+		{$4}, 
+		$7, spr_ground
+	)
+	passenger_graphic_C(
+		{regular($2,   xyz( 0, 0, 0), dxdydz(16, 16, $7))}
+		{$5}, 
+		{regular($2+1, xyz( 0, 0, 0), dxdydz(16, 16, $7))}
+		{$6},
+		$7, spr_ground_snow
+	)
+})
+
 define(platform_graphic_A_nosnow, {platform_graphic_A($1,$2,{$3},{$4},{$3},{$4},$5)})
 define(platform_graphic_B_nosnow, {platform_graphic_B($1,$2,{$3},{$4},{$3},{$4},$5)})
 define(platform_graphic_C_nosnow, {platform_graphic_C($1,$2,{$3},{$4},{$3},{$4},$5)})
+define(platform_graphic_nontrack_nosnow, {platform_graphic_nontrack($1,$2,{$3},{$4},{$3},{$4},$5)})
 
 define(platform_graphic_A_snowdiff, {platform_graphic_A($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
 define(platform_graphic_B_snowdiff, {platform_graphic_B($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
 define(platform_graphic_C_snowdiff, {platform_graphic_C($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
+define(platform_graphic_nontrack_snowdiff, {platform_graphic_nontrack($1,$2,{$3$5},{$4$6},{$3$7},{$4$8},$9)})
 
 define(roofA_A1_base, {
 	{regular($3, xyz(0,0,$1), dxdydz(16,0,10))}
@@ -130,45 +149,77 @@ define(roofA_B2_base, {
 	{regular($2+3, xyz(10,0,10+$1), dxdydz(6,16,3))}
 })
 
+define(roofA_D1_base, {
+	{regular($3, xyz(0,0,$1), dxdydz(16,0,10))}
+	{regular($3+2, xyz(0,16,$1), dxdydz(16,0,10))}
+	{regular($2+4, xyz(0,0,10+$1), dxdydz(16,16,3))}
+})
+
+define(roofA_D2_base, {
+	{regular($3+1, xyz(0,0,$1), dxdydz(0,16,10))}
+	{regular($3+3, xyz(16,0,$1), dxdydz(0,16,10))}
+	{regular($2+5, xyz(0,0,10+$1), dxdydz(16,16,3))}
+})
+
 define(roofB_A1_base, {
 	{regular($3+4, xyz(0,3,$1), dxdydz(16,0,10))}
-	{regular($2+4, xyz(0,0,10+$1), dxdydz(16,6,3))}
+	{regular($2, xyz(0,0,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofB_A2_base, {
 	{regular($3+5, xyz(3,0,$1), dxdydz(0,16,10))}
-	{regular($2+5, xyz(0,0,10+$1), dxdydz(6,16,3))}
+	{regular($2+1, xyz(0,0,10+$1), dxdydz(6,16,3))}
 })
 
 define(roofB_B1_base, {
 	{regular($3+6, xyz(0,13,$1), dxdydz(16,0,10))}
-	{regular($2+6, xyz(0,10,10+$1), dxdydz(16,6,3))}
+	{regular($2+2, xyz(0,10,10+$1), dxdydz(16,6,3))}
 })
 
 define(roofB_B2_base, {
 	{regular($3+7, xyz(13,0,$1), dxdydz(0,16,10))}
-	{regular($2+7, xyz(10,0,10+$1), dxdydz(6,16,3))}
+	{regular($2+3, xyz(10,0,10+$1), dxdydz(6,16,3))}
+})
+
+define(roofB_D1_base, {
+	{regular($3+4, xyz(0,3,$1), dxdydz(16,0,10))}
+	{regular($3+6, xyz(0,13,$1), dxdydz(16,0,10))}
+	{regular($2+4, xyz(0,0,10+$1), dxdydz(16,16,3))}
+})
+
+define(roofB_D2_base, {
+	{regular($3+5, xyz(3,0,$1), dxdydz(0,16,10))}
+	{regular($3+7, xyz(13,0,$1), dxdydz(0,16,10))}
+	{regular($2+5, xyz(0,0,10+$1), dxdydz(16,16,3))}
 })
 
 define(roofA_A1, {roofA_A1_base($1, spr_roofs, spr_poles)})
 define(roofA_A2, {roofA_A2_base($1, spr_roofs, spr_poles)})
 define(roofA_B1, {roofA_B1_base($1, spr_roofs, spr_poles)})
 define(roofA_B2, {roofA_B2_base($1, spr_roofs, spr_poles)})
+define(roofA_D1, {roofA_D1_base($1, spr_roofs, spr_poles)})
+define(roofA_D2, {roofA_D2_base($1, spr_roofs, spr_poles)})
 
-define(roofB_A1, {roofB_A1_base($1, spr_roofs, spr_poles)})
-define(roofB_A2, {roofB_A2_base($1, spr_roofs, spr_poles)})
-define(roofB_B1, {roofB_B1_base($1, spr_roofs, spr_poles)})
-define(roofB_B2, {roofB_B2_base($1, spr_roofs, spr_poles)})
+define(roofB_A1, {roofB_A1_base($1, spr_roofs+6, spr_poles)})
+define(roofB_A2, {roofB_A2_base($1, spr_roofs+6, spr_poles)})
+define(roofB_B1, {roofB_B1_base($1, spr_roofs+6, spr_poles)})
+define(roofB_B2, {roofB_B2_base($1, spr_roofs+6, spr_poles)})
+define(roofB_D1, {roofB_D1_base($1, spr_roofs+6, spr_poles)})
+define(roofB_D2, {roofB_D2_base($1, spr_roofs+6, spr_poles)})
 
 define(roofA_A1_snow, {roofA_A1_base($1, spr_roofs_snow, spr_poles)})
 define(roofA_A2_snow, {roofA_A2_base($1, spr_roofs_snow, spr_poles)})
 define(roofA_B1_snow, {roofA_B1_base($1, spr_roofs_snow, spr_poles)})
 define(roofA_B2_snow, {roofA_B2_base($1, spr_roofs_snow, spr_poles)})
+define(roofA_D1_snow, {roofA_D1_base($1, spr_roofs_snow, spr_poles)})
+define(roofA_D2_snow, {roofA_D2_base($1, spr_roofs_snow, spr_poles)})
 
-define(roofB_A1_snow, {roofB_A1_base($1, spr_roofs_snow, spr_poles)})
-define(roofB_A2_snow, {roofB_A2_base($1, spr_roofs_snow, spr_poles)})
-define(roofB_B1_snow, {roofB_B1_base($1, spr_roofs_snow, spr_poles)})
-define(roofB_B2_snow, {roofB_B2_base($1, spr_roofs_snow, spr_poles)})
+define(roofB_A1_snow, {roofB_A1_base($1, spr_roofs_snow+6, spr_poles)})
+define(roofB_A2_snow, {roofB_A2_base($1, spr_roofs_snow+6, spr_poles)})
+define(roofB_B1_snow, {roofB_B1_base($1, spr_roofs_snow+6, spr_poles)})
+define(roofB_B2_snow, {roofB_B2_base($1, spr_roofs_snow+6, spr_poles)})
+define(roofB_D1_snow, {roofB_D1_base($1, spr_roofs_snow+6, spr_poles)})
+define(roofB_D2_snow, {roofB_D2_base($1, spr_roofs_snow+6, spr_poles)})
 
 define(crossing_A,{
 	passenger_graphic_A(

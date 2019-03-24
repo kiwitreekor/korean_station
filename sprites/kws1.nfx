@@ -12,30 +12,45 @@ grfinit("KW" 00 01,
 	grfdescription(ALL, STR_GRF_DESC)
 	grfdescription(KR, STR_GRF_DESC_KR)
 	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
-	grfversion(640)
+	grfversion(650)
 	grfminversion(640)
 	
 	grfparameter(
 		grfsetting(
-			settype(BOOL,0,PARAM_PSDSFX,1)
+			settype(ENUM,PARAM_MODE,0,32)
+			setname(STR_PARAM_MODE_NAME)
+			setdescription(STR_PARAM_MODE_DESC)
+			setdefault(0)
+			setlimits(0,2)
+			setvalues(
+				menuvalue(0,ALL,STR_PARAM_MODE_LIST_NORMAL)
+				menuvalue(0,KR,STR_PARAM_MODE_LIST_NORMAL_KR)
+				menuvalue(1,ALL,STR_PARAM_MODE_LIST_HIGHPLATFORMS)
+				menuvalue(1,KR,STR_PARAM_MODE_LIST_HIGHPLATFORMS_KR)
+				menuvalue(2,ALL,STR_PARAM_MODE_LIST_COMPAT)
+				menuvalue(2,KR,STR_PARAM_MODE_LIST_COMPAT_KR)
+			)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_PSDSFX,1)
 			setname(STR_PARAM_PSDSFX_NAME)
 			setdescription(STR_PARAM_PSDSFX_DESC)
 			setdefault(1)
 		)
 		grfsetting(
-			settype(BOOL,0,PARAM_PASSENGER,1)
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_PASSENGER,1)
 			setname(STR_PARAM_PASSENGER_NAME)
 			setdescription(STR_PARAM_PASSENGER_DESC)
 			setdefault(1)
 		)
 		grfsetting(
-			settype(BOOL,0,PARAM_SHADOW,1)
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_SHADOW,1)
 			setname(STR_PARAM_SHADOW_NAME)
 			setdescription(STR_PARAM_SHADOW_DESC)
 			setdefault(1)
 		)
 		grfsetting(
-			settype(BOOL,0,PARAM_BRIDGE,1)
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_BRIDGE,1)
 			setname(STR_PARAM_BRIDGE_NAME)
 			setdescription(STR_PARAM_BRIDGE_DESC)
 			setdefault(0)
@@ -501,7 +516,7 @@ def(22, sw_terrain_snow) tinfo_terrain(
 	cbr(0) else
 )
 
-skipif(1, getowngrfparameter(0), BITCLR, PARAM_PASSENGER)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PASSENGER)
 def(20, sw_passenger) cargowaiting(PASS,
 	cbr(0) if(0 .. 16)
 	cbr(2) if(17 .. 128)
@@ -509,7 +524,7 @@ def(20, sw_passenger) cargowaiting(PASS,
 	cbr(6) if(513 .. 1024)
 	cbr(8) else
 )
-skipif(1, getowngrfparameter(0), BITSET, PARAM_PASSENGER)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PASSENGER)
 def(20, sw_passenger) cargowaiting(PASS,
 	cbr(0) if(0 .. 0)
 	cbr(0) else
@@ -766,9 +781,15 @@ layout(LAP_C_RF_B,
 	)
 )
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_A .. LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_A .. HP_C_RF_B)
+
+skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_A .. LAP_C_RF_B)
 
 // crossings
+
+deflabel(skip_crs)
+skipif(reflabel(skip_crs), getowngrfparameter(PARAM_MODE), ==, 1)
 
 forloop(X, {
 definestation(X, "",
@@ -824,13 +845,13 @@ def(24, sw_crossing) callback(
 
 forloop(X, {makestation(X, default(ref(sw_crossing)))}, LP_A_CR .. LAP_C_CR_RF_B)
 
-definestation(CRS, "",
+definestation(TRACK_CR, "",
 	class(CLASS_CROSSINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers(BUILT, PERIODIC)
 )
 
-layout(CRS,
+layout(TRACK_CR,
 	tile(
 		ground(spr_ground+1)
 		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
@@ -886,7 +907,8 @@ def(28, sw_crossing_track_cb) callback(
 	ref(sprset_default) else
 )
 
-makestation(CRS, default(ref(sw_crossing_track_cb)))
+makestation(TRACK_CR, default(ref(sw_crossing_track_cb)))
+placelabel(skip_crs)
 
 // building blocks
 definestation(BUILDING_LOW, {"", ""},
@@ -1219,7 +1241,10 @@ layout(BUILDING_HIGH_LAP_C,
 	)
 )
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_HP_C)
+
+skipif(BUILDING_HIGH_LAP_C - BUILDING_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_LP_A .. BUILDING_HIGH_LAP_C)
 
 // non-track tiles
 forloop(X, {
@@ -1294,7 +1319,10 @@ layout(LAP_NONTRACK_RF_B,
 	)
 )
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, NONTRACK_START .. NONTRACK_END)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
+
+skipif(LAP_NONTRACK_RF_B - LP_NONTRACK + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
 
 
 // overpasses
@@ -2454,7 +2482,11 @@ def(28, sw_overpass_track_cb) callback(
 	ref(sprset_default) else
 )
 
-forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
+
+skipif(OVERPASS_LAP_C_RF_B - OVERPASS_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
+
 forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
 
 // facilites
@@ -3869,8 +3901,20 @@ def(36, sw_stasignA_menu_cb) callback(
 	ref(sprset_default) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_LAP_C)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. LIGHT_LAP_C)
+forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LED_HP_A_RF_A .. LED_HP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LIGHT_HP_A .. LIGHT_HP_C)
+
+skipif(SIGN_A_LAP_C - SIGN_A_LP_A + 1 + SIGN_B_LAP_C_RF_B - SIGN_B_LP_B_RF_A + 1 + SIGN_C_LAP_C_RF_B - SIGN_C_LP_A + 1 + LED_LAP_C_RF_B - LED_LP_A_RF_A + 1 + WAITINGROOM_LAP_C_RF_B - WAITINGROOM_LP_A + 1 + LIGHT_LAP_C - LIGHT_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, LIGHT_LP_A .. LIGHT_LAP_C)
 
 // psd
 
@@ -4265,14 +4309,14 @@ def(33, sw_psd_layout) anim_frame(
 	cbr(0) else
 )
 
-skipif(1, getowngrfparameter(0), BITCLR, PARAM_PSDSFX)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
 def(32, sw_psd_animframe) anim_frame(
 	animframe(A_STOP) if(3)
 	animframe(A_NEXT, _S_snd_psd_open) if(1)
 	animframe(A_NEXT, _S_snd_psd_close) if(4)
 	animframe(A_NEXT) else
 )
-skipif(1, getowngrfparameter(0), BITSET, PARAM_PSDSFX)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PSDSFX)
 def(32, sw_psd_animframe) anim_frame(
 	animframe(A_STOP) if(3)
 	animframe(A_NEXT) else
@@ -4308,7 +4352,7 @@ def(36, sw_psd_menu_cb) callback(
 
 forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
-skipif(5, getowngrfparameter(0), BITCLR, PARAM_BRIDGE)
+skipif(5, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(PLATFORM_START .. CROSSING_END,
 	bridge_height({2,2,2,2})
@@ -4335,6 +4379,7 @@ classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
 stationnames(PLATFORM_START, STR_PLATFORMS)
 stationnames(OVERPASS_START, STR_OVERPASS)
 
+skipif(2, getowngrfparameter(PARAM_MODE), ==, 1)
 classnames(CROSSING_START, STR_CLASS_CROSSINGS)
 stationnames(CROSSING_START, STR_CROSSINGS)
 

@@ -19,9 +19,27 @@ define(STR_GRF_DESC_KR, {UTF8 "copyright 2017 - 2019 " T_WHITE "kiwitree"
 	CRLF CRLF T_ORANGE "v0.4 이하와 호환되지 않습니다. 업데이트 시 주의하십시오."
 })
 
+define(STR_PARAM_MODE_NAME, {
+	ALL, "Mode",
+	KR, UTF8 "모드"
+})
+define(STR_PARAM_MODE_DESC, {
+	ALL, "Normal: Disable compatibility mode and enable all available station tiles." 
+	CRLF "High platforms only: Enable only high platforms and disable the others."
+	CRLF "Compatibility: Enable compatibility mode for v0.4 and below.", 
+	KR, UTF8 "일반: 모든 역 조각을 사용 가능하게 합니다." 
+	CRLF "고상홈만: 고상홈을 제외한 역 조각을 비활성화합니다." 
+	CRLF "호환성: v0.4 이하를 위한 호환성 모드를 활성화합니다."
+})
+define(STR_PARAM_MODE_LIST_NORMAL, {"Normal"})
+define(STR_PARAM_MODE_LIST_HIGHPLATFORMS, {"High platforms only"})
+define(STR_PARAM_MODE_LIST_COMPAT, {"Compatibility"})
+define(STR_PARAM_MODE_LIST_NORMAL_KR, {UTF8 "일반"})
+define(STR_PARAM_MODE_LIST_HIGHPLATFORMS_KR, {UTF8 "고상홈만"})
+define(STR_PARAM_MODE_LIST_COMPAT_KR, {UTF8 "호환성"})
 define(STR_PARAM_PSDSFX_NAME, {
-	ALL, "Play sound effects when screendoor closes or opens"
-	, KR, UTF8 "스크린도어가 열리고 닫힐 때 효과음 재생"
+	ALL, "Play sound effects when screendoor closes or opens",
+	KR, UTF8 "스크린도어가 열리고 닫힐 때 효과음 재생"
 })
 define(STR_PARAM_PSDSFX_DESC, {
 	ALL, "If you set this setting on, it will make sound when screendoor closes or opens.", 

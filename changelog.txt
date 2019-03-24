@@ -1,3 +1,14 @@
+v0.5-beta3 (2019.03.25)
+----------
+ + 고상홈 모드 추가
+ + 호환성 모드 추가
+ + 누락된 승강장 없는 선상역사 다시 추가
+ + 설선 고도 위에서 승강장 없는 건널목에 눈이 쌓이도록 수정
+ + "Low Asphalt Plarform A + Overpass", "Low Asphalt Plarform B + Overpass", "Low Asphalt Plarform C + Overpass"가
+   각각 "Low Asphalt Plarform A + Overpass + Roof B", "Low Asphalt Plarform B + Overpass + Roof B", 
+   "Low Asphalt Plarform C + Overpass + Roof B"로 나타나던 현상 수정
+ + 선상역사 조각들의 이름이 제대로 설정되어 있지 않던 현상 수정
+
 v0.5-beta2 (2019.03.24)
 ----------
  + 선로 없는 승강장 다시 추가

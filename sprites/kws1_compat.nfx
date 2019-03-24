@@ -315,6 +315,14 @@ layout(TRACK_CR_A,
 		ground(spr_ground)
 		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
 	)
+	tile(
+		ground(spr_ground_snow+1)
+		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
+	)
+	tile(
+		ground(spr_ground_snow)
+		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
+	)
 )
 
 layout(TRACK_CR_B,
@@ -324,6 +332,14 @@ layout(TRACK_CR_B,
 	)
 	tile(
 		ground(spr_ground)
+		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
+	)
+	tile(
+		ground(spr_ground_snow+1)
+		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
+	)
+	tile(
+		ground(spr_ground_snow)
 		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
 	)
 )
@@ -337,18 +353,30 @@ layout(TRACK_CR_C,
 		ground(spr_ground)
 		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
 	)
+	tile(
+		ground(spr_ground_snow+1)
+		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
+	)
+	tile(
+		ground(spr_ground_snow)
+		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
+	)
 )
 
 copylayout(TRACK_CR_A, TRACK_CR_A_WAYP)
 copylayout(TRACK_CR_B, TRACK_CR_B_WAYP)
 copylayout(TRACK_CR_C, TRACK_CR_C_WAYP)
 
+def(29, sw_crossing_track_snow) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
 def(28, sw_crossing_track_cb) callback(
-	cbr(0) if(CB_LAYOUT)
+	ref(sw_crossing_track_snow) if(CB_LAYOUT)
 	ref(sprset_default) else
 )
 
-forloop(X, {makestation(X, default(ref(sw_crossing)))}, TRACK_CR_A .. TRACK_CR_C_WAYP)
+forloop(X, {makestation(X, default(ref(sw_crossing_track_cb)))}, TRACK_CR_A .. TRACK_CR_C_WAYP)
 
 // building blocks
 definestation(BUILDING_LOW, {"", ""},
@@ -735,7 +763,20 @@ layout(BUILDING_HIGH_TRACK,
 	)
 )
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_LAP_C)
+def(29, sw_building_track_snow) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
+def(28, sw_building_track_cb) callback(
+	ref(sw_building_track_snow) if(CB_LAYOUT)
+	ref(sprset_default) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_LOW_HP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_HIGH_HP_A .. BUILDING_HIGH_HP_C)
+forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_LP_A .. BUILDING_HIGH_LAP_C)
+makestation(BUILDING_LOW_TRACK, default(ref(sw_building_track_cb)))
+makestation(BUILDING_HIGH_TRACK, default(ref(sw_building_track_cb)))
 
 // non-track tiles
 forloop(X, {

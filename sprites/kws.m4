@@ -270,6 +270,10 @@ define(PSD_HP_C_RF_B, 0xF8)
 define(PSD_END, 0xF8)
 
 define(PARAM_MODE, 1)
+define(PARAM_MODE_NORMAL, 0)
+define(PARAM_MODE_HIGHPLATFORM, 1)
+define(PARAM_MODE_COMPAT, 2)
+
 define(PARAM_FLAGS, 0)
 define(PARAM_FLAGS_PSDSFX, 1)
 define(PARAM_FLAGS_PASSENGER, 2)

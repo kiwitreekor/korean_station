@@ -783,13 +783,13 @@ layout(LAP_C_RF_B,
 
 forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_A .. HP_C_RF_B)
 
-skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_A .. LAP_C_RF_B)
 
 // crossings
 
 deflabel(skip_crs)
-skipif(reflabel(skip_crs), getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(reflabel(skip_crs), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 
 forloop(X, {
 definestation(X, "",
@@ -1243,7 +1243,7 @@ layout(BUILDING_HIGH_LAP_C,
 
 forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_HP_C)
 
-skipif(BUILDING_HIGH_LAP_C - BUILDING_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(BUILDING_HIGH_LAP_C - BUILDING_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, BUILDING_LOW_LP_A .. BUILDING_HIGH_LAP_C)
 
 // non-track tiles
@@ -1321,7 +1321,7 @@ layout(LAP_NONTRACK_RF_B,
 
 forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
 
-skipif(LAP_NONTRACK_RF_B - LP_NONTRACK + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(LAP_NONTRACK_RF_B - LP_NONTRACK + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
 
 
@@ -2484,7 +2484,7 @@ def(28, sw_overpass_track_cb) callback(
 
 forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
 
-skipif(OVERPASS_LAP_C_RF_B - OVERPASS_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(OVERPASS_LAP_C_RF_B - OVERPASS_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
 
 forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
@@ -3908,7 +3908,7 @@ forloop(X, {makestation(X, default(ref(sw_platform)))}, LED_HP_A_RF_A .. LED_HP_
 forloop(X, {makestation(X, default(ref(sw_platform)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, LIGHT_HP_A .. LIGHT_HP_C)
 
-skipif(SIGN_A_LAP_C - SIGN_A_LP_A + 1 + SIGN_B_LAP_C_RF_B - SIGN_B_LP_B_RF_A + 1 + SIGN_C_LAP_C_RF_B - SIGN_C_LP_A + 1 + LED_LAP_C_RF_B - LED_LP_A_RF_A + 1 + WAITINGROOM_LAP_C_RF_B - WAITINGROOM_LP_A + 1 + LIGHT_LAP_C - LIGHT_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(SIGN_A_LAP_C - SIGN_A_LP_A + 1 + SIGN_B_LAP_C_RF_B - SIGN_B_LP_B_RF_A + 1 + SIGN_C_LAP_C_RF_B - SIGN_C_LP_A + 1 + LED_LAP_C_RF_B - LED_LP_A_RF_A + 1 + WAITINGROOM_LAP_C_RF_B - WAITINGROOM_LP_A + 1 + LIGHT_LAP_C - LIGHT_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
 forloop(X, {makestation(X, default(ref(sw_platform)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
@@ -4379,7 +4379,7 @@ classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
 stationnames(PLATFORM_START, STR_PLATFORMS)
 stationnames(OVERPASS_START, STR_OVERPASS)
 
-skipif(2, getowngrfparameter(PARAM_MODE), ==, 1)
+skipif(2, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 classnames(CROSSING_START, STR_CLASS_CROSSINGS)
 stationnames(CROSSING_START, STR_CROSSINGS)
 

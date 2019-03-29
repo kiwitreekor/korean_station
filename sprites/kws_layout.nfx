@@ -1,0 +1,486 @@
+define(spritelayout_ground, {ground($1, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_OFFSET}))})
+
+define(spritelayout_platformA1, {regular($1, xyz(0, 0, 0), dxdydz(16, 6, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_OFFSET}))})
+define(spritelayout_platformA2, {regular($1+1, xyz(0, 0, 0), dxdydz(6, 16, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_OFFSET}))})
+define(spritelayout_platformB1, {regular($1+2, xyz(0, 10, 0), dxdydz(16, 6, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_OFFSET}))})
+define(spritelayout_platformB2, {regular($1+3, xyz(10, 0, 0), dxdydz(6, 16, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_OFFSET}))})
+
+define(spritelayout_platform_shadowA1, {regular($1, xyz(0, 0, 0), dxdydz(16, 6, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_SHADOW_OFFSET}))})
+define(spritelayout_platform_shadowA2, {regular($1+1, xyz(0, 0, 0), dxdydz(6, 16, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_SHADOW_OFFSET}))})
+define(spritelayout_platform_shadowB1, {regular($1+2, xyz(0, 10, 0), dxdydz(16, 6, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_SHADOW_OFFSET}))})
+define(spritelayout_platform_shadowB2, {regular($1+3, xyz(10, 0, 0), dxdydz(6, 16, $2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PLATFORM_SHADOW_OFFSET}))})
+
+define(spritelayout_passengerA1, {regular(spr_passengers, xyz(0, 0, $1), dxdydz(16, 6, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerA2, {regular(spr_passengers+1, xyz(0, 0, $1), dxdydz(6, 16, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerB1, {regular(spr_passengers+2, xyz(0, 10, $1), dxdydz(16, 6, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerB2, {regular(spr_passengers+3, xyz(10, 0, $1), dxdydz(6, 16, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+
+define(spritelayout_roofA_A1, {
+	regular(spr_poles, xyz(0,0,$1), dxdydz(16,0,10))
+	regular(spr_roofs, xyz(0,0,10+$1), dxdydz(16,6,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofA_A2, {
+	regular(spr_poles+1, xyz(0,0,$1), dxdydz(0,16,10))
+	regular(spr_roofs+1, xyz(0,0,10+$1), dxdydz(6,16,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofA_B1, {
+	regular(spr_poles+2, xyz(0,16,$1), dxdydz(16,0,10))
+	regular(spr_roofs+2, xyz(0,10,10+$1), dxdydz(16,6,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofA_B2, {
+	regular(spr_poles+3, xyz(16,0,$1), dxdydz(0,16,10))
+	regular(spr_roofs+3, xyz(10,0,10+$1), dxdydz(6,16,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+
+define(spritelayout_roofB_A1, {
+	regular(spr_poles+4, xyz(0,3,$1), dxdydz(16,0,10))
+	regular(spr_roofs+6, xyz(0,0,10+$1), dxdydz(16,6,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofB_A2, {
+	regular(spr_poles+5, xyz(3,0,$1), dxdydz(0,16,10))
+	regular(spr_roofs+7, xyz(0,0,10+$1), dxdydz(6,16,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofB_B1, {
+	regular(spr_poles+6, xyz(0,13,$1), dxdydz(16,0,10))
+	regular(spr_roofs+8, xyz(0,10,10+$1), dxdydz(16,6,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofB_B2, {
+	regular(spr_poles+7, xyz(13,0,$1), dxdydz(0,16,10))
+	regular(spr_roofs+9, xyz(10,0,10+$1), dxdydz(6,16,3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+
+define(LAYOUT_HP_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+	)
+})
+
+define(LAYOUT_HP_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformB1(spr_platform, 3)
+		spritelayout_passengerB1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformB2(spr_platform, 3)
+		spritelayout_passengerB2(3)
+	)
+})
+
+define(LAYOUT_HP_C, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform, 3)
+		spritelayout_platformB1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+		spritelayout_passengerB1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform, 3)
+		spritelayout_platformB2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+		spritelayout_passengerB2(3)
+	)
+})
+
+define(LAYOUT_HP_A_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+		spritelayout_roofA_A1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+		spritelayout_roofA_A2(3)
+	)
+})
+
+define(LAYOUT_HP_B_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform, 3)
+		spritelayout_passengerB1(3)
+		spritelayout_roofA_B1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform, 3)
+		spritelayout_passengerB2(3)
+		spritelayout_roofA_B2(3)
+	)
+})
+
+define(LAYOUT_HP_C_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform, 3)
+		spritelayout_platform_shadowB1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+		spritelayout_passengerB1(3)
+		spritelayout_roofA_A1(3)
+		spritelayout_roofA_B1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform, 3)
+		spritelayout_platform_shadowB2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+		spritelayout_passengerB2(3)
+		spritelayout_roofA_A2(3)
+		spritelayout_roofA_B2(3)
+	)
+})
+
+define(LAYOUT_HP_A_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+		spritelayout_roofB_A1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+		spritelayout_roofB_A2(3)
+	)
+})
+
+define(LAYOUT_HP_B_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform, 3)
+		spritelayout_passengerB1(3)
+		spritelayout_roofB_B1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform, 3)
+		spritelayout_passengerB2(3)
+		spritelayout_roofB_B2(3)
+	)
+})
+
+define(LAYOUT_HP_C_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform, 3)
+		spritelayout_platform_shadowB1(spr_platform, 3)
+		spritelayout_passengerA1(3)
+		spritelayout_passengerB1(3)
+		spritelayout_roofB_A1(3)
+		spritelayout_roofB_B1(3)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform, 3)
+		spritelayout_platform_shadowB2(spr_platform, 3)
+		spritelayout_passengerA2(3)
+		spritelayout_passengerB2(3)
+		spritelayout_roofB_A2(3)
+		spritelayout_roofB_B2(3)
+	)
+})
+
+
+define(LAYOUT_LP_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+	)
+})
+
+define(LAYOUT_LP_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformB1(spr_platform_l, 1)
+		spritelayout_passengerB1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformB2(spr_platform_l, 1)
+		spritelayout_passengerB2(1)
+	)
+})
+
+define(LAYOUT_LP_C, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform_l, 1)
+		spritelayout_platformB1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform_l, 1)
+		spritelayout_platformB2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+	)
+})
+
+define(LAYOUT_LP_A_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_roofA_A1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_roofA_A2(1)
+	)
+})
+
+define(LAYOUT_LP_B_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform_l, 1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofA_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform_l, 1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofA_B2(1)
+	)
+})
+
+define(LAYOUT_LP_C_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_l, 1)
+		spritelayout_platform_shadowB1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofA_A1(1)
+		spritelayout_roofA_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_l, 1)
+		spritelayout_platform_shadowB2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofA_A2(1)
+		spritelayout_roofA_B2(1)
+	)
+})
+
+define(LAYOUT_LP_A_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_roofB_A1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_roofB_A2(1)
+	)
+})
+
+define(LAYOUT_LP_B_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform_l, 1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofB_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform_l, 1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofB_B2(1)
+	)
+})
+
+define(LAYOUT_LP_C_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_l, 1)
+		spritelayout_platform_shadowB1(spr_platform_l, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofB_A1(1)
+		spritelayout_roofB_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_l, 1)
+		spritelayout_platform_shadowB2(spr_platform_l, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofB_A2(1)
+		spritelayout_roofB_B2(1)
+	)
+})
+
+define(LAYOUT_LAP_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+	)
+})
+
+define(LAYOUT_LAP_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformB1(spr_platform_la, 1)
+		spritelayout_passengerB1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformB2(spr_platform_la, 1)
+		spritelayout_passengerB2(1)
+	)
+})
+
+define(LAYOUT_LAP_C, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platformA1(spr_platform_la, 1)
+		spritelayout_platformB1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platformA2(spr_platform_la, 1)
+		spritelayout_platformB2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+	)
+})
+
+define(LAYOUT_LAP_A_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_roofA_A1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_roofA_A2(1)
+	)
+})
+
+define(LAYOUT_LAP_B_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform_la, 1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofA_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform_la, 1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofA_B2(1)
+	)
+})
+
+define(LAYOUT_LAP_C_RF_A, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_la, 1)
+		spritelayout_platform_shadowB1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofA_A1(1)
+		spritelayout_roofA_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_la, 1)
+		spritelayout_platform_shadowB2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofA_A2(1)
+		spritelayout_roofA_B2(1)
+	)
+})
+
+define(LAYOUT_LAP_A_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_roofB_A1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_roofB_A2(1)
+	)
+})
+
+define(LAYOUT_LAP_B_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowB1(spr_platform_la, 1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofB_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowB2(spr_platform_la, 1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofB_B2(1)
+	)
+})
+
+define(LAYOUT_LAP_C_RF_B, {
+	tile(
+		spritelayout_ground(1)
+		spritelayout_platform_shadowA1(spr_platform_la, 1)
+		spritelayout_platform_shadowB1(spr_platform_la, 1)
+		spritelayout_passengerA1(1)
+		spritelayout_passengerB1(1)
+		spritelayout_roofB_A1(1)
+		spritelayout_roofB_B1(1)
+	)
+	tile(
+		spritelayout_ground(0)
+		spritelayout_platform_shadowA2(spr_platform_la, 1)
+		spritelayout_platform_shadowB2(spr_platform_la, 1)
+		spritelayout_passengerA2(1)
+		spritelayout_passengerB2(1)
+		spritelayout_roofB_A2(1)
+		spritelayout_roofB_B2(1)
+	)
+})

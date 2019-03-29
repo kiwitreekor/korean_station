@@ -12,7 +12,7 @@ grfinit("KW" 00 01,
 	grfdescription(ALL, STR_GRF_DESC)
 	grfdescription(KR, STR_GRF_DESC_KR)
 	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
-	grfversion(650)
+	grfversion(660)
 	grfminversion(640)
 	
 	grfparameter(
@@ -539,9 +539,53 @@ def(21, sw_platform) callback(
 	ref(sprset_default) else
 )
 
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SHADOW)
+def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, spr_platform_s - spr_platform, ref(sprset_default))
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SHADOW)
+def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, 0, ref(sprset_default))
+
+def(89, sw_roof_register_sub) tinfo_terrain(
+	cbr(spr_roofs_snow - spr_roofs) if(SNOW)
+	cbr(0) else
+)
+def(88, sw_roof_register) setregisters(REGISTER_ROOF_OFFSET, sub(sw_roof_register_sub), ref(sw_platform_shadow_register))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PASSENGER)
+def(87, sw_passenger_skip_register_sub) cargowaiting(PASS,
+	cbr(0) if(0 .. 16)
+	cbr(1) else
+)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PASSENGER)
+def(87, sw_passenger_skip_register_sub) cargowaiting(PASS,
+	cbr(0) if(0)
+	cbr(0) else
+)
+def(86, sw_passenger_skip_register) setregisters(REGISTER_PASSENGER_SKIP, sub(sw_passenger_skip_register_sub), ref(sw_roof_register))
+
+def(85, sw_platform_register_sub) tinfo_terrain(
+	cbr(spr_platform_snow - spr_platform) if(SNOW)
+	cbr(0) else
+)
+def(84, sw_platform_register) setregisters(REGISTER_PLATFORM_OFFSET, sub(sw_platform_register_sub), ref(sw_passenger_skip_register))
+
+def(83, sw_passenger_register_sub) cargowaiting(PASS,
+	cbr(0) if(17 .. 128)
+	cbr(4) if(129 .. 512)
+	cbr(8) if(513 .. 1024)
+	cbr(12) else
+)
+def(82, sw_passenger_register) setregisters(REGISTER_PASSENGER_OFFSET, sub(sw_passenger_register_sub), ref(sw_platform_register))
+
+def(81, sw_ground_register_sub) tinfo_terrain(
+	cbr(spr_ground_snow) if(SNOW)
+	cbr(spr_ground) else
+)
+def(80, sw_set_registers) setregisters(REGISTER_GROUND_OFFSET, sub(sw_ground_register_sub), ref(sw_passenger_register))
+
+include(sprites/kws_layout.nfx)
+
 deflabel(label_compat)
 skipif(reflabel(label_compat), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_COMPAT)
-
 // platforms
 
 forloop(X, {
@@ -550,244 +594,46 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 )}, PLATFORM_START .. PLATFORM_END)
 
-layout(HP_A, platform_graphic_A_nosnow(spr_platform, spr_platform_snow,,, 3))
-layout(HP_B, platform_graphic_B_nosnow(spr_platform, spr_platform_snow,,, 3))
-layout(HP_C, platform_graphic_C_nosnow(spr_platform, spr_platform_snow,,, 3))
+layout(HP_A, LAYOUT_HP_A)
+layout(HP_B, LAYOUT_HP_B)
+layout(HP_C, LAYOUT_HP_C)
 
-layout(HP_A_RF_A,
-	platform_graphic_A(
-		spr_platform_s, spr_platform_s,
-		roofA_A1(3),
-		roofA_A2(3),
-		roofA_A1_snow(3),
-		roofA_A2_snow(3),
-		3
-	)
-)
+layout(HP_A_RF_A, LAYOUT_HP_A_RF_A)
+layout(HP_B_RF_A, LAYOUT_HP_B_RF_A)
+layout(HP_C_RF_A, LAYOUT_HP_C_RF_A)
 
-layout(HP_B_RF_A,
-	platform_graphic_B(
-		spr_platform_s, spr_platform_s,
-		roofA_B1(3),
-		roofA_B2(3),
-		roofA_B1_snow(3),
-		roofA_B2_snow(3),
-		3
-	)
-)
+layout(HP_A_RF_B, LAYOUT_HP_A_RF_B)
+layout(HP_B_RF_B, LAYOUT_HP_B_RF_B)
+layout(HP_C_RF_B, LAYOUT_HP_C_RF_B)
 
-layout(HP_C_RF_A,
-	platform_graphic_C(
-		spr_platform_s, spr_platform_s,
-		roofA_A1(3)
-		roofA_B1(3),
-		roofA_A2(3)
-		roofA_B2(3),
-		roofA_A1_snow(3)
-		roofA_B1_snow(3),
-		roofA_A2_snow(3)
-		roofA_B2_snow(3),
-		3
-	)
-)
+layout(LP_A, LAYOUT_LP_A)
+layout(LP_B, LAYOUT_LP_B)
+layout(LP_C, LAYOUT_LP_C)
 
-layout(HP_A_RF_B,
-	platform_graphic_A(
-		spr_platform_s, spr_platform_s,
-		roofB_A1(3),
-		roofB_A2(3),
-		roofB_A1_snow(3),
-		roofB_A2_snow(3),
-		3
-	)
-)
+layout(LP_A_RF_A, LAYOUT_LP_A_RF_A)
+layout(LP_B_RF_A, LAYOUT_LP_B_RF_A)
+layout(LP_C_RF_A, LAYOUT_LP_C_RF_A)
 
-layout(HP_B_RF_B,
-	platform_graphic_B(
-		spr_platform_s, spr_platform_s,
-		roofB_B1(3),
-		roofB_B2(3),
-		roofB_B1_snow(3),
-		roofB_B2_snow(3),
-		3
-	)
-)
+layout(LP_A_RF_B, LAYOUT_LP_A_RF_B)
+layout(LP_B_RF_B, LAYOUT_LP_B_RF_B)
+layout(LP_C_RF_B, LAYOUT_LP_C_RF_B)
 
-layout(HP_C_RF_B,
-	platform_graphic_C(
-		spr_platform_s, spr_platform_s,
-		roofB_A1(3)
-		roofB_B1(3),
-		roofB_A2(3)
-		roofB_B2(3),
-		roofB_A1_snow(3)
-		roofB_B1_snow(3),
-		roofB_A2_snow(3)
-		roofB_B2_snow(3),
-		3
-	)
-)
+layout(LAP_A, LAYOUT_LAP_A)
+layout(LAP_B, LAYOUT_LAP_B)
+layout(LAP_C, LAYOUT_LAP_C)
 
-layout(LP_A, platform_graphic_A_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
-layout(LP_B, platform_graphic_B_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
-layout(LP_C, platform_graphic_C_nosnow(spr_platform_l, spr_platform_l_snow,,, 1))
+layout(LAP_A_RF_A, LAYOUT_LAP_A_RF_A)
+layout(LAP_B_RF_A, LAYOUT_LAP_B_RF_A)
+layout(LAP_C_RF_A, LAYOUT_LAP_C_RF_A)
 
-layout(LP_A_RF_A,
-	platform_graphic_A(
-		spr_platform_sl, spr_platform_sl,
-		roofA_A1(1),
-		roofA_A2(1),
-		roofA_A1_snow(1),
-		roofA_A2_snow(1),
-		1
-	)
-)
+layout(LAP_A_RF_B, LAYOUT_LAP_A_RF_B)
+layout(LAP_B_RF_B, LAYOUT_LAP_B_RF_B)
+layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
 
-layout(LP_B_RF_A,
-	platform_graphic_B(
-		spr_platform_sl, spr_platform_sl,
-		roofA_B1(1),
-		roofA_B2(1),
-		roofA_B1_snow(1),
-		roofA_B2_snow(1),
-		1
-	)
-)
-
-layout(LP_C_RF_A,
-	platform_graphic_C(
-		spr_platform_sl, spr_platform_sl,
-		roofA_A1(1)
-		roofA_B1(1),
-		roofA_A2(1)
-		roofA_B2(1),
-		roofA_A1_snow(1)
-		roofA_B1_snow(1),
-		roofA_A2_snow(1)
-		roofA_B2_snow(1),
-		1
-	)
-)
-
-layout(LP_A_RF_B,
-	platform_graphic_A(
-		spr_platform_sl, spr_platform_sl,
-		roofB_A1(1),
-		roofB_A2(1),
-		roofB_A1_snow(1),
-		roofB_A2_snow(1),
-		1
-	)
-)
-
-layout(LP_B_RF_B,
-	platform_graphic_B(
-		spr_platform_sl, spr_platform_sl,
-		roofB_B1(1),
-		roofB_B2(1),
-		roofB_B1_snow(1),
-		roofB_B2_snow(1),
-		1
-	)
-)
-
-layout(LP_C_RF_B,
-	platform_graphic_C(
-		spr_platform_sl, spr_platform_sl,
-		roofB_A1(1)
-		roofB_B1(1),
-		roofB_A2(1)
-		roofB_B2(1),
-		roofB_A1_snow(1)
-		roofB_B1_snow(1),
-		roofB_A2_snow(1)
-		roofB_B2_snow(1),
-		1
-	)
-)
-
-layout(LAP_A, platform_graphic_A_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
-layout(LAP_B, platform_graphic_B_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
-layout(LAP_C, platform_graphic_C_nosnow(spr_platform_la, spr_platform_la_snow,,, 1))
-
-layout(LAP_A_RF_A,
-	platform_graphic_A(
-		spr_platform_sla, spr_platform_sla,
-		roofA_A1(1),
-		roofA_A2(1),
-		roofA_A1_snow(1),
-		roofA_A2_snow(1),
-		1
-	)
-)
-
-layout(LAP_B_RF_A,
-	platform_graphic_B(
-		spr_platform_sla, spr_platform_sla,
-		roofA_B1(1),
-		roofA_B2(1),
-		roofA_B1_snow(1),
-		roofA_B2_snow(1),
-		1
-	)
-)
-
-layout(LAP_C_RF_A,
-	platform_graphic_C(
-		spr_platform_sla, spr_platform_sla,
-		roofA_A1(1)
-		roofA_B1(1),
-		roofA_A2(1)
-		roofA_B2(1),
-		roofA_A1_snow(1)
-		roofA_B1_snow(1),
-		roofA_A2_snow(1)
-		roofA_B2_snow(1),
-		1
-	)
-)
-
-layout(LAP_A_RF_B,
-	platform_graphic_A(
-		spr_platform_sla, spr_platform_sla,
-		roofB_A1(1),
-		roofB_A2(1),
-		roofB_A1_snow(1),
-		roofB_A2_snow(1),
-		1
-	)
-)
-
-layout(LAP_B_RF_B,
-	platform_graphic_B(
-		spr_platform_sla, spr_platform_sla,
-		roofB_B1(1),
-		roofB_B2(1),
-		roofB_B1_snow(1),
-		roofB_B2_snow(1),
-		1
-	)
-)
-
-layout(LAP_C_RF_B,
-	platform_graphic_C(
-		spr_platform_sla, spr_platform_sla,
-		roofB_A1(1)
-		roofB_B1(1),
-		roofB_A2(1)
-		roofB_B2(1),
-		roofB_A1_snow(1)
-		roofB_B1_snow(1),
-		roofB_A2_snow(1)
-		roofB_B2_snow(1),
-		1
-	)
-)
-
-forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_A .. HP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, HP_A .. HP_C_RF_B)
 
 skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_A .. LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_A .. LAP_C_RF_B)
 
 // crossings
 

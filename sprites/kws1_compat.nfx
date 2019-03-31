@@ -783,8 +783,8 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_NONTRACK)
 	callbacks({CB_LAYOUT})
-	nontrack(TTD_ALLTILES, TTD_ALLTILES)
-	nowires(TTD_ALLTILES, TTD_ALLTILES)
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
 )}, HP_NONTRACK .. LAP_NONTRACK_RF_B)
 
 layout(HP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_nontrack, spr_platform_snow_nontrack,,,3))

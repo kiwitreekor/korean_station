@@ -597,7 +597,13 @@ def(83, sw_passenger_register_sub) cargowaiting(PASS,
 	cbr(8) if(513 .. 1024)
 	cbr(12) else
 )
-def(80, sw_set_registers) setregisters(REGISTER_PASSENGER_OFFSET, sub(sw_passenger_register_sub), ref(sw_platform_register))
+def(82, sw_passenger_register) setregisters(REGISTER_PASSENGER_OFFSET, sub(sw_passenger_register_sub), ref(sw_platform_register))
+
+def(81, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
+	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
+	cbr(0) else
+)
+def(80, sw_set_registers) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_passenger_register))
 
 include(sprites/kws_layout.nfx)
 

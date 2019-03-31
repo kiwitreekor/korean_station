@@ -52,7 +52,7 @@ define(xregular, {dnl
 define(spritelayout_ground, {ground(spr_ground+1)})
 define(spritelayout_ground_snow, {ground(spr_ground_snow+1)})
 define(spritelayout_ground_building, {ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_GROUND_OFFSET+$1}))})
-define(spritelayout_ground_nontrack, {ground(spr_ground_nontrack, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
+define(spritelayout_ground_nontrack, {_ground(spr_ground_nontrack, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
 
 define(get_platform_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform, $1, PLT_TYPE_LOW, spr_platform_l, spr_platform_la)})
 define(get_platform_nontrack_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_nontrack, $1, PLT_TYPE_LOW, spr_platform_l_nontrack, spr_platform_la_nontrack)})
@@ -121,12 +121,12 @@ define(platform_base, {
 
 define(LAYOUT_PLATFORM_BASE, {
 	xtile({
-		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 		platform_base($1, $2, ifelse(eval($#>3), 1, {$4}, SHADOW_FALSE))
 		ifelse(eval($#>2), 1, {$3})
 	})
 	xtile({
-		spritelayout_ground_snow()
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 		platform_base($1, $2, ifelse(eval($#>3), 1, {$4}, SHADOW_FALSE))
 		ifelse(eval($#>2), 1, {$3})
 	})

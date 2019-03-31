@@ -540,9 +540,20 @@ def(21, sw_platform) callback(
 )
 
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SHADOW)
-def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, spr_platform_s - spr_platform, ref(sprset_default))
+def(93, sw_crossing_shadow_register) setregisters(REGISTER_CROSSING_SHADOW_OFFSET, spr_platform_cs - spr_platform_c, ref(sprset_default))
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SHADOW)
-def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, 0, ref(sprset_default))
+def(93, sw_crossing_shadow_register) setregisters(REGISTER_CROSSING_SHADOW_OFFSET, 0, ref(sprset_default))
+
+def(92, sw_crossing_register_sub) tinfo_terrain(
+	cbr(spr_platform_c_snow - spr_platform_c) if(SNOW)
+	cbr(0) else
+)
+def(91, sw_crossing_register) setregisters(REGISTER_CROSSING_OFFSET, sub(sw_crossing_register_sub), ref(sw_crossing_shadow_register))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SHADOW)
+def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, spr_platform_s - spr_platform, ref(sw_crossing_register))
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SHADOW)
+def(90, sw_platform_shadow_register) setregisters(REGISTER_PLATFORM_SHADOW_OFFSET, 0, ref(sw_crossing_register))
 
 def(89, sw_roof_register_sub) tinfo_terrain(
 	cbr(spr_roofs_snow - spr_roofs) if(SNOW)
@@ -574,13 +585,7 @@ def(83, sw_passenger_register_sub) cargowaiting(PASS,
 	cbr(8) if(513 .. 1024)
 	cbr(12) else
 )
-def(82, sw_passenger_register) setregisters(REGISTER_PASSENGER_OFFSET, sub(sw_passenger_register_sub), ref(sw_platform_register))
-
-def(81, sw_ground_register_sub) tinfo_terrain(
-	cbr(spr_ground_snow) if(SNOW)
-	cbr(spr_ground) else
-)
-def(80, sw_set_registers) setregisters(REGISTER_GROUND_OFFSET, sub(sw_ground_register_sub), ref(sw_passenger_register))
+def(80, sw_set_registers) setregisters(REGISTER_PASSENGER_OFFSET, sub(sw_passenger_register_sub), ref(sw_platform_register))
 
 include(sprites/kws_layout.nfx)
 
@@ -630,10 +635,19 @@ layout(LAP_A_RF_B, LAYOUT_LAP_A_RF_B)
 layout(LAP_B_RF_B, LAYOUT_LAP_B_RF_B)
 layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
 
-forloop(X, {makestation(X, default(ref(sw_set_registers)))}, HP_A .. HP_C_RF_B)
+def(25, sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
+def(24, sw_platform_cb) callback(
+	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A .. HP_C_RF_B)
 
 skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_A .. LAP_C_RF_B)
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A .. LAP_C_RF_B)
 
 // crossings
 
@@ -647,52 +661,52 @@ definestation(X, "",
 	anim_triggers({BUILT, PERIODIC})
 )}, LP_A_CR .. LAP_C_CR_RF_B)
 
-layout(LP_A_CR, crossing_A(spr_platform_c,,,spr_ground) crossing_A(spr_platform_c_snow,,,spr_ground_snow))
-layout(LP_B_CR, crossing_B(spr_platform_c,,,spr_ground) crossing_B(spr_platform_c_snow,,,spr_ground_snow))
-layout(LP_C_CR, crossing_C(spr_platform_c,,,spr_ground) crossing_C(spr_platform_c_snow,,,spr_ground_snow))
+layout(LP_A_CR, LAYOUT_LP_A_CR)
+layout(LP_B_CR, LAYOUT_LP_B_CR)
+layout(LP_C_CR, LAYOUT_LP_C_CR)
 
-layout(LP_A_CR_RF_A, crossing_A(spr_platform_cs,roofA_A1(1),roofA_A2(1),spr_ground) crossing_A(spr_platform_cs,roofA_A1_snow(1),roofA_A2_snow(1),spr_ground_snow))
-layout(LP_B_CR_RF_A, crossing_B(spr_platform_cs,roofA_B1(1),roofA_B2(1),spr_ground) crossing_B(spr_platform_cs,roofA_B1_snow(1),roofA_B2_snow(1),spr_ground_snow))
-layout(LP_C_CR_RF_A, crossing_C(spr_platform_cs,roofA_A1(1) roofA_B1(1),roofA_A2(1) roofA_B2(1),spr_ground) crossing_C(spr_platform_cs,roofA_A1_snow(1) roofA_B1_snow(1),roofA_A2_snow(1) roofA_B2_snow(1),spr_ground_snow))
+layout(LP_A_CR_RF_A, LAYOUT_LP_A_CR_RF_A)
+layout(LP_B_CR_RF_A, LAYOUT_LP_B_CR_RF_A)
+layout(LP_C_CR_RF_A, LAYOUT_LP_C_CR_RF_A)
 
-layout(LP_A_CR_RF_B, crossing_A(spr_platform_cs,roofB_A1(1),roofB_A2(1),spr_ground) crossing_A(spr_platform_cs,roofB_A1_snow(1),roofB_A2_snow(1),spr_ground_snow))
-layout(LP_B_CR_RF_B, crossing_B(spr_platform_cs,roofB_B1(1),roofB_B2(1),spr_ground) crossing_B(spr_platform_cs,roofB_B1_snow(1),roofB_B2_snow(1),spr_ground_snow))
-layout(LP_C_CR_RF_B, crossing_C(spr_platform_cs,roofB_A1(1) roofB_B1(1),roofB_A2(1) roofB_B2(1),spr_ground) crossing_C(spr_platform_cs,roofB_A1_snow(1) roofB_B1_snow(1),roofB_A2_snow(1) roofB_B2_snow(1),spr_ground_snow))
+layout(LP_A_CR_RF_B, LAYOUT_LP_A_CR_RF_B)
+layout(LP_B_CR_RF_B, LAYOUT_LP_B_CR_RF_B)
+layout(LP_C_CR_RF_B, LAYOUT_LP_C_CR_RF_B)
 
-layout(LAP_A_CR, crossing_A(spr_platform_ca,,,spr_ground) crossing_A(spr_platform_ca_snow,,,spr_ground_snow))
-layout(LAP_B_CR, crossing_B(spr_platform_ca,,,spr_ground) crossing_B(spr_platform_ca_snow,,,spr_ground_snow))
-layout(LAP_C_CR, crossing_C(spr_platform_ca,,,spr_ground) crossing_C(spr_platform_ca_snow,,,spr_ground_snow))
+layout(LAP_A_CR, LAYOUT_LAP_A_CR)
+layout(LAP_B_CR, LAYOUT_LAP_B_CR)
+layout(LAP_C_CR, LAYOUT_LAP_C_CR)
 
-layout(LAP_A_CR_RF_A, crossing_A(spr_platform_csa,roofA_A1(1),roofA_A2(1),spr_ground) crossing_A(spr_platform_csa,roofA_A1_snow(1),roofA_A2_snow(1),spr_ground_snow))
-layout(LAP_B_CR_RF_A, crossing_B(spr_platform_csa,roofA_B1(1),roofA_B2(1),spr_ground) crossing_B(spr_platform_csa,roofA_B1_snow(1),roofA_B2_snow(1),spr_ground_snow))
-layout(LAP_C_CR_RF_A, crossing_C(spr_platform_csa,roofA_A1(1) roofA_B1(1),roofA_A2(1) roofA_B2(1),spr_ground) crossing_C(spr_platform_csa,roofA_A1_snow(1) roofA_B1_snow(1),roofA_A2_snow(1) roofA_B2_snow(1),spr_ground_snow))
+layout(LAP_A_CR_RF_A, LAYOUT_LAP_A_CR_RF_A)
+layout(LAP_B_CR_RF_A, LAYOUT_LAP_B_CR_RF_A)
+layout(LAP_C_CR_RF_A, LAYOUT_LAP_C_CR_RF_A)
 
-layout(LAP_A_CR_RF_B, crossing_A(spr_platform_csa,roofB_A1(1),roofB_A2(1),spr_ground) crossing_A(spr_platform_csa,roofB_A1_snow(1),roofB_A2_snow(1),spr_ground_snow))
-layout(LAP_B_CR_RF_B, crossing_B(spr_platform_csa,roofB_B1(1),roofB_B2(1),spr_ground) crossing_B(spr_platform_csa,roofB_B1_snow(1),roofB_B2_snow(1),spr_ground_snow))
-layout(LAP_C_CR_RF_B, crossing_C(spr_platform_csa,roofB_A1(1) roofB_B1(1),roofB_A2(1) roofB_B2(1),spr_ground) crossing_C(spr_platform_csa,roofB_A1_snow(1) roofB_B1_snow(1),roofB_A2_snow(1) roofB_B2_snow(1),spr_ground_snow))
+layout(LAP_A_CR_RF_B, LAYOUT_LAP_A_CR_RF_B)
+layout(LAP_B_CR_RF_B, LAYOUT_LAP_B_CR_RF_B)
+layout(LAP_C_CR_RF_B, LAYOUT_LAP_C_CR_RF_B)
 
 def(25) plt_posrev(
-	cbr(1) if(0)
+	cbr(2) if(0)
 	cbr(0) else
 )
 
 def(27, sw_pos) plt_pos(
-	cbr(2) if(0)
+	cbr(4) if(0)
 	ref(25) else
 )
 
-def(26, sw_calc_crossing_layout) calculate({subroutine(sw_terrain_snow) * 3 + subroutine(sw_pos) * 10 + subroutine(sw_passenger)},
+def(26, sw_crossing_layout) calculate({subroutine(sw_terrain_snow * 6 + sw_pos)},
 	cbfail() else
 )
 
-def(24, sw_crossing) callback(
-	ref(sw_calc_crossing_layout) if(CB_LAYOUT)
+def(24, sw_crossing_cb) callback(
+	ref(sw_crossing_layout) if(CB_LAYOUT)
 	ref(sw_pos) if(CB_ACONTROL)
 	ref(sw_pos) if(CB_AFRAME)
-	ref(sprset_default) else
+	ref(sw_set_registers) else
 )
 
-forloop(X, {makestation(X, default(ref(sw_crossing)))}, LP_A_CR .. LAP_C_CR_RF_B)
+forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, LP_A_CR .. LAP_C_CR_RF_B)
 
 definestation(TRACK_CR, "",
 	class(CLASS_CROSSINGS)
@@ -700,145 +714,149 @@ definestation(TRACK_CR, "",
 	anim_triggers(BUILT, PERIODIC)
 )
 
-layout(TRACK_CR,
-	tile(
-		ground(spr_ground+1)
-		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground)
-		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
-	)
-	tile(
-		ground(spr_ground+1)
-		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground)
-		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
-	)
-	tile(
-		ground(spr_ground+1)
-		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground)
-		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
-	)
-	tile(
-		ground(spr_ground_snow+1)
-		regular(spr_crossing, xyz(7,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground_snow)
-		regular(spr_crossing+1, xyz(0,7,0), dxdydz(16,3,0))
-	)
-	tile(
-		ground(spr_ground_snow+1)
-		regular(spr_crossing, xyz(13,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground_snow)
-		regular(spr_crossing+1, xyz(0,13,0), dxdydz(16,3,0))
-	)
-	tile(
-		ground(spr_ground_snow+1)
-		regular(spr_crossing, xyz(0,0,0), dxdydz(3,16,0))
-	)
-	tile(
-		ground(spr_ground_snow)
-		regular(spr_crossing+1, xyz(0,0,0), dxdydz(16,3,0))
-	)
-)
+layout(TRACK_CR, LAYOUT_TRACK_CR)
 
 def(32) anim_frame(pos(0,-1),
-	cbr(0) if(0)
-	cbr(1) if(1)
-	cbr(2) else
-)
-
-def(30) tinfo_statid(pos(0,-1),shiftmask(0,0x1FF),
-	ref(32) if(0x100+CROSSING_START .. 0x100+CROSSING_END)
-	cbr(0) else
-)
-
-def(31) anim_frame(pos(0,-1),
 	cbr(0) if(0)
 	cbr(2) if(1)
 	cbr(4) else
 )
 
-def(32) tinfo_statid(pos(0,-1),shiftmask(0,0x1FF),
+def(29, sw_crossing_track_layout) tinfo_statid(pos(0,-1),shiftmask(0,0x1FF),
 	ref(31) if(0x100+CROSSING_START .. 0x100+CROSSING_END)
 	cbr(0) else
 )
 
-def(29, sw_crossing_track_snow) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(32)},
-	cbfail() else
-)
-
 def(28, sw_crossing_track_cb) callback(
-	ref(29) if(CB_LAYOUT)
-	ref(30) if(CB_ACONTROL)
-	ref(30) if(CB_AFRAME)
-	ref(sprset_default) else
+	ref(sw_crossing_track_layout) if(CB_LAYOUT)
+	ref(sw_crossing_track_layout) if(CB_ACONTROL)
+	ref(sw_crossing_track_layout) if(CB_AFRAME)
+	ref(sw_set_registers) else
 )
 
 makestation(TRACK_CR, default(ref(sw_crossing_track_cb)))
 placelabel(skip_crs)
 
 // building blocks
-definestation(BUILDING_LOW, {"", ""},
-	class(CLASS_BUILDINGS, CLASS_BUILDINGS)
-	callbacks({CB_LAYOUT}, {CB_LAYOUT})
-	nontrack(TTD_ALLTILES, TTD_ALLTILES)
-	nowires(TTD_ALLTILES, TTD_ALLTILES)
-)
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+)}, BUILDING_LOW .. BUILDING_HIGH)
 
-layout(BUILDING_LOW, stn_building(spr_building_low, spr_building_low_snow, 26))
-layout(BUILDING_HIGH, stn_building(spr_building_high, spr_building_high_snow, 50))
+layout(BUILDING_LOW, LAYOUT_BUILDING_LOW)
+layout(BUILDING_HIGH, LAYOUT_BUILDING_HIGH)
 
 def(33) tinfo_statid(pos(0, 1),
 	cbr(0) if(0xFFFF)
-	cbr(1)
+	cbr(1) else
 )
 
 def(32) tinfo_statid(pos(0, -1),
 	cbr(0) if(0xFFFF)
-	cbr(2)
+	cbr(2) else
 )
 
 def(34) calculate({tinfo_trackconnect() >> 10 AND 3 OR subroutine(32) OR subroutine(33)},
 	cbfail() else
 )
 
-// tinfo_trackconnect rsh 8 = tinfo_trackexist
-def(31, sw_building_layout) subroutine(34,
-	cbr(2) if(1)
-	cbr(20) if(3)
+def(36, sw_building_register_sub_snow) tinfo_terrain(
+	cbr(spr_building_low_snow - spr_building_low) if(SNOW)
 	cbr(0) else
 )
 
-def(30, sw_building_snow) calculate({subroutine(sw_terrain_snow) * 22 + subroutine(sw_building_layout)},
+def(35, sw_building_layout_sub2) subroutine(34,
+	cbr(1) if(1)
+	cbr(10) if(3)
+	cbr(0) else
+)
+
+def(31, sw_building_x_layout_sub) subroutine(sw_building_layout_sub2,
+	cbr(0) if(0)
+	cbr(2) if(1)
+	cbr(4) if(2)
+	cbr(5) if(3)
+	cbr(6) if(4)
+	cbr(7) if(5)
+	cbr(8) if(6)
+	cbr(9) if(7)
+	cbr(10) if(8)
+	cbr(11) if(9)
+	cbr(12) if(10)
+	cbr(0) else
+)
+
+def(37, sw_building_y_layout_sub) subroutine(sw_building_layout_sub2,
+	cbr(1) if(0)
+	cbr(3) if(1)
+	cbr(4) if(2)
+	cbr(7) if(3)
+	cbr(6) if(4)
+	cbr(5) if(5)
+	cbr(8) if(6)
+	cbr(11) if(7)
+	cbr(10) if(8)
+	cbr(9) if(9)
+	cbr(13) if(10)
+	cbr(0) else
+)
+
+def(40, sw_building_ground_x_register_sub2) subroutine(sw_building_layout_sub2,
+	cbr(1) if(0)
+	cbr(3) if(1)
+	cbr(5) if(2)
+	cbr(6) if(3)
+	cbr(7) if(4)
+	cbr(8) if(5)
+	cbr(9) if(6)
+	cbr(10) if(7)
+	cbr(11) if(8)
+	cbr(12) if(9)
+	cbr(0) else
+)
+
+def(39, sw_building_ground_y_register_sub2) subroutine(sw_building_layout_sub2,
+	cbr(2) if(0)
+	cbr(4) if(1)
+	cbr(5) if(2)
+	cbr(8) if(3)
+	cbr(7) if(4)
+	cbr(6) if(5)
+	cbr(9) if(6)
+	cbr(12) if(7)
+	cbr(11) if(8)
+	cbr(10) if(9)
+	cbr(0) else
+)
+
+def(45, sw_building_ground_x_register_sub) tinfo_terrain(
+	ref(sw_building_ground_x_register_sub2) if(SNOW)
+	cbr(0) else
+)
+
+def(41, sw_building_ground_y_register_sub) tinfo_terrain(
+	ref(sw_building_ground_y_register_sub2) if(SNOW)
+	cbr(0) else
+)
+
+def(30, sw_building_x_register_sub) calculate({subroutine(sw_building_x_layout_sub) + subroutine(sw_building_register_sub_snow)},
 	cbfail() else
 )
 
-def(28, sw_building_cb) callback(
-	ref(sw_building_snow) if(CB_LAYOUT)
-	ref(sprset_default) else
+def(42, sw_building_y_register_sub) calculate({subroutine(sw_building_y_layout_sub) + subroutine(sw_building_register_sub_snow)},
+	cbfail() else
 )
 
-def(29, sw_building_menu_cb) callback(
-	cbr(0) if(CB_LAYOUT)
-	ref(sprset_default) else
-)
+def(29, sw_building_ground_x_register) setregisters(REGISTER_BUILDING_GROUND_OFFSET, sub(sw_building_ground_x_register_sub), ref(sw_set_registers))
+def(43, sw_building_ground_y_register) setregisters(REGISTER_BUILDING_GROUND_OFFSET+1, sub(sw_building_ground_y_register_sub), ref(sw_building_ground_x_register))
+
+def(38, sw_building_x_register) setregisters(REGISTER_BUILDING_OFFSET, sub(sw_building_x_register_sub), ref(sw_building_ground_y_register))
+def(44, sw_building_registers) setregisters(REGISTER_BUILDING_OFFSET+1, sub(sw_building_y_register_sub), ref(sw_building_x_register))
 
 // spriteset links
-forloop(X, {
-makestation(X,
-	link(ref(sw_building_menu_cb), MENU)
-	default(ref(sw_building_cb))
-)}, BUILDING_LOW .. BUILDING_HIGH)
+forloop(X, {makestation(X, default(ref(sw_building_registers)))}, BUILDING_LOW .. BUILDING_HIGH)
 
 // modular station overpasses
 forloop(X, {

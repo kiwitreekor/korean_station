@@ -946,76 +946,22 @@ definestation(X, "",
 	nowires(TTD_ALLTILES)
 )}, NONTRACK_START .. NONTRACK_END)
 
-layout(HP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_nontrack, spr_platform_snow_nontrack,,,3))
-layout(HP_NONTRACK_RF_A, 
-	platform_graphic_nontrack(
-		spr_platform_s_nontrack, spr_platform_s_nontrack,
-		roofA_D1(3),
-		roofA_D2(3),
-		roofA_D1_snow(3),
-		roofA_D2_snow(3),
-		3
-	)
-)
-layout(HP_NONTRACK_RF_B, 
-	platform_graphic_nontrack(
-		spr_platform_s_nontrack, spr_platform_s_nontrack,
-		roofB_D1(3),
-		roofB_D2(3),
-		roofB_D1_snow(3),
-		roofB_D2_snow(3),
-		3
-	)
-)
+layout(HP_NONTRACK, LAYOUT_HP_NONTRACK)
+layout(HP_NONTRACK_RF_A, LAYOUT_HP_NONTRACK_RF_A)
+layout(HP_NONTRACK_RF_B, LAYOUT_HP_NONTRACK_RF_B)
 
-layout(LP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_l_nontrack, spr_platform_l_snow_nontrack,,,1))
-layout(LP_NONTRACK_RF_A, 
-	platform_graphic_nontrack(
-		spr_platform_sl_nontrack, spr_platform_sl_nontrack,
-		roofA_D1(1),
-		roofA_D2(1),
-		roofA_D1_snow(1),
-		roofA_D2_snow(1),
-		1
-	)
-)
-layout(LP_NONTRACK_RF_B, 
-	platform_graphic_nontrack(
-		spr_platform_sl_nontrack, spr_platform_sl_nontrack,
-		roofB_D1(1),
-		roofB_D2(1),
-		roofB_D1_snow(1),
-		roofB_D2_snow(1),
-		1
-	)
-)
+layout(LP_NONTRACK, LAYOUT_LP_NONTRACK)
+layout(LP_NONTRACK_RF_A, LAYOUT_LP_NONTRACK_RF_A)
+layout(LP_NONTRACK_RF_B, LAYOUT_LP_NONTRACK_RF_B)
 
-layout(LAP_NONTRACK, platform_graphic_nontrack_nosnow(spr_platform_la_nontrack, spr_platform_la_snow_nontrack,,,1))
-layout(LAP_NONTRACK_RF_A, 
-	platform_graphic_nontrack(
-		spr_platform_sla_nontrack, spr_platform_sla_nontrack,
-		roofA_D1(1),
-		roofA_D2(1),
-		roofA_D1_snow(1),
-		roofA_D2_snow(1),
-		1
-	)
-)
-layout(LAP_NONTRACK_RF_B, 
-	platform_graphic_nontrack(
-		spr_platform_sla_nontrack, spr_platform_sla_nontrack,
-		roofB_D1(1),
-		roofB_D2(1),
-		roofB_D1_snow(1),
-		roofB_D2_snow(1),
-		1
-	)
-)
+layout(LAP_NONTRACK, LAYOUT_LAP_NONTRACK)
+layout(LAP_NONTRACK_RF_A, LAYOUT_LAP_NONTRACK_RF_A)
+layout(LAP_NONTRACK_RF_B, LAYOUT_LAP_NONTRACK_RF_B)
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
 
 skipif(LAP_NONTRACK_RF_B - LP_NONTRACK + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
 
 
 // overpasses

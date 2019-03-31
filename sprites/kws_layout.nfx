@@ -17,6 +17,7 @@ define(PLT_TYPE_NONE, 255)
 define(PLT_TYPE_A, 0)
 define(PLT_TYPE_B, 1)
 define(PLT_TYPE_C, 2)
+define(PLT_TYPE_NONTRACK, 3)
 
 define(BUILDING_TYPE_LOW, 0)
 define(BUILDING_TYPE_HIGH, 1)
@@ -51,8 +52,10 @@ define(xregular, {dnl
 define(spritelayout_ground, {ground(spr_ground+1)})
 define(spritelayout_ground_snow, {ground(spr_ground_snow+1)})
 define(spritelayout_ground_building, {ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_GROUND_OFFSET+$1}))})
+define(spritelayout_ground_nontrack, {ground(spr_ground_nontrack, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
 
 define(get_platform_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform, $1, PLT_TYPE_LOW, spr_platform_l, spr_platform_la)})
+define(get_platform_nontrack_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_nontrack, $1, PLT_TYPE_LOW, spr_platform_l_nontrack, spr_platform_la_nontrack)})
 define(get_platform_crossing_sprite, {ifelse($1, PLT_TYPE_LOW, spr_platform_c, spr_platform_ca)})
 define(get_platform_height, {ifelse($1, PLT_TYPE_HIGH, 3, 1)})
 
@@ -62,7 +65,8 @@ define(get_building_height, {ifelse($1, BUILDING_TYPE_LOW, 26, 50)})
 
 define(spritelayout_platformA, {regular(get_platform_sprite($1), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
 define(spritelayout_platformB, {regular(get_platform_sprite($1)+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
-define(spritelayout_platform, {ifelse($1, PLT_TYPE_A, {spritelayout_platformA($2, $3)}, $1, PLT_TYPE_B, {spritelayout_platformB($2, $3)}, {spritelayout_platformA($2, $3) spritelayout_platformB($2, $3)})})
+define(spritelayout_platform_nontrack, {regular(get_platform_nontrack_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
+define(spritelayout_platform, {ifelse($1, PLT_TYPE_A, {spritelayout_platformA($2, $3)}, $1, PLT_TYPE_B, {spritelayout_platformB($2, $3)}, $1, PLT_TYPE_C, {spritelayout_platformA($2, $3) spritelayout_platformB($2, $3)}, $1, PLT_TYPE_NONTRACK, {spritelayout_platform_nontrack($2, $3)}, {})})
 
 define(spritelayout_crossingA, {regular(get_platform_crossing_sprite($1)+$2*4, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))})
 define(spritelayout_crossingB, {regular(get_platform_crossing_sprite($1)+$2*4+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))})
@@ -84,6 +88,11 @@ define(spritelayout_roofA_B, {
 	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
 	regular(spr_roofs+2, xyz(0, 10, 10+$1), dxdydz(16, 6, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
 })
+define(spritelayout_roofA_nontrack, {
+	regular(spr_poles, xyz(0, 0, $1), dxdydz(16, 0, 10))
+	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
+	regular(spr_roofs+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
 
 define(spritelayout_roofB_A, {
 	regular(spr_poles+4, xyz(0, 3, $1), dxdydz(16, 0, 10))
@@ -92,6 +101,11 @@ define(spritelayout_roofB_A, {
 define(spritelayout_roofB_B, {
 	regular(spr_poles+6, xyz(0, 13, $1), dxdydz(16, 0, 10))
 	regular(spr_roofs+8, xyz(0, 10, 10+$1), dxdydz(16, 6, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+})
+define(spritelayout_roofB_nontrack, {
+	regular(spr_poles+4, xyz(0, 4, $1), dxdydz(16, 0, 10))
+	regular(spr_poles+6, xyz(0, 12, $1), dxdydz(16, 0, 10))
+	regular(spr_roofs+10, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
 })
 
 define(xtile, {dnl
@@ -121,38 +135,47 @@ define(LAYOUT_PLATFORM_BASE, {
 define(LAYOUT_HP_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_HIGH)})
 define(LAYOUT_HP_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_HIGH)})
 define(LAYOUT_HP_C, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_HIGH)})
+define(LAYOUT_HP_NONTRACK, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH)})
 
 define(LAYOUT_HP_A_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_HIGH, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
 define(LAYOUT_HP_B_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_HIGH, {spritelayout_roofA_B(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
-define(LAYOUT_HP_C_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_HIGH, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_HIGH))} {spritelayout_roofA_B(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
+define(LAYOUT_HP_C_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_HIGH, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_HIGH)) spritelayout_roofA_B(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
+define(LAYOUT_HP_NONTRACK_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH, {spritelayout_roofA_nontrack(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
 
 define(LAYOUT_HP_A_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_HIGH, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
 define(LAYOUT_HP_B_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_HIGH, {spritelayout_roofB_B(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
 define(LAYOUT_HP_C_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_HIGH, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_HIGH)) spritelayout_roofB_B(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
+define(LAYOUT_HP_NONTRACK_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH, {spritelayout_roofB_nontrack(get_platform_height(PLT_TYPE_HIGH))}, SHADOW_TRUE)})
 
 define(LAYOUT_LP_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW)})
 define(LAYOUT_LP_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW)})
 define(LAYOUT_LP_C, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW)})
+define(LAYOUT_LP_NONTRACK, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW)})
 
 define(LAYOUT_LP_A_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 define(LAYOUT_LP_B_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW, {spritelayout_roofA_B(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 define(LAYOUT_LP_C_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_LOW)) spritelayout_roofA_B(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
+define(LAYOUT_LP_NONTRACK_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW, {spritelayout_roofA_nontrack(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 
 define(LAYOUT_LP_A_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 define(LAYOUT_LP_B_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW, {spritelayout_roofB_B(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 define(LAYOUT_LP_C_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_LOW)) spritelayout_roofB_B(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
+define(LAYOUT_LP_NONTRACK_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW, {spritelayout_roofB_nontrack(get_platform_height(PLT_TYPE_LOW))}, SHADOW_TRUE)})
 
 define(LAYOUT_LAP_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT)})
 define(LAYOUT_LAP_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT)})
 define(LAYOUT_LAP_C, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT)})
+define(LAYOUT_LAP_NONTRACK, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT)})
 
 define(LAYOUT_LAP_A_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 define(LAYOUT_LAP_B_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofA_B(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 define(LAYOUT_LAP_C_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofA_A(get_platform_height(PLT_TYPE_LOW_ASPHALT)) spritelayout_roofA_B(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
+define(LAYOUT_LAP_NONTRACK_RF_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofA_nontrack(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 
 define(LAYOUT_LAP_A_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 define(LAYOUT_LAP_B_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofB_B(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 define(LAYOUT_LAP_C_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofB_A(get_platform_height(PLT_TYPE_LOW_ASPHALT)) spritelayout_roofB_B(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
+define(LAYOUT_LAP_NONTRACK_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT, {spritelayout_roofB_nontrack(get_platform_height(PLT_TYPE_LOW_ASPHALT))}, SHADOW_TRUE)})
 
 
 define(LAYOUT_CROSSING_BASE, {
@@ -314,3 +337,5 @@ define(LAYOUT_BUILDING_HIGH_LAP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PL
 
 define(LAYOUT_BUILDING_LOW_TRACK, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE, BUILDING_TYPE_LOW)})
 define(LAYOUT_BUILDING_HIGH_TRACK, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE, BUILDING_TYPE_HIGH)})
+
+

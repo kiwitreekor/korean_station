@@ -38,6 +38,6 @@ kws1.grf : $(NFOFILES) $(PNGFILES)
 
 all: kws1.grf
 
-clear:
+clean:
 	del kws1.grf
 	del sprites\*.nfo

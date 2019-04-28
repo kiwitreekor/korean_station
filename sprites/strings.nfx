@@ -1,4 +1,4 @@
-define(STR_GRF_VERSION, {"v0.5"})
+define(STR_GRF_VERSION, {"v0.5.1"})
 define(STR_GRF_CONTACT, {"kiwitreekor@gmail.com"})
 define(STR_GRF_LICENSE, {"CC-BY-NC-SA 3.0"})
 

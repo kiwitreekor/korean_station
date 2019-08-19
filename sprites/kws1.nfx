@@ -596,7 +596,7 @@ def(87, sw_reg_passenger_skip_sub) cargowaiting(PASS,
 )
 
 def(86, sw_reg_passenger_skip) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_PASSENGER, 0x1),
-	ref(sw_reg_passenger_skip_sub) if(0)
+	ref(sw_reg_passenger_skip_sub) if(1)
 	cbr(0) else
 )
 

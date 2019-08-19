@@ -37,6 +37,7 @@ define(STR_PARAM_MODE_LIST_COMPAT, {"Compatibility"})
 define(STR_PARAM_MODE_LIST_NORMAL_KR, {UTF8 "일반"})
 define(STR_PARAM_MODE_LIST_HIGHPLATFORMS_KR, {UTF8 "고상홈만"})
 define(STR_PARAM_MODE_LIST_COMPAT_KR, {UTF8 "호환성"})
+
 define(STR_PARAM_PSDSFX_NAME, {
 	ALL, "Play sound effects when screendoor closes or opens",
 	KR, UTF8 "스크린도어가 열리고 닫힐 때 효과음 재생"
@@ -77,6 +78,47 @@ define(STR_PARAM_BRIDGE_DESC, {
 	ALL, "Allow stations to be built under bridges." CRLF CRLF T_RED "Caution! " T_WHITE "It works properly only on JGRPP v0.26.0 or later.", 
 	KR, UTF8 "일부 역 타일을 제외하고 역 위에 다리를 건설할 수 있도록 허용합니다." CRLF CRLF T_RED "주의! " T_WHITE "JGRPP v0.26.0 이후에서만 정상적으로 동작합니다."
 })
+
+define(STR_PARAM_ROOF_COLOUR_NAME, {
+	ALL, "Roof colour",
+	KR, UTF8 "지붕 색상"
+})
+define(STR_PARAM_ROOF_COLOUR_DESC, {
+	ALL, "Select the colour of the roofs.", 
+	KR, UTF8 "지붕의 색을 설정합니다."
+})
+define(STR_PARAM_ROOF_COLOUR_DBLUE, {"Dark blue"})
+define(STR_PARAM_ROOF_COLOUR_PGREEN, {"Pale green"})
+define(STR_PARAM_ROOF_COLOUR_PINK, {"Pink"})
+define(STR_PARAM_ROOF_COLOUR_YELLOW, {"Yellow"})
+define(STR_PARAM_ROOF_COLOUR_RED, {"Red"})
+define(STR_PARAM_ROOF_COLOUR_LBLUE, {"Light blue"})
+define(STR_PARAM_ROOF_COLOUR_GREEN, {"Green"})
+define(STR_PARAM_ROOF_COLOUR_DGREEN, {"Dark green"})
+define(STR_PARAM_ROOF_COLOUR_BLUE, {"Blue (Default)"})
+define(STR_PARAM_ROOF_COLOUR_CREAM, {"Cream"})
+define(STR_PARAM_ROOF_COLOUR_MAUVE, {"Mauve"})
+define(STR_PARAM_ROOF_COLOUR_PURPLE, {"Purple"})
+define(STR_PARAM_ROOF_COLOUR_ORANGE, {"Orange"})
+define(STR_PARAM_ROOF_COLOUR_BROWN, {"Brown"})
+define(STR_PARAM_ROOF_COLOUR_GREY, {"Grey"})
+define(STR_PARAM_ROOF_COLOUR_WHITE, {"White"})
+define(STR_PARAM_ROOF_COLOUR_DBLUE_KR, {UTF8 "어두운 파랑"})
+define(STR_PARAM_ROOF_COLOUR_PGREEN_KR, {UTF8 "연한 초록"})
+define(STR_PARAM_ROOF_COLOUR_PINK_KR, {UTF8 "분홍"})
+define(STR_PARAM_ROOF_COLOUR_YELLOW_KR, {UTF8 "노랑"})
+define(STR_PARAM_ROOF_COLOUR_RED_KR, {UTF8 "빨강"})
+define(STR_PARAM_ROOF_COLOUR_LBLUE_KR, {UTF8 "밝은 파랑"})
+define(STR_PARAM_ROOF_COLOUR_GREEN_KR, {UTF8 "녹색"})
+define(STR_PARAM_ROOF_COLOUR_DGREEN_KR, {UTF8 "어두운 녹색"})
+define(STR_PARAM_ROOF_COLOUR_BLUE_KR, {UTF8 "파랑 (기본값)"})
+define(STR_PARAM_ROOF_COLOUR_CREAM_KR, {UTF8 "연한 분홍"})
+define(STR_PARAM_ROOF_COLOUR_MAUVE_KR, {UTF8 "연한 보라"})
+define(STR_PARAM_ROOF_COLOUR_PURPLE_KR, {UTF8 "보라"})
+define(STR_PARAM_ROOF_COLOUR_ORANGE_KR, {UTF8 "주황"})
+define(STR_PARAM_ROOF_COLOUR_BROWN_KR, {UTF8 "갈색"})
+define(STR_PARAM_ROOF_COLOUR_GREY_KR, {UTF8 "회색"})
+define(STR_PARAM_ROOF_COLOUR_WHITE_KR, {UTF8 "흰색"})
 
 
 define(STR_CLASS_PLATFORMS, {

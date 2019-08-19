@@ -61,6 +61,47 @@ grfinit("KW" 00 01,
 			setdescription(STR_PARAM_BRIDGE_DESC)
 			setdefault(0)
 		)
+		grfsetting(
+			settype(ENUM,PARAM_ROOF_COLOUR,0,4)
+			setname(STR_PARAM_ROOF_COLOUR_NAME)
+			setdescription(STR_PARAM_ROOF_COLOUR_DESC)
+			setdefault(8)
+			setlimits(0,15)
+			setvalues(
+				menuvalue(0,ALL,STR_PARAM_ROOF_COLOUR_DBLUE)
+				menuvalue(1,ALL,STR_PARAM_ROOF_COLOUR_PGREEN)
+				menuvalue(2,ALL,STR_PARAM_ROOF_COLOUR_PINK)
+				menuvalue(3,ALL,STR_PARAM_ROOF_COLOUR_YELLOW)
+				menuvalue(4,ALL,STR_PARAM_ROOF_COLOUR_RED)
+				menuvalue(5,ALL,STR_PARAM_ROOF_COLOUR_LBLUE)
+				menuvalue(6,ALL,STR_PARAM_ROOF_COLOUR_GREEN)
+				menuvalue(7,ALL,STR_PARAM_ROOF_COLOUR_DGREEN)
+				menuvalue(8,ALL,STR_PARAM_ROOF_COLOUR_BLUE)
+				menuvalue(9,ALL,STR_PARAM_ROOF_COLOUR_CREAM)
+				menuvalue(10,ALL,STR_PARAM_ROOF_COLOUR_MAUVE)
+				menuvalue(11,ALL,STR_PARAM_ROOF_COLOUR_PURPLE)
+				menuvalue(12,ALL,STR_PARAM_ROOF_COLOUR_ORANGE)
+				menuvalue(13,ALL,STR_PARAM_ROOF_COLOUR_BROWN)
+				menuvalue(14,ALL,STR_PARAM_ROOF_COLOUR_GREY)
+				menuvalue(15,ALL,STR_PARAM_ROOF_COLOUR_WHITE)
+				menuvalue(0,KR,STR_PARAM_ROOF_COLOUR_DBLUE_KR)
+				menuvalue(1,KR,STR_PARAM_ROOF_COLOUR_PGREEN_KR)
+				menuvalue(2,KR,STR_PARAM_ROOF_COLOUR_PINK_KR)
+				menuvalue(3,KR,STR_PARAM_ROOF_COLOUR_YELLOW_KR)
+				menuvalue(4,KR,STR_PARAM_ROOF_COLOUR_RED_KR)
+				menuvalue(5,KR,STR_PARAM_ROOF_COLOUR_LBLUE_KR)
+				menuvalue(6,KR,STR_PARAM_ROOF_COLOUR_GREEN_KR)
+				menuvalue(7,KR,STR_PARAM_ROOF_COLOUR_DGREEN_KR)
+				menuvalue(8,KR,STR_PARAM_ROOF_COLOUR_BLUE_KR)
+				menuvalue(9,KR,STR_PARAM_ROOF_COLOUR_CREAM_KR)
+				menuvalue(10,KR,STR_PARAM_ROOF_COLOUR_MAUVE_KR)
+				menuvalue(11,KR,STR_PARAM_ROOF_COLOUR_PURPLE_KR)
+				menuvalue(12,KR,STR_PARAM_ROOF_COLOUR_ORANGE_KR)
+				menuvalue(13,KR,STR_PARAM_ROOF_COLOUR_BROWN_KR)
+				menuvalue(14,KR,STR_PARAM_ROOF_COLOUR_GREY_KR)
+				menuvalue(15,KR,STR_PARAM_ROOF_COLOUR_WHITE_KR)
+			)
+		)
 	)
 )
 textmode_off()
@@ -552,6 +593,11 @@ def(21, sw_platform) callback(
 )
 
 
+def(97, sw_reg_roof_colour) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0xF),
+	cbfail() else
+)
+
+def(96, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
 
 def(95, sw_reg_roof_overpass) subroutine(sw_terrain_snow,
 	cbr(spr_roofs_overpass_snow - spr_roofs_overpass) if(1)
@@ -567,7 +613,7 @@ def(93, sw_reg_overpass) subroutine(sw_terrain_snow,
 	cbr(spr_overpass_snow - spr_overpass) if(1)
 	cbr(0) else
 )
-def(92, sw_set_reg_overpass) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide), sub(sw_reg_roof_overpass)}, ref(sprset_default))
+def(92, sw_set_reg_overpass) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide), sub(sw_reg_roof_overpass)}, ref(sw_set_reg_roof_colour))
 
 
 def(91, sw_reg_crossing_shadow) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),

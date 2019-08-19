@@ -3,6 +3,7 @@ define(_dxdydz, defn({dxdydz}))
 define(_ground, defn({ground}))
 define(_regular, defn({regular}))
 define(_glass, defn({glass}))
+define(_recolour, defn({recolour}))
 
 define(_ORIENT, 0)
 
@@ -71,6 +72,23 @@ define(xglass, {dnl
 	)dnl
 })
 
+define(xrecolour, {dnl
+	ifelse(
+		$#, 2, {_recolour({$1+_ORIENT}, }$2{)},
+		$#, 3, {_recolour({$1+_ORIENT}, }$2{, }$3{)},
+		$#, 4, {_recolour({$1+_ORIENT}, }$2{, }$3{, $4)},
+		$#, 5, {_recolour({$1+_ORIENT}, }$2{, }$3{, $4, $5)},
+		$#, 6, {_recolour({$1+_ORIENT}, }$2{, }$3{, $4, $5, $6)},
+		{__error(ERR_NUMPAR "{$0}" $1)}
+	)dnl
+})
+
+define(xtile, {dnl
+	pushdef({ground}, defn({xground}))pushdef({regular}, defn({xregular}))pushdef({glass}, defn({xglass}))pushdef({recolour}, defn({xrecolour}))pushdef({xyz}, defn({xxyz}))pushdef({dxdydz}, defn({xdxdydz}))dnl
+	define({_ORIENT}, 0) tile($1) define({_ORIENT}, 1) tile($1)dnl
+	popdef({ground})popdef({regular})popdef({glass})popdef({recolour})popdef({xyz})popdef({dxdydz})dnl
+})
+
 define(spritelayout_ground, {ground(spr_ground+1)})
 define(spritelayout_ground_snow, {ground(spr_ground_snow+1)})
 define(spritelayout_ground_building, {ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_GROUND_OFFSET+$1}))})
@@ -110,16 +128,16 @@ define(spritelayout_building_overpass, {regular(get_building_overpass_sprite($1)
 
 define(spritelayout_roofA_A, {
 	regular(spr_poles, xyz(0, 0, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_A), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), aslflags({OFFSET_SPRITE}), registers($3))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({$3, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofA_B, {
 	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_A)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_OVERPASS, 3, 6)}, 3), aslflags({OFFSET_SPRITE}), registers($3))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_OVERPASS, 3, 6)}, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({$3, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofA_nontrack, {
 	regular(spr_poles, xyz(0, 0, $1), dxdydz(16, 0, 10))
 	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_A)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofA, {
 	define({tmp_type}, {ifelse(eval($#>2), 1, $3, ROOF_TYPE_NORMAL)})
@@ -138,16 +156,16 @@ define(spritelayout_roofA, {
 
 define(spritelayout_roofB_A, {
 	regular(spr_poles+4, xyz(0, 3, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_B), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), aslflags({OFFSET_SPRITE}), registers($3))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({$3, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofB_B, {
 	regular(spr_poles+6, xyz(0, 13, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_B)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_OVERPASS, 3, 6)}, 3), aslflags({OFFSET_SPRITE}), registers($3))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_OVERPASS, 3, 6)}, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({$3, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofB_nontrack, {
 	regular(spr_poles+4, xyz(0, 4, $1), dxdydz(16, 0, 10))
 	regular(spr_poles+6, xyz(0, 12, $1), dxdydz(16, 0, 10))
-	regular(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), aslflags({OFFSET_SPRITE}), registers({REGISTER_ROOF_OFFSET}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), 0x307-0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
 })
 define(spritelayout_roofB, {
 	define({tmp_type}, {ifelse(eval($#>2), 1, $3, ROOF_TYPE_NORMAL)})
@@ -292,12 +310,6 @@ define(spritelayout_psd, {
 		regular(spr_psd, xyz(0, 10, get_platform_height($2)), dxdydz(16, 0, 8))
 		glass(spr_psd_glass, xyoff(0, 2), aslflags({OFFSET_SPRITE}), registers({REGISTER_PSD_OFFSET}))
 	})
-})
-
-define(xtile, {dnl
-	pushdef({ground}, defn({xground}))pushdef({regular}, defn({xregular}))pushdef({glass}, defn({xglass}))pushdef({xyz}, defn({xxyz}))pushdef({dxdydz}, defn({xdxdydz}))dnl
-	define({_ORIENT}, 0) tile($1) define({_ORIENT}, 1) tile($1)dnl
-	popdef({ground})popdef({regular})popdef({glass})popdef({xyz})popdef({dxdydz})dnl
 })
 
 define(platform_base, {
@@ -539,8 +551,8 @@ define(LAYOUT_OVERPASS_BASE, {
 				platform_base($1, $2, eval($3 != ROOF_TYPE_NONE))
 				spritelayout_overpass_guide($1, $2, X, eval($3 != ROOF_TYPE_NONE))
 				spritelayout_roof($3, $1, $2)
-			}, OVERPASS_GUIDE_FRONT .. OVERPASS_GUIDE_BACK)
-		})
+			})
+		}, OVERPASS_GUIDE_FRONT .. OVERPASS_GUIDE_BACK)
 	})
 })
 

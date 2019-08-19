@@ -1088,17 +1088,17 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 )}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
 
-layout(SIGN_A_HP_A, signA_platformA(spr_platform, spr_platform_snow, 3))
-layout(SIGN_A_HP_B, signA_platformB(spr_platform, spr_platform_snow, 3))
-layout(SIGN_A_HP_C, signA_platformC(spr_platform, spr_platform_snow, 3))
+layout(SIGN_A_HP_A, LAYOUT_SIGN_A_HP_A)
+layout(SIGN_A_HP_B, LAYOUT_SIGN_A_HP_B)
+layout(SIGN_A_HP_C, LAYOUT_SIGN_A_HP_C)
 
-layout(SIGN_A_LP_A, signA_platformA(spr_platform+4, spr_platform_snow+4, 1))
-layout(SIGN_A_LP_B, signA_platformB(spr_platform+4, spr_platform_snow+4, 1))
-layout(SIGN_A_LP_C, signA_platformC(spr_platform+4, spr_platform_snow+4, 1))
+layout(SIGN_A_LP_A, LAYOUT_SIGN_A_LP_A)
+layout(SIGN_A_LP_B, LAYOUT_SIGN_A_LP_B)
+layout(SIGN_A_LP_C, LAYOUT_SIGN_A_LP_C)
 
-layout(SIGN_A_LAP_A, signA_platformA(spr_platform+8, spr_platform_snow+8, 1))
-layout(SIGN_A_LAP_B, signA_platformB(spr_platform+8, spr_platform_snow+8, 1))
-layout(SIGN_A_LAP_C, signA_platformC(spr_platform+8, spr_platform_snow+8, 1))
+layout(SIGN_A_LAP_A, LAYOUT_SIGN_A_LAP_A)
+layout(SIGN_A_LAP_B, LAYOUT_SIGN_A_LAP_B)
+layout(SIGN_A_LAP_C, LAYOUT_SIGN_A_LAP_C)
 
 layout(SIGN_B_HP_B_RF_A,
 	platform_graphic_B_snowdiff(
@@ -2419,77 +2419,58 @@ layout(LIGHT_LAP_C,
 
 
 def(39, sw_check_stasignA_pB) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
-	cbr(1) if(0x100+SIGN_A_HP_A)
-	cbr(1) if(0x100+SIGN_A_HP_C)
-	cbr(1) if(0x100+SIGN_A_LP_A)
-	cbr(1) if(0x100+SIGN_A_LP_C)
-	cbr(1) if(0x100+SIGN_A_LAP_A)
-	cbr(1) if(0x100+SIGN_A_LAP_C)
+	cbr(2) if(0x100+SIGN_A_HP_A, 0x100+SIGN_A_HP_C, 0x100+SIGN_A_LP_A, 0x100+SIGN_A_LP_C, 0x100+SIGN_A_LAP_A, 0x100+SIGN_A_LAP_C)
 	cbr(0) else
 )
 
 def(38, sw_check_stasignA_pA) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
-	cbr(1) if(0x100+SIGN_A_HP_B)
-	cbr(1) if(0x100+SIGN_A_HP_C)
-	cbr(1) if(0x100+SIGN_A_LP_B)
-	cbr(1) if(0x100+SIGN_A_LP_C)
-	cbr(1) if(0x100+SIGN_A_LAP_B)
-	cbr(1) if(0x100+SIGN_A_LAP_C)
+	cbr(1) if(0x100+SIGN_A_HP_B, 0x100+SIGN_A_HP_C, 0x100+SIGN_A_LP_B, 0x100+SIGN_A_LP_C, 0x100+SIGN_A_LAP_B, 0x100+SIGN_A_LAP_C)
 	cbr(0) else
 )
 
-def(37, sw_check_stasignA_pC) calculate({subroutine(sw_check_stasignA_pB) * 2 + subroutine(sw_check_stasignA_pA)},
+def(37, sw_stasignA_offset) calculate({subroutine(sw_check_stasignA_pB) + subroutine(sw_check_stasignA_pA)},
 	cbfail() else
 )
+
+def(44, sw_reg_signA_skip) subroutine(sw_check_stasignA_pB,
+	cbr(0) if(2)
+	cbr(1) else
+)
+
+def(43, sw_reg_signA_offset_y) subroutine(sw_check_stasignA_pA,
+	cbr(-1) if(1)
+	cbr(1) else
+)
+
+def(42, sw_set_reg_signA) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_offset_y), sub(sw_reg_signA_skip)}, ref(sw_set_registers))
 
 def(33) plt_posrev(
 	cbr(2) if(0)
 	cbr(1) else
 )
 
-def(32, sw_check_stasign_pos) plt_pos(
+def(32) plt_pos(
 	cbr(0) if(0)
 	ref(33) else
 )
 
-def(41, sw_stasignA_pC) calculate({subroutine(sw_check_stasignA_pC) * 3 + subroutine(sw_check_stasign_pos)},
-	cbfail() else
-)
-
-def(40, sw_stasignA_pB) subroutine(sw_check_stasignA_pB,
-	cbr(3) if(1)
+def(35, sw_check_stasign_pos) plt_length(
+	cbr(1) if(1)
 	ref(32) else
 )
 
-def(35, sw_stasignA_pA) calculate({subroutine(sw_check_stasignA_pA) * 3 + subroutine(sw_check_stasign_pos)},
-	cbfail() else
-)
-
-def(34, sw_stasignA_layout) tinfo_statid(pos(0, 0), shiftmask(0,0x1FF),
-	ref(sw_stasignA_pA) if(0x100+SIGN_A_HP_A)
-	ref(sw_stasignA_pB) if(0x100+SIGN_A_HP_B)
-	ref(sw_stasignA_pC) if(0x100+SIGN_A_HP_C)
-	ref(sw_stasignA_pA) if(0x100+SIGN_A_LP_A)
-	ref(sw_stasignA_pB) if(0x100+SIGN_A_LP_B)
-	ref(sw_stasignA_pC) if(0x100+SIGN_A_LP_C)
-	ref(sw_stasignA_pA) if(0x100+SIGN_A_LAP_A)
-	ref(sw_stasignA_pB) if(0x100+SIGN_A_LAP_B)
-	ref(sw_stasignA_pC) if(0x100+SIGN_A_LAP_C)
-	cbfail() else
-)
-
-def(31, sw_stasignA_snow) calculate({subroutine(sw_stasignA_layout) * 20 + subroutine(sw_passenger_snow)},
+def(31, sw_stasignA_layout) calculate({subroutine(sw_terrain_snow) * 3 + subroutine(sw_check_stasign_pos) * 2},
 	cbfail() else
 )
 
 def(30, sw_stasignA_cb) callback(
-	ref(sw_stasignA_snow) if(CB_LAYOUT)
-	ref(sprset_default) else
+	ref(sw_stasignA_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_signA) else
 )
 
 def(36, sw_stasignA_menu_cb) callback(
-	cbr(20) if(CB_LAYOUT)
-	ref(sprset_default) else
+	cbr(2) if(CB_LAYOUT)
+	ref(sw_set_reg_signA) else
 )
 
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)

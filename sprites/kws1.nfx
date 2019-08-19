@@ -1205,92 +1205,18 @@ layout(WAITINGROOM_LAP_A_RF_B, LAYOUT_WAITINGROOM_LAP_A_RF_B)
 layout(WAITINGROOM_LAP_B_RF_B, LAYOUT_WAITINGROOM_LAP_B_RF_B)
 layout(WAITINGROOM_LAP_C_RF_B, LAYOUT_WAITINGROOM_LAP_C_RF_B)
 
-layout(LIGHT_HP_A,
-	platform_graphic_A_nosnow(
-		spr_platform, spr_platform_snow,
-		{regular(spr_light, xyz(6,0,3), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,3), dxdydz(0,4,18))},
-		3
-	)
-)
 
-layout(LIGHT_HP_B,
-	platform_graphic_B_nosnow(
-		spr_platform, spr_platform_snow,
-		{regular(spr_light, xyz(6,16,3), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(16,6,3), dxdydz(0,4,18))},
-		3
-	)
-)
+layout(LIGHT_HP_A, LAYOUT_LIGHT_HP_A)
+layout(LIGHT_HP_B, LAYOUT_LIGHT_HP_B)
+layout(LIGHT_HP_C, LAYOUT_LIGHT_HP_C)
 
-layout(LIGHT_HP_C,
-	platform_graphic_C_nosnow(
-		spr_platform, spr_platform_snow,
-		{regular(spr_light, xyz(6,0,3), dxdydz(4,0,18))}
-		{regular(spr_light, xyz(6,16,3), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,3), dxdydz(0,4,18))}
-		{regular(spr_light+1, xyz(16,6,3), dxdydz(0,4,18))},
-		3
-	)
-)
+layout(LIGHT_LP_A, LAYOUT_LIGHT_LP_A)
+layout(LIGHT_LP_B, LAYOUT_LIGHT_LP_B)
+layout(LIGHT_LP_C, LAYOUT_LIGHT_LP_C)
 
-layout(LIGHT_LP_A,
-	platform_graphic_A_nosnow(
-		spr_platform_l, spr_platform_l_snow,
-		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
-
-layout(LIGHT_LP_B,
-	platform_graphic_B_nosnow(
-		spr_platform_l, spr_platform_l_snow,
-		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
-
-layout(LIGHT_LP_C,
-	platform_graphic_C_nosnow(
-		spr_platform_l, spr_platform_l_snow,
-		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))}
-		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))}
-		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
-
-layout(LIGHT_LAP_A,
-	platform_graphic_A_nosnow(
-		spr_platform_la, spr_platform_la_snow,
-		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
-
-layout(LIGHT_LAP_B,
-	platform_graphic_B_nosnow(
-		spr_platform_la, spr_platform_la_snow,
-		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
-
-layout(LIGHT_LAP_C,
-	platform_graphic_C_nosnow(
-		spr_platform_la, spr_platform_la_snow,
-		{regular(spr_light, xyz(6,0,1), dxdydz(4,0,18))}
-		{regular(spr_light, xyz(6,16,1), dxdydz(4,0,18))},
-		{regular(spr_light+1, xyz(0,6,1), dxdydz(0,4,18))}
-		{regular(spr_light+1, xyz(16,6,1), dxdydz(0,4,18))},
-		1
-	)
-)
+layout(LIGHT_LAP_A, LAYOUT_LIGHT_LAP_A)
+layout(LIGHT_LAP_B, LAYOUT_LIGHT_LAP_B)
+layout(LIGHT_LAP_C, LAYOUT_LIGHT_LAP_C)
 
 
 // Platform + Sign A Start
@@ -1350,7 +1276,7 @@ def(36, sw_stasignA_menu_cb) callback(
 )
 // Platform + Sign A End
 
-forloop(X, {makestation(X, default(ref(sw_platform)))}, LIGHT_HP_A .. LIGHT_HP_C)
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_HP_A .. LIGHT_HP_C)
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
@@ -1358,7 +1284,7 @@ forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_HP_A_RF_A .. LED_
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
 
 skipif(SIGN_A_LAP_C - SIGN_A_LP_A + 1 + SIGN_B_LAP_C_RF_B - SIGN_B_LP_B_RF_A + 1 + SIGN_C_LAP_C_RF_B - SIGN_C_LP_A + 1 + LED_LAP_C_RF_B - LED_LP_A_RF_A + 1 + WAITINGROOM_LAP_C_RF_B - WAITINGROOM_LP_A + 1 + LIGHT_LAP_C - LIGHT_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform)))}, LIGHT_LP_A .. LIGHT_LAP_C)
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)

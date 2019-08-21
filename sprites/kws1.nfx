@@ -108,8 +108,6 @@ grfinit("KW" 00 01,
 )
 textmode_off()
 asl_on()
-deflabel(skip_no_shadow)
-deflabel(skip_shadow)
 
 spriteblock(
 	set(
@@ -560,40 +558,18 @@ soundtable(
 	defsnd(snd_psd_close, PSD_close.wav)
 )
 
+
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SNOW)
 def(22, sw_terrain_snow) tinfo_terrain(
 	cbr(1) if(SNOW)
 	cbr(0) else
 )
+
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SNOW)
 def(22, sw_terrain_snow) tinfo_terrain(
 	cbr(0) if(SNOW)
 	cbr(0) else
 )
-
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PASSENGER)
-def(20, sw_passenger) cargowaiting(PASS,
-	cbr(0) if(0 .. 16)
-	cbr(2) if(17 .. 128)
-	cbr(4) if(129 .. 512)
-	cbr(6) if(513 .. 1024)
-	cbr(8) else
-)
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PASSENGER)
-def(20, sw_passenger) cargowaiting(PASS,
-	cbr(0) if(0 .. 0)
-	cbr(0) else
-)
-
-def(23, sw_passenger_snow) calculate({subroutine(sw_terrain_snow) * 10 + subroutine(sw_passenger)},
-	cbfail() else
-)
-
-def(21, sw_platform) callback(
-	ref(sw_passenger_snow) if(CB_LAYOUT)
-	ref(sprset_default) else
-)
-
 
 def(98, sw_get_param_roof_colour) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0xF + 0x307 - 1},
 	cbfail() else
@@ -683,7 +659,16 @@ def(82, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 def(81, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
-def(80, sw_set_registers) setregisters(0, {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}, ref(sw_ground_nontrack_register))
+def(80, sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
+
+def(21, sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
+def(20, sw_platform_cb) callback(
+	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
 
 include(sprites/kws_layout.nfx)
 
@@ -732,15 +717,6 @@ layout(LAP_C_RF_A, LAYOUT_LAP_C_RF_A)
 layout(LAP_A_RF_B, LAYOUT_LAP_A_RF_B)
 layout(LAP_B_RF_B, LAYOUT_LAP_B_RF_B)
 layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
-
-def(25, sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
-	cbfail() else
-)
-
-def(24, sw_platform_cb) callback(
-	ref(sw_platform_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
-)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A .. HP_C_RF_B)
 

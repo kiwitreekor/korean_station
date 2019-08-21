@@ -87,6 +87,7 @@ define(STR_PARAM_ROOF_COLOUR_DESC, {
 	ALL, "Select the colour of the roofs.", 
 	KR, UTF8 "지붕의 색을 설정합니다."
 })
+define(STR_PARAM_ROOF_COLOUR_CC, {"Use Company Colour"})
 define(STR_PARAM_ROOF_COLOUR_DBLUE, {"Dark blue"})
 define(STR_PARAM_ROOF_COLOUR_PGREEN, {"Pale green"})
 define(STR_PARAM_ROOF_COLOUR_PINK, {"Pink"})
@@ -103,6 +104,7 @@ define(STR_PARAM_ROOF_COLOUR_ORANGE, {"Orange"})
 define(STR_PARAM_ROOF_COLOUR_BROWN, {"Brown"})
 define(STR_PARAM_ROOF_COLOUR_GREY, {"Grey"})
 define(STR_PARAM_ROOF_COLOUR_WHITE, {"White"})
+define(STR_PARAM_ROOF_COLOUR_CC_KR, {UTF8 "회사 색상 사용"})
 define(STR_PARAM_ROOF_COLOUR_DBLUE_KR, {UTF8 "어두운 파랑"})
 define(STR_PARAM_ROOF_COLOUR_PGREEN_KR, {UTF8 "연한 초록"})
 define(STR_PARAM_ROOF_COLOUR_PINK_KR, {UTF8 "분홍"})

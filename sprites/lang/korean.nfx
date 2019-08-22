@@ -1,0 +1,54 @@
+setlangid(KR)
+
+defstr({STR_GRF_NAME}, {"키위트리 한국역 세트 " STR_GRF_VERSION})
+defstr({STR_GRF_DESC}, {"copyright 2017 - 2019 " T_WHITE "kiwitree" 
+	CRLF T_LGRAY "버그 제보: " T_LBLUE STR_GRF_CONTACT 
+	CRLF T_BLACK "라이선스: " T_WHITE STR_GRF_LICENSE
+	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다."}, "")
+	CRLF CRLF T_ORANGE "v0.4 이하와 호환되지 않습니다. 업데이트 시 주의하십시오."
+})
+
+defstr({STR_PARAM_MODE_NAME}, {"모드"})
+defstr({STR_PARAM_MODE_DESC}, {"일반: 모든 역 조각을 사용 가능하게 합니다." 
+	CRLF "고상홈만: 고상홈을 제외한 역 조각을 비활성화합니다." 
+	CRLF "호환성: v0.4 이하를 위한 호환성 모드를 활성화합니다."
+})
+defstr({STR_PARAM_MODE_LIST_NORMAL}, {"일반"})
+defstr({STR_PARAM_MODE_LIST_HIGHPLATFORMS}, {"고상홈만"})
+defstr({STR_PARAM_MODE_LIST_COMPAT}, {"호환성"})
+
+defstr({STR_PARAM_PSDSFX_NAME}, {"스크린도어가 열리고 닫힐 때 효과음 재생"})
+defstr({STR_PARAM_PSDSFX_DESC}, {"이 매개 변수를 '예'로 설정하면 스크린도어가 열리고 닫힐 때 효과음이 나게 됩니다."})
+
+defstr({STR_PARAM_PASSENGER_NAME}, {"승객 그래픽 보이기"})
+defstr({STR_PARAM_PASSENGER_DESC}, {"역에 대기하고 있는 승객을 그래픽으로 보여줍니다."})
+
+defstr({STR_PARAM_SHADOW_NAME}, {"지붕 밑 승강장을 어둡게 보이기"})
+defstr({STR_PARAM_SHADOW_DESC}, {"지붕 밑의 승강장을 어둡게 표시합니다."})
+
+defstr({STR_PARAM_SNOW_NAME}, {"눈 그래픽 사용"})
+defstr({STR_PARAM_SNOW_DESC}, {"설선 고도보다 위에 설치된 승강장에 눈이 쌓입니다. 그래픽 오류가 발생하는 경우 비활성화하세요."})
+
+defstr({STR_PARAM_BRIDGE_NAME}, {"다리 밑에 역을 건설할 수 있도록 허용"})
+defstr({STR_PARAM_BRIDGE_DESC}, {"일부 역 타일을 제외하고 역 위에 다리를 건설할 수 있도록 허용합니다." CRLF CRLF T_RED "주의! " T_WHITE "JGRPP v0.26.0 이후에서만 정상적으로 동작합니다."})
+
+
+defstr({STR_PARAM_ROOF_COLOUR_NAME}, {"지붕 색상"})
+defstr({STR_PARAM_ROOF_COLOUR_DESC}, {"지붕의 색을 설정합니다."})
+defstr({STR_PARAM_ROOF_COLOUR_CC}, {"회사 색상 사용"})
+defstr({STR_PARAM_ROOF_COLOUR_DBLUE}, {"어두운 파랑"})
+defstr({STR_PARAM_ROOF_COLOUR_PGREEN}, {"연한 초록"})
+defstr({STR_PARAM_ROOF_COLOUR_PINK}, {"분홍"})
+defstr({STR_PARAM_ROOF_COLOUR_YELLOW}, {"노랑"})
+defstr({STR_PARAM_ROOF_COLOUR_RED}, {"빨강"})
+defstr({STR_PARAM_ROOF_COLOUR_LBLUE}, {"밝은 파랑"})
+defstr({STR_PARAM_ROOF_COLOUR_GREEN}, {"녹색"})
+defstr({STR_PARAM_ROOF_COLOUR_DGREEN}, {"어두운 녹색"})
+defstr({STR_PARAM_ROOF_COLOUR_BLUE}, {"파랑 (기본값)"})
+defstr({STR_PARAM_ROOF_COLOUR_CREAM}, {"연한 분홍"})
+defstr({STR_PARAM_ROOF_COLOUR_MAUVE}, {"연한 보라"})
+defstr({STR_PARAM_ROOF_COLOUR_PURPLE}, {"보라"})
+defstr({STR_PARAM_ROOF_COLOUR_ORANGE}, {"주황"})
+defstr({STR_PARAM_ROOF_COLOUR_BROWN}, {"갈색"})
+defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"회색"})
+defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"흰색"})

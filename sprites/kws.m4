@@ -323,3 +323,33 @@ define(REGISTER_SIGN_A_OFFSET_Y, 20)
 define(REGISTER_SIGN_A_SKIP, 21)
 define(REGISTER_PSD_OFFSET, 22)
 define(REGISTER_ROOF_RECOLOUR, 23)
+
+define(ORIENT_NE, 0)
+define(ORIENT_NW, 1)
+
+define(PLT_TYPE_HIGH, 0)
+define(PLT_TYPE_LOW, 1)
+define(PLT_TYPE_LOW_ASPHALT, 2)
+
+define(PLT_TYPE_NONE, 255)
+
+define(PLT_TYPE_A, 0)
+define(PLT_TYPE_B, 1)
+define(PLT_TYPE_C, 2)
+define(PLT_TYPE_NONTRACK, 3)
+
+define(BUILDING_TYPE_LOW, 0)
+define(BUILDING_TYPE_HIGH, 1)
+
+define(SHADOW_FALSE, 0)
+define(SHADOW_TRUE, 255)
+
+define(OVERPASS_GUIDE_FRONT, 1)
+define(OVERPASS_GUIDE_BACK, 2)
+
+define(ROOF_TYPE_NORMAL, 0)
+define(ROOF_TYPE_OVERPASS, 1)
+
+define(ROOF_TYPE_A, 1)
+define(ROOF_TYPE_B, 2)
+define(ROOF_TYPE_NONE, 0)

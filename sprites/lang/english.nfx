@@ -1,0 +1,62 @@
+setlangid(UK)
+
+define({STR_GRF_VERSION}, {"v0.6-alpha"})
+define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
+define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
+
+define({GRF_STABLE}, 0)
+
+defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION})
+defstr({STR_GRF_DESC}, {UTF8 "copyright 2017 - 2019 " T_WHITE "kiwitree" 
+	CRLF T_LGRAY "Bug Report: " T_LBLUE STR_GRF_CONTACT 
+	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
+	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version."}, "")
+	CRLF CRLF T_ORANGE "This version is not compatible with v0.4 and below. Please be careful when you update the NewGRF."
+})
+
+defstr({STR_PARAM_MODE_NAME}, {"Mode"})
+defstr({STR_PARAM_MODE_DESC}, {"Normal: Disable compatibility mode and enable all available station tiles." 
+	CRLF "High platforms only: Enable only high platforms and disable the others."
+	CRLF "Compatibility: Enable compatibility mode for v0.4 and below."
+})
+
+defstr({STR_PARAM_MODE_LIST_NORMAL}, {"Normal"})
+defstr({STR_PARAM_MODE_LIST_HIGHPLATFORMS}, {"High platforms only"})
+defstr({STR_PARAM_MODE_LIST_COMPAT}, {"Compatibility"})
+
+defstr({STR_PARAM_PSDSFX_NAME}, {"Play sound effects when screendoor closes or opens"})
+defstr({STR_PARAM_PSDSFX_DESC, {"If you set this setting on}, it will make sound when screendoor closes or opens."})
+
+defstr({STR_PARAM_PASSENGER_NAME}, {"Show passenger graphics by waiting amount"})
+defstr({STR_PARAM_PASSENGER_DESC, {"If you set this setting on}, it will show passenger graphics by waiting amount."})
+
+defstr({STR_PARAM_SHADOW_NAME}, {"Make shadow under roof"})
+defstr({STR_PARAM_SHADOW_DESC, {"If you set this setting on}, platform under roof will shown dark."})
+
+defstr({STR_PARAM_SNOW_NAME}, {"Enable snow graphics"})
+defstr({STR_PARAM_SNOW_DESC, {"If you set this setting on}, platform above snowline will covered with snow. Disable if graphical gliches occur."})
+
+defstr({STR_PARAM_BRIDGE_NAME}, {"Allow stations under bridges"})
+defstr({STR_PARAM_BRIDGE_DESC}, {"Allow stations to be built under bridges." CRLF CRLF T_RED "Caution! " T_WHITE "It works properly only on JGRPP v0.26.0 or later."})
+
+
+defstr({STR_PARAM_ROOF_COLOUR_NAME}, {"Roof colour"})
+defstr({STR_PARAM_ROOF_COLOUR_DESC}, {"Select the colour of the roofs."})
+
+defstr({STR_PARAM_ROOF_COLOUR_CC}, {"Use Company Colour"})
+defstr({STR_PARAM_ROOF_COLOUR_DBLUE}, {"Dark blue"})
+defstr({STR_PARAM_ROOF_COLOUR_PGREEN}, {"Pale green"})
+defstr({STR_PARAM_ROOF_COLOUR_PINK}, {"Pink"})
+defstr({STR_PARAM_ROOF_COLOUR_YELLOW}, {"Yellow"})
+defstr({STR_PARAM_ROOF_COLOUR_RED}, {"Red"})
+defstr({STR_PARAM_ROOF_COLOUR_LBLUE}, {"Light blue"})
+defstr({STR_PARAM_ROOF_COLOUR_GREEN}, {"Green"})
+defstr({STR_PARAM_ROOF_COLOUR_DGREEN}, {"Dark green"})
+defstr({STR_PARAM_ROOF_COLOUR_BLUE}, {"Blue (Default)"})
+defstr({STR_PARAM_ROOF_COLOUR_CREAM}, {"Cream"})
+defstr({STR_PARAM_ROOF_COLOUR_MAUVE}, {"Mauve"})
+defstr({STR_PARAM_ROOF_COLOUR_PURPLE}, {"Purple"})
+defstr({STR_PARAM_ROOF_COLOUR_ORANGE}, {"Orange"})
+defstr({STR_PARAM_ROOF_COLOUR_BROWN}, {"Brown"})
+defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"Grey"})
+defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"White"})

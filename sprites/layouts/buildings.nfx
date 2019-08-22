@@ -1,0 +1,92 @@
+define(get_building_sprite, {ifelse($1, BUILDING_TYPE_LOW, spr_building_low, spr_building_high)})
+define(get_building_overpass_sprite, {ifelse($1, BUILDING_TYPE_LOW, spr_bdoverpass_low, spr_bdoverpass_high)})
+define(get_building_height, {ifelse($1, BUILDING_TYPE_LOW, 26, 50)})
+
+
+define(spritelayout_building, {regular(get_building_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_building_height($1)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_OFFSET+$2}))})
+define(spritelayout_building_overpass, {regular(get_building_overpass_sprite($1), xyz(0, 0, 12), dxdydz(16, 16, get_building_height($1)-12), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_OVERPASS_OFFSET}))})
+
+define(LAYOUT_BUILDING_BASE, {
+	tile(
+		spritelayout_ground_building(ORIENT_NE)
+		spritelayout_building($1, ORIENT_NE)
+	)
+	tile(
+		spritelayout_ground_building(ORIENT_NW)
+		spritelayout_building($1, ORIENT_NW)
+	)
+})
+
+define(LAYOUT_BUILDING_LOW, {LAYOUT_BUILDING_BASE(BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_HIGH, {LAYOUT_BUILDING_BASE(BUILDING_TYPE_HIGH)})
+
+define(building_overpass_pole, {
+	ifelse($1, PLT_TYPE_A, {
+		ifelse($2, PLT_TYPE_HIGH, {
+			regular(spr_building_pole_hp, xyz( 0, 0, 3), dxdydz(16, 0, 9), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole,    xyz( 0,16, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		},{
+			regular(spr_building_pole_lp, xyz( 0, 0, 1), dxdydz(16, 0,11), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole,    xyz( 0,16, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		})
+	}, 
+	$1, PLT_TYPE_B, {
+		ifelse($2, PLT_TYPE_HIGH, {
+			regular(spr_building_pole,    xyz( 0, 0, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole_hp, xyz( 0,16, 3), dxdydz(16, 0, 9), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		},{
+			regular(spr_building_pole,    xyz( 0, 0, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole_lp, xyz( 0,16, 1), dxdydz(16, 0,11), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		})
+	},
+	$1, PLT_TYPE_C, {
+		ifelse($2, PLT_TYPE_HIGH, {
+			regular(spr_building_pole_hp, xyz( 0, 0, 3), dxdydz(16, 0, 9), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole_hp, xyz( 0,16, 3), dxdydz(16, 0, 9), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		},{
+			regular(spr_building_pole_lp, xyz( 0, 0, 1), dxdydz(16, 0,11), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+			regular(spr_building_pole_lp, xyz( 0,16, 1), dxdydz(16, 0,11), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+		})
+	},
+	$1, PLT_TYPE_NONE, {
+		regular(spr_building_pole, xyz( 0, 0, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP}))
+		regular(spr_building_pole, xyz( 0,16, 0), dxdydz(16, 0,12), aslflags({SKIP}), registers({REGISTER_BUILDING_POLE_SKIP+1}))
+	},
+	{})
+})
+
+define(LAYOUT_BUILDING_OVERPASS_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		building_overpass_pole($1, $2)
+		spritelayout_building_overpass($3)
+	})
+})
+
+define(LAYOUT_BUILDING_LOW_HP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_HIGH, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_HP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_HIGH, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_HP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_HIGH, BUILDING_TYPE_LOW)})
+
+define(LAYOUT_BUILDING_HIGH_HP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_HIGH, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_HP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_HIGH, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_HP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_HIGH, BUILDING_TYPE_HIGH)})
+
+define(LAYOUT_BUILDING_LOW_LP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_LOW, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_LP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_LOW, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_LP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_LOW, BUILDING_TYPE_LOW)})
+
+define(LAYOUT_BUILDING_HIGH_LP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_LOW, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_LP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_LOW, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_LP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_LOW, BUILDING_TYPE_HIGH)})
+
+define(LAYOUT_BUILDING_LOW_LAP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_LAP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_LOW_LAP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_LOW)})
+
+define(LAYOUT_BUILDING_HIGH_LAP_A, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_LAP_B, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_HIGH)})
+define(LAYOUT_BUILDING_HIGH_LAP_C, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, BUILDING_TYPE_HIGH)})
+
+define(LAYOUT_BUILDING_LOW_TRACK, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE, BUILDING_TYPE_LOW)})
+define(LAYOUT_BUILDING_HIGH_TRACK, {LAYOUT_BUILDING_OVERPASS_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE, BUILDING_TYPE_HIGH)})

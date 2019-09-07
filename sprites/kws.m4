@@ -272,6 +272,20 @@ define(PSD_HP_B_RF_B, 0xF7)
 define(PSD_HP_C_RF_B, 0xF8)
 define(PSD_END, 0xF8)
 
+define(CROSSING_HIGH_START, 0x00)
+define(HP_A_CR, 0x00)
+define(HP_B_CR, 0x01)
+define(HP_C_CR, 0x02)
+define(HP_A_CR_RF_A, 0x03)
+define(HP_B_CR_RF_A, 0x04)
+define(HP_C_CR_RF_A, 0x05)
+define(HP_A_CR_RF_B, 0x06)
+define(HP_B_CR_RF_B, 0x07)
+define(HP_C_CR_RF_B, 0x08)
+define(CROSSING_HIGH_END, 0x08)
+
+
+
 define(PARAM_MODE, 1)
 define(PARAM_MODE_NORMAL, 0)
 define(PARAM_MODE_HIGHPLATFORM, 1)
@@ -301,6 +315,8 @@ define(PARAM_ROOF_COLOUR_ORANGE, 12)
 define(PARAM_ROOF_COLOUR_BROWN, 13)
 define(PARAM_ROOF_COLOUR_GREY, 14)
 define(PARAM_ROOF_COLOUR_WHITE, 15)
+
+define(PARAM_VERSION, 3)
 
 define(REGISTER_NONE, 0)
 define(REGISTER_GROUND_OFFSET, 1)
@@ -353,3 +369,9 @@ define(ROOF_TYPE_OVERPASS, 1)
 define(ROOF_TYPE_A, 1)
 define(ROOF_TYPE_B, 2)
 define(ROOF_TYPE_NONE, 0)
+
+define(GRFID_KWS_PART1, "KW" 00 01)
+define(GRFID_KWS_PART2, "KW" 00 02)
+
+define(GRF_VERSION, 660)
+define(GRF_MIN_VERSION, 640)

@@ -1,0 +1,203 @@
+include(sprites/kws.m4)
+include(sprites/kws_func.nfx)
+
+include(sprites/lang/english.nfx)
+include(sprites/lang/korean.nfx)
+include(sprites/strings.nfx)
+
+setfeature(_STATION)
+setpath(sprites/gfx)
+
+textmode_on()
+grfinit(GRFID_KWS_PART2,
+	grfname(STR_GRF_NAME_PART2)
+	grfdescription(STR_GRF_DESC)
+	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
+	grfversion(GRF_VERSION)
+	grfminversion(GRF_MIN_VERSION)
+)
+textmode_off()
+asl_on()
+
+getothergrfparameter(PARAM_FLAGS, GRFID_KWS_PART1, PARAM_FLAGS)
+getothergrfparameter(PARAM_MODE, GRFID_KWS_PART1, PARAM_MODE)
+getothergrfparameter(PARAM_ROOF_COLOUR, GRFID_KWS_PART1, PARAM_ROOF_COLOUR)
+getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART1, VERSION)
+
+skipif(1, GRFACTIVE, -, GRFID_KWS_PART1)
+skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
+error(FATAL, ALL, 05, "kws1.grf")
+
+include(sprites/sprites.nfx)
+
+def(0, sprset_default) spriteset(little(0), lots(0))
+
+setpath(sounds)
+soundtable(
+	defsnd(snd_psd_open, PSD_open.wav)
+	defsnd(snd_psd_close, PSD_close.wav)
+)
+
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SNOW)
+def(22, sw_terrain_snow) tinfo_terrain(
+	cbr(1) if(SNOW)
+	cbr(0) else
+)
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SNOW)
+def(22, sw_terrain_snow) tinfo_terrain(
+	cbr(0) if(SNOW)
+	cbr(0) else
+)
+
+def(98, sw_get_param_roof_colour) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0xF + 0x307 - 1},
+	cbfail() else
+)
+
+def(97, sw_reg_roof_colour) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0xF),
+	cbr(0) if(0)
+	ref(98) else
+)
+
+def(96, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
+
+def(95, sw_reg_roof_overpass) subroutine(sw_terrain_snow,
+	cbr(spr_roofs_overpass_snow - spr_roofs_overpass) if(1)
+	cbr(0) else
+)
+
+def(94, sw_reg_overpass_guide) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
+	cbr(spr_overpass_guide_s - spr_overpass_guide) if(1)
+	cbr(0) else
+)
+
+def(93, sw_reg_overpass) subroutine(sw_terrain_snow,
+	cbr(spr_overpass_snow - spr_overpass) if(1)
+	cbr(0) else
+)
+def(92, sw_set_reg_overpass) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide), sub(sw_reg_roof_overpass)}, ref(sw_set_reg_roof_colour))
+
+
+def(91, sw_reg_crossing_shadow) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
+	cbr(spr_platform_cs - spr_platform_c) if(1)
+	cbr(0) else
+)
+
+def(90, sw_reg_crossing) subroutine(sw_terrain_snow,
+	cbr(spr_platform_c_snow - spr_platform_c) if(1)
+	cbr(0) else
+)
+
+def(89, sw_reg_platform_shadow) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
+	cbr(spr_platform_s - spr_platform) if(1)
+	cbr(0) else
+)
+
+def(88, sw_reg_roof) subroutine(sw_terrain_snow,
+	cbr(spr_roofs_snow - spr_roofs) if(1)
+	cbr(0) else
+)
+
+def(87, sw_reg_passenger_skip_sub) cargowaiting(PASS,
+	cbr(0) if(0 .. 16)
+	cbr(1) else
+)
+
+def(86, sw_reg_passenger_skip) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_PASSENGER, 0x1),
+	ref(sw_reg_passenger_skip_sub) if(1)
+	cbr(0) else
+)
+
+def(85, sw_reg_platform) subroutine(sw_terrain_snow,
+	cbr(spr_platform_snow - spr_platform) if(1)
+	cbr(0) else
+)
+
+def(84, sw_reg_passenger) cargowaiting(PASS,
+	cbr(0) if(17 .. 128)
+	cbr(4) if(129 .. 512)
+	cbr(8) if(513 .. 1024)
+	cbr(12) else
+)
+def(83, sw_set_reg_passenger) 
+setregisters(REGISTER_PASSENGER_OFFSET, 
+	{
+	sub(sw_reg_passenger), 
+	sub(sw_reg_platform), 
+	sub(sw_reg_passenger_skip), 
+	sub(sw_reg_roof),
+	sub(sw_reg_platform_shadow),
+	sub(sw_reg_crossing),
+	sub(sw_reg_crossing_shadow)
+	}, 
+	ref(sw_set_reg_overpass)
+)
+
+def(82, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
+	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
+	cbr(0) else
+)
+def(81, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
+def(80, sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
+
+def(21, sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
+def(20, sw_platform_cb) callback(
+	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+include(sprites/kws_layout.nfx)
+
+
+// crossings (high)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_CROSSINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_triggers({BUILT})
+)}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
+
+layout(HP_A_CR, LAYOUT_HP_A_CR)
+layout(HP_B_CR, LAYOUT_HP_B_CR)
+layout(HP_C_CR, LAYOUT_HP_C_CR)
+
+layout(HP_A_CR_RF_A, LAYOUT_HP_A_CR_RF_A)
+layout(HP_B_CR_RF_A, LAYOUT_HP_B_CR_RF_A)
+layout(HP_C_CR_RF_A, LAYOUT_HP_C_CR_RF_A)
+
+layout(HP_A_CR_RF_B, LAYOUT_HP_A_CR_RF_B)
+layout(HP_B_CR_RF_B, LAYOUT_HP_B_CR_RF_B)
+layout(HP_C_CR_RF_B, LAYOUT_HP_C_CR_RF_B)
+
+def(25) plt_posrev(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def(27) plt_pos(
+	cbr(4) if(0)
+	ref(25) else
+)
+
+def(28, sw_pos) plt_length(
+	cbr(0) if(1)
+	ref(27) else
+)
+
+def(26, sw_crossing_layout) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_pos)},
+	cbfail() else
+)
+
+def(29, sw_crossing_cb) callback(
+	ref(sw_crossing_layout) if(CB_LAYOUT)
+	ref(sw_pos) if(CB_ACONTROL)
+	ref(sw_pos) if(CB_AFRAME)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_HIGH_START .. CROSSING_HIGH_END)

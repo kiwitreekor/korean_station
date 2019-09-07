@@ -1,4 +1,4 @@
-
+define(get_platform_crossing_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_ch, $1, PLT_TYPE_LOW, spr_platform_c, spr_platform_ca)})
 
 define(spritelayout_crossingA, {regular(get_platform_crossing_sprite($1)+$2*4, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))})
 define(spritelayout_crossingB, {regular(get_platform_crossing_sprite($1)+$2*4+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))})
@@ -35,6 +35,18 @@ define(LAYOUT_CROSSING_BASE_SNOW, {
 	LAYOUT_CROSSING_BASE($1, $2, tmp_roof, {spritelayout_ground()}) 
 	LAYOUT_CROSSING_BASE($1, $2, tmp_roof, {spritelayout_ground_snow()})
 })
+
+define(LAYOUT_HP_A_CR, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_A, PLT_TYPE_HIGH)})
+define(LAYOUT_HP_B_CR, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_B, PLT_TYPE_HIGH)})
+define(LAYOUT_HP_C_CR, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_C, PLT_TYPE_HIGH)})
+
+define(LAYOUT_HP_A_CR_RF_A, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A)})
+define(LAYOUT_HP_B_CR_RF_A, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A)})
+define(LAYOUT_HP_C_CR_RF_A, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A)})
+
+define(LAYOUT_HP_A_CR_RF_B, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B)})
+define(LAYOUT_HP_B_CR_RF_B, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B)})
+define(LAYOUT_HP_C_CR_RF_B, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B)})
 
 define(LAYOUT_LP_A_CR, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_A, PLT_TYPE_LOW)})
 define(LAYOUT_LP_B_CR, {LAYOUT_CROSSING_BASE_SNOW(PLT_TYPE_B, PLT_TYPE_LOW)})

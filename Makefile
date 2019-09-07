@@ -1,14 +1,17 @@
 # 'kiwitree korean station set' makefile
 
-V = sprites\kws
+V = sprites
 
 # include macro files, header, trains, names etc
 LAYOUTS := $(wildcard sprites/layouts/*.nfx)
 LANGUAGES := $(wildcard sprites/lang/*.nfx)
-INCLUDES = $V1_compat.nfx $V_layout.nfx $V_func.nfx $V.m4 $V_compat.m4 sprites\strings.nfx $(LAYOUTS) $(LANGUAGES)
+INCLUDES = $V\kws1_compat.nfx $V\kws_layout.nfx $V\kws_func.nfx $V\kws.m4 $V\kws_compat.m4 $V\strings.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
 
 # .nfo target files
-NFOFILES = $V1.nfo
+NFOFILES = $V\kws1.nfo $V\kws2.nfo
+
+GRFFILES = kws1.grf kws2.grf
+TARFILES = $(GRFFILES:.grf=.tar)
 
 # graphics source files
 PNGDIR = sprites/gfx/
@@ -22,7 +25,7 @@ M4FLAGS =
 GRFCODEC = grfcodec
 GRFCODECFLAGS = -e
 
-all: kws1.grf $(NFOFILES)
+all: $(GRFFILES) $(NFOFILES)
 
 # rule to make .nfo from .nfx
 %.nfo : %.nfx $(INCLUDES)
@@ -32,19 +35,19 @@ all: kws1.grf $(NFOFILES)
 	del $*.tt
 
 # rule to make test.grf from .nfo and .png
-kws1.grf : $(NFOFILES) $(PNGFILES)
-	$(GRFCODEC) $(GRFCODECFLAGS) kws1.grf
-	copy /Y kws1.grf %HOMEDRIVE%%HOMEPATH%\Documents\OpenTTD\newgrf\kws1.grf
-
-# rule to make bundle
-kws1.tar : kws1.grf
-	tar cvf kws1.tar kws1.grf changelog.txt
+%.grf : $V\%.nfo $(PNGFILES)
+	$(GRFCODEC) $(GRFCODECFLAGS) $@
 	copy /Y $@ "%HOMEDRIVE%%HOMEPATH%/Documents/OpenTTD/newgrf/$@"
 
-bundle: jptaddon.grf jptaddon.tar $(NFOFILES)
+# rule to make bundle
+%.tar : %.grf
+	tar cvf $@ %.grf changelog.txt
+	copy /Y $@ "%HOMEDRIVE%%HOMEPATH%/Documents/OpenTTD/newgrf/$@"
+
+bundle: $(GRFFILES) $(TARFILES) $(NFOFILES)
 
 clean:
-	del kws1.grf
+	del *.grf
 	del sprites\*.nfo
 	del *.bak
 	del *.tar

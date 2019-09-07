@@ -1,6 +1,5 @@
 define(get_platform_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform, $1, PLT_TYPE_LOW, spr_platform_l, spr_platform_la)})
 define(get_platform_nontrack_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_nontrack, $1, PLT_TYPE_LOW, spr_platform_l_nontrack, spr_platform_la_nontrack)})
-define(get_platform_crossing_sprite, {ifelse($1, PLT_TYPE_LOW, spr_platform_c, spr_platform_ca)})
 define(get_platform_height, {ifelse($1, PLT_TYPE_HIGH, 3, 1)})
 
 define(spritelayout_platformA, {regular(get_platform_sprite($1), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})

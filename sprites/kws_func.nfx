@@ -1,0 +1,8 @@
+define(_stringid, 0)
+define(_langid, {ALL})
+define(setstringid, {define({$1}, _stringid) define({_stringid}, incr(_stringid))})
+define(setlangid, {define({_langid}, {$1})})
+define(defgrftextlang, {ifdef({$1}, {defgrftext($1,defn({_langid}),{UTF8 }$2)}, {defgrftext(_stringid,ALL,{UTF8 }$2) setstringid({$1})})})
+
+define(_append, {define({$1},defn({$1}){, $2})})
+define(defstr, {ifdef({$1}, {_append({$1},defn({_langid}){, UTF8 $2})}, {define({$1},{ALL, UTF8 $2})})})

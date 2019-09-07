@@ -330,6 +330,7 @@ def(29, sw_crossing_cb) callback(
 	ref(sw_set_registers) else
 )
 
+skipif(LAP_C_CR_RF_B - LP_A_CR + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, LP_A_CR .. LAP_C_CR_RF_B)
 
 definestation(TRACK_CR, "",
@@ -362,8 +363,6 @@ def(30, sw_crossing_track_menu) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
-
-skipif(LAP_C_CR_RF_B - LP_A_CR + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 makestation(TRACK_CR, link(ref(sw_crossing_track_menu), MENU) default(ref(sw_crossing_track_cb)))
 
 // building blocks
@@ -998,7 +997,6 @@ classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
 stationnames(PLATFORM_START, STR_PLATFORMS)
 stationnames(OVERPASS_START, STR_OVERPASS)
 
-skipif(2, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 classnames(CROSSING_START, STR_CLASS_CROSSINGS)
 stationnames(CROSSING_START, STR_CROSSINGS)
 

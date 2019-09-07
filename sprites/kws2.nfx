@@ -201,3 +201,5 @@ def(29, sw_crossing_cb) callback(
 )
 
 forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
+
+stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)

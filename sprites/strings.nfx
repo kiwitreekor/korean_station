@@ -46,6 +46,15 @@ define(STR_CROSSINGS, {
 	, "Crossing"}
 })
 
+define(STR_CROSSINGS_HIGH, {
+	{KR, UTF8 "고상홈 A + 건널목", UTF8 "고상홈 B + 건널목", UTF8 "고상홈 C + 건널목"
+	, UTF8 "고상홈 A + 지붕 A + 건널목", UTF8 "고상홈 B + 지붕 A + 건널목", UTF8 "고상홈 C + 지붕 A + 건널목"
+	, UTF8 "고상홈 A + 지붕 B + 건널목", UTF8 "고상홈 B + 지붕 B + 건널목", UTF8 "고상홈 C + 지붕 B + 건널목"},
+	{ALL, "High Platform A + Crossing", "High Platform B + Crossing", "High Platform C + Crossing"
+	, "High Platform A + Roof A + Crossing", "High Platform B + Roof A + Crossing", "High Platform C + Roof A + Crossing"
+	, "High Platform A + Roof B + Crossing", "High Platform B + Roof B + Crossing", "High Platform C + Roof B + Crossing"}
+})
+
 define(STR_CLASS_BUILDINGS, {
 	{KR, UTF8 "[KWS] 역사 건물"},
 	{ALL, "[KWS] Modular Stations"}

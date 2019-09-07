@@ -33,7 +33,6 @@ all: kws1.grf $(NFOFILES)
 
 # rule to make test.grf from .nfo and .png
 kws1.grf : $(NFOFILES) $(PNGFILES)
-# $(NFORENUM) $(NFORENUMFLAGS) sprites\kws1.nfo
 	$(GRFCODEC) $(GRFCODECFLAGS) kws1.grf
 	copy /Y kws1.grf %HOMEDRIVE%%HOMEPATH%\Documents\OpenTTD\newgrf\kws1.grf
 
@@ -47,3 +46,5 @@ bundle: jptaddon.grf jptaddon.tar $(NFOFILES)
 clean:
 	del kws1.grf
 	del sprites\*.nfo
+	del *.bak
+	del *.tar

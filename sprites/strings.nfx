@@ -148,7 +148,13 @@ define(STR_FACILITIES, {
 	, UTF8 "아스팔트 저상홈 A + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 B + 지붕 B + 고객대기실", UTF8 "아스팔트 저상홈 C + 지붕 B + 고객대기실"
 	, UTF8 "고상홈 A + 가로등", UTF8 "고상홈 B + 가로등", UTF8 "고상홈 C + 가로등"
 	, UTF8 "저상홈 A + 가로등", UTF8 "저상홈 B + 가로등", UTF8 "저상홈 C + 가로등"
-	, UTF8 "아스팔트 저상홈 A + 가로등", UTF8 "아스팔트 저상홈 B + 가로등", UTF8 "아스팔트 저상홈 C + 가로등"},
+	, UTF8 "아스팔트 저상홈 A + 가로등", UTF8 "아스팔트 저상홈 B + 가로등", UTF8 "아스팔트 저상홈 C + 가로등"
+	, UTF8 "고상홈 A + 지붕 A + 지하도", UTF8 "고상홈 B + 지붕 A + 지하도", UTF8 "고상홈 C + 지붕 A + 지하도"
+	, UTF8 "고상홈 A + 지붕 B + 지하도", UTF8 "고상홈 B + 지붕 B + 지하도", UTF8 "고상홈 C + 지붕 B + 지하도"
+	, UTF8 "저상홈 A + 지붕 A + 지하도", UTF8 "저상홈 B + 지붕 A + 지하도", UTF8 "저상홈 C + 지붕 A + 지하도"
+	, UTF8 "저상홈 A + 지붕 B + 지하도", UTF8 "저상홈 B + 지붕 B + 지하도", UTF8 "저상홈 C + 지붕 B + 지하도"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A + 지하도", UTF8 "아스팔트 저상홈 B + 지붕 A + 지하도", UTF8 "아스팔트 저상홈 C + 지붕 A + 지하도"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B + 지하도", UTF8 "아스팔트 저상홈 B + 지붕 B + 지하도", UTF8 "아스팔트 저상홈 C + 지붕 B + 지하도"},
 	{ALL, "High Platform A + Sign A", "High Platform B + Sign A", "High Platform C + Sign A"
 	, "Low Platform A + Sign A", "Low Platform B + Sign A", "Low Platform C + Sign A"
 	, "Low Asphalt Platform A + Sign A", "Low Asphalt Platform B + Sign A", "Low Asphalt Platform C + Sign A"
@@ -184,7 +190,16 @@ define(STR_FACILITIES, {
 	, "Low Asphalt Platform A + Roof B + Waiting room", "Low Asphalt Platform B + Roof B + Waiting room", "Low Asphalt Platform C + Roof B + Waiting room"
 	, "High Platform A + Light", "High Platform B + Light", "High Platform C + Light"
 	, "Low Platform A + Light", "Low Platform B + Light", "Low Platform C + Light"
-	, "Low Asphalt Platform A + Light", "Low Asphalt Platform B + Light", "Low Asphalt Platform C + Light"}
+	, "Low Asphalt Platform A + Light", "Low Asphalt Platform B + Light", "Low Asphalt Platform C + Light"
+	, "High Platform A + Underpass", "High Platform B + Underpass", "High Platform C + Underpass"
+	, "High Platform A + Roof A + Underpass", "High Platform B + Roof A + Underpass", "High Platform C + Roof A + Underpass"
+	, "High Platform A + Roof B + Underpass", "High Platform B + Roof B + Underpass", "High Platform C + Roof B + Underpass"
+	, "Low Platform A + Underpass", "Low Platform B + Underpass", "Low Platform C + Underpass"
+	, "Low Platform A + Roof A + Underpass", "Low Platform B + Roof A + Underpass", "Low Platform C + Roof A + Underpass"
+	, "Low Platform A + Roof B + Underpass", "Low Platform B + Roof B + Underpass", "Low Platform C + Roof B + Underpass"
+	, "Low Asphalt Platform A + Underpass", "Low Asphalt Platform B + Underpass", "Low Asphalt Platform C + Underpass"
+	, "Low Asphalt Platform A + Roof A + Underpass", "Low Asphalt Platform B + Roof A + Underpass", "Low Asphalt Platform C + Roof A + Underpass"
+	, "Low Asphalt Platform A + Roof B + Underpass", "Low Asphalt Platform B + Roof B + Underpass", "Low Asphalt Platform C + Roof B + Underpass"}
 })
 
 define(STR_CLASS_PSD, {

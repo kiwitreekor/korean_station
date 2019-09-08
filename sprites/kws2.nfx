@@ -237,6 +237,7 @@ def(39, sw_psd_overpass_platform_layout) plt_midpos(
 		ref(40) else
 	)
 )
+
 def(38, sw_psd_overpass_platform_snow) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_psd_overpass_platform_layout)},
 	cbfail() else
 )
@@ -313,6 +314,41 @@ def(30, sw_psd_building_cb) callback(
 )
 
 forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_building_cb)))}, PSD_BUILDING_START .. PSD_BUILDING_END)
+
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+)}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)
+
+layout(PSD_UNDERPASS_HP_A_RF_A, LAYOUT_PSD_UNDERPASS_HP_A_RF_A)
+layout(PSD_UNDERPASS_HP_B_RF_A, LAYOUT_PSD_UNDERPASS_HP_B_RF_A)
+layout(PSD_UNDERPASS_HP_C_RF_A, LAYOUT_PSD_UNDERPASS_HP_C_RF_A)
+layout(PSD_UNDERPASS_HP_A_RF_B, LAYOUT_PSD_UNDERPASS_HP_A_RF_B)
+layout(PSD_UNDERPASS_HP_B_RF_B, LAYOUT_PSD_UNDERPASS_HP_B_RF_B)
+layout(PSD_UNDERPASS_HP_C_RF_B, LAYOUT_PSD_UNDERPASS_HP_C_RF_B)
+
+def(38, sw_psd_underpass_platform_snow) calculate({subroutine(sw_terrain_snow) * 2},
+	cbfail() else
+)
+
+def(30, sw_psd_underpass_cb) callback(
+	ref(sw_psd_underpass_platform_snow) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd) else
+)
+
+def(36, sw_psd_underpass_menu_cb) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_psd_underpass_menu_cb), MENU) default(ref(sw_psd_underpass_cb)))}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 

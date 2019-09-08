@@ -230,12 +230,16 @@ define(STR_PSD_ADDITIONAL, {
 	, UTF8 "고상홈 A + 지붕 A + PSD + 육교", UTF8 "고상홈 B + 지붕 A + PSD + 육교", UTF8 "고상홈 C + 지붕 A + PSD + 육교"
 	, UTF8 "고상홈 A + 지붕 B + PSD + 육교", UTF8 "고상홈 B + 지붕 B + PSD + 육교", UTF8 "고상홈 C + 지붕 B + PSD + 육교"
 	, UTF8 "고상홈 A + PSD + 저층 선상역사", UTF8 "고상홈 B + PSD + 저층 선상역사", UTF8 "고상홈 C + PSD + 저층 선상역사"
-	, UTF8 "고상홈 A + PSD + 고층 선상역사", UTF8 "고상홈 B + PSD + 고층 선상역사", UTF8 "고상홈 C + PSD + 고층 선상역사"},
+	, UTF8 "고상홈 A + PSD + 고층 선상역사", UTF8 "고상홈 B + PSD + 고층 선상역사", UTF8 "고상홈 C + PSD + 고층 선상역사"
+	, UTF8 "고상홈 A + 지붕 A + PSD + 지하도", UTF8 "고상홈 B + 지붕 A + PSD + 지하도", UTF8 "고상홈 C + 지붕 A + PSD + 지하도"
+	, UTF8 "고상홈 A + 지붕 B + PSD + 지하도", UTF8 "고상홈 B + 지붕 B + PSD + 지하도", UTF8 "고상홈 C + 지붕 B + PSD + 지하도"},
 	{ALL, "High Platform A + PSD + Overpass", "High Platform B + PSD + Overpass", "High Platform C + PSD + Overpass"
 	, "High Platform A + Roof A + PSD + Overpass", "High Platform B + Roof A + PSD + Overpass", "High Platform C + Roof A + PSD + Overpass"
 	, "High Platform A + Roof B + PSD + Overpass", "High Platform B + Roof B + PSD + Overpass", "High Platform C + Roof B + PSD + Overpass"
 	, "High Platform A + PSD + Low Overpass", "High Platform B + PSD + Low Overpass", "High Platform C + PSD + Low Overpass"
-	, "High Platform A + PSD + High Overpass", "High Platform B + PSD + High Overpass", "High Platform C + PSD + High Overpass"}
+	, "High Platform A + PSD + High Overpass", "High Platform B + PSD + High Overpass", "High Platform C + PSD + High Overpass"
+	, "High Platform A + Roof A + PSD + Underpass", "High Platform B + Roof A + PSD + Underpass", "High Platform C + Roof A + PSD + Underpass"
+	, "High Platform A + Roof B + PSD + Underpass", "High Platform B + Roof B + PSD + Underpass", "High Platform C + Roof B + PSD + Underpass"}
 })
 
 define(STR_STRINGS_COMPAT, {

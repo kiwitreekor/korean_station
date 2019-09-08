@@ -406,12 +406,10 @@ def(35, sw_buffer_shadow_layout_offset) calculate({subroutine(sw_buffer_shadow_o
 	cbfail() else
 )
 
-def(37, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_layout_offset)}, ref(sw_set_registers))
+def(37, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_layout_offset), sub(sw_buffer_shadow_layout_offset)}, ref(sw_set_registers))
 
 def(29, sw_buffer_cb) callback(
 	ref(sw_platform_layout) if(CB_LAYOUT)
-	ref(sw_pos) if(CB_ACONTROL)
-	ref(sw_pos) if(CB_AFRAME)
 	ref(sw_set_reg_buffer) else
 )
 

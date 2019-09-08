@@ -314,6 +314,12 @@ spriteblock(
 		tmpl_high_platform_buffer(spr_platform_buffer_s, platforms.png, 900, 310)
 		tmpl_low_platform_buffer(spr_platform_l_buffer_s, platforms.png, 900, 410)
 		tmpl_low_platform_buffer(spr_platform_la_buffer_s, platforms.png, 900, 510)
+		
+		sprite(spr_buffer,
+			   platforms.png    8bpp 520  430 14 12   0 -18 normal)
+		sprite(platforms.png    8bpp 500  430 14 12 -10 -18 normal)
+		sprite(platforms.png    8bpp 560  430 14 14   0 -15 normal)
+		sprite(platforms.png    8bpp 540  430 14 14 -10 -15 normal)
 // custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)

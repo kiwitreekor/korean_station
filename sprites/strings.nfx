@@ -242,6 +242,27 @@ define(STR_PSD_ADDITIONAL, {
 	, "High Platform A + Roof B + PSD + Underpass", "High Platform B + Roof B + PSD + Underpass", "High Platform C + Roof B + PSD + Underpass"}
 })
 
+define(STR_PLATFORM_BUFFER, {
+	{KR, UTF8 "고상홈 A (종단점)", UTF8 "고상홈 B (종단점)", UTF8 "고상홈 C (종단점)"
+	, UTF8 "고상홈 A + 지붕 A (종단점)", UTF8 "고상홈 B + 지붕 A (종단점)", UTF8 "고상홈 C + 지붕 A (종단점)"
+	, UTF8 "고상홈 A + 지붕 B (종단점)", UTF8 "고상홈 B + 지붕 B (종단점)", UTF8 "고상홈 C + 지붕 B (종단점)"
+	, UTF8 "저상홈 A (종단점)", UTF8 "저상홈 B (종단점)", UTF8 "저상홈 C (종단점)"
+	, UTF8 "저상홈 A + 지붕 A (종단점)", UTF8 "저상홈 B + 지붕 A (종단점)", UTF8 "저상홈 C + 지붕 A (종단점)"
+	, UTF8 "저상홈 A + 지붕 B (종단점)", UTF8 "저상홈 B + 지붕 B (종단점)", UTF8 "저상홈 C + 지붕 B (종단점)"
+	, UTF8 "아스팔트 저상홈 A (종단점)", UTF8 "아스팔트 저상홈 B (종단점)", UTF8 "아스팔트 저상홈 C (종단점)"
+	, UTF8 "아스팔트 저상홈 A + 지붕 A (종단점)", UTF8 "아스팔트 저상홈 B + 지붕 A (종단점)", UTF8 "아스팔트 저상홈 C + 지붕 A (종단점)"
+	, UTF8 "아스팔트 저상홈 A + 지붕 B (종단점)", UTF8 "아스팔트 저상홈 B + 지붕 B (종단점)", UTF8 "아스팔트 저상홈 C + 지붕 B (종단점)"},
+	{ALL, "High Platform A (Buffer)", "High Platform B (Buffer)", "High Platform C (Buffer)"
+	, "High Platform A + Roof A (Buffer)", "High Platform B + Roof A (Buffer)", "High Platform C + Roof A (Buffer)"
+	, "High Platform A + Roof B (Buffer)", "High Platform B + Roof B (Buffer)", "High Platform C + Roof B (Buffer)"
+	, "Low Platform A (Buffer)", "Low Platform B (Buffer)", "Low Platform C (Buffer)"
+	, "Low Platform A + Roof A (Buffer)", "Low Platform B + Roof A (Buffer) (Buffer)", "Low Platform C + Roof A (Buffer)"
+	, "Low Platform A + Roof B (Buffer)", "Low Platform B + Roof B", "Low Platform C + Roof B (Buffer)"
+	, "Low Asphalt Platform A (Buffer)", "Low Asphalt Platform B (Buffer)", "Low Asphalt Platform C (Buffer)"
+	, "Low Asphalt Platform A + Roof A (Buffer)", "Low Asphalt Platform B + Roof A (Buffer)", "Low Asphalt Platform C + Roof A (Buffer)"
+	, "Low Asphalt Platform A + Roof B (Buffer)", "Low Asphalt Platform B + Roof B (Buffer)", "Low Asphalt Platform C + Roof B (Buffer)"}
+})
+
 define(STR_STRINGS_COMPAT, {
 	{KR, UTF8 "고상홈 A", UTF8 "고상홈 B"
 	, UTF8 "저상홈 A", UTF8 "저상홈 B"

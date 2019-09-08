@@ -77,12 +77,13 @@ define(LAYOUT_LAP_C_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT
 define(LAYOUT_LAP_NONTRACK_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B)})
 
 define(spritelayout_buffer, {
+	define({tmp_reg}, {ifelse($3, 1, REGISTER_BUFFER_SHADOW_OFFSET, REGISTER_BUFFER_OFFSET)})
 	ifelse($1, PLT_TYPE_A, {
-		regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_OFFSET}))
+		regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 	}, $1, PLT_TYPE_B, {
-		regular(get_platform_buffer_sprite($2)+4, xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_OFFSET}))
+		regular(get_platform_buffer_sprite($2)+4, xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 	}, $1, PLT_TYPE_C, {
-		regular(get_platform_buffer_sprite($2)+8, xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_OFFSET}))
+		regular(get_platform_buffer_sprite($2)+8, xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 	}, {})
 	spritelayout_passenger($1, get_platform_height($2))
 })

@@ -392,12 +392,21 @@ layout(BUFFER_LAP_A_RF_B, LAYOUT_BUFFER_LAP_A_RF_B)
 layout(BUFFER_LAP_B_RF_B, LAYOUT_BUFFER_LAP_B_RF_B)
 layout(BUFFER_LAP_C_RF_B, LAYOUT_BUFFER_LAP_C_RF_B)
 
-def(33, sw_buffer_offset) tinfo_trackconnect(shiftmask(0, 0x02),
+def(33, sw_buffer_layout_offset) tinfo_trackconnect(shiftmask(0, 0x02),
 	cbr(0) if(0)
 	cbr(2) else
 )
 
-def(37, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset)}, ref(sw_set_registers))
+def(34, sw_buffer_shadow_offset) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
+	cbr(spr_platform_buffer_s - spr_platform_buffer) if(1)
+	cbr(0) else
+)
+
+def(35, sw_buffer_shadow_layout_offset) calculate({subroutine(sw_buffer_shadow_offset) + subroutine(sw_buffer_layout_offset)},
+	cbfail() else
+)
+
+def(37, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_layout_offset)}, ref(sw_set_registers))
 
 def(29, sw_buffer_cb) callback(
 	ref(sw_platform_layout) if(CB_LAYOUT)

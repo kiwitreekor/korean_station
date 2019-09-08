@@ -202,4 +202,127 @@ def(29, sw_crossing_cb) callback(
 
 forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
 
+// psd
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+	include_lengths({1,2,3})
+)}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
+
+layout(PSD_OVERPASS_HP_A, LAYOUT_PSD_OVERPASS_HP_A)
+layout(PSD_OVERPASS_HP_B, LAYOUT_PSD_OVERPASS_HP_B)
+layout(PSD_OVERPASS_HP_C, LAYOUT_PSD_OVERPASS_HP_C)
+layout(PSD_OVERPASS_HP_A_RF_A, LAYOUT_PSD_OVERPASS_HP_A_RF_A)
+layout(PSD_OVERPASS_HP_B_RF_A, LAYOUT_PSD_OVERPASS_HP_B_RF_A)
+layout(PSD_OVERPASS_HP_C_RF_A, LAYOUT_PSD_OVERPASS_HP_C_RF_A)
+layout(PSD_OVERPASS_HP_A_RF_B, LAYOUT_PSD_OVERPASS_HP_A_RF_B)
+layout(PSD_OVERPASS_HP_B_RF_B, LAYOUT_PSD_OVERPASS_HP_B_RF_B)
+layout(PSD_OVERPASS_HP_C_RF_B, LAYOUT_PSD_OVERPASS_HP_C_RF_B)
+
+def(40) plt_posrev(
+	self(
+		cbr(2) if(0)
+		cbr(4) else
+	)
+)
+
+def(39, sw_psd_overpass_platform_layout) plt_midpos(
+	self(
+		cbr(0) if(0)
+		ref(40) else
+	)
+)
+def(38, sw_psd_overpass_platform_snow) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_psd_overpass_platform_layout)},
+	cbfail() else
+)
+
+def(33, sw_psd_offset) anim_frame(
+	cbr(2) if(1)
+	cbr(2) if(5)
+	cbr(4) if(2 .. 4)
+	cbr(0) else
+)
+
+def(37, sw_set_reg_psd) setregisters(REGISTER_PSD_OFFSET, {sub(sw_psd_offset)}, ref(sw_set_registers))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
+def(32, sw_psd_animframe) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT, _S_snd_psd_open) if(1)
+	animframe(A_NEXT, _S_snd_psd_close) if(4)
+	animframe(A_NEXT) else
+)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PSDSFX)
+def(32, sw_psd_animframe) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT) else
+)
+
+def(35, sw_psd_animctrl_leave) anim_frame(
+	animcontrol(6) if(0)
+	animcontrol(5) if(1)
+	animcontrol(4) else
+)
+
+def(34, sw_psd_animctrl) anim_trigger(
+	animcontrol(1) if(ARRIVE)
+	ref(sw_psd_animctrl_leave) if(LEAVE)
+	animcontrol(A_NOP) else
+)
+
+def(30, sw_psd_overpass_cb) callback(
+	ref(sw_psd_overpass_platform_snow) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd) else
+)
+
+def(36, sw_psd_overpass_menu_cb) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_psd_overpass_menu_cb), MENU) default(ref(sw_psd_overpass_cb)))}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
+
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+)}, PSD_BUILDING_START .. PSD_BUILDING_END)
+
+layout(PSD_BUILDING_LOW_HP_A, LAYOUT_PSD_BUILDING_LOW_HP_A)
+layout(PSD_BUILDING_LOW_HP_B, LAYOUT_PSD_BUILDING_LOW_HP_B)
+layout(PSD_BUILDING_LOW_HP_C, LAYOUT_PSD_BUILDING_LOW_HP_C)
+layout(PSD_BUILDING_HIGH_HP_A, LAYOUT_PSD_BUILDING_HIGH_HP_A)
+layout(PSD_BUILDING_HIGH_HP_B, LAYOUT_PSD_BUILDING_HIGH_HP_B)
+layout(PSD_BUILDING_HIGH_HP_C, LAYOUT_PSD_BUILDING_HIGH_HP_C)
+
+def(30, sw_psd_building_cb) callback(
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_building_cb)))}, PSD_BUILDING_START .. PSD_BUILDING_END)
+
+skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+
+setproperties(CROSSING_HIGH_START .. CROSSING_HIGH_END,
+	bridge_height({2,2,2,2})
+)
+
+setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END,
+	bridge_height({3,3,3,3})
+)
+
 stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)
+stationnames(PSD_ADDITIONAL_START, STR_PSD_ADDITIONAL)

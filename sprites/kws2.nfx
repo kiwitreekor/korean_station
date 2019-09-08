@@ -332,12 +332,8 @@ layout(PSD_UNDERPASS_HP_A_RF_B, LAYOUT_PSD_UNDERPASS_HP_A_RF_B)
 layout(PSD_UNDERPASS_HP_B_RF_B, LAYOUT_PSD_UNDERPASS_HP_B_RF_B)
 layout(PSD_UNDERPASS_HP_C_RF_B, LAYOUT_PSD_UNDERPASS_HP_C_RF_B)
 
-def(38, sw_psd_underpass_platform_snow) calculate({subroutine(sw_terrain_snow) * 2},
-	cbfail() else
-)
-
 def(30, sw_psd_underpass_cb) callback(
-	ref(sw_psd_underpass_platform_snow) if(CB_LAYOUT)
+	ref(sw_platform_layout) if(CB_LAYOUT)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_set_reg_psd) else
@@ -349,6 +345,71 @@ def(36, sw_psd_underpass_menu_cb) callback(
 )
 
 forloop(X, {makestation(X, link(ref(sw_psd_underpass_menu_cb), MENU) default(ref(sw_psd_underpass_cb)))}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)
+
+// buffers
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+)}, PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END)
+
+layout(BUFFER_HP_A, LAYOUT_BUFFER_HP_A)
+layout(BUFFER_HP_B, LAYOUT_BUFFER_HP_B)
+layout(BUFFER_HP_C, LAYOUT_BUFFER_HP_C)
+
+layout(BUFFER_HP_A_RF_A, LAYOUT_BUFFER_HP_A_RF_A)
+layout(BUFFER_HP_B_RF_A, LAYOUT_BUFFER_HP_B_RF_A)
+layout(BUFFER_HP_C_RF_A, LAYOUT_BUFFER_HP_C_RF_A)
+
+layout(BUFFER_HP_A_RF_B, LAYOUT_BUFFER_HP_A_RF_B)
+layout(BUFFER_HP_B_RF_B, LAYOUT_BUFFER_HP_B_RF_B)
+layout(BUFFER_HP_C_RF_B, LAYOUT_BUFFER_HP_C_RF_B)
+
+layout(BUFFER_LP_A, LAYOUT_BUFFER_LP_A)
+layout(BUFFER_LP_B, LAYOUT_BUFFER_LP_B)
+layout(BUFFER_LP_C, LAYOUT_BUFFER_LP_C)
+
+layout(BUFFER_LP_A_RF_A, LAYOUT_BUFFER_LP_A_RF_A)
+layout(BUFFER_LP_B_RF_A, LAYOUT_BUFFER_LP_B_RF_A)
+layout(BUFFER_LP_C_RF_A, LAYOUT_BUFFER_LP_C_RF_A)
+
+layout(BUFFER_LP_A_RF_B, LAYOUT_BUFFER_LP_A_RF_B)
+layout(BUFFER_LP_B_RF_B, LAYOUT_BUFFER_LP_B_RF_B)
+layout(BUFFER_LP_C_RF_B, LAYOUT_BUFFER_LP_C_RF_B)
+
+layout(BUFFER_LAP_A, LAYOUT_BUFFER_LAP_A)
+layout(BUFFER_LAP_B, LAYOUT_BUFFER_LAP_B)
+layout(BUFFER_LAP_C, LAYOUT_BUFFER_LAP_C)
+
+layout(BUFFER_LAP_A_RF_A, LAYOUT_BUFFER_LAP_A_RF_A)
+layout(BUFFER_LAP_B_RF_A, LAYOUT_BUFFER_LAP_B_RF_A)
+layout(BUFFER_LAP_C_RF_A, LAYOUT_BUFFER_LAP_C_RF_A)
+
+layout(BUFFER_LAP_A_RF_B, LAYOUT_BUFFER_LAP_A_RF_B)
+layout(BUFFER_LAP_B_RF_B, LAYOUT_BUFFER_LAP_B_RF_B)
+layout(BUFFER_LAP_C_RF_B, LAYOUT_BUFFER_LAP_C_RF_B)
+
+def(33, sw_buffer_offset) tinfo_trackconnect(shiftmask(0, 0x02),
+	cbr(0) if(0)
+	cbr(2) else
+)
+
+def(37, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset)}, ref(sw_set_registers))
+
+def(29, sw_buffer_cb) callback(
+	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_pos) if(CB_ACONTROL)
+	ref(sw_pos) if(CB_AFRAME)
+	ref(sw_set_reg_buffer) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_HP_A .. BUFFER_HP_C_RF_B)
+
+skipif(BUFFER_LAP_C_RF_B - BUFFER_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_LAP_C_RF_B)
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 

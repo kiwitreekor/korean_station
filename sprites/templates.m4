@@ -27,3 +27,20 @@ define(tmpl_low_platform_crossing, {
 	tmpl_low_platform(, $2, $3, $4+40)
 	tmpl_low_platform(, $2, $3, $4+80)
 })
+
+define(tmpl_high_platform_buffer, {
+	tmpl_high_platform_nontrack($1, $2, $3, $4)
+	tmpl_high_platform_nontrack(, $2, $3+140, $4)
+	tmpl_high_platform_nontrack(, $2, $3, $4+50)
+	tmpl_high_platform_nontrack(, $2, $3+140, $4+50)
+	tmpl_high_platform_nontrack(, $2, $3+280, $4)
+	tmpl_high_platform_nontrack(, $2, $3+280, $4+50)
+})
+define(tmpl_low_platform_buffer, {
+	tmpl_low_platform_nontrack($1, $2, $3, $4)
+	tmpl_low_platform_nontrack(, $2, $3+140, $4)
+	tmpl_low_platform_nontrack(, $2, $3, $4+50)
+	tmpl_low_platform_nontrack(, $2, $3+140, $4+50)
+	tmpl_low_platform_nontrack(, $2, $3+280, $4)
+	tmpl_low_platform_nontrack(, $2, $3+280, $4+50)
+})

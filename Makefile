@@ -41,7 +41,7 @@ all: $(GRFFILES) $(NFOFILES)
 
 # rule to make bundle
 %.tar : %.grf
-	tar cvf $@ %.grf changelog.txt
+	tar cvf $@ $^ changelog.txt
 	copy /Y $@ "%HOMEDRIVE%%HOMEPATH%/Documents/OpenTTD/newgrf/$@"
 
 bundle: $(GRFFILES) $(TARFILES) $(NFOFILES)

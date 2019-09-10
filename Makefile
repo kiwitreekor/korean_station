@@ -10,7 +10,7 @@ INCLUDES = $V\kws1_compat.nfx $V\kws_layout.nfx $V\kws_func.nfx $V\kws.m4 $V\kws
 # .nfo target files
 NFOFILES = $V\kws1.nfo $V\kws2.nfo
 
-GRFFILES = kws1.grf kws2.grf
+GRFFILES = $(notdir $(NFOFILES:.nfo=.grf))
 TARFILES = $(GRFFILES:.grf=.tar)
 
 # graphics source files

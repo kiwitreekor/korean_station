@@ -5,7 +5,7 @@ V = sprites
 # include macro files, header, trains, names etc
 LAYOUTS := $(wildcard sprites/layouts/*.nfx)
 LANGUAGES := $(wildcard sprites/lang/*.nfx)
-INCLUDES = $V\kws1_compat.nfx $V\kws_layout.nfx $V\kws_func.nfx $V\kws.m4 $V\kws_compat.m4 $V\strings.nfx $V\sprites.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
+INCLUDES = $V\kws_layout.nfx $V\kws_func.nfx $V\kws.m4 $V\strings.nfx $V\sprites.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
 
 # .nfo target files
 NFOFILES = $V\kws1.nfo $V\kws2.nfo
@@ -29,9 +29,12 @@ all: $(GRFFILES) $(NFOFILES)
 
 # rule to make .nfo from .nfx
 %.nfo : %.nfx $(INCLUDES)
-	$(M4) -R m4nfo_stations.m4 $< >$@ 
-	copy count.m4 + $@ $*.tt
-	$(M4) <$*.tt >$@
+	copy act2id.m4 + $< $*.tt
+	$(M4) $(M4FLAGS) $*.tt >$*.tt2
+	del $*.tt2
+	$(M4) $(M4FLAGS) -R m4nfo_stations.m4 $< >$@ 
+	copy count32.m4 + $@ $*.tt
+	$(M4) $(M4FLAGS)  <$*.tt >$@
 	del $*.tt
 
 # rule to make test.grf from .nfo and .png

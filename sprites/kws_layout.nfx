@@ -1,3 +1,4 @@
+divert(-1)
 define(_xyz, defn({xyz}))
 define(_dxdydz, defn({dxdydz}))
 define(_ground, defn({ground}))
@@ -70,3 +71,4 @@ include(sprites/layouts/crossings.nfx)
 include(sprites/layouts/buildings.nfx)
 include(sprites/layouts/overpasses.nfx)
 include(sprites/layouts/facilities.nfx)
+divert

@@ -1,3 +1,4 @@
+divert(-1)
 // $1=label, $2=filename, $3=xpos, $4=ypos
 define(tmpl_base_platform, {
 	sprite(ifelse($1,,,{$1,})$2 8bpp     eval($3) eval($4) 44 eval(21+$5) -31 eval(-$5) normal) ifelse($1,,,{// $1})
@@ -44,3 +45,4 @@ define(tmpl_low_platform_buffer, {
 	tmpl_low_platform_nontrack(, $2, $3+280, $4)
 	tmpl_low_platform_nontrack(, $2, $3+280, $4+50)
 })
+divert

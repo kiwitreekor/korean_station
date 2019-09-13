@@ -15,7 +15,6 @@ defstr({STR_PARAM_MODE_DESC}, {"일반: 모든 역 조각을 사용 가능하게
 })
 defstr({STR_PARAM_MODE_LIST_NORMAL}, {"일반"})
 defstr({STR_PARAM_MODE_LIST_HIGHPLATFORMS}, {"고상홈만"})
-defstr({STR_PARAM_MODE_LIST_COMPAT}, {"호환성"})
 
 defstr({STR_PARAM_PSDSFX_NAME}, {"스크린도어가 열리고 닫힐 때 효과음 재생"})
 defstr({STR_PARAM_PSDSFX_DESC}, {"이 매개 변수를 '예'로 설정하면 스크린도어가 열리고 닫힐 때 효과음이 나게 됩니다."})

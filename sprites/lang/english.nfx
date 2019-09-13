@@ -22,7 +22,6 @@ defstr({STR_PARAM_MODE_DESC}, {"Normal: Disable compatibility mode and enable al
 
 defstr({STR_PARAM_MODE_LIST_NORMAL}, {"Normal"})
 defstr({STR_PARAM_MODE_LIST_HIGHPLATFORMS}, {"High platforms only"})
-defstr({STR_PARAM_MODE_LIST_COMPAT}, {"Compatibility"})
 
 defstr({STR_PARAM_PSDSFX_NAME}, {"Play sound effects when screendoor closes or opens"})
 defstr({STR_PARAM_PSDSFX_DESC, {"If you set this setting on}, it will make sound when screendoor closes or opens."})

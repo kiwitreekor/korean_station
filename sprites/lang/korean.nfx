@@ -5,15 +5,13 @@ defstr({STR_GRF_DESC}, {"copyright 2017 - 2019 " T_WHITE "kiwitree"
 	CRLF T_LGRAY "버그 제보: " T_LBLUE STR_GRF_CONTACT 
 	CRLF T_BLACK "라이선스: " T_WHITE STR_GRF_LICENSE
 	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다."}, "")
-	CRLF CRLF T_ORANGE "v0.4 이하와 호환되지 않습니다. 업데이트 시 주의하십시오."
 })
 
 defstr({STR_GRF_NAME_PART2}, {"키위트리 한국역 세트 " STR_GRF_VERSION " Part 2"})
 
 defstr({STR_PARAM_MODE_NAME}, {"모드"})
 defstr({STR_PARAM_MODE_DESC}, {"일반: 모든 역 조각을 사용 가능하게 합니다." 
-	CRLF "고상홈만: 고상홈을 제외한 역 조각을 비활성화합니다." 
-	CRLF "호환성: v0.4 이하를 위한 호환성 모드를 활성화합니다."
+	CRLF "고상홈만: 고상홈을 제외한 역 조각을 비활성화합니다."
 })
 defstr({STR_PARAM_MODE_LIST_NORMAL}, {"일반"})
 defstr({STR_PARAM_MODE_LIST_HIGHPLATFORMS}, {"고상홈만"})

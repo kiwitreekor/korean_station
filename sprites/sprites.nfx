@@ -308,18 +308,30 @@ spriteblock(
 		sprite(platforms.png    8bpp 730  930 32 21   0   0 normal)
 // buffer platforms
 		tmpl_high_platform_buffer(spr_platform_buffer, platforms.png, 900, 10)
-		tmpl_low_platform_buffer(spr_platform_l_buffer, platforms.png, 900, 110)
-		tmpl_low_platform_buffer(spr_platform_la_buffer, platforms.png, 900, 210)
+		tmpl_low_platform_buffer(spr_platform_l_buffer, platforms.png, 900, 70)
+		tmpl_low_platform_buffer(spr_platform_la_buffer, platforms.png, 900, 130)
 		
-		tmpl_high_platform_buffer(spr_platform_buffer_s, platforms.png, 900, 310)
-		tmpl_low_platform_buffer(spr_platform_l_buffer_s, platforms.png, 900, 410)
-		tmpl_low_platform_buffer(spr_platform_la_buffer_s, platforms.png, 900, 510)
+		tmpl_high_platform_buffer(spr_platform_buffer_s, platforms.png, 900, 190)
+		tmpl_low_platform_buffer(spr_platform_l_buffer_s, platforms.png, 900, 250)
+		tmpl_low_platform_buffer(spr_platform_la_buffer_s, platforms.png, 900, 310)
+		
+		tmpl_high_platform_buffer(spr_platform_buffer_snow, platforms.png, 900, 370)
+		tmpl_low_platform_buffer(spr_platform_l_buffer_snow, platforms.png, 900, 430)
+		tmpl_low_platform_buffer(spr_platform_la_buffer_snow, platforms.png, 900, 490)
+		
+		tmpl_high_platform_buffer_end(spr_platform_buffer_end, platforms.png, 1100, 10)
+		tmpl_low_platform_buffer_end(spr_platform_l_buffer_end, platforms.png, 1100, 70)
+		tmpl_low_platform_buffer_end(spr_platform_la_buffer_end, platforms.png, 1100, 130)
+		
+		tmpl_high_platform_buffer_end(spr_platform_buffer_end_snow, platforms.png, 1100, 370)
+		tmpl_low_platform_buffer_end(spr_platform_l_buffer_end_snow, platforms.png, 1100, 430)
+		tmpl_low_platform_buffer_end(spr_platform_la_buffer_end_snow, platforms.png, 1100, 490)
 		
 		sprite(spr_buffer,
-			   platforms.png    8bpp 520  430 14 12   0 -18 normal)
-		sprite(platforms.png    8bpp 500  430 14 12 -10 -18 normal)
-		sprite(platforms.png    8bpp 560  430 14 14   0 -15 normal)
-		sprite(platforms.png    8bpp 540  430 14 14 -10 -15 normal)
+			   platforms.png    8bpp 520  430 14 12  -6  -6 normal)
+		sprite(platforms.png    8bpp 500  430 14 12  -8  -6 normal)
+		sprite(platforms.png    8bpp 560  430 14 14  -6  -6 normal)
+		sprite(platforms.png    8bpp 540  430 14 14  -8  -6 normal)
 // custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)

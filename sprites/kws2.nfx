@@ -393,9 +393,9 @@ layout(BUFFER_LAP_A_RF_B, LAYOUT_BUFFER_LAP_A_RF_B)
 layout(BUFFER_LAP_B_RF_B, LAYOUT_BUFFER_LAP_B_RF_B)
 layout(BUFFER_LAP_C_RF_B, LAYOUT_BUFFER_LAP_C_RF_B)
 
-def({sw_buffer_layout_offset}) tinfo_trackconnect(shiftmask(0, 0x02),
-	cbr(0) if(0)
-	cbr(2) else
+def({sw_buffer_end_offset}) subroutine(sw_terrain_snow,
+	cbr(spr_platform_buffer_end_snow - spr_platform_buffer_end) if(1)
+	cbr(0) else
 )
 
 def({sw_buffer_shadow_offset}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
@@ -403,14 +403,24 @@ def({sw_buffer_shadow_offset}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_S
 	cbr(0) else
 )
 
-def({sw_buffer_shadow_layout_offset}) calculate({subroutine(sw_buffer_shadow_offset) + subroutine(sw_buffer_layout_offset)},
+def({sw_buffer_offset}) subroutine(sw_terrain_snow,
+	cbr(spr_platform_buffer_snow - spr_platform_buffer) if(1)
+	cbr(0) else
+)
+
+def({sw_set_reg_buffer}) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_offset), sub(sw_buffer_end_offset)}, ref(sw_set_registers))
+
+def({sw_buffer_layout_sub1}) tinfo_trackconnect(shiftmask(0, 0x02),
+	cbr(0) if(0)
+	cbr(2) else
+)
+
+def({sw_buffer_layout}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub1)},
 	cbfail() else
 )
 
-def({sw_set_reg_buffer}) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_layout_offset), sub(sw_buffer_shadow_layout_offset)}, ref(sw_set_registers))
-
 def({sw_buffer_cb}) callback(
-	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_buffer_layout) if(CB_LAYOUT)
 	ref(sw_set_reg_buffer) else
 )
 

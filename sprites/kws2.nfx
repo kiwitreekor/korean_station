@@ -196,7 +196,7 @@ def({sw_crossing_layout}) calculate({subroutine(sw_terrain_snow) * 6 + subroutin
 )
 
 def({sw_crossing_cb}) callback(
-	ref(sw_crossing_pos) if(CB_LAYOUT)
+	ref(sw_crossing_layout) if(CB_LAYOUT)
 	ref(sw_crossing_pos) if(CB_ACONTROL, CB_AFRAME)
 	ref(sw_set_registers) else
 )

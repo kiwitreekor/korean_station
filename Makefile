@@ -30,7 +30,7 @@ all: $(GRFFILES) $(NFOFILES)
 # rule to make .nfo from .nfx
 %.nfo : %.nfx $(INCLUDES)
 	$(M4) -R m4nfo_stations.m4 $< >$@ 
-	copy count.m4 + $@ $*.tt
+	copy count32.m4 + $@ $*.tt
 	$(M4) <$*.tt >$@
 	del $*.tt
 

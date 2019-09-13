@@ -330,8 +330,8 @@ spriteblock(
 		sprite(spr_buffer,
 			   platforms.png    8bpp 520  430 14 12  -6  -6 normal)
 		sprite(platforms.png    8bpp 500  430 14 12  -8  -6 normal)
-		sprite(platforms.png    8bpp 560  430 14 14  -6  -6 normal)
-		sprite(platforms.png    8bpp 540  430 14 14  -8  -6 normal)
+		sprite(platforms.png    8bpp 560  430 14 14  -8  -7 normal)
+		sprite(platforms.png    8bpp 540  430 14 14  -5  -7 normal)
 // custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)

@@ -30,7 +30,7 @@ NFORENUMFLAGS =
 
 # rule to make test.grf from .nfo and .png
 kws1.grf : $(NFOFILES) $(PNGFILES)
-	copy count.m4 + $(strip $(NFOFILES)) sprites\kws1.tt
+	copy count32.m4 + $(strip $(NFOFILES)) sprites\kws1.tt
 	$(M4) <sprites\kws1.tt >sprites\kws1.nfo
 # $(GRFCODECPATH)$(NFORENUM) $(NFORENUMFLAGS) sprites\kws1.nfo
 	$(GRFCODECPATH)$(GRFCODEC) $(GRFCODECFLAGS) kws1.grf

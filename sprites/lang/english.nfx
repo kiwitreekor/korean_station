@@ -1,17 +1,16 @@
 setlangid(UK)
 
-define({STR_GRF_VERSION}, {"v0.6-beta1"})
+define({STR_GRF_VERSION}, {"v0.6"})
 define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
 define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
 
-define({GRF_STABLE}, 0)
+define({GRF_STABLE}, 1)
 
 defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 1"})
 defstr({STR_GRF_DESC}, {UTF8 "copyright 2017 - 2019 " T_WHITE "kiwitree" 
 	CRLF T_LGRAY "Bug Report: " T_LBLUE STR_GRF_CONTACT 
 	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
 	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version."}, "")
-	CRLF CRLF T_ORANGE "This version is not compatible with v0.4 and below. Please be careful when you update the NewGRF."
 })
 
 defstr({STR_GRF_NAME_PART2}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 2"})

@@ -405,8 +405,8 @@ spriteblock(
 		sprite(seoul.png        8bpp 100  150 78 39   0   0 normal)
 	
 		sprite(spr_seoul_part2_track,
-		       seoul.png        8bpp  10  200 64 55 -31 -13 normal)
-		sprite(seoul.png        8bpp 116  200 64 55 -31 -13 normal)
+		       seoul.png        8bpp  10  200 64 55 -31 -37 normal)
+		sprite(seoul.png        8bpp 116  200 64 55 -31 -37 normal)
 		sprite(seoul.png        8bpp  74  200 16 55 -10 -13 normal)
 		sprite(seoul.png        8bpp 100  200 16 55 -47 -13 normal)
 	

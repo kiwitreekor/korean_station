@@ -77,7 +77,7 @@ define(LAYOUT_SEOUL_STATION_PART1_LP_A, {LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYP
 define(LAYOUT_SEOUL_STATION_PART1_LP_B, {LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_B, PLT_TYPE_LOW)})
 define(LAYOUT_SEOUL_STATION_PART1_TRACK, {LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE)})
 
-define(LAYOUT_SEOUL_STATION_PART2_1, {
+define(LAYOUT_SEOUL_STATION_PART2, {
 	xtile({
 		spritelayout_ground()
 		regular(spr_seoul_part2_track, xyz(0,0,13), dxdydz(16,16,16))
@@ -86,9 +86,7 @@ define(LAYOUT_SEOUL_STATION_PART2_1, {
 		spritelayout_ground()
 		regular(spr_seoul_part2_track+2, xyz(8,0,13), dxdydz(8,16,16))
 	})
-})
-
-define(LAYOUT_SEOUL_STATION_PART2_2, {
+	
 	xtile({
 		spritelayout_ground_nontrack()
 		regular(spr_seoul_part2_ground, xyz(0,0,0), dxdydz(16,16,29))

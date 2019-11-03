@@ -550,34 +550,45 @@ def({sw_seoul_part1_cb}) callback(
 
 // Seoul Stn. (new) pt.2
 
-definestation(SEOUL_STATION_PART2_1, "",
+definestation(SEOUL_STATION_PART2, "",
 	class(CLASS_MODULAR)
 	callbacks({CB_LAYOUT})
+	nontrack({2,3})
+	nowires({2,3})
 	include_lengths({2})
 )
 
-definestation(SEOUL_STATION_PART2_2, "",
-	class(CLASS_MODULAR)
-	callbacks({CB_LAYOUT})
-	nontrack(TTD_ALLTILES)
-	nowires(TTD_ALLTILES)
-	include_lengths({2})
-	include_widths({1})
-)
+layout(SEOUL_STATION_PART2, LAYOUT_SEOUL_STATION_PART2)
 
-layout(SEOUL_STATION_PART2_1, LAYOUT_SEOUL_STATION_PART2_1)
-layout(SEOUL_STATION_PART2_2, LAYOUT_SEOUL_STATION_PART2_2)
-
-def({sw_seoul_part2_layout}) plt_index(
+def({sw_seoul_part2_1_layout}) plt_pos(
 	self(
-		cbr(0) if(nibble(1,0))
 		cbr(2) if(nibble(0,0))
 		cbr(0) else
 	)
 )
 
+def({sw_seoul_part2_2_layout}) plt_pos(
+	self(
+		cbr(6) if(nibble(0,0))
+		cbr(4) else
+	)
+)
+
+def({sw_seoul_part2_layout}) plt_numrev(
+	self(
+		ref(sw_seoul_part2_2_layout) if(0)
+		ref(sw_seoul_part2_1_layout) else
+	)
+)
+
+def({sw_seoul_part2_tiletype}) test_numrev(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
 def({sw_seoul_part2_cb}) callback(
 	ref(sw_seoul_part2_layout) if(CB_LAYOUT)
+	ref(sw_seoul_part2_tiletype) if(CB_TILETYPE)
 	ref(sw_set_registers) else
 )
 
@@ -589,7 +600,7 @@ forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART
 skipif(SEOUL_STATION_PART1_LP_B - SEOUL_STATION_PART1_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_LP_A .. SEOUL_STATION_PART1_LP_B)
 makestation(SEOUL_STATION_PART1_TRACK, default(ref(sw_seoul_part1_cb)))
-forloop(X, {makestation(X, default(ref(sw_seoul_part2_cb)))}, SEOUL_STATION_PART2_1 .. SEOUL_STATION_PART2_2)
+makestation(SEOUL_STATION_PART2, default(ref(sw_seoul_part2_cb)))
 
 // bridge_height
 

@@ -62,8 +62,9 @@ define(xtile, {dnl
 
 define(spritelayout_ground, {ground(spr_ground+1)})
 define(spritelayout_ground_snow, {ground(spr_ground_snow+1)})
-define(spritelayout_ground_building, {ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_GROUND_OFFSET+$1}))})
+define(spritelayout_ground_building, {_ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_BUILDING_GROUND_OFFSET+$1}))})
 define(spritelayout_ground_nontrack, {_ground(spr_ground_nontrack, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
+define(spritelayout_ground_nontrack_concrete, {_ground(spr_ground_nontrack_concrete, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 include(sprites/layouts/roofs.nfx)
 include(sprites/layouts/platforms.nfx)
@@ -71,4 +72,5 @@ include(sprites/layouts/crossings.nfx)
 include(sprites/layouts/buildings.nfx)
 include(sprites/layouts/overpasses.nfx)
 include(sprites/layouts/facilities.nfx)
+include(sprites/layouts/seoul.nfx)
 divert

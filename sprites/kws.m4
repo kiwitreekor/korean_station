@@ -1,7 +1,7 @@
 define(CLASS_WAYPOINT, "WAYP")
 define(CLASS_PLATFORMS, "KWS0")
 define(CLASS_CROSSINGS, "KWS1")
-define(CLASS_BUILDINGS, "KWS2")
+define(CLASS_MODULAR, "KWS2")
 define(CLASS_FACILITIES, "KWS3")
 define(CLASS_PSD, "KWS4")
 define(CLASS_NONTRACK, "KWS5")
@@ -10,7 +10,9 @@ define(spr_ground, 1011)
 define(spr_ground_snow, 1037)
 
 define(spr_ground_nontrack, 3981)
+define(spr_ground_nontrack_concrete, 1420)
 define(spr_ground_nontrack_snow, 4550)
+define(spr_ground_road_concrete, 1313)
 
 define(PLATFORM_START, 0x00)
 define(HP_A, 0x00)
@@ -343,6 +345,19 @@ define(BUFFER_LAP_A_RF_B, 0x36)
 define(BUFFER_LAP_B_RF_B, 0x37)
 define(BUFFER_LAP_C_RF_B, 0x38)
 define(PLATFORM_BUFFER_END, 0x38)
+
+define(SEOUL_STATION_START, 0x39)
+define(SEOUL_STATION_OLD, 0x39)
+define(SEOUL_STATION_END, 0x39)
+
+define(SEOUL_STATION_BUILDING, 0x3A)
+define(SEOUL_STATION_PART1_HP_A, 0x3B)
+define(SEOUL_STATION_PART1_HP_B, 0x3C)
+define(SEOUL_STATION_PART1_LP_A, 0x3D)
+define(SEOUL_STATION_PART1_LP_B, 0x3E)
+define(SEOUL_STATION_PART1_TRACK, 0x3F)
+define(SEOUL_STATION_PART2_1, 0x40)
+define(SEOUL_STATION_PART2_2, 0x41)
 
 
 define(PARAM_MODE, 1)

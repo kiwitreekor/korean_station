@@ -335,6 +335,7 @@ spriteblock(
 // custom grounds
 		sprite(spr_ground_building,
 			   buildings.png    8bpp  10  250 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  250 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  10  800 64 31 -31   0 normal) // snow
 		sprite(buildings.png    8bpp  90  800 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  10  840 64 31 -31   0 normal)
@@ -348,4 +349,70 @@ spriteblock(
 		sprite(buildings.png    8bpp  10 1000 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  90 1000 64 31 -31   0 normal)
 	)
+// Seoul Station
+		sprite(spr_seoul_old,
+			   seoul.png        8bpp  10   10 32 71 -17 -53 normal)
+		sprite(seoul.png        8bpp 240   10 32 71 -11 -53 normal)
+		sprite(seoul.png        8bpp  42   10 32 71 -17 -37 normal)
+		sprite(seoul.png        8bpp 208   10 32 71 -11 -37 normal)
+		sprite(seoul.png        8bpp  74   10 32 71 -17 -21 normal)
+		sprite(seoul.png        8bpp 176   10 32 71 -11 -21 normal)
+		sprite(seoul.png        8bpp 106   10 26 71 -17  -5 normal)
+		sprite(seoul.png        8bpp 150   10 26 71  -5  -5 normal)
+		
+		sprite(spr_seoul_building,
+			   seoul.png        8bpp 350   10 32 165 -51 -133 normal)
+		sprite(seoul.png        8bpp 796   10 32 165  23 -133 normal)
+		sprite(seoul.png        8bpp 382   10 32 165 -51 -117 normal)
+		sprite(seoul.png        8bpp 764   10 32 165  23 -117 normal)
+		sprite(seoul.png        8bpp 414   10 32  69 -51 -101 normal)
+		sprite(seoul.png        8bpp 732   10 32  69  23 -101 normal)
+		sprite(seoul.png        8bpp 446   10 32  69 -51  -85 normal)
+		sprite(seoul.png        8bpp 700   10 32  69  23  -85 normal)
+		sprite(seoul.png        8bpp 478   10 32  69 -51  -69 normal)
+		sprite(seoul.png        8bpp 668   10 32  69  23  -69 normal)
+		sprite(seoul.png        8bpp 510   10 68  69 -51  -53 normal)
+		sprite(seoul.png        8bpp 600   10 68  69 -13  -53 normal)
+		
+		sprite(seoul.png        8bpp 414   79 32  96 -19  -80 normal)
+		sprite(seoul.png        8bpp 732   79 32  96  -9  -80 normal)
+		sprite(seoul.png        8bpp 446   79 32  96 -19  -64 normal)
+		sprite(seoul.png        8bpp 700   79 32  96  -9  -64 normal)
+		sprite(seoul.png        8bpp 478   79 32  96 -19  -48 normal)
+		sprite(seoul.png        8bpp 668   79 32  96  -9  -48 normal)
+		sprite(seoul.png        8bpp 510   79 68  96 -19  -32 normal)
+		sprite(seoul.png        8bpp 600   79 68  96 -45  -32 normal)
+		
+		sprite(spr_seoul_part1,
+			   seoul.png        8bpp 350  200 32 127 -19  -97 normal)
+		sprite(seoul.png        8bpp 782  200 32 127  23  -97 normal)
+		sprite(seoul.png        8bpp 382  200 32 127 -19  -81 normal)
+		sprite(seoul.png        8bpp 750  200 32 127  23  -81 normal)
+		sprite(seoul.png        8bpp 414  200 32 127 -19  -65 normal)
+		sprite(seoul.png        8bpp 718  200 32 127  23  -65 normal)
+		sprite(seoul.png        8bpp 446  200 32 127 -19  -49 normal)
+		sprite(seoul.png        8bpp 686  200 32 127  23  -49 normal)
+		sprite(seoul.png        8bpp 478  200 32 127 -19  -33 normal)
+		sprite(seoul.png        8bpp 654  200 32 127  23  -33 normal)
+		sprite(seoul.png        8bpp 510  200 54 127 -19  -17 normal)
+		sprite(seoul.png        8bpp 600  200 54 127 -13  -17 normal)
+	
+		sprite(spr_seoul_part1_roof,
+		       seoul.png        8bpp  10  100 78 39 -44  -2 normal)
+		sprite(seoul.png        8bpp 100  100 78 39 -47  -2 normal)
+		sprite(spr_seoul_part1_roof_glass,
+		       seoul.png        8bpp  10  150 78 39   0   0 normal)
+		sprite(seoul.png        8bpp 100  150 78 39   0   0 normal)
+	
+		sprite(spr_seoul_part2_track,
+		       seoul.png        8bpp  10  200 64 55 -31 -13 normal)
+		sprite(seoul.png        8bpp 116  200 64 55 -31 -13 normal)
+		sprite(seoul.png        8bpp  74  200 16 55 -10 -13 normal)
+		sprite(seoul.png        8bpp 100  200 16 55 -47 -13 normal)
+	
+		sprite(spr_seoul_part2_ground,
+		       seoul.png        8bpp  10  270 64 68 -31   0 normal)
+		sprite(seoul.png        8bpp 116  270 64 68 -31   0 normal)
+		sprite(seoul.png        8bpp  74  270 16 68 -10   0 normal)
+		sprite(seoul.png        8bpp 100  270 16 68 -47   0 normal)
 )

@@ -364,7 +364,7 @@ makestation(TRACK_CR, link(ref(sw_crossing_track_menu), MENU) default(ref(sw_cro
 // building blocks
 forloop(X, {
 definestation(X, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_MODULAR)
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
 )}, BUILDING_LOW .. BUILDING_HIGH)
@@ -428,30 +428,30 @@ def({sw_building_y_layout_sub}) subroutine(sw_building_layout_sub2,
 )
 
 def({sw_building_ground_x_register_sub2}) subroutine(sw_building_layout_sub2,
-	cbr(1) if(0)
-	cbr(3) if(1)
-	cbr(5) if(2)
-	cbr(6) if(3)
-	cbr(7) if(4)
-	cbr(8) if(5)
-	cbr(9) if(6)
-	cbr(10) if(7)
-	cbr(11) if(8)
-	cbr(12) if(9)
+	cbr(2) if(0)
+	cbr(4) if(1)
+	cbr(6) if(2)
+	cbr(7) if(3)
+	cbr(8) if(4)
+	cbr(9) if(5)
+	cbr(10) if(6)
+	cbr(11) if(7)
+	cbr(12) if(8)
+	cbr(13) if(9)
 	cbr(0) else
 )
 
 def({sw_building_ground_y_register_sub2}) subroutine(sw_building_layout_sub2,
-	cbr(2) if(0)
-	cbr(4) if(1)
-	cbr(5) if(2)
-	cbr(8) if(3)
-	cbr(7) if(4)
-	cbr(6) if(5)
-	cbr(9) if(6)
-	cbr(12) if(7)
-	cbr(11) if(8)
-	cbr(10) if(9)
+	cbr(3) if(0)
+	cbr(5) if(1)
+	cbr(6) if(2)
+	cbr(9) if(3)
+	cbr(8) if(4)
+	cbr(7) if(5)
+	cbr(10) if(6)
+	cbr(13) if(7)
+	cbr(12) if(8)
+	cbr(11) if(9)
 	cbr(0) else
 )
 
@@ -482,7 +482,7 @@ forloop(X, {makestation(X, default(ref(sw_building_registers)))}, BUILDING_LOW .
 // modular station overpasses
 forloop(X, {
 definestation(X, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_MODULAR)
 )}, BUILDING_LOW_HP_A .. BUILDING_HIGH_TRACK)
 
 

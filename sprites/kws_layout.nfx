@@ -56,7 +56,7 @@ define(xrecolour, {dnl
 
 define(xtile, {dnl
 	pushdef({ground}, defn({xground}))pushdef({regular}, defn({xregular}))pushdef({glass}, defn({xglass}))pushdef({recolour}, defn({xrecolour}))pushdef({xyz}, defn({xxyz}))pushdef({dxdydz}, defn({xdxdydz}))dnl
-	define({_ORIENT}, 0) tile($1) define({_ORIENT}, 1) tile($1)dnl
+	define({_ORIENT}, 0) tile($*) define({_ORIENT}, 1) tile($*)dnl
 	popdef({ground})popdef({regular})popdef({glass})popdef({recolour})popdef({xyz})popdef({dxdydz})dnl
 })
 

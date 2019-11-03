@@ -467,7 +467,12 @@ def({sw_seoul_old_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-makestation(SEOUL_STATION_OLD, default(ref(sw_seoul_old_cb)))
+def({sw_seoul_old_cb_purchase}) callback(
+	reftile(tile_seoul_old_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(SEOUL_STATION_OLD, link(ref(sw_seoul_old_cb_purchase), MENU) default(ref(sw_seoul_old_cb)))
 
 // Seoul Stn. (new)
 
@@ -501,6 +506,11 @@ def({sw_seoul_building_layout}) plt_index(
 
 def({sw_seoul_building_cb}) callback(
 	ref(sw_seoul_building_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_seoul_building_cb_purchase}) callback(
+	reftile(tile_seoul_purchase) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
@@ -572,7 +582,7 @@ def({sw_seoul_part2_cb}) callback(
 )
 
 
-makestation(SEOUL_STATION_BUILDING, default(ref(sw_seoul_building_cb)))
+makestation(SEOUL_STATION_BUILDING, link(ref(sw_seoul_building_cb_purchase), MENU) default(ref(sw_seoul_building_cb)))
 
 forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_HP_B)
 

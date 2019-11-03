@@ -355,12 +355,8 @@ spriteblock(
 		tmpl_seoul_building(spr_seoul_building, seoul.png, 350, 10)
 		tmpl_seoul_part1(spr_seoul_part1, seoul.png, 350, 200)
 	
-		sprite(spr_seoul_part1_roof,
-		       seoul.png        8bpp  10  100 78 39 -44  -2 normal)
-		sprite(seoul.png        8bpp 100  100 78 39 -47  -2 normal)
-		sprite(spr_seoul_part1_roof_glass,
-		       seoul.png        8bpp  10  150 78 39   0   0 normal)
-		sprite(seoul.png        8bpp 100  150 78 39   0   0 normal)
+		tmpl_seoul_part1_roof(spr_seoul_part1_roof, seoul.png, 10, 100)
+		tmpl_seoul_part1_roof(spr_seoul_part1_roof_glass, seoul.png, 10, 150)
 	
 		sprite(spr_seoul_part2_track,
 		       seoul.png        8bpp  10  200 64 55 -31 -24 normal)
@@ -373,4 +369,7 @@ spriteblock(
 		sprite(seoul.png        8bpp 116  270 64 68 -32 -36 normal)
 		sprite(seoul.png        8bpp  74  270 16 68  17 -29 normal)
 		sprite(seoul.png        8bpp 100  270 16 68 -32 -28 normal)
+		
+		tmpl_seoul_part3(spr_seoul_part3, seoul.png, 10, 360)
+		tmpl_seoul_part3(spr_seoul_part3_glass, seoul.png, 10, 430)
 )

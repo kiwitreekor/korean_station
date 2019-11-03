@@ -405,14 +405,14 @@ spriteblock(
 		sprite(seoul.png        8bpp 100  150 78 39   0   0 normal)
 	
 		sprite(spr_seoul_part2_track,
-		       seoul.png        8bpp  10  200 64 55 -31 -37 normal)
-		sprite(seoul.png        8bpp 116  200 64 55 -31 -37 normal)
-		sprite(seoul.png        8bpp  74  200 16 55 -10 -13 normal)
-		sprite(seoul.png        8bpp 100  200 16 55 -47 -13 normal)
+		       seoul.png        8bpp  10  200 64 55 -31 -24 normal)
+		sprite(seoul.png        8bpp 116  200 64 55 -32 -23 normal)
+		sprite(seoul.png        8bpp  74  200 16 55  17 -16 normal)
+		sprite(seoul.png        8bpp 100  200 16 55 -32 -15 normal)
 	
 		sprite(spr_seoul_part2_ground,
-		       seoul.png        8bpp  10  270 64 68 -31   0 normal)
-		sprite(seoul.png        8bpp 116  270 64 68 -31   0 normal)
-		sprite(seoul.png        8bpp  74  270 16 68 -10   0 normal)
-		sprite(seoul.png        8bpp 100  270 16 68 -47   0 normal)
+		       seoul.png        8bpp  10  270 64 68 -31 -37 normal)
+		sprite(seoul.png        8bpp 116  270 64 68 -32 -36 normal)
+		sprite(seoul.png        8bpp  74  270 16 68  17 -29 normal)
+		sprite(seoul.png        8bpp 100  270 16 68 -32 -28 normal)
 )

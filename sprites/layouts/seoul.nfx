@@ -96,3 +96,22 @@ define(LAYOUT_SEOUL_STATION_PART2, {
 		regular(spr_seoul_part2_ground+2, xyz(8,0,0), dxdydz(8,16,29))
 	})
 })
+
+define(LAYOUT_SEOUL_STATION_PART3A_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		
+		regular(spr_seoul_part3, xyz(0,-16,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3_glass, xyoff(0,0))
+		
+		regular(spr_seoul_part3+2, xyz(0,0,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3_glass+2, xyoff(0,0))
+	})
+})
+
+define(LAYOUT_SEOUL_STATION_PART3A_HP_A, {LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_A, PLT_TYPE_HIGH)})
+define(LAYOUT_SEOUL_STATION_PART3A_HP_B, {LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_B, PLT_TYPE_HIGH)})
+define(LAYOUT_SEOUL_STATION_PART3A_LP_A, {LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_A, PLT_TYPE_LOW)})
+define(LAYOUT_SEOUL_STATION_PART3A_LP_B, {LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_B, PLT_TYPE_LOW)})
+define(LAYOUT_SEOUL_STATION_PART3A_TRACK, {LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE)})

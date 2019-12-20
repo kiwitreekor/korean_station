@@ -111,7 +111,7 @@ define(tmpl_seoul_part1_roof, {
 define(tmpl_seoul_part3A, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4) 32 59 ifelse($5,CHILDSPRITE_FALSE,{-31  -7},{0 0}) normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+174) eval($4) 32 59 ifelse($5,CHILDSPRITE_FALSE,{-31  -7},{0 0}) normal)
+		sprite($2 8bpp eval($3+174) eval($4) 32 59 ifelse($5,CHILDSPRITE_FALSE,{  1  -7},{0 0}) normal)
 		sprite($2 8bpp eval($3+32)  eval($4) 64 59 ifelse($5,CHILDSPRITE_FALSE,{-31 -23},{0 0}) normal)
 		sprite($2 8bpp eval($3+110) eval($4) 64 59 ifelse($5,CHILDSPRITE_FALSE,{-31 -23},{0 0}) normal)
 })
@@ -119,7 +119,7 @@ define(tmpl_seoul_part3A, {
 define(tmpl_seoul_part3B, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4) 32 50 ifelse($5,CHILDSPRITE_FALSE,{-31   2},{0 0}) normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+174) eval($4) 32 50 ifelse($5,CHILDSPRITE_FALSE,{-31   2},{0 0}) normal)
+		sprite($2 8bpp eval($3+174) eval($4) 32 50 ifelse($5,CHILDSPRITE_FALSE,{  1   2},{0 0}) normal)
 		sprite($2 8bpp eval($3+32)  eval($4) 64 50 ifelse($5,CHILDSPRITE_FALSE,{-31 -14},{0 0}) normal)
 		sprite($2 8bpp eval($3+110) eval($4) 64 50 ifelse($5,CHILDSPRITE_FALSE,{-31 -14},{0 0}) normal)
 })

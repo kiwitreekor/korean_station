@@ -265,10 +265,37 @@ layout(LAP_A_RF_B, LAYOUT_LAP_A_RF_B)
 layout(LAP_B_RF_B, LAYOUT_LAP_B_RF_B)
 layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A .. HP_C_RF_B)
+def({sw_platform_get_frame2}) anim_frame(pos(0,1),
+	cbr(4) if(0x80)
+	cbr(0) else
+)
+
+def({sw_platform_get_frame}) anim_frame(pos(0,-1),
+	cbr(4) if(0x80)
+	cbr(0) else
+)
+
+def({sw_platform_noroof_layout2}) tinfo_statid(pos(0,1),shiftmask(0,0x3FF),
+	ref(sw_platform_get_frame2) if(0x200+SEOUL_STATION_PART3A_HP_A .. 0x200+SEOUL_STATION_PART3A_TRACK)
+	ref(sw_platform_layout) else
+)
+
+def({sw_platform_noroof_layout}) tinfo_statid(pos(0,-1),shiftmask(0,0x3FF),
+	ref(sw_platform_get_frame) if(0x200+SEOUL_STATION_PART3B_HP_A .. 0x200+SEOUL_STATION_PART3B_TRACK)
+	ref(sw_platform_noroof_layout2) else
+)
+
+def({sw_platform_noroof_cb}) callback(
+	ref(sw_platform_noroof_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, HP_A .. HP_C)
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A_RF_A .. HP_C_RF_B)
 
 skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A .. LAP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, LP_A .. LP_C)
+forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A_RF_A .. LAP_C_RF_B)
 
 // crossings
 

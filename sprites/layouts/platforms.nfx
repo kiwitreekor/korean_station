@@ -30,6 +30,12 @@ define(LAYOUT_PLATFORM_BASE, {
 		platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_roof(tmp_roof, $1, $2)
 	})
+	ifelse(tmp_roof, ROOF_TYPE_NONE, {
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			platform_base($1, $2, SHADOW_TRUE)
+		})
+	})
 })
 
 define(LAYOUT_HP_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_HIGH)})

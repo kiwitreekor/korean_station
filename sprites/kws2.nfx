@@ -597,8 +597,10 @@ def({sw_seoul_part2_cb}) callback(
 forloop(X, {
 definestation(X, "",
 	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_triggers({BUILT})
 	include_widths({1})
-)}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3A_TRACK)
+)}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3B_TRACK)
 
 layout(SEOUL_STATION_PART3A_HP_A, LAYOUT_SEOUL_STATION_PART3A_HP_A)
 layout(SEOUL_STATION_PART3A_HP_B, LAYOUT_SEOUL_STATION_PART3A_HP_B)
@@ -606,17 +608,27 @@ layout(SEOUL_STATION_PART3A_LP_A, LAYOUT_SEOUL_STATION_PART3A_LP_A)
 layout(SEOUL_STATION_PART3A_LP_B, LAYOUT_SEOUL_STATION_PART3A_LP_B)
 layout(SEOUL_STATION_PART3A_TRACK, LAYOUT_SEOUL_STATION_PART3A_TRACK)
 
-def({sw_seoul_part3_layout}) plt_pos(
-	self(
-		cbr(0) if(0)
-		cbr(0) else
-	)
-)
+layout(SEOUL_STATION_PART3B_HP_A, LAYOUT_SEOUL_STATION_PART3B_HP_A)
+layout(SEOUL_STATION_PART3B_HP_B, LAYOUT_SEOUL_STATION_PART3B_HP_B)
+layout(SEOUL_STATION_PART3B_LP_A, LAYOUT_SEOUL_STATION_PART3B_LP_A)
+layout(SEOUL_STATION_PART3B_LP_B, LAYOUT_SEOUL_STATION_PART3B_LP_B)
+layout(SEOUL_STATION_PART3B_TRACK, LAYOUT_SEOUL_STATION_PART3B_TRACK)
 
 def({sw_seoul_part3_cb}) callback(
-	ref(sw_seoul_part3_layout) if(CB_LAYOUT)
+	cbr(0x80) if(CB_ACONTROL, CB_AFRAME)
 	ref(sw_set_registers) else
 )
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_MODULAR)
+)}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_TRACK)
+
+layout(SEOUL_STATION_PART3C_HP_A, LAYOUT_SEOUL_STATION_PART3C_HP_A)
+layout(SEOUL_STATION_PART3C_HP_B, LAYOUT_SEOUL_STATION_PART3C_HP_B)
+layout(SEOUL_STATION_PART3C_LP_A, LAYOUT_SEOUL_STATION_PART3C_LP_A)
+layout(SEOUL_STATION_PART3C_LP_B, LAYOUT_SEOUL_STATION_PART3C_LP_B)
+layout(SEOUL_STATION_PART3C_TRACK, LAYOUT_SEOUL_STATION_PART3C_TRACK)
 
 
 makestation(SEOUL_STATION_BUILDING, link(ref(sw_seoul_building_cb_purchase), MENU) default(ref(sw_seoul_building_cb)))
@@ -632,6 +644,16 @@ forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART
 skipif(SEOUL_STATION_PART3A_LP_B - SEOUL_STATION_PART3A_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3A_LP_A .. SEOUL_STATION_PART3A_LP_B)
 makestation(SEOUL_STATION_PART3A_TRACK, default(ref(sw_seoul_part3_cb)))
+
+forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3B_HP_A .. SEOUL_STATION_PART3B_HP_B)
+skipif(SEOUL_STATION_PART3B_LP_B - SEOUL_STATION_PART3B_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3B_LP_A .. SEOUL_STATION_PART3B_LP_B)
+makestation(SEOUL_STATION_PART3B_TRACK, default(ref(sw_seoul_part3_cb)))
+
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_HP_B)
+skipif(SEOUL_STATION_PART3C_LP_B - SEOUL_STATION_PART3C_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, SEOUL_STATION_PART3C_LP_A .. SEOUL_STATION_PART3C_LP_B)
+makestation(SEOUL_STATION_PART3C_TRACK, default(ref(sw_set_registers)))
 
 // bridge_height
 

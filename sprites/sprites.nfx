@@ -370,6 +370,12 @@ spriteblock(
 		sprite(seoul.png        8bpp  74  270 16 68  17 -29 normal)
 		sprite(seoul.png        8bpp 100  270 16 68 -32 -28 normal)
 		
-		tmpl_seoul_part3(spr_seoul_part3, seoul.png, 10, 360, CHILDSPRITE_FALSE)
-		tmpl_seoul_part3(spr_seoul_part3_glass, seoul.png, 10, 430, CHILDSPRITE_TRUE)
+		tmpl_seoul_part3A(spr_seoul_part3A, seoul.png, 10, 360, CHILDSPRITE_FALSE)
+		tmpl_seoul_part3A(spr_seoul_part3A_glass, seoul.png, 10, 430, CHILDSPRITE_TRUE)
+		
+		tmpl_seoul_part3B(spr_seoul_part3B, seoul.png, 10, 500, CHILDSPRITE_FALSE)
+		tmpl_seoul_part3B(spr_seoul_part3B_glass, seoul.png, 10, 560, CHILDSPRITE_TRUE)
+		
+		sprite(spr_seoul_part3C,
+			   seoul.png       8bpp 200  100 64 35 -31  -4 normal)
 )

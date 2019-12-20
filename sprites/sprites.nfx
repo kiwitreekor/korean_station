@@ -378,4 +378,5 @@ spriteblock(
 		
 		sprite(spr_seoul_part3C,
 			   seoul.png       8bpp 200  100 64 35 -31  -4 normal)
+		sprite(seoul.png       8bpp 200  100 64 35 -31  -4 normal)
 )

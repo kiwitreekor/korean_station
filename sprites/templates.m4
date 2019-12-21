@@ -160,4 +160,16 @@ define(tmpl_seoul_part4B, {
 		sprite($2 8bpp eval($3+224) eval($4)     32  80   3  -49 normal)
 		sprite($2 8bpp eval($3+300) eval($4)     32  80 -33  -49 normal)
 })
+
+define(tmpl_seoul_car, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4)     52 26 -19  0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+280) eval($4)     52 26 -31  0 normal)
+		sprite($2 8bpp eval($3+70)  eval($4)     52 26 -19  0 normal)
+		sprite($2 8bpp eval($3+350) eval($4)     52 26 -31  0 normal)
+		sprite($2 8bpp eval($3+140) eval($4)     52 26 -19  0 normal)
+		sprite($2 8bpp eval($3+420) eval($4)     52 26 -31  0 normal)
+		sprite($2 8bpp eval($3+210) eval($4)     52 26 -19  0 normal)
+		sprite($2 8bpp eval($3+490) eval($4)     52 26 -31  0 normal)
+})
 divert

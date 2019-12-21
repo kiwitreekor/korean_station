@@ -462,14 +462,21 @@ def({sw_seoul_old_layout}) plt_index(
 	)
 )
 
+def({sw_seoul_old_snow}) subroutine(sw_terrain_snow,
+	cbr(spr_seoul_old_snow - spr_seoul_old) if(1)
+	cbr(0) else
+)
+
+def({sw_set_reg_seoul_old}) setregisters(REGISTER_SEOUL_OLD_SNOW_OFFSET, sub(sw_seoul_old_snow), ref(sw_set_registers))
+
 def({sw_seoul_old_cb}) callback(
 	ref(sw_seoul_old_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_seoul_old) else
 )
 
 def({sw_seoul_old_cb_purchase}) callback(
 	reftile(tile_seoul_old_purchase) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_seoul_old) else
 )
 
 makestation(SEOUL_STATION_OLD, link(ref(sw_seoul_old_cb_purchase), MENU) default(ref(sw_seoul_old_cb)))
@@ -517,6 +524,18 @@ def({sw_seoul_building_cb_purchase}) callback(
 )
 
 
+def({sw_seoul_cars_cargo}) cargowaiting(PASS,
+	cbr(16) if(17 .. 256)
+	cbr(8) if(257 .. 2048)
+	cbr(0) else
+)
+def({sw_seoul_cars_random}) random(ARRIVE, 16, cbr(0), cbr(2), cbr(4), cbr(6))
+def({sw_seoul_cars_offset}) calculate({subroutine(sw_seoul_cars_random) + subroutine(sw_seoul_cars_cargo)},
+	cbfail() else
+)
+
+def({sw_set_reg_seoul_cars}) setregisters(REGISTER_CARS_OFFSET, sub(sw_seoul_cars_offset), ref(sw_set_registers))
+
 // Seoul Stn. (new) pt.1
 
 forloop(X, {
@@ -524,6 +543,7 @@ definestation(X, "",
 	class(CLASS_MODULAR)
 	callbacks({CB_LAYOUT})
 	include_lengths({7})
+	setcargotriggers({PASS})
 )}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_TRACK)
 
 layout(SEOUL_STATION_PART1_HP_A, LAYOUT_SEOUL_STATION_PART1_HP_A)
@@ -532,15 +552,15 @@ layout(SEOUL_STATION_PART1_LP_A, LAYOUT_SEOUL_STATION_PART1_LP_A)
 layout(SEOUL_STATION_PART1_LP_B, LAYOUT_SEOUL_STATION_PART1_LP_B)
 layout(SEOUL_STATION_PART1_TRACK, LAYOUT_SEOUL_STATION_PART1_TRACK)
 
-def({sw_seoul_part1_layout2}) plt_index(
+def({sw_seoul_part1_layout2}) plt_pos(
 	self(
-		cbr(0) if(nibble(5,0))
-		cbr(2) if(nibble(4,0))
-		cbr(4) if(nibble(3,0))
-		cbr(6) if(nibble(2,0))
-		cbr(8) if(nibble(1,0))
-		cbr(10) if(nibble(0,0))
-		cbr(12) if(nibble(6,0))
+		cbr(0) if(5)
+		cbr(2) if(4)
+		cbr(4) if(3)
+		cbr(6) if(2)
+		cbr(8) if(1)
+		cbr(10) if(0)
+		cbr(12) if(6)
 		cbr(0) else
 	)
 )
@@ -554,7 +574,7 @@ def({sw_seoul_part1_layout}) plt_size(
 
 def({sw_seoul_part1_cb}) callback(
 	ref(sw_seoul_part1_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_seoul_cars) else
 )
 
 // Seoul Stn. (new) pt.2
@@ -564,6 +584,7 @@ definestation(SEOUL_STATION_PART2, "",
 	callbacks({CB_LAYOUT})
 	nontrack({2,3})
 	nowires({2,3})
+	setcargotriggers({PASS})
 	include_lengths({2})
 )
 
@@ -598,12 +619,12 @@ def({sw_seoul_part2_tiletype}) test_numrev(
 def({sw_seoul_part2_cb}) callback(
 	ref(sw_seoul_part2_layout) if(CB_LAYOUT)
 	ref(sw_seoul_part2_tiletype) if(CB_TILETYPE)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_seoul_cars) else
 )
 
 def({sw_seoul_part2_cb_purchase}) callback(
 	reftile(tile_seoul_part2_purchase) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_seoul_cars) else
 )
 
 // Seoul Stn. (new) pt.3

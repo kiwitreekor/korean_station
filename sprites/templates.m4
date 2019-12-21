@@ -123,4 +123,12 @@ define(tmpl_seoul_part3B, {
 		sprite($2 8bpp eval($3+32)  eval($4) 64 50 ifelse($5,CHILDSPRITE_FALSE,{-31 -14},{0 0}) normal)
 		sprite($2 8bpp eval($3+110) eval($4) 64 50 ifelse($5,CHILDSPRITE_FALSE,{-31 -14},{0 0}) normal)
 })
+
+define(tmpl_seoul_part4A, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4) 56 90 ifelse($5,CHILDSPRITE_FALSE,{-31 -59},{0 0}) normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+214) eval($4) 56 90 ifelse($5,CHILDSPRITE_FALSE,{-23 -59},{0 0}) normal)
+		sprite($2 8bpp eval($3+56)  eval($4) 64 90 ifelse($5,CHILDSPRITE_FALSE,{ -7 -43},{0 0}) normal)
+		sprite($2 8bpp eval($3+150) eval($4) 64 90 ifelse($5,CHILDSPRITE_FALSE,{-55 -43},{0 0}) normal)
+})
 divert

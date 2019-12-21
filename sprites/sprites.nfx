@@ -379,4 +379,6 @@ spriteblock(
 		sprite(spr_seoul_part3C,
 			   seoul.png       8bpp 200  100 64 35 -31  -4 normal)
 		sprite(seoul.png       8bpp 200  100 64 35 -31  -4 normal)
+		
+		tmpl_seoul_part4A(spr_seoul_part4A, seoul.png, 350, 350, CHILDSPRITE_FALSE)
 )

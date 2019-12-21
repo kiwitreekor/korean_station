@@ -351,6 +351,7 @@ spriteblock(
 	)
 // Seoul Station
 		tmpl_seoul_old(spr_seoul_old, seoul.png, 10, 10)
+		tmpl_seoul_old(spr_seoul_old_snow, seoul.png, 10, 620)
 		
 		tmpl_seoul_building(spr_seoul_building, seoul.png, 350, 10)
 		tmpl_seoul_part1(spr_seoul_part1, seoul.png, 350, 200)
@@ -381,6 +382,9 @@ spriteblock(
 		sprite(seoul.png       8bpp 200  100 64 35 -31  -4 normal)
 		
 		tmpl_seoul_part4A(spr_seoul_part4A, seoul.png, 350, 350)
-		
 		tmpl_seoul_part4B(spr_seoul_part4B, seoul.png, 350, 500)
+		
+		tmpl_seoul_car(spr_seoul_car, seoul.png, 350, 690)
+		tmpl_seoul_car(spr_seoul_car2, seoul.png, 350, 740)
+		tmpl_seoul_car(spr_seoul_car3, seoul.png, 350, 790)
 )

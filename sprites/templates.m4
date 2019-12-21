@@ -63,8 +63,8 @@ define(tmpl_seoul_old, {
 
 define(tmpl_seoul_building, {
 	sprite(ifelse($1,,,{$1,})
-		   $2 8bpp eval($3)     eval($4)    32 165 -51 -133 normal) ifelse($1,,,{// $1})
-	sprite($2 8bpp eval($3+446) eval($4)    32 165  21 -133 normal)
+		   $2 8bpp eval($3)     eval($4)    32 165 -19 -117 normal) ifelse($1,,,{// $1})
+	sprite($2 8bpp eval($3+446) eval($4)    32 165 -11 -117 normal)
 	sprite($2 8bpp eval($3+32)  eval($4)    32 165 -51 -117 normal)
 	sprite($2 8bpp eval($3+414) eval($4)    32 165  21 -117 normal)
 	sprite($2 8bpp eval($3+64)  eval($4)    32  69 -51 -101 normal)

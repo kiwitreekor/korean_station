@@ -497,7 +497,7 @@ layout(SEOUL_STATION_BUILDING, LAYOUT_SEOUL_STATION_BUILDING)
 
 def({sw_seoul_building_layout}) plt_index(
 	self(
-		cbr(0) if(nibble(5,1))
+		cbr(0) if(nibble(5,0))
 		cbr(2) if(nibble(4,1))
 		cbr(4) if(nibble(3,1))
 		cbr(6) if(nibble(2,1))

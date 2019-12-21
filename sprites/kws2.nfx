@@ -500,7 +500,9 @@ def({sw_seoul_building_layout}) plt_index(
 		cbr(14) if(nibble(4,2))
 		cbr(16) if(nibble(3,2))
 		cbr(18) if(nibble(2,2))
-		cbr(20) else
+		cbr(20) if(nibble(1,2))
+		cbr(20) if(nibble(0,2))
+		cbr(22) else
 	)
 )
 
@@ -530,7 +532,7 @@ layout(SEOUL_STATION_PART1_LP_A, LAYOUT_SEOUL_STATION_PART1_LP_A)
 layout(SEOUL_STATION_PART1_LP_B, LAYOUT_SEOUL_STATION_PART1_LP_B)
 layout(SEOUL_STATION_PART1_TRACK, LAYOUT_SEOUL_STATION_PART1_TRACK)
 
-def({sw_seoul_part1_layout}) plt_index(
+def({sw_seoul_part1_layout2}) plt_index(
 	self(
 		cbr(0) if(nibble(5,0))
 		cbr(2) if(nibble(4,0))
@@ -540,6 +542,20 @@ def({sw_seoul_part1_layout}) plt_index(
 		cbr(10) if(nibble(0,0))
 		cbr(12) if(nibble(6,0))
 		cbr(0) else
+	)
+)
+
+def({sw_seoul_part1_layout}) plt_size(
+	self(
+		cbr(12) if(nibble(1,1))
+		ref(sw_seoul_part1_layout2) else
+	)
+)
+
+def({sw_seoul_part1_layout3}) plt_size(
+	self(
+		cbr(12) if(nibble(1,1))
+		ref(sw_seoul_part1_layout2) else
 	)
 )
 
@@ -589,6 +605,11 @@ def({sw_seoul_part2_tiletype}) test_numrev(
 def({sw_seoul_part2_cb}) callback(
 	ref(sw_seoul_part2_layout) if(CB_LAYOUT)
 	ref(sw_seoul_part2_tiletype) if(CB_TILETYPE)
+	ref(sw_set_registers) else
+)
+
+def({sw_seoul_part2_cb_purchase}) callback(
+	reftile(tile_seoul_part2_purchase) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
@@ -670,6 +691,52 @@ def({sw_seoul_part4a_cb_purchase}) callback(
 )
 
 
+definestation(SEOUL_STATION_PART4B, "",
+	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({6})
+	include_widths({2})
+)
+
+layout(SEOUL_STATION_PART4B, LAYOUT_SEOUL_STATION_PART4B)
+
+def({sw_seoul_part4b_layout2}) plt_index(
+	self(
+		cbr(0) if(nibble(5,0))
+		cbr(2) if(nibble(4,0))
+		cbr(4) if(nibble(3,0))
+		cbr(6) if(nibble(2,0))
+		cbr(8) if(nibble(1,0))
+		cbr(10) if(nibble(0,0))
+		cbr(12) if(nibble(5,1))
+		cbr(14) if(nibble(4,1))
+		cbr(16) if(nibble(3,1))
+		cbr(18) if(nibble(2,1))
+		cbr(20) if(nibble(1,1))
+		cbr(22) else
+	)
+)
+
+def({sw_seoul_part4b_layout}) plt_size(
+	self(
+		ref(sw_seoul_part4b_layout2) if(nibble(6,2))
+		cbr(24) else
+	)
+)
+
+def({sw_seoul_part4b_cb}) callback(
+	ref(sw_seoul_part4b_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_seoul_part4b_cb_purchase}) callback(
+	reftile(tile_seoul_part4b_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
 makestation(SEOUL_STATION_BUILDING, link(ref(sw_seoul_building_cb_purchase), MENU) default(ref(sw_seoul_building_cb)))
 
 forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_HP_B)
@@ -677,7 +744,7 @@ skipif(SEOUL_STATION_PART1_LP_B - SEOUL_STATION_PART1_LP_A + 1, getowngrfparamet
 forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_LP_A .. SEOUL_STATION_PART1_LP_B)
 makestation(SEOUL_STATION_PART1_TRACK, default(ref(sw_seoul_part1_cb)))
 
-makestation(SEOUL_STATION_PART2, default(ref(sw_seoul_part2_cb)))
+makestation(SEOUL_STATION_PART2, link(ref(sw_seoul_part2_cb_purchase), MENU) default(ref(sw_seoul_part2_cb)))
 
 forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3A_HP_B)
 skipif(SEOUL_STATION_PART3A_LP_B - SEOUL_STATION_PART3A_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
@@ -695,6 +762,7 @@ forloop(X, {makestation(X, default(ref(sw_set_registers)))}, SEOUL_STATION_PART3
 makestation(SEOUL_STATION_PART3C_TRACK, default(ref(sw_set_registers)))
 
 makestation(SEOUL_STATION_PART4A, link(ref(sw_seoul_part4a_cb_purchase), MENU) default(ref(sw_seoul_part4a_cb)))
+makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) default(ref(sw_seoul_part4b_cb)))
 
 // bridge_height
 
@@ -715,3 +783,4 @@ setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,
 stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)
 stationnames(PSD_ADDITIONAL_START, STR_PSD_ADDITIONAL)
 stationnames(PLATFORM_BUFFER_START, STR_PLATFORM_BUFFER)
+stationnames(SEOUL_STATION_START, STR_SEOUL_STATION)

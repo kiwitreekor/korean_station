@@ -37,8 +37,13 @@ define(LAYOUT_SEOUL_STATION_BUILDING, {
 		xtile({
 			spritelayout_ground_nontrack_concrete()
 			regular(spr_seoul_building+X*2, xyz(0,0,0), dxdydz(16,16,40))
+			ifelse(eval(X>=8 && X<=9), 1, {spritelayout_passengerB(0)})
 		})
 	}, 0 .. 9)
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		spritelayout_passengerB(0)
+	})
 	xtile({
 		spritelayout_ground_nontrack_concrete()
 	})
@@ -94,6 +99,14 @@ define(LAYOUT_SEOUL_STATION_PART2, {
 	xtile({
 		spritelayout_ground_nontrack()
 		regular(spr_seoul_part2_ground+2, xyz(8,0,0), dxdydz(8,16,29))
+	})
+	
+	xtile(tile_seoul_part2_purchase, {
+		spritelayout_ground_nontrack()
+		regular(spr_seoul_part2_track+2, xyz(-4,-16,13), dxdydz(8,16,16))
+		regular(spr_seoul_part2_track, xyz(4,-16,13), dxdydz(16,16,16))
+		regular(spr_seoul_part2_ground+2, xyz(-4,0,0), dxdydz(8,16,29))
+		regular(spr_seoul_part2_ground, xyz(4,0,0), dxdydz(16,16,29))
 	})
 })
 
@@ -167,5 +180,30 @@ define(LAYOUT_SEOUL_STATION_PART4A, {
 		spritelayout_ground_nontrack_concrete()
 		regular(spr_seoul_part4A+2,  xyz(-8,0,0),   dxdydz(16,16,40))
 		regular(spr_seoul_part4A,  xyz(8,0,0),   dxdydz(16,16,40))
+	})
+})
+
+
+define(LAYOUT_SEOUL_STATION_PART4B, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_seoul_part4B+X*2, xyz(0,0,0), dxdydz(16,16,40))
+		})
+	}, 0 .. 11)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	
+	xtile(tile_seoul_part4b_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_seoul_part4B+8,  xyz(-16,-8,0), dxdydz(16,16,40))
+		regular(spr_seoul_part4B+6,  xyz(0,-8,0),   dxdydz(16,16,40))
+		regular(spr_seoul_part4B+4,  xyz(16,-8,0),  dxdydz(16,16,40))
+		regular(spr_seoul_part4B+20,  xyz(-16,8,0),  dxdydz(16,16,40))
+		regular(spr_seoul_part4B+18,  xyz(0,8,0),    dxdydz(16,16,40))
+		regular(spr_seoul_part4B+16,  xyz(16,8,0),   dxdydz(16,16,40))
+		regular(spr_seoul_part4B+14,  xyz(32,8,0),   dxdydz(16,16,40))
 	})
 })

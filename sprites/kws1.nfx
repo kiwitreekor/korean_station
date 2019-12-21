@@ -229,6 +229,12 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 )}, PLATFORM_START .. PLATFORM_END)
 
+
+definestation(VOID_TILE, "",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+)
+
 layout(HP_A, LAYOUT_HP_A)
 layout(HP_B, LAYOUT_HP_B)
 layout(HP_C, LAYOUT_HP_C)
@@ -265,6 +271,8 @@ layout(LAP_A_RF_B, LAYOUT_LAP_A_RF_B)
 layout(LAP_B_RF_B, LAYOUT_LAP_B_RF_B)
 layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
 
+layout(VOID_TILE, LAYOUT_VOID)
+
 def({sw_platform_get_frame2}) anim_frame(pos(0,1),
 	cbr(4) if(0x80)
 	cbr(0) else
@@ -296,6 +304,8 @@ forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A_RF_A .. HP_C_RF_
 skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, LP_A .. LP_C)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A_RF_A .. LAP_C_RF_B)
+
+makestation(VOID_TILE, default(ref(sw_platform_cb)))
 
 // crossings
 

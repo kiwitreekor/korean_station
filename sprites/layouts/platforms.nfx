@@ -38,6 +38,15 @@ define(LAYOUT_PLATFORM_BASE, {
 	})
 })
 
+define(LAYOUT_VOID, {
+	xtile({
+		spritelayout_ground()
+	})
+	xtile({
+		spritelayout_ground_snow()
+	})
+})
+
 define(LAYOUT_HP_A, {LAYOUT_PLATFORM_BASE(PLT_TYPE_A, PLT_TYPE_HIGH)})
 define(LAYOUT_HP_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_B, PLT_TYPE_HIGH)})
 define(LAYOUT_HP_C, {LAYOUT_PLATFORM_BASE(PLT_TYPE_C, PLT_TYPE_HIGH)})

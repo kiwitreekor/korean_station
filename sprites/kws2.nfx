@@ -552,13 +552,6 @@ def({sw_seoul_part1_layout}) plt_size(
 	)
 )
 
-def({sw_seoul_part1_layout3}) plt_size(
-	self(
-		cbr(12) if(nibble(1,1))
-		ref(sw_seoul_part1_layout2) else
-	)
-)
-
 def({sw_seoul_part1_cb}) callback(
 	ref(sw_seoul_part1_layout) if(CB_LAYOUT)
 	ref(sw_set_registers) else

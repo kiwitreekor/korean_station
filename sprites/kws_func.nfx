@@ -62,7 +62,7 @@ foreachi({i}, act2_list_all, {dnl
 ifdef(format({{act2_list_%d}}, i), {dnl
 ifelse(eval(cur_loc > act2_list(i)), 1, {dnl
 define({tmp_list}, free_act2_ids)dnl
-define({free_act2_ids}, join({|}, i, tmp_list))dnl
+define({free_act2_ids}, join({|}, tmp_list, i))dnl
 act2_list_remove(i)dnl
 })dnl
 })dnl

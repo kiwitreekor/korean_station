@@ -471,5 +471,5 @@ define(ROOF_TYPE_NONE, 0)
 define(GRFID_KWS_PART1, "KW" 00 01)
 define(GRFID_KWS_PART2, "KW" 00 02)
 
-define(GRF_VERSION, 670)
+define(GRF_VERSION, 680)
 define(GRF_MIN_VERSION, 640)

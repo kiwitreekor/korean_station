@@ -552,15 +552,15 @@ layout(SEOUL_STATION_PART1_LP_A, LAYOUT_SEOUL_STATION_PART1_LP_A)
 layout(SEOUL_STATION_PART1_LP_B, LAYOUT_SEOUL_STATION_PART1_LP_B)
 layout(SEOUL_STATION_PART1_TRACK, LAYOUT_SEOUL_STATION_PART1_TRACK)
 
-def({sw_seoul_part1_layout2}) plt_index(
+def({sw_seoul_part1_layout2}) plt_pos(
 	self(
-		cbr(0) if(nibble(5,0))
-		cbr(2) if(nibble(4,0))
-		cbr(4) if(nibble(3,0))
-		cbr(6) if(nibble(2,0))
-		cbr(8) if(nibble(1,0))
-		cbr(10) if(nibble(0,0))
-		cbr(12) if(nibble(6,0))
+		cbr(0) if(5)
+		cbr(2) if(4)
+		cbr(4) if(3)
+		cbr(6) if(2)
+		cbr(8) if(1)
+		cbr(10) if(0)
+		cbr(12) if(6)
 		cbr(0) else
 	)
 )

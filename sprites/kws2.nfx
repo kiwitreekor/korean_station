@@ -780,7 +780,7 @@ makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) d
 
 // bridge_height
 
-skipif(3, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+skipif(4, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(CROSSING_HIGH_START .. CROSSING_HIGH_END,
 	bridge_height({2,2,2,2})
@@ -788,6 +788,10 @@ setproperties(CROSSING_HIGH_START .. CROSSING_HIGH_END,
 
 setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END,
 	bridge_height({3,3,3,3})
+)
+
+setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END,
+	bridge_height({2,2,2,2})
 )
 
 setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,

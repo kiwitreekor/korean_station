@@ -544,6 +544,7 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 	include_lengths({7})
 	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
 )}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_TRACK)
 
 layout(SEOUL_STATION_PART1_HP_A, LAYOUT_SEOUL_STATION_PART1_HP_A)

@@ -70,12 +70,12 @@ define(LAYOUT_SEOUL_STATION_PART1_BASE, {
 	})
 	xtile({
 		spritelayout_ground()
-		regular(spr_seoul_part1+2, xyz(0,0,20), dxdydz(16,16,20))
+		regular(spr_seoul_part1+2, xyz(0,0,20), dxdydz(16,16,10))
 	})
 	xtile({
 		spritelayout_ground()
 		regular(spr_seoul_part1+4, xyz(0,0,20), dxdydz(16,16,10))
-		spritelayout_cars(-4, 33)
+		spritelayout_cars(-3, 33)
 	})
 	xtile({
 		spritelayout_ground()
@@ -88,7 +88,7 @@ define(LAYOUT_SEOUL_STATION_PART1_BASE, {
 	xtile({
 		spritelayout_ground()
 		regular(spr_seoul_part1+10, xyz(0,0,20), dxdydz(16,16,10))
-		spritelayout_cars(5, 36)
+		spritelayout_cars(6, 36)
 	})
 	
 	xtile({

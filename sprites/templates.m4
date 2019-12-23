@@ -128,8 +128,10 @@ define(tmpl_seoul_part4A, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4) 56 90 -31 -58 normal) ifelse($1,,,{// $1})
 		sprite($2 8bpp eval($3+214) eval($4) 56 90 -24 -58 normal)
-		sprite($2 8bpp eval($3+56)  eval($4) 64 90  -7 -42 normal)
-		sprite($2 8bpp eval($3+150) eval($4) 64 90 -56 -42 normal)
+		sprite($2 8bpp eval($3+56)  eval($4) 32 90  -7 -42 normal)
+		sprite($2 8bpp eval($3+182) eval($4) 32 90 -24 -42 normal)
+		sprite($2 8bpp eval($3+88)  eval($4) 32 90  -7 -26 normal)
+		sprite($2 8bpp eval($3+150) eval($4) 32 90 -24 -26 normal)
 })
 
 define(tmpl_seoul_part4B, {

@@ -195,7 +195,7 @@ define(LAYOUT_SEOUL_STATION_PART4A, {
 			spritelayout_ground_nontrack_concrete()
 			regular(spr_seoul_part4A+X*2, xyz(0,0,0), dxdydz(16,16,40))
 		})
-	}, 0 .. 1)
+	}, 0 .. 2)
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()

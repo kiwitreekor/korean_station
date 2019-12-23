@@ -1003,9 +1003,13 @@ def({sw_psd_menu_cb}) callback(
 
 forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
-skipif(5, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+skipif(7, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(PLATFORM_START .. CROSSING_END,
+	bridge_height({2,2,2,2})
+)
+
+setproperties(NONTRACK_START .. NONTRACK_END,
 	bridge_height({2,2,2,2})
 )
 
@@ -1023,6 +1027,10 @@ setproperties(LIGHT_HP_A .. LIGHT_LAP_C,
 
 setproperties(PSD_START .. PSD_END,
 	bridge_height({2,2,2,2})
+)
+
+setproperties(VOID_TILE,
+	bridge_height({1,1,1,1})
 )
 
 

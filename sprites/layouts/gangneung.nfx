@@ -14,34 +14,40 @@ define(LAYOUT_GANGNEUNG_BASE, {
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
 		_regular(spr_ground_road_concrete+6, xyz(0,-16,8), dxdydz(16,16,0), TTD)
 		spritelayout_gangneung_road()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
 		_regular(spr_ground_road_concrete+5, xyz(0,-16,8), dxdydz(16,16,0), TTD)
 		spritelayout_gangneung_road()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
 		regular(spr_ground_road_concrete+4, xyz(0,16,8), dxdydz(16,16,0), TTD)
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
 		_regular(spr_ground_road_concrete+3, xyz(0,16,8), dxdydz(16,16,0), TTD)
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 	})
 	
 	xtile(tile_gangneung_purchase, {

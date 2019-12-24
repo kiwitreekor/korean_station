@@ -9,8 +9,8 @@ define(spritelayout_platformB, {regular(get_platform_sprite($1)+2, xyz(0, 10, 0)
 define(spritelayout_platform_nontrack, {regular(get_platform_nontrack_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
 define(spritelayout_platform, {ifelse($1, PLT_TYPE_A, {spritelayout_platformA($2, $3)}, $1, PLT_TYPE_B, {spritelayout_platformB($2, $3)}, $1, PLT_TYPE_C, {spritelayout_platformA($2, $3) spritelayout_platformB($2, $3)}, $1, PLT_TYPE_NONTRACK, {spritelayout_platform_nontrack($2, $3)}, {})})
 
-define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, $1), dxdydz(16, 6, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
-define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, $1), dxdydz(16, 6, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
 define(spritelayout_passenger, {ifelse($1, PLT_TYPE_A, {spritelayout_passengerA($2)}, $1, PLT_TYPE_B, {spritelayout_passengerB($2)}, {spritelayout_passengerA($2) spritelayout_passengerB($2)})})
 
 define(platform_base, {

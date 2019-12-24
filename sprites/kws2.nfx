@@ -848,6 +848,7 @@ def({sw_gangneung_cb_purchase}) callback(
 )
 
 makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
+skipif(1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 
 // bridge_height

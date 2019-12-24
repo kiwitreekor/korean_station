@@ -779,9 +779,80 @@ makestation(SEOUL_STATION_PART3C_TRACK, default(ref(sw_set_registers)))
 makestation(SEOUL_STATION_PART4A, link(ref(sw_seoul_part4a_cb_purchase), MENU) default(ref(sw_seoul_part4a_cb)))
 makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) default(ref(sw_seoul_part4b_cb)))
 
+// Gangneung Stn.
+
+definestation(GANGNEUNG_HP, "",
+	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({4})
+)
+
+definestation(GANGNEUNG_LP, "",
+	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({4})
+)
+
+layout(GANGNEUNG_HP, LAYOUT_GANGNEUNG_HP)
+layout(GANGNEUNG_LP, LAYOUT_GANGNEUNG_LP)
+
+def({sw_gangneung_layout_road1}) plt_axis(
+	cbr(24) if(0)
+	cbr(26) else
+)
+
+def({sw_gangneung_layout_road2}) plt_axis(
+	cbr(32) if(0)
+	cbr(34) else
+)
+
+def({sw_gangneung_layout}) plt_index(
+	self(
+		cbr(0) if(nibble(2,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) if(nibble(0,0))
+		cbr(6) if(nibble(2,1))
+		cbr(8) if(nibble(1,1))
+		cbr(10) if(nibble(0,1))
+		cbr(12) if(nibble(2,2))
+		cbr(14) if(nibble(1,2))
+		cbr(16) if(nibble(0,2))
+		cbr(18) if(nibble(2,3))
+		cbr(20) if(nibble(1,3))
+		cbr(22) if(nibble(0,3))
+		ref(sw_gangneung_layout_road1) if(nibble(3,0))
+		cbr(28) if(nibble(3,1))
+		cbr(30) if(nibble(3,2))
+		ref(sw_gangneung_layout_road2) else
+	)
+)
+
+def({sw_gangneung_tiletype}) test_pos(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def({sw_gangneung_cb}) callback(
+	ref(sw_gangneung_layout) if(CB_LAYOUT)
+	ref(sw_gangneung_tiletype) if(CB_TILETYPE)
+	ref(sw_set_registers) else
+)
+
+def({sw_gangneung_cb_purchase}) callback(
+	reftile(tile_gangneung_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
+makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
+
 // bridge_height
 
-skipif(4, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+skipif(5, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(CROSSING_HIGH_START .. CROSSING_HIGH_END,
 	bridge_height({2,2,2,2})
@@ -797,6 +868,10 @@ setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END,
 
 setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,
 	bridge_height({2,2,2,2})
+)
+
+setproperties(GANGNEUNG_HP .. GANGNEUNG_LP,
+	bridge_height({0,0,0,1})
 )
 
 stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)

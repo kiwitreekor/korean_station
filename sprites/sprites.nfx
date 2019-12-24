@@ -387,4 +387,6 @@ spriteblock(
 		tmpl_seoul_car(spr_seoul_car, seoul.png, 350, 690)
 		tmpl_seoul_car(spr_seoul_car2, seoul.png, 350, 740)
 		tmpl_seoul_car(spr_seoul_car3, seoul.png, 350, 790)
+		
+		tmpl_gangneung(spr_gangneung, gangneung.png, 10, 10)
 )

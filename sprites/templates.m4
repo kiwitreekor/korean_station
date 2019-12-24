@@ -174,4 +174,35 @@ define(tmpl_seoul_car, {
 		sprite($2 8bpp eval($3+210) eval($4)     52 26 -19  0 normal)
 		sprite($2 8bpp eval($3+490) eval($4)     52 26 -31  0 normal)
 })
+
+define(tmpl_gangneung, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4+32)  64 32 -31   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+400) eval($4+32)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+32)  eval($4+16)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+368) eval($4+16)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+64)  eval($4)     64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+336) eval($4)     64 32 -31   0 normal)
+		
+		sprite($2 8bpp eval($3+32)  eval($4+48)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+368) eval($4+48)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+64)  eval($4+32)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+336) eval($4+32)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+96)  eval($4)     64 48 -31 -16 normal)
+		sprite($2 8bpp eval($3+304) eval($4)     64 48 -31 -16 normal)
+		
+		sprite($2 8bpp eval($3+64)  eval($4+64)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+336) eval($4+64)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+96)  eval($4+48)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+304) eval($4+48)  64 32 -31   0 normal)
+		sprite($2 8bpp eval($3+128) eval($4)     64 64 -31 -32 normal)
+		sprite($2 8bpp eval($3+272) eval($4)     64 64 -31 -32 normal)
+		
+		sprite($2 8bpp eval($3+96)  eval($4+80)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+304) eval($4+80)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+128) eval($4+64)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+272) eval($4+64)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+160) eval($4+48)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+240) eval($4+48)  64 31 -31   0 normal)
+})
 divert

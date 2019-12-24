@@ -393,4 +393,12 @@ spriteblock(
 		sprite(spr_gangneung_fence,
 			   gangneung.png   8bpp  10  130 33 22   0  -7 normal)
 		sprite(gangneung.png   8bpp  50  130 33 22 -33  -7 normal)
+		
+		sprite(spr_gangneung_fence_glass,
+			   gangneung.png   8bpp  10  160 33 22   0   0 normal)
+		sprite(gangneung.png   8bpp  50  160 33 22   0   0 normal)
+		
+		sprite(spr_gangneung_fence2,
+			   gangneung.png   8bpp  90  130 32 21   0  -6 normal)
+		sprite(gangneung.png   8bpp 130  130 32 21 -32  -6 normal)
 )

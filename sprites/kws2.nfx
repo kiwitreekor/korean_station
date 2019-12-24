@@ -871,7 +871,7 @@ setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,
 )
 
 setproperties(GANGNEUNG_HP .. GANGNEUNG_LP,
-	bridge_height({0,0,0,1})
+	bridge_height({0,1,0,0})
 )
 
 stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)

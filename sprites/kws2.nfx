@@ -787,6 +787,9 @@ definestation(GANGNEUNG_HP, "",
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
 	include_widths({4})
+	tiletypelayout(
+		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
+	)
 )
 
 definestation(GANGNEUNG_LP, "",
@@ -795,6 +798,9 @@ definestation(GANGNEUNG_LP, "",
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
 	include_widths({4})
+	tiletypelayout(
+		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
+	)
 )
 
 layout(GANGNEUNG_HP, LAYOUT_GANGNEUNG_HP)

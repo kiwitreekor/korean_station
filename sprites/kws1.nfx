@@ -168,8 +168,17 @@ def({sw_reg_roof}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
+def({sw_reg_passenger_skip_random1}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random2}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random4}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
+
 def({sw_reg_passenger_skip_sub}) cargowaiting(PASS,
-	cbr(0) if(0 .. 16)
+	cbr(0) if(0)
+	ref(sw_reg_passenger_skip_random1) if(1 .. 7)
+	ref(sw_reg_passenger_skip_random2) if(8 .. 15)
+	ref(sw_reg_passenger_skip_random3) if(16 .. 31)
+	ref(sw_reg_passenger_skip_random4) if(32 .. 63)
 	cbr(1) else
 )
 
@@ -183,12 +192,30 @@ def({sw_reg_platform}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
+def({sw_reg_passenger5_random}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(16), cbr(20))
+
+def({sw_reg_passenger_random1}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(0), cbr(4))
+def({sw_reg_passenger_random2}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(4), cbr(4))
+def({sw_reg_passenger_random3}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(4), cbr(4), cbr(8))
+def({sw_reg_passenger_random4}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(4), cbr(8), cbr(8))
+def({sw_reg_passenger_random5}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(8), cbr(8), cbr(12))
+def({sw_reg_passenger_random6}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(8), cbr(12), cbr(12))
+def({sw_reg_passenger_random7}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
+def({sw_reg_passenger_random8}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
+
 def({sw_reg_passenger}) cargowaiting(PASS,
-	cbr(0) if(17 .. 128)
-	cbr(4) if(129 .. 512)
-	cbr(8) if(513 .. 1024)
-	cbr(12) else
+	cbr(0) if(0 .. 63)
+	ref(sw_reg_passenger_random1) if(64 .. 127)
+	ref(sw_reg_passenger_random2) if(128 .. 256)
+	ref(sw_reg_passenger_random3) if(257 .. 383)
+	ref(sw_reg_passenger_random4) if(384 .. 511)
+	ref(sw_reg_passenger_random5) if(512 .. 767)
+	ref(sw_reg_passenger_random6) if(768 .. 1023)
+	ref(sw_reg_passenger_random7) if(1024 .. 2047)
+	ref(sw_reg_passenger_random8) if(2048 .. 4095)
+	ref(sw_reg_passenger5_random) else
 )
+
 def({sw_set_reg_passenger}) 
 setregisters(REGISTER_PASSENGER_OFFSET, 
 	{

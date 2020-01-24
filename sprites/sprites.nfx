@@ -28,22 +28,30 @@ spriteblock(
 		tmpl_low_platform_nontrack(spr_platform_la_snow_nontrack, platforms.png, 230, 860)
 // passengers
 		sprite(spr_passengers, 
-			   platforms.png    8bpp 500  100 44 19 -31  -1 normal) // passenger 1, platform A
-		sprite(platforms.png    8bpp 550  100 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 600  100 44 19 -31  -1 normal) // passenger 1, platform B
-		sprite(platforms.png    8bpp 650  100 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 500   70 44 19 -31  -1 normal) // passenger 2, platform A
-		sprite(platforms.png    8bpp 550   70 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 600   70 44 19 -31  -1 normal) // passenger 2, platform B
-		sprite(platforms.png    8bpp 650   70 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 500   40 44 19 -31  -1 normal) // passenger 3, platform A
-		sprite(platforms.png    8bpp 550   40 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 600   40 44 19 -31  -1 normal) // passenger 3, platform B
-		sprite(platforms.png    8bpp 650   40 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 500   10 44 19 -31  -1 normal) // passenger 4, platform A
-		sprite(platforms.png    8bpp 550   10 44 19 -11  -1 normal)
-		sprite(platforms.png    8bpp 600   10 44 19 -31  -1 normal) // passenger 4, platform B
-		sprite(platforms.png    8bpp 650   10 44 19 -11  -1 normal)
+			   platforms.png    8bpp 500  160 44 23 -31  -4 normal) // passenger 1, platform A
+		sprite(platforms.png    8bpp 550  160 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  160 44 23 -31  -4 normal) // passenger 1, platform B
+		sprite(platforms.png    8bpp 650  160 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500  130 44 23 -31  -4 normal) // passenger 2, platform A
+		sprite(platforms.png    8bpp 550  130 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  130 44 23 -31  -4 normal) // passenger 2, platform B
+		sprite(platforms.png    8bpp 650  130 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500  100 44 23 -31  -4 normal) // passenger 3, platform A
+		sprite(platforms.png    8bpp 550  100 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  100 44 23 -31  -4 normal) // passenger 3, platform B
+		sprite(platforms.png    8bpp 650  100 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   70 44 23 -31  -4 normal) // passenger 4, platform A
+		sprite(platforms.png    8bpp 550   70 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   70 44 23 -31  -4 normal) // passenger 4, platform B
+		sprite(platforms.png    8bpp 650   70 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   40 44 23 -31  -4 normal) // passenger 5-1, platform A
+		sprite(platforms.png    8bpp 550   40 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   40 44 23 -31  -4 normal) // passenger 5-1, platform B
+		sprite(platforms.png    8bpp 650   40 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   10 44 23 -31  -4 normal) // passenger 5-2, platform A
+		sprite(platforms.png    8bpp 550   10 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   10 44 23 -31  -4 normal) // passenger 5-2, platform B
+		sprite(platforms.png    8bpp 650   10 44 23 -11  -4 normal)
 // roof
 		sprite(spr_roofs,
 			   roofs.png        8bpp  10   10 44 20 -31  -2 normal) // roof A, platform A

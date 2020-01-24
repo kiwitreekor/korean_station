@@ -1,11 +1,12 @@
 divert(-1)
 include(sprites/kws.m4)
 include(sprites/kws_func.nfx)
+divert
+
+define({file_num}, 1)
 
 include(sprites/lang/english.nfx)
 include(sprites/lang/korean.nfx)
-include(sprites/strings.nfx)
-divert
 
 setfeature(_STATION)
 setpath(sprites/gfx)
@@ -431,10 +432,10 @@ definestation(X, "",
 	class(CLASS_MODULAR)
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
-)}, BUILDING_LOW .. BUILDING_HIGH)
+)}, MODULAR_LOW .. MODULAR_HIGH)
 
-layout(BUILDING_LOW, LAYOUT_BUILDING_LOW)
-layout(BUILDING_HIGH, LAYOUT_BUILDING_HIGH)
+layout(MODULAR_LOW, LAYOUT_MODULAR_LOW)
+layout(MODULAR_HIGH, LAYOUT_MODULAR_HIGH)
 
 def({sw_calc_nearby_info_sub2}) tinfo_statid(pos(0, 1),
 	cbr(0) if(0xFFFF)
@@ -537,71 +538,71 @@ def({sw_building_y_register_sub}) calculate({subroutine(sw_building_y_layout_sub
 	cbfail() else
 )
 
-def({sw_building_ground_register}) setregisters(REGISTER_BUILDING_GROUND_OFFSET, {sub(sw_building_ground_x_register_sub), sub(sw_building_ground_y_register_sub)}, ref(sw_set_registers))
-def({sw_building_registers}) setregisters(REGISTER_BUILDING_OFFSET, {sub(sw_building_x_register_sub), sub(sw_building_y_register_sub)}, ref(sw_building_ground_register))
+def({sw_building_ground_register}) setregisters(REGISTER_MODULAR_GROUND_OFFSET, {sub(sw_building_ground_x_register_sub), sub(sw_building_ground_y_register_sub)}, ref(sw_set_registers))
+def({sw_building_registers}) setregisters(REGISTER_MODULAR_OFFSET, {sub(sw_building_x_register_sub), sub(sw_building_y_register_sub)}, ref(sw_building_ground_register))
 
 // spriteset links
-forloop(X, {makestation(X, default(ref(sw_building_registers)))}, BUILDING_LOW .. BUILDING_HIGH)
+forloop(X, {makestation(X, default(ref(sw_building_registers)))}, MODULAR_LOW .. MODULAR_HIGH)
 
 // modular station overpasses
 forloop(X, {
 definestation(X, "",
 	class(CLASS_MODULAR)
-)}, BUILDING_LOW_HP_A .. BUILDING_HIGH_TRACK)
+)}, MODULAR_LOW_HP_A .. MODULAR_HIGH_TRACK)
 
 
-layout(BUILDING_LOW_HP_A, LAYOUT_BUILDING_LOW_HP_A)
-layout(BUILDING_LOW_HP_B, LAYOUT_BUILDING_LOW_HP_B)
-layout(BUILDING_LOW_HP_C, LAYOUT_BUILDING_LOW_HP_C)
+layout(MODULAR_LOW_HP_A, LAYOUT_MODULAR_LOW_HP_A)
+layout(MODULAR_LOW_HP_B, LAYOUT_MODULAR_LOW_HP_B)
+layout(MODULAR_LOW_HP_C, LAYOUT_MODULAR_LOW_HP_C)
 
-layout(BUILDING_HIGH_HP_A, LAYOUT_BUILDING_HIGH_HP_A)
-layout(BUILDING_HIGH_HP_B, LAYOUT_BUILDING_HIGH_HP_B)
-layout(BUILDING_HIGH_HP_C, LAYOUT_BUILDING_HIGH_HP_C)
+layout(MODULAR_HIGH_HP_A, LAYOUT_MODULAR_HIGH_HP_A)
+layout(MODULAR_HIGH_HP_B, LAYOUT_MODULAR_HIGH_HP_B)
+layout(MODULAR_HIGH_HP_C, LAYOUT_MODULAR_HIGH_HP_C)
 
-layout(BUILDING_LOW_LP_A, LAYOUT_BUILDING_LOW_LP_A)
-layout(BUILDING_LOW_LP_B, LAYOUT_BUILDING_LOW_LP_B)
-layout(BUILDING_LOW_LP_C, LAYOUT_BUILDING_LOW_LP_C)
+layout(MODULAR_LOW_LP_A, LAYOUT_MODULAR_LOW_LP_A)
+layout(MODULAR_LOW_LP_B, LAYOUT_MODULAR_LOW_LP_B)
+layout(MODULAR_LOW_LP_C, LAYOUT_MODULAR_LOW_LP_C)
 
-layout(BUILDING_HIGH_LP_A, LAYOUT_BUILDING_HIGH_LP_A)
-layout(BUILDING_HIGH_LP_B, LAYOUT_BUILDING_HIGH_LP_B)
-layout(BUILDING_HIGH_LP_C, LAYOUT_BUILDING_HIGH_LP_C)
+layout(MODULAR_HIGH_LP_A, LAYOUT_MODULAR_HIGH_LP_A)
+layout(MODULAR_HIGH_LP_B, LAYOUT_MODULAR_HIGH_LP_B)
+layout(MODULAR_HIGH_LP_C, LAYOUT_MODULAR_HIGH_LP_C)
 
-layout(BUILDING_LOW_LAP_A, LAYOUT_BUILDING_LOW_LAP_A)
-layout(BUILDING_LOW_LAP_B, LAYOUT_BUILDING_LOW_LAP_B)
-layout(BUILDING_LOW_LAP_C, LAYOUT_BUILDING_LOW_LAP_C)
+layout(MODULAR_LOW_LAP_A, LAYOUT_MODULAR_LOW_LAP_A)
+layout(MODULAR_LOW_LAP_B, LAYOUT_MODULAR_LOW_LAP_B)
+layout(MODULAR_LOW_LAP_C, LAYOUT_MODULAR_LOW_LAP_C)
 
-layout(BUILDING_HIGH_LAP_A, LAYOUT_BUILDING_HIGH_LAP_A)
-layout(BUILDING_HIGH_LAP_B, LAYOUT_BUILDING_HIGH_LAP_B)
-layout(BUILDING_HIGH_LAP_C, LAYOUT_BUILDING_HIGH_LAP_C)
+layout(MODULAR_HIGH_LAP_A, LAYOUT_MODULAR_HIGH_LAP_A)
+layout(MODULAR_HIGH_LAP_B, LAYOUT_MODULAR_HIGH_LAP_B)
+layout(MODULAR_HIGH_LAP_C, LAYOUT_MODULAR_HIGH_LAP_C)
 
-layout(BUILDING_LOW_TRACK, LAYOUT_BUILDING_LOW_TRACK)
-layout(BUILDING_HIGH_TRACK, LAYOUT_BUILDING_HIGH_TRACK)
+layout(MODULAR_LOW_TRACK, LAYOUT_MODULAR_LOW_TRACK)
+layout(MODULAR_HIGH_TRACK, LAYOUT_MODULAR_HIGH_TRACK)
 
 def({sw_building_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
-	cbr(0) if(0x100+BUILDING_LOW .. 0x100+BUILDING_HIGH)
+	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
 	cbr(1) else
 )
 def({sw_building_poleB}) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
-	cbr(0) if(0x100+BUILDING_LOW .. 0x100+BUILDING_HIGH)
+	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
 	cbr(1) else
 )
-def({sw_building_pole_register}) setregisters(REGISTER_BUILDING_POLE_SKIP, {sub(sw_building_poleA), sub(sw_building_poleB)}, ref(sw_set_registers))
+def({sw_building_pole_register}) setregisters(REGISTER_MODULAR_POLE_SKIP, {sub(sw_building_poleA), sub(sw_building_poleB)}, ref(sw_set_registers))
 
 def({sw_building_overpass_register_sub}) subroutine(sw_terrain_snow,
 	cbr(spr_bdoverpass_low_snow - spr_bdoverpass_low) if(1)
 	cbr(0) else
 )
-def({sw_building_overpass_register}) setregisters(REGISTER_BUILDING_OVERPASS_OFFSET, sub(sw_building_overpass_register_sub), ref(sw_building_pole_register))
+def({sw_building_overpass_register}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_building_overpass_register_sub), ref(sw_building_pole_register))
 
-def({sw_building_overpass_menu}) setregisters(REGISTER_BUILDING_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
+def({sw_building_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
 
 
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, BUILDING_LOW_HP_A .. BUILDING_HIGH_HP_C)
+forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
 
-skipif(BUILDING_HIGH_LAP_C - BUILDING_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, BUILDING_LOW_LP_A .. BUILDING_HIGH_LAP_C)
+skipif(MODULAR_HIGH_LAP_C - MODULAR_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
 
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, BUILDING_LOW_TRACK .. BUILDING_HIGH_TRACK)
+forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
 
 // non-track tiles
 forloop(X, {
@@ -1059,23 +1060,3 @@ setproperties(PSD_START .. PSD_END,
 setproperties(VOID_TILE,
 	bridge_height({1,1,1,1})
 )
-
-
-classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
-stationnames(PLATFORM_START, STR_PLATFORMS)
-stationnames(OVERPASS_START, STR_OVERPASS)
-
-classnames(CROSSING_START, STR_CLASS_CROSSINGS)
-stationnames(CROSSING_START, STR_CROSSINGS)
-
-classnames(BUILDING_START, STR_CLASS_BUILDINGS)
-stationnames(BUILDING_START, STR_BUILDINGS)
-
-classnames(NONTRACK_START, STR_CLASS_NONTRACK)
-stationnames(NONTRACK_START, STR_NONTRACK)
-
-classnames(PLATFORM_FACILITIES_START, STR_CLASS_FACILITIES)
-stationnames(PLATFORM_FACILITIES_START, STR_FACILITIES)
-
-classnames(PSD_START, STR_CLASS_PSD)
-stationnames(PSD_START, STR_PSD)

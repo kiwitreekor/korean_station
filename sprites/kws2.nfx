@@ -1,11 +1,12 @@
 divert(-1)
 include(sprites/kws.m4)
 include(sprites/kws_func.nfx)
+divert
+
+define({file_num}, 2)
 
 include(sprites/lang/english.nfx)
 include(sprites/lang/korean.nfx)
-include(sprites/strings.nfx)
-divert
 
 setfeature(_STATION)
 setpath(sprites/gfx)
@@ -326,14 +327,14 @@ definestation(X, "",
 	anim_info({7, NOLOOP})
 	anim_speed(3)
 	anim_triggers({ARRIVE, LEAVE})
-)}, PSD_BUILDING_START .. PSD_BUILDING_END)
+)}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
-layout(PSD_BUILDING_LOW_HP_A, LAYOUT_PSD_BUILDING_LOW_HP_A)
-layout(PSD_BUILDING_LOW_HP_B, LAYOUT_PSD_BUILDING_LOW_HP_B)
-layout(PSD_BUILDING_LOW_HP_C, LAYOUT_PSD_BUILDING_LOW_HP_C)
-layout(PSD_BUILDING_HIGH_HP_A, LAYOUT_PSD_BUILDING_HIGH_HP_A)
-layout(PSD_BUILDING_HIGH_HP_B, LAYOUT_PSD_BUILDING_HIGH_HP_B)
-layout(PSD_BUILDING_HIGH_HP_C, LAYOUT_PSD_BUILDING_HIGH_HP_C)
+layout(PSD_MODULAR_LOW_HP_A, LAYOUT_PSD_MODULAR_LOW_HP_A)
+layout(PSD_MODULAR_LOW_HP_B, LAYOUT_PSD_MODULAR_LOW_HP_B)
+layout(PSD_MODULAR_LOW_HP_C, LAYOUT_PSD_MODULAR_LOW_HP_C)
+layout(PSD_MODULAR_HIGH_HP_A, LAYOUT_PSD_MODULAR_HIGH_HP_A)
+layout(PSD_MODULAR_HIGH_HP_B, LAYOUT_PSD_MODULAR_HIGH_HP_B)
+layout(PSD_MODULAR_HIGH_HP_C, LAYOUT_PSD_MODULAR_HIGH_HP_C)
 
 def({sw_psd_building_cb}) callback(
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
@@ -341,7 +342,7 @@ def({sw_psd_building_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_building_cb)))}, PSD_BUILDING_START .. PSD_BUILDING_END)
+forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_building_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
 
 forloop(X, {
@@ -460,7 +461,7 @@ forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_L
 // Seoul Stn. (old)
 
 definestation(SEOUL_STATION_OLD, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
@@ -511,7 +512,7 @@ makestation(SEOUL_STATION_OLD, link(ref(sw_seoul_old_cb_purchase), MENU) default
 // Seoul Stn. (new)
 
 definestation(SEOUL_STATION_BUILDING, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
@@ -567,7 +568,7 @@ def({sw_set_reg_seoul_cars}) setregisters(REGISTER_CARS_OFFSET, sub(sw_seoul_car
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	include_lengths({7})
 	setcargotriggers({PASS})
@@ -608,7 +609,7 @@ def({sw_seoul_part1_cb}) callback(
 // Seoul Stn. (new) pt.2
 
 definestation(SEOUL_STATION_PART2, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nontrack({2,3})
 	nowires({2,3})
@@ -659,7 +660,7 @@ def({sw_seoul_part2_cb_purchase}) callback(
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers({BUILT})
 	include_widths({1})
@@ -684,7 +685,7 @@ def({sw_seoul_part3_cb}) callback(
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 )}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_TRACK)
 
 layout(SEOUL_STATION_PART3C_HP_A, LAYOUT_SEOUL_STATION_PART3C_HP_A)
@@ -697,7 +698,7 @@ layout(SEOUL_STATION_PART3C_TRACK, LAYOUT_SEOUL_STATION_PART3C_TRACK)
 // Seoul Stn. (new) pt.4
 
 definestation(SEOUL_STATION_PART4A, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
@@ -734,7 +735,7 @@ def({sw_seoul_part4a_cb_purchase}) callback(
 
 
 definestation(SEOUL_STATION_PART4B, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
@@ -809,7 +810,7 @@ makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) d
 // Gangneung Stn.
 
 definestation(GANGNEUNG_HP, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
@@ -820,7 +821,7 @@ definestation(GANGNEUNG_HP, "",
 )
 
 definestation(GANGNEUNG_LP, "",
-	class(CLASS_MODULAR)
+	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
@@ -907,8 +908,3 @@ setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,
 setproperties(GANGNEUNG_HP .. GANGNEUNG_LP,
 	bridge_height({0,1,0,0})
 )
-
-stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)
-stationnames(PSD_ADDITIONAL_START, STR_PSD_ADDITIONAL)
-stationnames(PLATFORM_BUFFER_START, STR_PLATFORM_BUFFER)
-stationnames(SEOUL_STATION_START, STR_SEOUL_STATION)

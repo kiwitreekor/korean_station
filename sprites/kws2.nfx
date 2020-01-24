@@ -886,27 +886,26 @@ makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(
 
 // bridge_height
 
-skipif(5, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+deflabel(LABEL_ALLOW_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
-setproperties(CROSSING_HIGH_START .. CROSSING_HIGH_END,
-	bridge_height({2,2,2,2})
-)
+setproperties(HP_A_CR .. HP_C_CR, bridge_height({1,1,1,1}))
+setproperties(HP_A_CR_RF_A .. HP_C_CR_RF_B, bridge_height({3,3,3,3}))
 
-setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END,
-	bridge_height({3,3,3,3})
-)
+setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END, bridge_height({3,3,3,3}))
+setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END, bridge_height({3,3,3,3}))
 
-setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END,
-	bridge_height({2,2,2,2})
-)
+setproperties(BUFFER_HP_A .. BUFFER_HP_C, bridge_height({1,1,1,1}))
+setproperties(BUFFER_LP_A .. BUFFER_LP_C, bridge_height({1,1,1,1}))
+setproperties(BUFFER_LAP_A .. BUFFER_LAP_C, bridge_height({1,1,1,1}))
 
-setproperties(PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END,
-	bridge_height({2,2,2,2})
-)
+setproperties(BUFFER_HP_A_RF_A .. BUFFER_HP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(BUFFER_LP_A_RF_A .. BUFFER_LP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(BUFFER_LAP_A_RF_A .. BUFFER_LAP_C_RF_B, bridge_height({3,3,3,3}))
 
-setproperties(GANGNEUNG_HP .. GANGNEUNG_LP,
-	bridge_height({0,1,0,0})
-)
+setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height({0,1,0,0}))
+
+placelabel(LABEL_ALLOW_BRIDGE)
 
 stationnames(CROSSING_HIGH_START, STR_CROSSINGS_HIGH)
 stationnames(PSD_ADDITIONAL_START, STR_PSD_ADDITIONAL)

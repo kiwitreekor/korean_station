@@ -1030,36 +1030,58 @@ def({sw_psd_menu_cb}) callback(
 
 forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
-skipif(7, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+// bridge_height
 
-setproperties(PLATFORM_START .. CROSSING_END,
-	bridge_height({2,2,2,2})
-)
+deflabel(LABEL_ALLOW_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
-setproperties(NONTRACK_START .. NONTRACK_END,
-	bridge_height({2,2,2,2})
-)
+setproperties(HP_A .. HP_C, bridge_height({1,1,1,1}))
+setproperties(LP_A .. LP_A, bridge_height({1,1,1,1}))
+setproperties(LAP_A .. LAP_A, bridge_height({1,1,1,1}))
 
-setproperties(OVERPASS_START .. OVERPASS_END,
-	bridge_height({3,3,3,3})
-)
+setproperties(HP_A_RF_A .. HP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(LP_A_RF_A .. LP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(LAP_A_RF_A .. LAP_C_RF_B, bridge_height({3,3,3,3}))
 
-setproperties(PLATFORM_FACILITIES_START .. WAITINGROOM_LAP_C_RF_B,
-	bridge_height({2,2,2,2})
-)
+setproperties(LP_A_CR .. LP_C_CR, bridge_height({1,1,1,1}))
+setproperties(LAP_A_CR .. LAP_C_CR, bridge_height({1,1,1,1}))
 
-setproperties(LIGHT_HP_A .. LIGHT_LAP_C,
-	bridge_height({3,3,3,3})
-)
+setproperties(LP_A_CR_RF_A .. LP_C_CR_RF_B, bridge_height({3,3,3,3}))
+setproperties(LAP_A_CR_RF_A .. LAP_C_CR_RF_B, bridge_height({3,3,3,3}))
 
-setproperties(PSD_START .. PSD_END,
-	bridge_height({2,2,2,2})
-)
+setproperties(HP_NONTRACK, bridge_height({1,1,1,1}))
+setproperties(LP_NONTRACK, bridge_height({1,1,1,1}))
+setproperties(LAP_NONTRACK, bridge_height({1,1,1,1}))
 
-setproperties(VOID_TILE,
-	bridge_height({1,1,1,1})
-)
+setproperties(HP_NONTRACK_RF_A .. HP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
+setproperties(LP_NONTRACK_RF_A .. LP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
+setproperties(LAP_NONTRACK_RF_A .. LAP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
 
+setproperties(OVERPASS_START .. OVERPASS_END, bridge_height({3,3,3,3}))
+
+setproperties(SIGN_A_HP_A .. SIGN_A_LAP_C, bridge_height({1,1,1,1}))
+setproperties(SIGN_B_HP_B_RF_A .. SIGN_B_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(SIGN_C_HP_A .. SIGN_C_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(LED_HP_A_RF_A .. LED_LAP_C_RF_B, bridge_height({3,3,3,3}))
+
+setproperties(WAITINGROOM_HP_A .. WAITINGROOM_HP_C, bridge_height({1,1,1,1}))
+setproperties(WAITINGROOM_LP_A .. WAITINGROOM_LP_C, bridge_height({1,1,1,1}))
+setproperties(WAITINGROOM_LAP_A .. WAITINGROOM_LAP_C, bridge_height({1,1,1,1}))
+
+setproperties(WAITINGROOM_HP_A_RF_A .. WAITINGROOM_HP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(WAITINGROOM_LP_A_RF_A .. WAITINGROOM_LP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(WAITINGROOM_LAP_A_RF_A .. WAITINGROOM_LAP_C_RF_B, bridge_height({3,3,3,3}))
+
+setproperties(LIGHT_HP_A .. LIGHT_LAP_C, bridge_height({3,3,3,3}))
+
+setproperties(UNDERPASS_HP_A_RF_A .. UNDERPASS_LAP_C_RF_B, bridge_height({3,3,3,3}))
+
+setproperties(PSD_HP_A .. PSD_HP_C, bridge_height({1,1,1,1}))
+setproperties(PSD_HP_A_RF_A .. PSD_HP_C_RF_B, bridge_height({1,1,1,1}))
+
+setproperties(VOID_TILE, bridge_height({1,1,1,1}))
+
+placelabel(LABEL_ALLOW_BRIDGE)
 
 classnames(PLATFORM_START, STR_CLASS_PLATFORMS)
 stationnames(PLATFORM_START, STR_PLATFORMS)

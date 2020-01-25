@@ -248,6 +248,7 @@ def({sw_platform_cb}) callback(
 )
 
 include(sprites/kws_layout.nfx)
+deflabel(LABEL_HIGHPLATFORM_MODE)
 
 // platforms
 
@@ -329,9 +330,10 @@ def({sw_platform_noroof_cb}) callback(
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, HP_A .. HP_C)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A_RF_A .. HP_C_RF_B)
 
-skipif(LAP_C_RF_B - LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, LP_A .. LP_C)
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A_RF_A .. LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(VOID_TILE, default(ref(sw_platform_cb)))
 
@@ -393,8 +395,10 @@ def({sw_crossing_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-skipif(LAP_C_CR_RF_B - LP_A_CR + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, LP_A_CR .. LAP_C_CR_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
 
 definestation(TRACK_CR, "",
 	class(CLASS_CROSSINGS)
@@ -599,8 +603,9 @@ def({sw_building_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, 
 
 forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
 
-skipif(MODULAR_HIGH_LAP_C - MODULAR_LOW_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
 
@@ -627,8 +632,9 @@ layout(LAP_NONTRACK_RF_B, LAYOUT_LAP_NONTRACK_RF_B)
 
 forloop(X, {makestation(X, default(ref(sw_set_registers)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
 
-skipif(LAP_NONTRACK_RF_B - LP_NONTRACK + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
 // overpasses
@@ -709,8 +715,9 @@ def({sw_overpass_track_cb}) callback(
 
 forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
 
-skipif(OVERPASS_LAP_C_RF_B - OVERPASS_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
 
@@ -933,32 +940,39 @@ def({sw_stasignA_menu_cb}) callback(
 // Platform + Sign A End
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_HP_A .. LIGHT_HP_C)
-skipif(LIGHT_LAP_C - LIGHT_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
-skipif(SIGN_A_LAP_C - SIGN_A_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
-skipif(SIGN_B_LAP_C_RF_B - SIGN_B_LP_B_RF_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
-skipif(SIGN_C_LAP_C_RF_B - SIGN_C_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_HP_A_RF_A .. LED_HP_C_RF_B)
-skipif(LED_LAP_C_RF_B - LED_LP_A_RF_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
-skipif(WAITINGROOM_LAP_C_RF_B - WAITINGROOM_LP_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, UNDERPASS_HP_A_RF_A .. UNDERPASS_HP_C_RF_B)
-skipif(UNDERPASS_LAP_C_RF_B - UNDERPASS_LP_A_RF_A + 1, getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, UNDERPASS_LP_A_RF_A .. UNDERPASS_LAP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, UNDERPASS_LP_A_RF_A .. UNDERPASS_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
 

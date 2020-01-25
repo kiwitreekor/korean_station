@@ -171,7 +171,7 @@ def({sw_reg_roof}) subroutine(sw_terrain_snow,
 
 def({sw_reg_passenger_skip_random1}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
 def({sw_reg_passenger_skip_random2}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(1), cbr(1))
 def({sw_reg_passenger_skip_random4}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
 
 def({sw_reg_passenger_skip_sub}) cargowaiting(PASS,
@@ -205,11 +205,11 @@ def({sw_reg_passenger_random7}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, 
 def({sw_reg_passenger_random8}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
 
 def({sw_reg_passenger}) cargowaiting(PASS,
-	cbr(0) if(0 .. 63)
-	ref(sw_reg_passenger_random1) if(64 .. 127)
-	ref(sw_reg_passenger_random2) if(128 .. 256)
-	ref(sw_reg_passenger_random3) if(257 .. 383)
-	ref(sw_reg_passenger_random4) if(384 .. 511)
+	cbr(0) if(0 .. 31)
+	ref(sw_reg_passenger_random1) if(32 .. 63)
+	ref(sw_reg_passenger_random2) if(64 .. 127)
+	ref(sw_reg_passenger_random3) if(128 .. 256)
+	ref(sw_reg_passenger_random4) if(257 .. 511)
 	ref(sw_reg_passenger_random5) if(512 .. 767)
 	ref(sw_reg_passenger_random6) if(768 .. 1023)
 	ref(sw_reg_passenger_random7) if(1024 .. 2047)

@@ -102,10 +102,10 @@ def({sw_reg_roof}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
-def({sw_reg_passenger_skip_random1}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random2}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(1), cbr(1))
-def({sw_reg_passenger_skip_random4}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random1}) random(0, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random2}) random(0, 16, cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random3}) random(0, 16, cbr(0), cbr(0), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random4}) random(0, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
 
 def({sw_reg_passenger_skip_sub}) cargowaiting(PASS,
 	cbr(0) if(0)
@@ -126,16 +126,16 @@ def({sw_reg_platform}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
-def({sw_reg_passenger5_random}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(16), cbr(20))
+def({sw_reg_passenger5_random}) random(0, 16, cbr(16), cbr(20))
 
-def({sw_reg_passenger_random1}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(0), cbr(4))
-def({sw_reg_passenger_random2}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(4), cbr(4))
-def({sw_reg_passenger_random3}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(4), cbr(4), cbr(8))
-def({sw_reg_passenger_random4}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(4), cbr(8), cbr(8))
-def({sw_reg_passenger_random5}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(8), cbr(8), cbr(12))
-def({sw_reg_passenger_random6}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(8), cbr(12), cbr(12))
-def({sw_reg_passenger_random7}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
-def({sw_reg_passenger_random8}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
+def({sw_reg_passenger_random1}) random(0, 16, cbr(0), cbr(0), cbr(0), cbr(4))
+def({sw_reg_passenger_random2}) random(0, 16, cbr(0), cbr(0), cbr(4), cbr(4))
+def({sw_reg_passenger_random3}) random(0, 16, cbr(0), cbr(4), cbr(4), cbr(8))
+def({sw_reg_passenger_random4}) random(0, 16, cbr(4), cbr(4), cbr(8), cbr(8))
+def({sw_reg_passenger_random5}) random(0, 16, cbr(4), cbr(8), cbr(8), cbr(12))
+def({sw_reg_passenger_random6}) random(0, 16, cbr(8), cbr(8), cbr(12), cbr(12))
+def({sw_reg_passenger_random7}) random(0, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
+def({sw_reg_passenger_random8}) random(0, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
 
 def({sw_reg_passenger}) cargowaiting(PASS,
 	cbr(0) if(0 .. 31)
@@ -164,11 +164,23 @@ setregisters(REGISTER_PASSENGER_OFFSET,
 	ref(sw_set_reg_overpass)
 )
 
+// re-randomisation
+def({sw_reg_passenger_rerandom}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger)
+)
+
 def({sw_ground_nontrack_register_sub}) subroutine(sw_terrain_snow,
 	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
 	cbr(0) else
 )
-def({sw_ground_nontrack_register}) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
+def({sw_ground_nontrack_register}) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_reg_passenger_rerandom))
 def({sw_set_registers}) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
 
 def({sw_platform_layout}) calculate({subroutine(sw_terrain_snow) * 2},
@@ -189,6 +201,7 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_CROSSINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
+	setcargotriggers({PASS})
 	anim_triggers({BUILT})
 )}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
 
@@ -239,6 +252,7 @@ definestation(X, "",
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_info({7, NOLOOP})
 	anim_speed(3)
+	setcargotriggers({PASS})
 	anim_triggers({ARRIVE, LEAVE})
 	include_lengths({1,2,3})
 )}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
@@ -326,6 +340,7 @@ definestation(X, "",
 	callbacks({CB_AFRAME})
 	anim_info({7, NOLOOP})
 	anim_speed(3)
+	setcargotriggers({PASS})
 	anim_triggers({ARRIVE, LEAVE})
 )}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
@@ -383,6 +398,7 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
+	setcargotriggers({PASS})
 )}, PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END)
 
 layout(BUFFER_HP_A, LAYOUT_BUFFER_HP_A)
@@ -517,6 +533,7 @@ definestation(SEOUL_STATION_BUILDING, "",
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
+	setcargotriggers({PASS})
 	include_lengths({6})
 	include_widths({3})
 )
@@ -664,6 +681,7 @@ definestation(X, "",
 	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers({BUILT})
+	setcargotriggers({PASS})
 	include_widths({1})
 )}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3B_TRACK)
 
@@ -687,6 +705,7 @@ def({sw_seoul_part3_cb}) callback(
 forloop(X, {
 definestation(X, "",
 	class(CLASS_BUILDINGS)
+	setcargotriggers({PASS})
 )}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_TRACK)
 
 layout(SEOUL_STATION_PART3C_HP_A, LAYOUT_SEOUL_STATION_PART3C_HP_A)
@@ -820,6 +839,7 @@ definestation(GANGNEUNG_HP, "",
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
 	include_widths({4})
+	setcargotriggers({PASS})
 	tiletypelayout(
 		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
 	)
@@ -831,6 +851,7 @@ definestation(GANGNEUNG_LP, "",
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
 	include_widths({4})
+	setcargotriggers({PASS})
 	tiletypelayout(
 		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
 	)

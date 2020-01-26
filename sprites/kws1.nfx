@@ -231,11 +231,23 @@ setregisters(REGISTER_PASSENGER_OFFSET,
 	ref(sw_set_reg_overpass)
 )
 
+// re-randomisation
+def({sw_reg_passenger_rerandom}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger), 
+	ref(sw_set_reg_passenger)
+)
+
 def({sw_ground_nontrack_register_sub}) subroutine(sw_terrain_snow,
 	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
 	cbr(0) else
 )
-def({sw_ground_nontrack_register}) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
+def({sw_ground_nontrack_register}) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_reg_passenger_rerandom))
 def({sw_set_registers}) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
 
 def({sw_platform_layout}) calculate({subroutine(sw_terrain_snow) * 2},
@@ -256,11 +268,13 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_PLATFORMS)
 	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
 )}, PLATFORM_START .. PLATFORM_END)
 
 
 definestation(VOID_TILE, "",
 	class(CLASS_PLATFORMS)
+	setcargotriggers({PASS})
 	callbacks({CB_LAYOUT})
 )
 
@@ -343,6 +357,7 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_CROSSINGS)
 	callbacks({CB_LAYOUT, CB_AFRAME})
+	setcargotriggers({PASS})
 	anim_triggers({BUILT})
 )}, LP_A_CR .. LAP_C_CR_RF_B)
 
@@ -402,6 +417,7 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 definestation(TRACK_CR, "",
 	class(CLASS_CROSSINGS)
+	setcargotriggers({PASS})
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers(BUILT, PERIODIC)
 )
@@ -552,6 +568,7 @@ forloop(X, {makestation(X, default(ref(sw_building_registers)))}, MODULAR_LOW ..
 forloop(X, {
 definestation(X, "",
 	class(CLASS_MODULAR)
+	setcargotriggers({PASS})
 )}, MODULAR_LOW_HP_A .. MODULAR_HIGH_TRACK)
 
 
@@ -614,6 +631,7 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_NONTRACK)
 	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
 )}, NONTRACK_START .. NONTRACK_END)
@@ -643,6 +661,7 @@ definestation(X, "",
 	class(CLASS_PLATFORMS)
 	callbacks({CB_LAYOUT})
 	include_lengths({1,2,3})
+	setcargotriggers({PASS})
 )}, OVERPASS_START .. OVERPASS_END)
 
 definestation(OVERPASS_TRACK, {"", ""},
@@ -728,6 +747,7 @@ definestation(X, "",
 	class(CLASS_FACILITIES)
 	callbacks({CB_LAYOUT})
 )}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
+	setcargotriggers({PASS})
 
 layout(SIGN_A_HP_A, LAYOUT_SIGN_A_HP_A)
 layout(SIGN_A_HP_B, LAYOUT_SIGN_A_HP_B)
@@ -985,6 +1005,7 @@ definestation(X, "",
 	anim_info({7, NOLOOP})
 	anim_speed(3)
 	anim_triggers({ARRIVE, LEAVE})
+	setcargotriggers({PASS})
 )}, PSD_START .. PSD_END)
 
 layout(PSD_HP_A, LAYOUT_PSD_HP_A)

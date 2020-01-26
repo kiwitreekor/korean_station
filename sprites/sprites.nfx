@@ -302,18 +302,18 @@ spriteblock(
 		       platforms.png    8bpp 500  400 26 15 -20  -2 normal) // underpass
 		sprite(platforms.png    8bpp 540  400 26 15  -5  -4 normal)
 // psd
-		sprite(spr_psd,
-			   platforms.png    8bpp 500  900 32 23 -31  -8 normal) // psd, platform B
-		sprite(platforms.png    8bpp 500  930 32 23   1  -8 normal)
-		sprite(platforms.png    8bpp 500  980 32 23 -31  -8 normal) // psd, platform A
-		sprite(platforms.png    8bpp 500 1010 32 23   1  -8 normal)
-		sprite(spr_psd_glass,
-			   platforms.png    8bpp 650  900 32 21   0   0 normal) // psd, glass
-		sprite(platforms.png    8bpp 650  930 32 21   0   0 normal)
-		sprite(platforms.png    8bpp 690  900 32 21   0   0 normal)
-		sprite(platforms.png    8bpp 690  930 32 21   0   0 normal)
-		sprite(platforms.png    8bpp 730  900 32 21   0   0 normal)
-		sprite(platforms.png    8bpp 730  930 32 21   0   0 normal)
+		tmpl_psd(spr_psd, platforms.png, 500, 980)
+		tmpl_psd(,        platforms.png, 500, 900)
+		tmpl_psd(,        platforms.png, 540, 980)
+		tmpl_psd(,        platforms.png, 540, 900)
+		tmpl_psd(,        platforms.png, 580, 980)
+		tmpl_psd(,        platforms.png, 580, 900)
+		
+		tmpl_psd_glass(spr_psd_glass, platforms.png, 650, 900)
+		tmpl_psd_glass(,              platforms.png, 780, 900)
+		tmpl_psd_glass(,              platforms.png, 650, 980)
+		tmpl_psd_glass(,              platforms.png, 780, 980)
+		tmpl_psd_glass(,              platforms.png, 650, 1060)
 // buffer platforms
 		tmpl_high_platform_buffer(spr_platform_buffer, platforms.png, 900, 10)
 		tmpl_low_platform_buffer(spr_platform_l_buffer, platforms.png, 900, 70)

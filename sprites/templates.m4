@@ -205,4 +205,20 @@ define(tmpl_gangneung, {
 		sprite($2 8bpp eval($3+160) eval($4+48)  64 31 -31   0 normal)
 		sprite($2 8bpp eval($3+240) eval($4+48)  64 31 -31   0 normal)
 })
+
+define(tmpl_psd, {
+		sprite(ifelse($1,,,{$1,})dnl
+$2 8bpp eval($3) eval($4)    32 23 -31  -8 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3) eval($4+30) 32 23   1  -8 normal)
+})
+
+define(tmpl_psd_glass, {
+		sprite(ifelse($1,,,{$1,})dnl
+$2 8bpp eval($3)     eval($4)    32 21   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4+30) 32 21   0   0 normal)
+		sprite($2 8bpp eval($3+40)  eval($4)    32 21   0   0 normal)
+		sprite($2 8bpp eval($3+40)  eval($4+30) 32 21   0   0 normal)
+		sprite($2 8bpp eval($3+80)  eval($4)    32 21   0   0 normal)
+		sprite($2 8bpp eval($3+80)  eval($4+30) 32 21   0   0 normal)
+})
 divert

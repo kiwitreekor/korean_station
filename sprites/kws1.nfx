@@ -1037,6 +1037,7 @@ def({sw_psd_start_pA_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 )
 
 def({sw_psd_start_pA}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_start_pA_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pA_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
@@ -1054,6 +1055,7 @@ def({sw_psd_end_pA_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 )
 
 def({sw_psd_end_pA}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_end_pA_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pA_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
@@ -1092,6 +1094,7 @@ def({sw_psd_start_pB_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 )
 
 def({sw_psd_start_pB}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_start_pB_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pB_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
@@ -1109,6 +1112,7 @@ def({sw_psd_end_pB_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 )
 
 def({sw_psd_end_pB}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_end_pB_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pB_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
@@ -1134,7 +1138,11 @@ def({sw_psd_glass_offset_pB}) calculate({subroutine(sw_psd_glass_startend_pB) * 
 	cbfail() else
 )
 
+skipif(1, OTTDVERSION, <, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_set_registers))
+
+skipif(1, OTTDVERSION, >, 0x1A000000)
+def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_set_registers))
 
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
 def({sw_psd_animframe}) anim_frame(

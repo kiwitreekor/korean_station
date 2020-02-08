@@ -120,5 +120,5 @@ define({makestation}, defn({incr_loc})defn({__xmakestation}))
 define({defstationname}, {stationnames($1, {_langid, UTF8 {$2}})})
 define({defclassname}, {classnames($1, {_langid, UTF8 {$2}})})
 
-define(tinfo_grfid, {89 6A $1 00 FF FF FF FF __byte(__count)
-__postprocess(2,$2) define({__count},0) define({__wordflag}, 0)})
+ifdef({tinfo_grfid},,{define(tinfo_grfid, {89 6A $1 00 FF FF FF FF __byte(__count)
+__postprocess(2,$2) define({__count},0) define({__wordflag}, 0)})})

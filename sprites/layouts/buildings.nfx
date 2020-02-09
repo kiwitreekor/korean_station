@@ -3,8 +3,8 @@ define(get_building_overpass_sprite, {ifelse($1, MODULAR_TYPE_LOW, spr_bdoverpas
 define(get_building_height, {ifelse($1, MODULAR_TYPE_LOW, 26, 50)})
 
 
-define(spritelayout_building, {regular(get_building_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_building_height($1)), aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_OFFSET+$2}))})
-define(spritelayout_building_overpass, {regular(get_building_overpass_sprite($1), xyz(0, 0, 12), dxdydz(16, 16, get_building_height($1)-12), aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_OVERPASS_OFFSET}))})
+define(spritelayout_building, {compcol(get_building_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_building_height($1)), aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_OFFSET+$2}))})
+define(spritelayout_building_overpass, {compcol(get_building_overpass_sprite($1), xyz(0, 0, 12), dxdydz(16, 16, get_building_height($1)-12), aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_OVERPASS_OFFSET}))})
 
 define(LAYOUT_MODULAR_BASE, {
 	tile(

@@ -94,44 +94,51 @@ define(LAYOUT_LAP_NONTRACK_RF_B, {LAYOUT_PLATFORM_BASE(PLT_TYPE_NONTRACK, PLT_TY
 
 
 define(spritelayout_buffer, {
-	ifelse($1, 0, {
-		regular(spr_buffer, xyz(6, 6, 0), dxdydz(4, 4, 8))
-	}, $1, 1, {
-		regular(spr_buffer+2, xyz(6, 6, 0), dxdydz(4, 4, 8))
+	ifelse($2, 0, {
+		ifelse($1, 0, {
+			regular(spr_buffer, xyz(6, 6, 0), dxdydz(4, 4, 8))
+		}, $1, 1, {
+			regular(spr_buffer+2, xyz(6, 6, 0), dxdydz(4, 4, 8))
+		})
+	}, $2, 1, {
+		ifelse($1, 0, {
+			regular(spr_buffer, xyz(0, 6, 0), dxdydz(4, 4, 8))
+		}, $1, 1, {
+			regular(spr_buffer+2, xyz(12, 6, 0), dxdydz(4, 4, 8))
+		})
 	})
 })
 
-define(spritelayout_platform_buffer, {
+define(spritelayout_platform_bufferA, {
 	define({tmp_reg}, {ifelse($3, 1, REGISTER_BUFFER_SHADOW_OFFSET, REGISTER_BUFFER_OFFSET)})
 	ifelse($4, 0, {
 		ifelse($1, PLT_TYPE_A, {
 			regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 			regular(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 		}, $1, PLT_TYPE_B, {
 			regular(get_platform_buffer_end_sprite($2), xyz(0, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 			regular(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
-			spritelayout_buffer($4)
 		}, $1, PLT_TYPE_C, {
 			regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 			regular(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 			regular(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, {})
 	}, $4, 1, {
 		ifelse($1, PLT_TYPE_A, {
 			regular(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 		}, $1, PLT_TYPE_B, {
 			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 			regular(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, $1, PLT_TYPE_C, {
 			regular(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
-			spritelayout_buffer($4)
+			spritelayout_buffer($4, 0)
 			regular(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, {})
 	})
@@ -142,22 +149,34 @@ define(LAYOUT_BUFFER_BASE, {
 	define({tmp_roof}, {ifelse(eval($#>2), 1, $3, ROOF_TYPE_NONE)})
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
-		spritelayout_platform_buffer($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+		spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
 		spritelayout_roof(tmp_roof, $1, $2)
 	})
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
-		spritelayout_platform_buffer($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+		spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+		spritelayout_roof(tmp_roof, $1, $2)
+	})
+	xtile({
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+		platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_buffer(0, 1)
+		spritelayout_roof(tmp_roof, $1, $2)
+	})
+	xtile({
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+		platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_buffer(1, 1)
 		spritelayout_roof(tmp_roof, $1, $2)
 	})
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
-		spritelayout_platform_buffer($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+		spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
 		spritelayout_roof(tmp_roof, $1, $2)
 	})
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
-		spritelayout_platform_buffer($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+		spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
 		spritelayout_roof(tmp_roof, $1, $2)
 	})
 })

@@ -293,34 +293,38 @@ def({sw_psd_glass_offset_anim}) anim_frame(
 
 // check psd start/end, platform A
 def({sw_psd_start_pA_kws2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_OVERPASS_HP_A, PSD_OVERPASS_HP_A_RF_A, PSD_OVERPASS_HP_A_RF_B, PSD_MODULAR_LOW_HP_A, PSD_MODULAR_HIGH_HP_A, PSD_UNDERPASS_HP_A_RF_A, PSD_UNDERPASS_HP_A_RF_B)
-	cbr(1) if(PSD_OVERPASS_HP_C, PSD_OVERPASS_HP_C_RF_A, PSD_OVERPASS_HP_C_RF_B, PSD_MODULAR_LOW_HP_C, PSD_MODULAR_HIGH_HP_C, PSD_UNDERPASS_HP_C_RF_A, PSD_UNDERPASS_HP_C_RF_B)
+	cbr(1) if(PSD_PLATFORM_A_PART2)
+	cbr(1) if(PSD_PLATFORM_C_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_start_pA_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_HP_A, PSD_HP_A_RF_A, PSD_HP_A_RF_B, PSD_HP_C, PSD_HP_C_RF_A, PSD_HP_C_RF_B)
+	cbr(1) if(PSD_PLATFORM_A_PART1)
+	cbr(1) if(PSD_PLATFORM_C_PART1)
 	cbr(0) else
 )
 
 def({sw_psd_start_pA}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_start_pA_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pA_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_end_pA_kws2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_OVERPASS_HP_A, PSD_OVERPASS_HP_A_RF_A, PSD_OVERPASS_HP_A_RF_B, PSD_MODULAR_LOW_HP_A, PSD_MODULAR_HIGH_HP_A, PSD_UNDERPASS_HP_A_RF_A, PSD_UNDERPASS_HP_A_RF_B)
-	cbr(2) if(PSD_OVERPASS_HP_C, PSD_OVERPASS_HP_C_RF_A, PSD_OVERPASS_HP_C_RF_B, PSD_MODULAR_LOW_HP_C, PSD_MODULAR_HIGH_HP_C, PSD_UNDERPASS_HP_C_RF_A, PSD_UNDERPASS_HP_C_RF_B)
+	cbr(2) if(PSD_PLATFORM_A_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_end_pA_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_HP_A, PSD_HP_A_RF_A, PSD_HP_A_RF_B, PSD_HP_C, PSD_HP_C_RF_A, PSD_HP_C_RF_B)
+	cbr(2) if(PSD_PLATFORM_A_PART1)
+	cbr(2) if(PSD_PLATFORM_C_PART1)
 	cbr(0) else
 )
 
 def({sw_psd_end_pA}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_end_pA_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pA_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
@@ -348,34 +352,38 @@ def({sw_psd_glass_offset_pA}) calculate({subroutine(sw_psd_glass_startend_pA) * 
 
 // check psd start/end, platform B
 def({sw_psd_start_pB_kws2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_OVERPASS_HP_B, PSD_OVERPASS_HP_B_RF_A, PSD_OVERPASS_HP_B_RF_B, PSD_MODULAR_LOW_HP_B, PSD_MODULAR_HIGH_HP_B, PSD_UNDERPASS_HP_B_RF_A, PSD_UNDERPASS_HP_B_RF_B)
-	cbr(1) if(PSD_OVERPASS_HP_C, PSD_OVERPASS_HP_C_RF_A, PSD_OVERPASS_HP_C_RF_B, PSD_MODULAR_LOW_HP_C, PSD_MODULAR_HIGH_HP_C, PSD_UNDERPASS_HP_C_RF_A, PSD_UNDERPASS_HP_C_RF_B)
+	cbr(1) if(PSD_PLATFORM_B_PART2)
+	cbr(1) if(PSD_PLATFORM_C_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_start_pB_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_HP_B, PSD_HP_B_RF_A, PSD_HP_B_RF_B, PSD_HP_C, PSD_HP_C_RF_A, PSD_HP_C_RF_B)
+	cbr(1) if(PSD_PLATFORM_B_PART1)
+	cbr(1) if(PSD_PLATFORM_C_PART1)
 	cbr(0) else
 )
 
 def({sw_psd_start_pB}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_start_pB_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pB_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_end_pB_kws2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_OVERPASS_HP_B, PSD_OVERPASS_HP_B_RF_A, PSD_OVERPASS_HP_B_RF_B, PSD_MODULAR_LOW_HP_B, PSD_MODULAR_HIGH_HP_B, PSD_UNDERPASS_HP_B_RF_A, PSD_UNDERPASS_HP_B_RF_B)
-	cbr(2) if(PSD_OVERPASS_HP_C, PSD_OVERPASS_HP_C_RF_A, PSD_OVERPASS_HP_C_RF_B, PSD_MODULAR_LOW_HP_C, PSD_MODULAR_HIGH_HP_C, PSD_UNDERPASS_HP_C_RF_A, PSD_UNDERPASS_HP_C_RF_B)
+	cbr(2) if(PSD_PLATFORM_B_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
 	cbr(0) else
 )
 
 def({sw_psd_end_pB_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_HP_B, PSD_HP_B_RF_A, PSD_HP_B_RF_B, PSD_HP_C, PSD_HP_C_RF_A, PSD_HP_C_RF_B)
+	cbr(2) if(PSD_PLATFORM_B_PART1)
+	cbr(2) if(PSD_PLATFORM_C_PART1)
 	cbr(0) else
 )
 
 def({sw_psd_end_pB}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
 	ref(sw_psd_end_pB_kws1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pB_kws2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else

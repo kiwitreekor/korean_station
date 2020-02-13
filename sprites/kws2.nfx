@@ -511,12 +511,18 @@ forloop(X, {makestation(X, link(ref(sw_psd_underpass_menu_cb), MENU) default(ref
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_PLATFORMS)
+	class(CLASS_BUFFERS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
-	nowires(TTD_ALLTILES)
 	setcargotriggers({PASS})
 )}, PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END)
+
+definestation(BUFFER_TRACK, "",
+	class(CLASS_BUFFERS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	setcargotriggers({PASS})
+)
 
 layout(BUFFER_HP_A, LAYOUT_BUFFER_HP_A)
 layout(BUFFER_HP_B, LAYOUT_BUFFER_HP_B)
@@ -554,6 +560,8 @@ layout(BUFFER_LAP_A_RF_B, LAYOUT_BUFFER_LAP_A_RF_B)
 layout(BUFFER_LAP_B_RF_B, LAYOUT_BUFFER_LAP_B_RF_B)
 layout(BUFFER_LAP_C_RF_B, LAYOUT_BUFFER_LAP_C_RF_B)
 
+layout(BUFFER_TRACK, LAYOUT_BUFFER_TRACK)
+
 def({sw_buffer_end_offset}) subroutine(sw_terrain_snow,
 	cbr(spr_platform_buffer_end_snow - spr_platform_buffer_end) if(1)
 	cbr(0) else
@@ -574,23 +582,23 @@ def({sw_set_reg_buffer}) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_off
 def({sw_buffer_layout_sub2_4}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
 	cbr(0) if(BUFFER_PLATFORM_A_PART2)
 	cbr(0) if(BUFFER_PLATFORM_C_PART2)
-	cbr(4) else
+	cbr(2) else
 )
 
 def({sw_buffer_layout_sub2_3}) tinfo_statid(pos(0, -1), shiftmask(0, 0x100),
 	ref(sw_buffer_layout_sub2_4) if(0x100)
-	cbr(4) else
+	cbr(2) else
 )
 
 def({sw_buffer_layout_sub2_2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
 	cbr(0) if(BUFFER_PLATFORM_B_PART2)
 	cbr(0) if(BUFFER_PLATFORM_C_PART2)
-	cbr(4) else
+	cbr(2) else
 )
 
 def({sw_buffer_layout_sub2_1}) tinfo_statid(pos(0, 1), shiftmask(0, 0x100),
 	ref(sw_buffer_layout_sub2_2) if(0x100)
-	cbr(4) else
+	cbr(2) else
 )
 
 def({sw_buffer_layout_sub2}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
@@ -604,7 +612,7 @@ def({sw_buffer_layout_sub1}) tinfo_trackconnect(shiftmask(0, 0x02),
 	cbr(2) else
 )
 
-def({sw_buffer_layout}) calculate({subroutine(sw_terrain_snow) * 8 + subroutine(sw_buffer_layout_sub1) + subroutine(sw_buffer_layout_sub2)},
+def({sw_buffer_layout}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub2) * 2 + subroutine(sw_buffer_layout_sub1)},
 	cbfail() else
 )
 
@@ -613,11 +621,22 @@ def({sw_buffer_cb}) callback(
 	ref(sw_set_reg_buffer) else
 )
 
+def({sw_buffer_track_layout}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub1)},
+	cbfail() else
+)
+
+def({sw_buffer_track_cb}) callback(
+	ref(sw_buffer_track_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_buffer) else
+)
+
 forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_HP_A .. BUFFER_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(BUFFER_TRACK, default(ref(sw_buffer_track_cb)))
 
 // Seoul Stn.
 // Seoul Stn. (old)

@@ -361,6 +361,8 @@ ifelse(file_num, 1, {
 	defstationname(PSD_UNDERPASS_HP_A_RF_B, {"고상홈 A + 지붕 B + PSD + 지하도"})
 	defstationname(PSD_UNDERPASS_HP_B_RF_B, {"고상홈 B + 지붕 B + PSD + 지하도"})
 	defstationname(PSD_UNDERPASS_HP_C_RF_B, {"고상홈 C + 지붕 B + PSD + 지하도"})
+	
+	defclassname(PLATFORM_BUFFER_START, {"[KWS] 두단식 승강장"})
 		
 	defstationname(BUFFER_HP_A, {"고상홈 A (종단점)"})
 	defstationname(BUFFER_HP_B, {"고상홈 B (종단점)"})
@@ -389,6 +391,8 @@ ifelse(file_num, 1, {
 	defstationname(BUFFER_LAP_A_RF_B, {"아스팔트 저상홈 A + 지붕 B (종단점)"})
 	defstationname(BUFFER_LAP_B_RF_B, {"아스팔트 저상홈 B + 지붕 B (종단점)"})
 	defstationname(BUFFER_LAP_C_RF_B, {"아스팔트 저상홈 C + 지붕 B (종단점)"})
+	
+	defstationname(BUFFER_TRACK, {"종단점"})
 	
 	defclassname(SEOUL_STATION_START, {"[KWS] 역사 건물"})
 	

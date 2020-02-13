@@ -367,6 +367,8 @@ ifelse(file_num, 1, {
 	defstationname(PSD_UNDERPASS_HP_A_RF_B, {"High Platform A + Roof B + PSD + Underpass"})
 	defstationname(PSD_UNDERPASS_HP_B_RF_B, {"High Platform B + Roof B + PSD + Underpass"})
 	defstationname(PSD_UNDERPASS_HP_C_RF_B, {"High Platform C + Roof B + PSD + Underpass"})
+	
+	defclassname(PLATFORM_BUFFER_START, {"[KWS] Buffers"})
 		
 	defstationname(BUFFER_HP_A, {"High Platform A (Buffer)"})
 	defstationname(BUFFER_HP_B, {"High Platform B (Buffer)"})
@@ -395,6 +397,8 @@ ifelse(file_num, 1, {
 	defstationname(BUFFER_LAP_A_RF_B, {"Low Asphalt Platform A + Roof B (Buffer)"})
 	defstationname(BUFFER_LAP_B_RF_B, {"Low Asphalt Platform B + Roof B (Buffer)"})
 	defstationname(BUFFER_LAP_C_RF_B, {"Low Asphalt Platform C + Roof B (Buffer)"})
+	
+	defstationname(BUFFER_TRACK, {"Buffer"})
 	
 	defclassname(SEOUL_STATION_START, {"[KWS] Station Buildings"})
 		

@@ -6,6 +6,7 @@ define(CLASS_FACILITIES, "KWS3")
 define(CLASS_PSD, "KWS4")
 define(CLASS_NONTRACK, "KWS5")
 define(CLASS_BUILDINGS, "KWS6")
+define(CLASS_BUFFERS, "KWS7")
 
 define(spr_ground, 1011)
 define(spr_ground_snow, 1037)
@@ -396,6 +397,8 @@ define(SEOUL_STATION_END, 0x51)
 
 define(GANGNEUNG_HP, 0x52)
 define(GANGNEUNG_LP, 0x53)
+
+define(BUFFER_TRACK, 0x54)
 
 
 define(PARAM_MODE, 1)

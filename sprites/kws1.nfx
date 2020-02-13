@@ -316,6 +316,7 @@ layout(LAP_C_RF_B, LAYOUT_LAP_C_RF_B)
 
 layout(VOID_TILE, LAYOUT_VOID)
 
+// seoul station detection
 def({sw_platform_get_frame2}) anim_frame(pos(0,1),
 	cbr(4) if(0x80)
 	cbr(0) else
@@ -325,19 +326,28 @@ def({sw_platform_get_frame}) anim_frame(pos(0,-1),
 	cbr(4) if(0x80)
 	cbr(0) else
 )
-
-def({sw_platform_noroof_layout2}) tinfo_statid(pos(0,1),shiftmask(0,0x3FF),
+def({sw_platform_noroof_layout2_2}) tinfo_statid(pos(0, 1), shiftmask(0,0x3FF),
 	ref(sw_platform_get_frame2) if(0x200+SEOUL_STATION_PART3A_HP_A .. 0x200+SEOUL_STATION_PART3A_TRACK)
 	ref(sw_platform_layout) else
 )
 
-def({sw_platform_noroof_layout}) tinfo_statid(pos(0,-1),shiftmask(0,0x3FF),
+def({sw_platform_noroof_layout2_1}) tinfo_grfid(pos(0, -1),
+	ref(sw_platform_noroof_layout2_2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_layout) else
+)
+
+def({sw_platform_noroof_layout1_2}) tinfo_statid(pos(0, -1), shiftmask(0,0x3FF),
 	ref(sw_platform_get_frame) if(0x200+SEOUL_STATION_PART3B_HP_A .. 0x200+SEOUL_STATION_PART3B_TRACK)
-	ref(sw_platform_noroof_layout2) else
+	ref(sw_platform_noroof_layout2_1) else
+)
+
+def({sw_platform_noroof_layout1_1}) tinfo_grfid(pos(0, -1),
+	ref(sw_platform_noroof_layout1_2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_noroof_layout2_1) else
 )
 
 def({sw_platform_noroof_cb}) callback(
-	ref(sw_platform_noroof_layout) if(CB_LAYOUT)
+	ref(sw_platform_noroof_layout1_1) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 

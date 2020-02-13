@@ -114,7 +114,7 @@ ifelse(file_num, 1, {
 
 	defstationname(TRACK_CR, {"건널목"})
 	
-	defclassname(MODULAR_START, {"[KWS] 조립식 역사"})
+	defclassname(MODULAR_START, {"[KWS] 선상역사"})
 
 	defstationname(MODULAR_LOW, {"저층 역사"})
 	defstationname(MODULAR_HIGH, {"고층 역사"})

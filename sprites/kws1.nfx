@@ -326,37 +326,113 @@ def({sw_platform_get_frame}) anim_frame(pos(0,-1),
 	cbr(4) if(0x80)
 	cbr(0) else
 )
-def({sw_platform_noroof_layout2_2}) tinfo_statid(pos(0, 1), shiftmask(0,0x3FF),
+
+def({sw_platform_normal_layout2_2}) tinfo_statid(pos(0, 1), shiftmask(0, 0x3FF),
 	ref(sw_platform_get_frame2) if(0x200+SEOUL_STATION_PART3A_HP_A .. 0x200+SEOUL_STATION_PART3A_TRACK)
 	ref(sw_platform_layout) else
 )
 
-def({sw_platform_noroof_layout2_1}) tinfo_grfid(pos(0, -1),
-	ref(sw_platform_noroof_layout2_2) if(VAR_GRFID_KWS_PART2)
+def({sw_platform_normal_layout2_1}) tinfo_grfid(pos(0, 1),
+	ref(sw_platform_normal_layout2_2) if(VAR_GRFID_KWS_PART2)
 	ref(sw_platform_layout) else
 )
 
-def({sw_platform_noroof_layout1_2}) tinfo_statid(pos(0, -1), shiftmask(0,0x3FF),
+def({sw_platform_normal_layout1_2}) tinfo_statid(pos(0, -1), shiftmask(0, 0x3FF),
 	ref(sw_platform_get_frame) if(0x200+SEOUL_STATION_PART3B_HP_A .. 0x200+SEOUL_STATION_PART3B_TRACK)
-	ref(sw_platform_noroof_layout2_1) else
+	ref(sw_platform_normal_layout2_1) else
 )
 
-def({sw_platform_noroof_layout1_1}) tinfo_grfid(pos(0, -1),
-	ref(sw_platform_noroof_layout1_2) if(VAR_GRFID_KWS_PART2)
-	ref(sw_platform_noroof_layout2_1) else
+def({sw_platform_normal_layout}) tinfo_grfid(pos(0, -1),
+	ref(sw_platform_normal_layout1_2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_normal_layout2_1) else
 )
 
-def({sw_platform_noroof_cb}) callback(
-	ref(sw_platform_noroof_layout1_1) if(CB_LAYOUT)
+// multi-platform detection
+def({sw_platformA_check_opposite_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_A_PART1)
+	cbr(1) if(HIGH_PLATFORM_C_PART1)
+	cbr(2) if(LOW_PLATFORM_A_PART1)
+	cbr(2) if(LOW_PLATFORM_C_PART1)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_platformA_check_opposite}) tinfo_grfid(pos(0, 1),
+	ref(sw_platformA_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	cbr(0) else
+)
+
+def({sw_platformB_check_opposite_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_B_PART1)
+	cbr(1) if(HIGH_PLATFORM_C_PART1)
+	cbr(2) if(LOW_PLATFORM_B_PART1)
+	cbr(2) if(LOW_PLATFORM_C_PART1)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_platformB_check_opposite}) tinfo_grfid(pos(0, -1),
+	ref(sw_platformB_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	cbr(0) else
+)
+
+// multi-platform calculation
+def({sw_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 4 + subroutine(sw_platform_layout)},
+	cbfail() else
+)
+
+def({sw_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 4 + subroutine(sw_platform_layout)},
+	cbfail() else
+)
+
+def({sw_platform_multi_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
+	ref(sw_platformA_multi_layout) if(HIGH_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_layout) if(HIGH_PLATFORM_B_PART1)
+	ref(sw_platformA_multi_layout) if(LOW_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_layout) if(LOW_PLATFORM_B_PART1)
+	ref(sw_platformA_multi_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	ref(sw_platform_layout) else
+)
+
+def({sw_platform_multi_cb}) callback(
+	ref(sw_platform_multi_layout) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, HP_A .. HP_C)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, HP_A_RF_A .. HP_C_RF_B)
+def({sw_platformA_multi_normal_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 6 + subroutine(sw_platform_normal_layout)},
+	cbfail() else
+)
+
+def({sw_platformB_multi_normal_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 6 + subroutine(sw_platform_normal_layout)},
+	cbfail() else
+)
+
+def({sw_platform_multi_normal_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
+	ref(sw_platformA_multi_normal_layout) if(HIGH_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_normal_layout) if(HIGH_PLATFORM_B_PART1)
+	ref(sw_platformA_multi_normal_layout) if(LOW_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_normal_layout) if(LOW_PLATFORM_B_PART1)
+	ref(sw_platformA_multi_normal_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	ref(sw_platformB_multi_normal_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	ref(sw_platform_layout) else
+)
+
+def({sw_platform_multi_normal_cb}) callback(
+	ref(sw_platform_multi_normal_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, HP_A .. HP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, HP_A_RF_A .. HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_noroof_cb)))}, LP_A .. LP_C)
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LP_A_RF_A .. LAP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, LP_A .. LP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LP_A_RF_A .. LP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, LAP_A .. LAP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LAP_A_RF_A .. LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(VOID_TILE, default(ref(sw_platform_cb)))
@@ -711,25 +787,49 @@ layout(OVERPASS_TRACK, LAYOUT_OVERPASS_TRACK)
 
 copylayout(OVERPASS_TRACK, OVERPASS_TRACK_WAYP)
 
-def({sw_overpass_platform_layout_sub1}) plt_posrev(
+def({sw_overpass_platform_layout_sub2}) plt_posrev(
 	self(
 		cbr(2) if(0)
 		cbr(4) else
 	)
 )
 
-def({sw_overpass_platform_layout}) plt_midpos(
+def({sw_overpass_platform_layout_sub1}) plt_midpos(
 	self(
 		cbr(0) if(0)
-		ref(sw_overpass_platform_layout_sub1) else
+		ref(sw_overpass_platform_layout_sub2) else
 	)
 )
-def({sw_overpass_platform_snow}) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_overpass_platform_layout)},
+def({sw_overpass_platform_layout}) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_overpass_platform_layout_sub1)},
 	cbfail() else
 )
 
+// multi-platform calculation
+def({sw_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 12 + subroutine(sw_overpass_platform_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 12 + subroutine(sw_overpass_platform_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_platform_multi_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
+	ref(sw_overpass_platformA_multi_layout) if(HIGH_PLATFORM_A_PART1)
+	ref(sw_overpass_platformB_multi_layout) if(HIGH_PLATFORM_B_PART1)
+	ref(sw_overpass_platformA_multi_layout) if(LOW_PLATFORM_A_PART1)
+	ref(sw_overpass_platformB_multi_layout) if(LOW_PLATFORM_B_PART1)
+	ref(sw_overpass_platformA_multi_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	ref(sw_overpass_platformB_multi_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	ref(sw_overpass_platform_layout) else
+)
+
+def({sw_overpass_platform_menu_cb}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
 def({sw_overpass_platform_cb}) callback(
-	ref(sw_overpass_platform_snow) if(CB_LAYOUT)
+	ref(sw_overpass_platform_multi_layout) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
@@ -742,10 +842,10 @@ def({sw_overpass_track_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_overpass_platform_menu_cb), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_overpass_platform_menu_cb), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)

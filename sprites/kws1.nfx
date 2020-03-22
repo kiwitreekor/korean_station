@@ -445,31 +445,31 @@ definestation(X, "",
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	setcargotriggers({PASS})
 	anim_triggers({BUILT})
-)}, LP_A_CR .. LAP_C_CR_RF_B)
+)}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
 
-layout(LP_A_CR, LAYOUT_LP_A_CR)
-layout(LP_B_CR, LAYOUT_LP_B_CR)
-layout(LP_C_CR, LAYOUT_LP_C_CR)
+layout(CROSSING_LP_A, CROSSING_LAYOUT_LP_A)
+layout(CROSSING_LP_B, CROSSING_LAYOUT_LP_B)
+layout(CROSSING_LP_C, CROSSING_LAYOUT_LP_C)
 
-layout(LP_A_CR_RF_A, LAYOUT_LP_A_CR_RF_A)
-layout(LP_B_CR_RF_A, LAYOUT_LP_B_CR_RF_A)
-layout(LP_C_CR_RF_A, LAYOUT_LP_C_CR_RF_A)
+layout(CROSSING_LP_A_RF_A, CROSSING_LAYOUT_LP_A_RF_A)
+layout(CROSSING_LP_B_RF_A, CROSSING_LAYOUT_LP_B_RF_A)
+layout(CROSSING_LP_C_RF_A, CROSSING_LAYOUT_LP_C_RF_A)
 
-layout(LP_A_CR_RF_B, LAYOUT_LP_A_CR_RF_B)
-layout(LP_B_CR_RF_B, LAYOUT_LP_B_CR_RF_B)
-layout(LP_C_CR_RF_B, LAYOUT_LP_C_CR_RF_B)
+layout(CROSSING_LP_A_RF_B, CROSSING_LAYOUT_LP_A_RF_B)
+layout(CROSSING_LP_B_RF_B, CROSSING_LAYOUT_LP_B_RF_B)
+layout(CROSSING_LP_C_RF_B, CROSSING_LAYOUT_LP_C_RF_B)
 
-layout(LAP_A_CR, LAYOUT_LAP_A_CR)
-layout(LAP_B_CR, LAYOUT_LAP_B_CR)
-layout(LAP_C_CR, LAYOUT_LAP_C_CR)
+layout(CROSSING_LAP_A, CROSSING_LAYOUT_LAP_A)
+layout(CROSSING_LAP_B, CROSSING_LAYOUT_LAP_B)
+layout(CROSSING_LAP_C, CROSSING_LAYOUT_LAP_C)
 
-layout(LAP_A_CR_RF_A, LAYOUT_LAP_A_CR_RF_A)
-layout(LAP_B_CR_RF_A, LAYOUT_LAP_B_CR_RF_A)
-layout(LAP_C_CR_RF_A, LAYOUT_LAP_C_CR_RF_A)
+layout(CROSSING_LAP_A_RF_A, CROSSING_LAYOUT_LAP_A_RF_A)
+layout(CROSSING_LAP_B_RF_A, CROSSING_LAYOUT_LAP_B_RF_A)
+layout(CROSSING_LAP_C_RF_A, CROSSING_LAYOUT_LAP_C_RF_A)
 
-layout(LAP_A_CR_RF_B, LAYOUT_LAP_A_CR_RF_B)
-layout(LAP_B_CR_RF_B, LAYOUT_LAP_B_CR_RF_B)
-layout(LAP_C_CR_RF_B, LAYOUT_LAP_C_CR_RF_B)
+layout(CROSSING_LAP_A_RF_B, CROSSING_LAYOUT_LAP_A_RF_B)
+layout(CROSSING_LAP_B_RF_B, CROSSING_LAYOUT_LAP_B_RF_B)
+layout(CROSSING_LAP_C_RF_B, CROSSING_LAYOUT_LAP_C_RF_B)
 
 def({sw_crossing_pos_sub2}) plt_posrev(
 	cbr(2) if(0)
@@ -497,18 +497,18 @@ def({sw_crossing_cb}) callback(
 )
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, LP_A_CR .. LAP_C_CR_RF_B)
+forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
-definestation(TRACK_CR, "",
+definestation(CROSSING_TRACK, "",
 	class(CLASS_CROSSINGS)
 	setcargotriggers({PASS})
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_triggers(BUILT, PERIODIC)
 )
 
-layout(TRACK_CR, LAYOUT_TRACK_CR)
+layout(CROSSING_TRACK, CROSSING_LAYOUT_TRACK)
 
 def({sw_crossing_track_get_frame}) anim_frame(pos(0,-1),
 	cbr(0) if(0)
@@ -530,7 +530,7 @@ def({sw_crossing_track_menu}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
-makestation(TRACK_CR, link(ref(sw_crossing_track_menu), MENU) default(ref(sw_crossing_track_cb)))
+makestation(CROSSING_TRACK, link(ref(sw_crossing_track_menu), MENU) default(ref(sw_crossing_track_cb)))
 
 // building blocks
 forloop(X, {
@@ -1310,11 +1310,11 @@ setproperties(HP_A_RF_A .. HP_C_RF_B, bridge_height({3,3,3,3}))
 setproperties(LP_A_RF_A .. LP_C_RF_B, bridge_height({3,3,3,3}))
 setproperties(LAP_A_RF_A .. LAP_C_RF_B, bridge_height({3,3,3,3}))
 
-setproperties(LP_A_CR .. LP_C_CR, bridge_height({1,1,1,1}))
-setproperties(LAP_A_CR .. LAP_C_CR, bridge_height({1,1,1,1}))
+setproperties(CROSSING_LP_A .. CROSSING_LP_C, bridge_height({1,1,1,1}))
+setproperties(CROSSING_LAP_A .. CROSSING_LAP_C, bridge_height({1,1,1,1}))
 
-setproperties(LP_A_CR_RF_A .. LP_C_CR_RF_B, bridge_height({3,3,3,3}))
-setproperties(LAP_A_CR_RF_A .. LAP_C_CR_RF_B, bridge_height({3,3,3,3}))
+setproperties(CROSSING_LP_A_RF_A .. CROSSING_LP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(CROSSING_LAP_A_RF_A .. CROSSING_LAP_C_RF_B, bridge_height({3,3,3,3}))
 
 setproperties(HP_NONTRACK, bridge_height({1,1,1,1}))
 setproperties(LP_NONTRACK, bridge_height({1,1,1,1}))

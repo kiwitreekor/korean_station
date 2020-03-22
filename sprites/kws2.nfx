@@ -205,17 +205,17 @@ definestation(X, "",
 	anim_triggers({BUILT})
 )}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
 
-layout(HP_A_CR, LAYOUT_HP_A_CR)
-layout(HP_B_CR, LAYOUT_HP_B_CR)
-layout(HP_C_CR, LAYOUT_HP_C_CR)
+layout(CROSSING_HP_A, CROSSING_LAYOUT_HP_A)
+layout(CROSSING_HP_B, CROSSING_LAYOUT_HP_B)
+layout(CROSSING_HP_C, CROSSING_LAYOUT_HP_C)
 
-layout(HP_A_CR_RF_A, LAYOUT_HP_A_CR_RF_A)
-layout(HP_B_CR_RF_A, LAYOUT_HP_B_CR_RF_A)
-layout(HP_C_CR_RF_A, LAYOUT_HP_C_CR_RF_A)
+layout(CROSSING_HP_A_RF_A, CROSSING_LAYOUT_HP_A_RF_A)
+layout(CROSSING_HP_B_RF_A, CROSSING_LAYOUT_HP_B_RF_A)
+layout(CROSSING_HP_C_RF_A, CROSSING_LAYOUT_HP_C_RF_A)
 
-layout(HP_A_CR_RF_B, LAYOUT_HP_A_CR_RF_B)
-layout(HP_B_CR_RF_B, LAYOUT_HP_B_CR_RF_B)
-layout(HP_C_CR_RF_B, LAYOUT_HP_C_CR_RF_B)
+layout(CROSSING_HP_A_RF_B, CROSSING_LAYOUT_HP_A_RF_B)
+layout(CROSSING_HP_B_RF_B, CROSSING_LAYOUT_HP_B_RF_B)
+layout(CROSSING_HP_C_RF_B, CROSSING_LAYOUT_HP_C_RF_B)
 
 def({sw_crossing_pos_sub2}) plt_posrev(
 	cbr(2) if(0)
@@ -1081,8 +1081,8 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 deflabel(LABEL_ALLOW_BRIDGE)
 skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
-setproperties(HP_A_CR .. HP_C_CR, bridge_height({1,1,1,1}))
-setproperties(HP_A_CR_RF_A .. HP_C_CR_RF_B, bridge_height({3,3,3,3}))
+setproperties(CROSSING_HP_A .. CROSSING_HP_C, bridge_height({1,1,1,1}))
+setproperties(CROSSING_HP_A_RF_A .. CROSSING_HP_C_RF_B, bridge_height({3,3,3,3}))
 
 setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END, bridge_height({3,3,3,3}))
 setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END, bridge_height({3,3,3,3}))

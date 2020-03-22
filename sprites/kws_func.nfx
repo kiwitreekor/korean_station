@@ -9,7 +9,7 @@ define(defstr, {ifdef({$1}, {_append({$1},defn({_langid}){, UTF8 $2})}, {define(
 define({show}, {{$1}
 })
 
-define({file_num}, 0)
+define({file_index}, 0)
 
 ifdef({process_act2},,{
 include(m4_ref)

@@ -3,7 +3,7 @@ include(sprites/kws.m4)
 include(sprites/kws_func.nfx)
 divert
 
-define({file_num}, 1)
+define({file_index}, 1)
 
 include(sprites/lang/english.nfx)
 include(sprites/lang/korean.nfx)

@@ -55,7 +55,7 @@ defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"회색"})
 defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"흰색"})
 
 divert(2)
-ifelse(file_num, 1, {
+ifelse(file_index, 1, {
 	// kws1.grf
 	
 	defclassname(PLATFORM_START, {"[KWS] 승강장"})
@@ -325,7 +325,7 @@ ifelse(file_num, 1, {
 	defstationname(PSD_HP_C_RF_B, {"고상홈 C + 지붕 B + PSD"})
 
 	defstationname(VOID_TILE, {"빈 타일"})
-}, file_num, 2, {
+}, file_index, 2, {
 	// kws2.grf
 	
 	defstationname(HP_A_CR, {"고상홈 A + 건널목"})

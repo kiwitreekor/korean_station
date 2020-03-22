@@ -61,7 +61,7 @@ defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"White"})
 divert
 
 divert(2)
-ifelse(file_num, 1, {
+ifelse(file_index, 1, {
 	// kws1.grf
 	
 	defclassname(PLATFORM_START, {"[KWS] Platforms"})
@@ -331,7 +331,7 @@ ifelse(file_num, 1, {
 	defstationname(PSD_HP_C_RF_B, {"High Platform C + Roof B + PSD"})
 
 	defstationname(VOID_TILE, {"Empty Tile"})
-}, file_num, 2, {
+}, file_index, 2, {
 	// kws2.grf
 	
 	defstationname(HP_A_CR, {"High Platform A + Crossing"})

@@ -259,7 +259,7 @@ def({sw_platform_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-include(sprites/kws_layout.nfx)
+include({sprites/layouts/layout.nfx})
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
 // platforms

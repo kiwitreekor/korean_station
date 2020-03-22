@@ -5,7 +5,7 @@ V = sprites
 # include macro files, header, trains, names etc
 LAYOUTS := $(wildcard sprites/layouts/*.nfx)
 LANGUAGES := $(wildcard sprites/lang/*.nfx)
-INCLUDES = $V\kws_layout.nfx $V\kws_func.nfx $V\kws.m4 $V\sprites.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
+INCLUDES = $V\kws_func.nfx $V\kws.m4 $V\sprites.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
 
 # .nfo target files
 NFOFILES = $V\kws1.nfo $V\kws2.nfo

@@ -102,163 +102,7 @@ include(sprites/sprites.nfx)
 
 def({sprset_default}) spriteset(little(0), lots(0))
 
-setpath(sounds)
-soundtable(
-	defsnd(snd_psd_open, PSD_open.wav)
-	defsnd(snd_psd_close, PSD_close.wav)
-)
-
-
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SNOW)
-def({sw_terrain_snow}) tinfo_terrain(
-	cbr(1) if(SNOW)
-	cbr(0) else
-)
-
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SNOW)
-def({sw_terrain_snow}) tinfo_terrain(
-	cbr(0) if(SNOW)
-	cbr(0) else
-)
-
-def({sw_get_param_roof_colour}) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0xF + 0x307 - 1},
-	cbfail() else
-)
-
-def({sw_reg_roof_colour}) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0xF),
-	cbr(0) if(0)
-	ref(sw_get_param_roof_colour) else
-)
-
-def({sw_set_reg_roof_colour}) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
-
-def({sw_reg_roof_overpass}) subroutine(sw_terrain_snow,
-	cbr(spr_roofs_overpass_snow - spr_roofs_overpass) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_overpass_guide}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
-	cbr(spr_overpass_guide_s - spr_overpass_guide) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_overpass}) subroutine(sw_terrain_snow,
-	cbr(spr_overpass_snow - spr_overpass) if(1)
-	cbr(0) else
-)
-def({sw_set_reg_overpass}) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide), sub(sw_reg_roof_overpass)}, ref(sw_set_reg_roof_colour))
-
-
-def({sw_reg_crossing_shadow}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
-	cbr(spr_platform_cs - spr_platform_c) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_crossing}) subroutine(sw_terrain_snow,
-	cbr(spr_platform_c_snow - spr_platform_c) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_platform_shadow}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
-	cbr(spr_platform_s - spr_platform) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_roof}) subroutine(sw_terrain_snow,
-	cbr(spr_roofs_snow - spr_roofs) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_passenger_skip_random1}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random2}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(1), cbr(1))
-def({sw_reg_passenger_skip_random4}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
-
-def({sw_reg_passenger_skip_sub}) cargowaiting(PASS,
-	cbr(0) if(0)
-	ref(sw_reg_passenger_skip_random1) if(1 .. 7)
-	ref(sw_reg_passenger_skip_random2) if(8 .. 15)
-	ref(sw_reg_passenger_skip_random3) if(16 .. 31)
-	ref(sw_reg_passenger_skip_random4) if(32 .. 63)
-	cbr(1) else
-)
-
-def({sw_reg_passenger_skip}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_PASSENGER, 0x1),
-	ref(sw_reg_passenger_skip_sub) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_platform}) subroutine(sw_terrain_snow,
-	cbr(spr_platform_snow - spr_platform) if(1)
-	cbr(0) else
-)
-
-def({sw_reg_passenger5_random}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(16), cbr(20))
-
-def({sw_reg_passenger_random1}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(0), cbr(4))
-def({sw_reg_passenger_random2}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(4), cbr(4))
-def({sw_reg_passenger_random3}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(4), cbr(4), cbr(8))
-def({sw_reg_passenger_random4}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(4), cbr(8), cbr(8))
-def({sw_reg_passenger_random5}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(8), cbr(8), cbr(12))
-def({sw_reg_passenger_random6}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(8), cbr(12), cbr(12))
-def({sw_reg_passenger_random7}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
-def({sw_reg_passenger_random8}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
-
-def({sw_reg_passenger}) cargowaiting(PASS,
-	cbr(0) if(0 .. 31)
-	ref(sw_reg_passenger_random1) if(32 .. 63)
-	ref(sw_reg_passenger_random2) if(64 .. 127)
-	ref(sw_reg_passenger_random3) if(128 .. 256)
-	ref(sw_reg_passenger_random4) if(257 .. 511)
-	ref(sw_reg_passenger_random5) if(512 .. 767)
-	ref(sw_reg_passenger_random6) if(768 .. 1023)
-	ref(sw_reg_passenger_random7) if(1024 .. 2047)
-	ref(sw_reg_passenger_random8) if(2048 .. 4095)
-	ref(sw_reg_passenger5_random) else
-)
-
-def({sw_set_reg_passenger}) 
-setregisters(REGISTER_PASSENGER_OFFSET, 
-	{
-	sub(sw_reg_passenger), 
-	sub(sw_reg_platform), 
-	sub(sw_reg_passenger_skip), 
-	sub(sw_reg_roof),
-	sub(sw_reg_platform_shadow),
-	sub(sw_reg_crossing),
-	sub(sw_reg_crossing_shadow)
-	}, 
-	ref(sw_set_reg_overpass)
-)
-
-// re-randomisation
-def({sw_reg_passenger_rerandom}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger), 
-	ref(sw_set_reg_passenger)
-)
-
-def({sw_ground_nontrack_register_sub}) subroutine(sw_terrain_snow,
-	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
-	cbr(0) else
-)
-def({sw_ground_nontrack_register}) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_reg_passenger_rerandom))
-def({sw_set_registers}) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
-
-def({sw_platform_layout}) calculate({subroutine(sw_terrain_snow) * 2},
-	cbfail() else
-)
-
-def({sw_platform_cb}) callback(
-	ref(sw_platform_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
-)
-
+include({sprites/kws_common.nfx})
 include({sprites/layouts/layout.nfx})
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
@@ -347,53 +191,19 @@ def({sw_platform_normal_layout}) tinfo_grfid(pos(0, -1),
 	ref(sw_platform_normal_layout2_1) else
 )
 
-// multi-platform detection
-def({sw_platformA_check_opposite_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
-	cbr(1) if(HIGH_PLATFORM_A_PART1)
-	cbr(1) if(HIGH_PLATFORM_C_PART1)
-	cbr(2) if(LOW_PLATFORM_A_PART1)
-	cbr(2) if(LOW_PLATFORM_C_PART1)
-	cbr(3) if(LOW_ASPHALT_PLATFORM_A_PART1)
-	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_platformA_check_opposite}) tinfo_grfid(pos(0, 1),
-	ref(sw_platformA_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	cbr(0) else
-)
-
-def({sw_platformB_check_opposite_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
-	cbr(1) if(HIGH_PLATFORM_B_PART1)
-	cbr(1) if(HIGH_PLATFORM_C_PART1)
-	cbr(2) if(LOW_PLATFORM_B_PART1)
-	cbr(2) if(LOW_PLATFORM_C_PART1)
-	cbr(3) if(LOW_ASPHALT_PLATFORM_B_PART1)
-	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_platformB_check_opposite}) tinfo_grfid(pos(0, -1),
-	ref(sw_platformB_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	cbr(0) else
-)
-
 // multi-platform calculation
-def({sw_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 4 + subroutine(sw_platform_layout)},
+
+def({sw_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 4 + subroutine(sw_platform_layout)},
 	cbfail() else
 )
 
-def({sw_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 4 + subroutine(sw_platform_layout)},
+def({sw_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 4 + subroutine(sw_platform_layout)},
 	cbfail() else
 )
 
-def({sw_platform_multi_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
-	ref(sw_platformA_multi_layout) if(HIGH_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_layout) if(HIGH_PLATFORM_B_PART1)
-	ref(sw_platformA_multi_layout) if(LOW_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_layout) if(LOW_PLATFORM_B_PART1)
-	ref(sw_platformA_multi_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+def({sw_platform_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_platformA_multi_layout) if(1)
+	ref(sw_platformB_multi_layout) if(2)
 	ref(sw_platform_layout) else
 )
 
@@ -402,36 +212,32 @@ def({sw_platform_multi_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-def({sw_platformA_multi_normal_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 6 + subroutine(sw_platform_normal_layout)},
+def({sw_platformA_plain_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 6 + subroutine(sw_platform_normal_layout)},
 	cbfail() else
 )
 
-def({sw_platformB_multi_normal_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 6 + subroutine(sw_platform_normal_layout)},
+def({sw_platformB_plain_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 6 + subroutine(sw_platform_normal_layout)},
 	cbfail() else
 )
 
-def({sw_platform_multi_normal_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
-	ref(sw_platformA_multi_normal_layout) if(HIGH_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_normal_layout) if(HIGH_PLATFORM_B_PART1)
-	ref(sw_platformA_multi_normal_layout) if(LOW_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_normal_layout) if(LOW_PLATFORM_B_PART1)
-	ref(sw_platformA_multi_normal_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
-	ref(sw_platformB_multi_normal_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+def({sw_platform_plain_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_platformA_plain_multi_layout) if(1)
+	ref(sw_platformB_plain_multi_layout) if(2)
 	ref(sw_platform_layout) else
 )
 
-def({sw_platform_multi_normal_cb}) callback(
-	ref(sw_platform_multi_normal_layout) if(CB_LAYOUT)
+def({sw_platform_plain_multi_cb}) callback(
+	ref(sw_platform_plain_multi_layout) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, HP_A .. HP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, HP_A .. HP_C)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, HP_A_RF_A .. HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, LP_A .. LP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, LP_A .. LP_C)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LP_A_RF_A .. LP_C_RF_B)
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_normal_cb)))}, LAP_A .. LAP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, LAP_A .. LAP_C)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LAP_A_RF_A .. LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
@@ -490,14 +296,34 @@ def({sw_crossing_layout}) calculate({subroutine(sw_terrain_snow) * 6 + subroutin
 	cbfail() else
 )
 
+// multi-platform calculation
+def({sw_crossing_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_crossing_layout)},
+	cbfail() else
+)
+
+def({sw_crossing_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_crossing_layout)},
+	cbfail() else
+)
+
+def({sw_crossing_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_crossing_platformA_multi_layout) if(1)
+	ref(sw_crossing_platformB_multi_layout) if(2)
+	ref(sw_crossing_layout) else
+)
+
 def({sw_crossing_cb}) callback(
-	ref(sw_crossing_layout) if(CB_LAYOUT)
+	ref(sw_crossing_multi_layout) if(CB_LAYOUT)
 	ref(sw_crossing_pos) if(CB_ACONTROL, CB_AFRAME)
 	ref(sw_set_registers) else
 )
 
+def({sw_crossing_menu_cb}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_crossing_cb) else
+)
+
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_crossing_menu_cb), MENU) default(ref(sw_crossing_cb)))}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
@@ -654,6 +480,7 @@ forloop(X, {makestation(X, default(ref(sw_building_registers)))}, MODULAR_LOW ..
 forloop(X, {
 definestation(X, "",
 	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
 	setcargotriggers({PASS})
 )}, MODULAR_LOW_HP_A .. MODULAR_HIGH_TRACK)
 
@@ -685,32 +512,57 @@ layout(MODULAR_HIGH_LAP_C, LAYOUT_MODULAR_HIGH_LAP_C)
 layout(MODULAR_LOW_TRACK, LAYOUT_MODULAR_LOW_TRACK)
 layout(MODULAR_HIGH_TRACK, LAYOUT_MODULAR_HIGH_TRACK)
 
-def({sw_building_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
+def({sw_modular_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
 	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
 	cbr(1) else
 )
-def({sw_building_poleB}) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
+def({sw_modular_poleB}) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
 	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
 	cbr(1) else
 )
-def({sw_building_pole_register}) setregisters(REGISTER_MODULAR_POLE_SKIP, {sub(sw_building_poleA), sub(sw_building_poleB)}, ref(sw_set_registers))
+def({sw_modular_pole_register}) setregisters(REGISTER_MODULAR_POLE_SKIP, {sub(sw_modular_poleA), sub(sw_modular_poleB)}, ref(sw_set_registers))
 
-def({sw_building_overpass_register_sub}) subroutine(sw_terrain_snow,
+def({sw_modular_overpass_register_sub}) subroutine(sw_terrain_snow,
 	cbr(spr_bdoverpass_low_snow - spr_bdoverpass_low) if(1)
 	cbr(0) else
 )
-def({sw_building_overpass_register}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_building_overpass_register_sub), ref(sw_building_pole_register))
+def({sw_modular_overpass_register}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_modular_overpass_register_sub), ref(sw_modular_pole_register))
 
-def({sw_building_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
+def({sw_modular_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
 
 
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
+// multi-platform calculation
+def({sw_modular_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_modular_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_modular_overpass_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_modular_overpass_platformA_multi_layout) if(1)
+	ref(sw_modular_overpass_platformB_multi_layout) if(2)
+	ref(sw_platform_layout) else
+)
+
+def({sw_modular_overpass_cb}) callback(
+	ref(sw_modular_overpass_multi_layout) if(CB_LAYOUT)
+	ref(sw_modular_overpass_register) else
+)
+
+def({sw_modular_overpass_menu_cb}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_modular_overpass_menu) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
+	forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, link(ref(sw_building_overpass_menu), MENU) default(ref(sw_building_overpass_register)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
+forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
 
 // non-track tiles
 forloop(X, {
@@ -805,21 +657,17 @@ def({sw_overpass_platform_layout}) calculate({subroutine(sw_terrain_snow) * 6 + 
 )
 
 // multi-platform calculation
-def({sw_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite_part1) * 12 + subroutine(sw_overpass_platform_layout)},
+def({sw_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
 	cbfail() else
 )
 
-def({sw_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite_part1) * 12 + subroutine(sw_overpass_platform_layout)},
+def({sw_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
 	cbfail() else
 )
 
-def({sw_overpass_platform_multi_layout}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
-	ref(sw_overpass_platformA_multi_layout) if(HIGH_PLATFORM_A_PART1)
-	ref(sw_overpass_platformB_multi_layout) if(HIGH_PLATFORM_B_PART1)
-	ref(sw_overpass_platformA_multi_layout) if(LOW_PLATFORM_A_PART1)
-	ref(sw_overpass_platformB_multi_layout) if(LOW_PLATFORM_B_PART1)
-	ref(sw_overpass_platformA_multi_layout) if(LOW_ASPHALT_PLATFORM_A_PART1)
-	ref(sw_overpass_platformB_multi_layout) if(LOW_ASPHALT_PLATFORM_B_PART1)
+def({sw_overpass_platform_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_overpass_platformA_multi_layout) if(1)
+	ref(sw_overpass_platformB_multi_layout) if(2)
 	ref(sw_overpass_platform_layout) else
 )
 
@@ -856,8 +704,8 @@ forloop(X, {
 definestation(X, "",
 	class(CLASS_FACILITIES)
 	callbacks({CB_LAYOUT})
-)}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
 	setcargotriggers({PASS})
+)}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
 
 layout(SIGN_A_HP_A, LAYOUT_SIGN_A_HP_A)
 layout(SIGN_A_HP_B, LAYOUT_SIGN_A_HP_B)
@@ -1058,8 +906,23 @@ def({sw_stasignA_layout}) calculate({subroutine(sw_terrain_snow) * 3 + subroutin
 	cbfail() else
 )
 
+// multi-platform calculation
+def({sw_stasignA_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_stasignA_layout)},
+	cbfail() else
+)
+
+def({sw_stasignA_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_stasignA_layout)},
+	cbfail() else
+)
+
+def({sw_stasignA_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_stasignA_platformA_multi_layout) if(1)
+	ref(sw_stasignA_platformB_multi_layout) if(2)
+	ref(sw_stasignA_layout) else
+)
+
 def({sw_stasignA_cb}) callback(
-	ref(sw_stasignA_layout) if(CB_LAYOUT)
+	ref(sw_stasignA_multi_layout) if(CB_LAYOUT)
 	ref(sw_set_reg_signA) else
 )
 
@@ -1069,9 +932,9 @@ def({sw_stasignA_menu_cb}) callback(
 )
 // Platform + Sign A End
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_HP_A .. LIGHT_HP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LIGHT_HP_A .. LIGHT_HP_C)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
@@ -1079,29 +942,29 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 	forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_HP_A_RF_A .. LED_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LED_HP_A_RF_A .. LED_HP_C_RF_B)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, UNDERPASS_HP_A_RF_A .. UNDERPASS_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, UNDERPASS_HP_A_RF_A .. UNDERPASS_HP_C_RF_B)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_platform_cb)))}, UNDERPASS_LP_A_RF_A .. UNDERPASS_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, UNDERPASS_LP_A_RF_A .. UNDERPASS_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
@@ -1284,7 +1147,7 @@ def({sw_psd_animctrl}) anim_trigger(
 )
 
 def({sw_psd_cb}) callback(
-	ref(sw_platform_cb) if(CB_LAYOUT)
+	ref(sw_platform_multi_cb) if(CB_LAYOUT)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_set_reg_psd) else

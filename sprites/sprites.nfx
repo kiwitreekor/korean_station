@@ -287,8 +287,8 @@ spriteblock(
 		sprite(platforms.png    8bpp 540  350 10  8   0  -3 normal) // station sign C, platform B, roof
 		sprite(platforms.png    8bpp 560  350 10  8 -10  -3 normal)
 		sprite(spr_led,
-			   platforms.png    8bpp 500  240  6  5   0  -4 normal) // station LED
-		sprite(platforms.png    8bpp 510  240  6  5  -6  -4 normal)
+			   platforms.png    8bpp 500  240  8  7   0  -5 normal) // station LED
+		sprite(platforms.png    8bpp 520  240  8  7  -6  -5 normal)
 		sprite(spr_waitingroom,
 			   platforms.png    8bpp 500  260 24 19 -16  -8 normal) // waiting room
 		sprite(platforms.png    8bpp 530  260 24 19  -8  -8 normal)
@@ -303,17 +303,17 @@ spriteblock(
 		sprite(platforms.png    8bpp 540  400 26 15  -5  -4 normal)
 // psd
 		tmpl_psd(spr_psd, platforms.png, 500, 980)
-		tmpl_psd(,        platforms.png, 500, 900)
-		tmpl_psd(,        platforms.png, 540, 980)
-		tmpl_psd(,        platforms.png, 540, 900)
-		tmpl_psd(,        platforms.png, 580, 980)
-		tmpl_psd(,        platforms.png, 580, 900)
+		tmpl_psd(, platforms.png, 500, 900)
+		tmpl_psd(, platforms.png, 540, 980)
+		tmpl_psd(, platforms.png, 540, 900)
+		tmpl_psd(, platforms.png, 580, 980)
+		tmpl_psd(, platforms.png, 580, 900)
 		
 		tmpl_psd_glass(spr_psd_glass, platforms.png, 650, 900)
-		tmpl_psd_glass(,              platforms.png, 780, 900)
-		tmpl_psd_glass(,              platforms.png, 650, 980)
-		tmpl_psd_glass(,              platforms.png, 780, 980)
-		tmpl_psd_glass(,              platforms.png, 650, 1060)
+		tmpl_psd_glass(, platforms.png, 780, 900)
+		tmpl_psd_glass(, platforms.png, 650, 980)
+		tmpl_psd_glass(, platforms.png, 780, 980)
+		tmpl_psd_glass(, platforms.png, 650, 1060)
 // buffer platforms
 		tmpl_high_platform_buffer(spr_platform_buffer, platforms.png, 900, 10)
 		tmpl_low_platform_buffer(spr_platform_l_buffer, platforms.png, 900, 70)

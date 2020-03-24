@@ -1,7 +1,7 @@
 define(spritelayout_gangneung_road, {regular(spr_ground_road_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD)})
 define(spritelayout_gangneung_concrete, {_regular(spr_ground_nontrack_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD)})
 
-define(LAYOUT_GANGNEUNG_BASE, {
+define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	forloop(X, {
 		xtile({
 			spritelayout_ground()
@@ -72,5 +72,5 @@ define(LAYOUT_GANGNEUNG_BASE, {
 	})
 })
 
-define(LAYOUT_GANGNEUNG_HP, {LAYOUT_GANGNEUNG_BASE(PLT_TYPE_HIGH)})
-define(LAYOUT_GANGNEUNG_LP, {LAYOUT_GANGNEUNG_BASE(PLT_TYPE_LOW)})
+define(LAYOUT_GANGNEUNG_HP, {LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_HIGH)})
+define(LAYOUT_GANGNEUNG_LP, {LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_LOW)})

@@ -426,5 +426,10 @@ ifelse(file_index, 1, {
 
 	defstationname(GANGNEUNG_HP, {"강릉역 (고상홈)"})
 	defstationname(GANGNEUNG_LP, {"강릉역 (저상홈)"})
+	
+
+	defstationname(GWANGMYEONG_STN_PART1, {"광명역"})
+	defstationname(GWANGMYEONG_STN_PART2A, {"광명역 (앞)"})
+	defstationname(GWANGMYEONG_STN_PART2B, {"광명역 (뒤)"})
 })
 divert

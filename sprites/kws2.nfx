@@ -33,8 +33,6 @@ error(FATAL, ALL, 05, "kws1.grf")
 
 include(sprites/sprites.nfx)
 
-def({sprset_default}) spriteset(little(0), lots(0))
-
 include({sprites/kws_common.nfx})
 include({sprites/layouts/layout.nfx})
 deflabel(LABEL_HIGHPLATFORM_MODE)
@@ -919,6 +917,169 @@ makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+// Gwangmyeong Stn.
+
+definestation(GWANGMYEONG_STN_PART1, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	include_widths({4,6,8})
+	exclude_lengths({1})
+	setcargotriggers({PASS})
+)
+
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	include_widths({1,2})
+	setcargotriggers({PASS})
+	nontrack(TTD_ALLTILES)
+)}, GWANGMYEONG_STN_PART2A .. GWANGMYEONG_STN_PART2B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	layout(GWANGMYEONG_STN_PART1, LAYOUT_GWANGMYEONG)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), !=, PARAM_MODE_HIGHPLATFORM)
+	layout(GWANGMYEONG_STN_PART1, LAYOUT_GWANGMYEONG_HP_ONLY)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+layout(GWANGMYEONG_STN_PART2A, LAYOUT_GWANGMYEONG_PART2A)
+layout(GWANGMYEONG_STN_PART2B, LAYOUT_GWANGMYEONG_PART2B)
+
+def({sw_gwangmyeong_reg_offset_rev}) plt_posrev(
+	self(
+		cbr(16) if(0)
+		cbr(8) else
+	)
+)
+
+def({sw_gwangmyeong_reg_offset}) plt_pos(
+	self(
+		cbr(0) if(0)
+		ref(sw_gwangmyeong_reg_offset_rev) else
+	)
+)
+
+def({sw_gwangmyeong_reg_skip}) subroutine(sw_gwangmyeong_reg_offset,
+	cbr(0) if(8)
+	cbr(1) else
+)
+
+def({sw_gwangmyeong_reg}) setregisters(REGISTER_GWANGMYEONG_FRAME_SKIP, {sub(sw_gwangmyeong_reg_skip), sub(sw_gwangmyeong_reg_offset)}, ref(sw_set_registers))
+def({sw_gwangmyeong_reg_menu}) setregisters(REGISTER_GWANGMYEONG_FRAME_SKIP, {1, 16}, ref(sw_set_registers))
+
+def({sw_gwangmyeong_part1_layout_size_8}) plt_numrev(
+	self(
+		cbr(0)  if(0)
+		cbr(2)  if(1)
+		cbr(4)  if(2)
+		cbr(6)  if(3)
+		cbr(8)  if(4)
+		cbr(10) if(5)
+		cbr(12) if(6)
+		cbr(14) else
+	)
+)
+
+def({sw_gwangmyeong_part1_layout_size_6}) plt_numrev(
+	self(
+		cbr(16) if(0)
+		cbr(18) if(1)
+		cbr(20) if(2)
+		cbr(22) if(3)
+		cbr(24) if(4)
+		cbr(26) else
+	)
+)
+
+def({sw_gwangmyeong_part1_layout_size_4}) plt_numrev(
+	self(
+		cbr(28) if(0)
+		cbr(30) if(1)
+		cbr(32) if(2)
+		cbr(34) else
+	)
+)
+
+def({sw_gwangmyeong_part1_layout}) plt_total(
+	self(
+		ref(sw_gwangmyeong_part1_layout_size_4) if(0..4)
+		ref(sw_gwangmyeong_part1_layout_size_6) if(5..6)
+		ref(sw_gwangmyeong_part1_layout_size_8) else
+	)
+)
+
+def({sw_gwangmyeong_part1_cb}) callback(
+	ref(sw_gwangmyeong_part1_layout) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_reg) else
+)
+
+def({sw_gwangmyeong_part1_cb_purchase}) callback(
+	cbr(28) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_reg_menu) else
+)
+
+def({sw_gwangmyeong_part2_sprtype}) spritetype(
+	ref(sprset_gwangmyeong_foundation) if(2)
+	ref(sw_gwangmyeong_reg) else
+)
+
+def({sw_gwangmyeong_part2a_layout_size_2}) plt_num(
+	self(
+		cbr(2) if(0)
+		cbr(0) else
+	)
+)
+
+def({sw_gwangmyeong_part2a_layout}) plt_total(
+	self(
+		cbr(4) if(1)
+		ref(sw_gwangmyeong_part2a_layout_size_2) else
+	)
+)
+
+def({sw_gwangmyeong_part2a_cb}) callback(
+	ref(sw_gwangmyeong_part2a_layout) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_part2_sprtype) else
+)
+
+def({sw_gwangmyeong_part2a_cb_purchase}) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_reg_menu) else
+)
+
+def({sw_gwangmyeong_part2b_layout_size_2}) plt_num(
+	self(
+		cbr(2) if(0)
+		cbr(0) else
+	)
+)
+
+def({sw_gwangmyeong_part2b_layout}) plt_total(
+	self(
+		cbr(4) if(1)
+		ref(sw_gwangmyeong_part2b_layout_size_2) else
+	)
+)
+
+def({sw_gwangmyeong_part2b_cb}) callback(
+	ref(sw_gwangmyeong_part2b_layout) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_part2_sprtype) else
+)
+
+def({sw_gwangmyeong_part2b_cb_purchase}) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_gwangmyeong_reg_menu) else
+)
+
+makestation(GWANGMYEONG_STN_PART1, link(ref(sw_gwangmyeong_part1_cb_purchase), MENU) default(ref(sw_gwangmyeong_part1_cb)))
+
+makestation(GWANGMYEONG_STN_PART2A, link(ref(sw_gwangmyeong_part2a_cb_purchase), MENU) default(ref(sw_gwangmyeong_part2a_cb)))
+makestation(GWANGMYEONG_STN_PART2B, link(ref(sw_gwangmyeong_part2b_cb_purchase), MENU) default(ref(sw_gwangmyeong_part2b_cb)))
 
 // bridge_height
 

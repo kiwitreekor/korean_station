@@ -100,8 +100,6 @@ error(FATAL, ALL, 04, "kws2.grf")
 
 include(sprites/sprites.nfx)
 
-def({sprset_default}) spriteset(little(0), lots(0))
-
 include({sprites/kws_common.nfx})
 include({sprites/layouts/layout.nfx})
 deflabel(LABEL_HIGHPLATFORM_MODE)

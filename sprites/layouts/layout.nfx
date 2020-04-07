@@ -74,4 +74,5 @@ include(sprites/layouts/overpasses.nfx)
 include(sprites/layouts/facilities.nfx)
 include(sprites/layouts/seoul.nfx)
 include(sprites/layouts/gangneung.nfx)
+include(sprites/layouts/gwangmyeong.nfx)
 divert

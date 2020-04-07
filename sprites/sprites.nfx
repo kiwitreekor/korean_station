@@ -356,7 +356,6 @@ spriteblock(
 		sprite(buildings.png    8bpp  90  960 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  10 1000 64 31 -31   0 normal)
 		sprite(buildings.png    8bpp  90 1000 64 31 -31   0 normal)
-	)
 // Seoul Station
 		tmpl_seoul_old(spr_seoul_old, seoul.png, 10, 10)
 		tmpl_seoul_old(spr_seoul_old_snow, seoul.png, 10, 620)
@@ -396,6 +395,7 @@ spriteblock(
 		tmpl_seoul_car(spr_seoul_car2, seoul.png, 350, 740)
 		tmpl_seoul_car(spr_seoul_car3, seoul.png, 350, 790)
 		
+// Gangneung Station
 		tmpl_gangneung(spr_gangneung, gangneung.png, 10, 10)
 		
 		sprite(spr_gangneung_fence,
@@ -409,4 +409,38 @@ spriteblock(
 		sprite(spr_gangneung_fence2,
 			   gangneung.png   8bpp  90  130 32 21   0  -6 normal)
 		sprite(gangneung.png   8bpp 130  130 32 21 -32  -6 normal)
+		
+// Gwangmyeong Station
+		tmpl_gwangmyeong_8(spr_gwangmyeong_8, gwm.png, 10, 10)
+		
+		tmpl_gwangmyeong_frame_8(spr_gwangmyeong_frame_8, gwm.png, 10, 80)
+		tmpl_gwangmyeong_frame_glass_8(spr_gwangmyeong_frame_glass_8, gwm.png, 10, 170)
+		
+		tmpl_gwangmyeong_6(spr_gwangmyeong_6, gwm.png, 10, 280)
+		
+		tmpl_gwangmyeong_frame_6(spr_gwangmyeong_frame_6, gwm.png, 10, 350)
+		tmpl_gwangmyeong_frame_glass_6(spr_gwangmyeong_frame_glass_6, gwm.png, 10, 440)
+		
+		tmpl_gwangmyeong_4(spr_gwangmyeong_4, gwm.png, 10, 530)
+		
+		tmpl_gwangmyeong_frame_4(spr_gwangmyeong_frame_4, gwm.png, 10, 590)
+		tmpl_gwangmyeong_frame_glass_4(spr_gwangmyeong_frame_glass_4, gwm.png, 10, 680)
+		
+		tmpl_gwangmyeong_part2(spr_gwangmyeong_part2, gwm.png, 10, 780)
+		tmpl_gwangmyeong_part2_1(spr_gwangmyeong_part2_1, gwm.png, 10, 870)
+		
+		sprite(spr_gwangmyeong_pole,
+		       gwm.png         8bpp 1300  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1350  10 32 53   0 -39 normal)
+		sprite(gwm.png         8bpp 1410  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1460  10 32 53   0 -39 normal)
+	)
 )
+
+def({sprset_default}) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(gwm.png, 1010, 280)
+)
+
+def({sprset_gwangmyeong_foundation}) spriteset(little(0), lots(0))

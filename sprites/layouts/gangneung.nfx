@@ -1,5 +1,5 @@
-define(spritelayout_gangneung_road, {regular(spr_ground_road_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD)})
-define(spritelayout_gangneung_concrete, {_regular(spr_ground_nontrack_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD)})
+define(spritelayout_gangneung_road, {regular(spr_ground_road_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
+define(spritelayout_gangneung_concrete, {_regular(spr_ground_nontrack_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	forloop(X, {
@@ -13,7 +13,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
-		_regular(spr_ground_road_concrete+6, xyz(0,-16,8), dxdydz(16,16,0), TTD)
+		_regular(spr_ground_road_concrete+6, xyz(0,-16,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
 		spritelayout_gangneung_road()
 		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 		glass(spr_gangneung_fence_glass, xyoff(0,0))
@@ -21,7 +21,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	xtile({
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
-		_regular(spr_ground_road_concrete+5, xyz(0,-16,8), dxdydz(16,16,0), TTD)
+		_regular(spr_ground_road_concrete+5, xyz(0,-16,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
 		spritelayout_gangneung_road()
 		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 		glass(spr_gangneung_fence_glass, xyoff(0,0))
@@ -44,7 +44,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
-		regular(spr_ground_road_concrete+4, xyz(0,16,8), dxdydz(16,16,0), TTD)
+		regular(spr_ground_road_concrete+4, xyz(0,16,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
 		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 		glass(spr_gangneung_fence_glass, xyoff(0,0))
 	})
@@ -52,7 +52,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
 		spritelayout_gangneung_road()
-		_regular(spr_ground_road_concrete+3, xyz(0,16,8), dxdydz(16,16,0), TTD)
+		_regular(spr_ground_road_concrete+3, xyz(0,16,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
 		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
 		glass(spr_gangneung_fence_glass, xyoff(0,0))
 	})

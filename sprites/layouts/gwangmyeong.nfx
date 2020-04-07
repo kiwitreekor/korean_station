@@ -1,0 +1,171 @@
+define(LAYOUT_TEMPLATE_GWANGMYEONG, {
+	// 8 tiles
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_gwangmyeong_8, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole, xyz(0,15,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_8, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_8+2, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+2, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+2, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_8+4, xyz(0,0,49) dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+4, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+4, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_8+6, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+6, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+6, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_8+8, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+8, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+8, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_8+10, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+10, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+10, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_8+12, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_8+12, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+12, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_gwangmyeong_8+14, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole+2, xyz(0,0,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_8+14, xyz(0,1,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_8+14, xyoff(0,0))
+	})
+	
+	// 6 tiles
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_6, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole, xyz(0,15,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_6, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_6+2, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_6+2, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6+2, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_6+4, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_6+4, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6+4, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_6+6, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_6+6, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6+6, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_6+8, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_6+8, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6+8, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_6+10, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole+2, xyz(0,0,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_6+10, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_6+10, xyoff(0,0))
+	})
+	
+	// 4 tiles
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_4, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole, xyz(0,15,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_4, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_4, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_4+2, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_4+2, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_4+2, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_gwangmyeong_4+4, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_frame_4+4, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_4+4, xyoff(0,0))
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, ifelse($1, PLT_TYPE_HIGH, PLT_TYPE_HIGH, PLT_TYPE_LOW), SHADOW_TRUE)
+		regular(spr_gwangmyeong_4+6, xyz(0,0,49), dxdydz(16,16,30))
+		regular(spr_gwangmyeong_pole+2, xyz(0,0,0), dxdydz(16,0,41))
+		regular(spr_gwangmyeong_frame_4+6, xyz(0,0,16), dxdydz(0,16,10), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_GWANGMYEONG_FRAME_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_GWANGMYEONG_FRAME_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_GWANGMYEONG_FRAME_OFFSET})}))
+		glass(spr_gwangmyeong_frame_glass_4+6, xyoff(0,0))
+	})
+})
+
+define(LAYOUT_GWANGMYEONG, {LAYOUT_TEMPLATE_GWANGMYEONG()})
+define(LAYOUT_GWANGMYEONG_HP_ONLY, {LAYOUT_TEMPLATE_GWANGMYEONG(PLT_TYPE_HIGH)})
+
+define(LAYOUT_TEMPLATE_GWANGMYEONG_PART2A, {
+	xtile({
+		spritelayout_ground_road()
+		regular(spr_gwangmyeong_part2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_gwangmyeong_part2+2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	
+	xtile({
+		spritelayout_ground_road()
+		regular(spr_gwangmyeong_part2_1+2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+})
+
+define(LAYOUT_TEMPLATE_GWANGMYEONG_PART2B, {
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_gwangmyeong_part2+4, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground_road()
+		regular(spr_gwangmyeong_part2+6, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	
+	xtile({
+		spritelayout_ground_road()
+		regular(spr_gwangmyeong_part2_1, xyz(0,0,0), dxdydz(16,16,30))
+	})
+})
+
+define(LAYOUT_GWANGMYEONG_PART2A, {LAYOUT_TEMPLATE_GWANGMYEONG_PART2A()})
+define(LAYOUT_GWANGMYEONG_PART2B, {LAYOUT_TEMPLATE_GWANGMYEONG_PART2B()})

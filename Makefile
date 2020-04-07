@@ -25,6 +25,10 @@ M4FLAGS =
 GRFCODEC = grfcodec
 GRFCODECFLAGS = -e
 
+# nforenum program
+NFORENUM = nforenum
+NFORENUMFLAGS = --beautify on
+
 all: $(GRFFILES) $(NFOFILES)
 
 # rule to make .nfo from .nfx
@@ -36,6 +40,7 @@ all: $(GRFFILES) $(NFOFILES)
 	copy count32.m4 + $@ $*.tt
 	$(M4) $(M4FLAGS)  <$*.tt >$@
 	del $*.tt
+	$(NFORENUM) $(NFORENUMFLAGS) $@
 
 # rule to make test.grf from .nfo and .png
 %.grf : $V\%.nfo $(PNGFILES)

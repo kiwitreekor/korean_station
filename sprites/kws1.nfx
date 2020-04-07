@@ -1355,6 +1355,40 @@ def({sw_psd_menu_cb}) callback(
 
 forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
+// Simple station
+
+definestation(SIMPLE_STN, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	include_widths({1})
+	include_lengths({1})
+	nontrack(TTD_ALLTILES)
+)
+
+layout(SIMPLE_STN, LAYOUT_SIMPLE_STN)
+
+def({sw_simple_station_layout_sub}) tinfo_trackconnect(shiftmask(8, 0xC),
+	cbr(2) if(4)
+	cbr(0) else
+)
+
+def({sw_simple_station_layout}) tinfo_statid(pos(0, 1),
+	ref(sw_simple_station_layout_sub) if(0xFFFF)
+	cbr(2) else
+)
+
+def({sw_simple_station_cb}) callback(
+	ref(sw_simple_station_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_simple_station_cb_menu}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(SIMPLE_STN, link(ref(sw_simple_station_cb_menu), MENU) default(ref(sw_simple_station_cb)))
+
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)

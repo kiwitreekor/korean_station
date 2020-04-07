@@ -434,6 +434,13 @@ spriteblock(
 		sprite(gwm.png         8bpp 1350  10 32 53   0 -39 normal)
 		sprite(gwm.png         8bpp 1410  10 32 53 -31 -39 normal)
 		sprite(gwm.png         8bpp 1460  10 32 53   0 -39 normal)
+
+// Simple station
+		sprite(spr_simple_stn,
+		       buildings.png   8bpp  10 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp  90 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp 170 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp 250 1200 64 43 -31 -12 normal)
 	)
 )
 

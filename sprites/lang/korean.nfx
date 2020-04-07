@@ -325,6 +325,8 @@ ifelse(file_index, 1, {
 	defstationname(PSD_HP_C_RF_B, {"고상홈 C + 지붕 B + PSD"})
 
 	defstationname(VOID_TILE, {"빈 타일"})
+	
+	defstationname(SIMPLE_STN, {"간이역"})
 }, file_index, 2, {
 	// kws2.grf
 	
@@ -423,11 +425,9 @@ ifelse(file_index, 1, {
 	defstationname(SEOUL_STATION_PART4A, {"서울역 pt.4A"})
 	defstationname(SEOUL_STATION_PART4B, {"서울역 pt.4B"})
 	
-
 	defstationname(GANGNEUNG_HP, {"강릉역 (고상홈)"})
 	defstationname(GANGNEUNG_LP, {"강릉역 (저상홈)"})
 	
-
 	defstationname(GWANGMYEONG_STN_PART1, {"광명역"})
 	defstationname(GWANGMYEONG_STN_PART2A, {"광명역 (앞)"})
 	defstationname(GWANGMYEONG_STN_PART2B, {"광명역 (뒤)"})

@@ -90,3 +90,14 @@ define(LAYOUT_MODULAR_HIGH_LAP_C, {LAYOUT_TEMPLATE_MODULAR_OVERPASS(PLT_TYPE_C, 
 
 define(LAYOUT_MODULAR_LOW_TRACK, {LAYOUT_TEMPLATE_MODULAR_OVERPASS(PLT_TYPE_NONE, PLT_TYPE_NONE, MODULAR_TYPE_LOW)})
 define(LAYOUT_MODULAR_HIGH_TRACK, {LAYOUT_TEMPLATE_MODULAR_OVERPASS(PLT_TYPE_NONE, PLT_TYPE_NONE, MODULAR_TYPE_HIGH)})
+
+define(LAYOUT_SIMPLE_STN, {
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_simple_stn, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_simple_stn+2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+})

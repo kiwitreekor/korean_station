@@ -331,6 +331,8 @@ ifelse(file_index, 1, {
 	defstationname(PSD_HP_C_RF_B, {"High Platform C + Roof B + PSD"})
 
 	defstationname(VOID_TILE, {"Empty Tile"})
+	
+	defstationname(SIMPLE_STN, {"Simple Station"})
 }, file_index, 2, {
 	// kws2.grf
 	
@@ -429,11 +431,9 @@ ifelse(file_index, 1, {
 	defstationname(SEOUL_STATION_PART4A, {"Seoul Stn. pt.4A"})
 	defstationname(SEOUL_STATION_PART4B, {"Seoul Stn. pt.4B"})
 	
-
 	defstationname(GANGNEUNG_HP, {"Gangneung Stn. (High Platform)"})
 	defstationname(GANGNEUNG_LP, {"Gangneung Stn. (Low Platform)"})
 	
-
 	defstationname(GWANGMYEONG_STN_PART1, {"Gwangmyeong Stn."})
 	defstationname(GWANGMYEONG_STN_PART2A, {"Gwangmyeong Stn. (Front)"})
 	defstationname(GWANGMYEONG_STN_PART2B, {"Gwangmyeong Stn. (Back)"})

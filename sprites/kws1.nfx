@@ -1363,6 +1363,7 @@ definestation(SIMPLE_STN, "",
 	include_widths({1})
 	include_lengths({1})
 	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
 )
 
 layout(SIMPLE_STN, LAYOUT_SIMPLE_STN)

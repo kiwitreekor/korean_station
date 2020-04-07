@@ -937,6 +937,7 @@ definestation(X, "",
 	include_widths({1,2})
 	setcargotriggers({PASS})
 	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
 )}, GWANGMYEONG_STN_PART2A .. GWANGMYEONG_STN_PART2B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)

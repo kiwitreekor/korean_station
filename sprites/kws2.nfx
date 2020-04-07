@@ -109,177 +109,8 @@ layout(PSD_OVERPASS_HP_A_RF_B, LAYOUT_PSD_OVERPASS_HP_A_RF_B)
 layout(PSD_OVERPASS_HP_B_RF_B, LAYOUT_PSD_OVERPASS_HP_B_RF_B)
 layout(PSD_OVERPASS_HP_C_RF_B, LAYOUT_PSD_OVERPASS_HP_C_RF_B)
 
-def({sw_psd_overpass_platform_layout_sub2}) plt_posrev(
-	self(
-		cbr(2) if(0)
-		cbr(4) else
-	)
-)
-
-def({sw_psd_overpass_platform_layout}) plt_midpos(
-	self(
-		cbr(0) if(0)
-		ref(sw_psd_overpass_platform_layout_sub2) else
-	)
-)
-
-def({sw_psd_overpass_platform_snow}) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_psd_overpass_platform_layout)},
-	cbfail() else
-)
-
-def({sw_psd_glass_offset_anim}) anim_frame(
-	cbr(2) if(1, 5)
-	cbr(4) if(2 .. 4)
-	cbr(0) else
-)
-
-// check psd start/end, platform A
-def({sw_psd_start_pA_kws2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_PLATFORM_A_PART2)
-	cbr(1) if(PSD_PLATFORM_C_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_start_pA_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_PLATFORM_A_PART1)
-	cbr(1) if(PSD_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_psd_start_pA}) tinfo_grfid(pos(-1, 0),
-	cbr(0) if(0)
-	ref(sw_psd_start_pA_kws1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pA_kws2) if(VAR_GRFID_KWS_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_end_pA_kws2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_PLATFORM_A_PART2)
-	cbr(2) if(PSD_PLATFORM_C_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_end_pA_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_PLATFORM_A_PART1)
-	cbr(2) if(PSD_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_psd_end_pA}) tinfo_grfid(pos(1, 0),
-	cbr(0) if(0)
-	ref(sw_psd_end_pA_kws1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pA_kws2) if(VAR_GRFID_KWS_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_startend_pA}) calculate({subroutine(sw_psd_start_pA) + subroutine(sw_psd_end_pA)},
-	cbfail() else
-)
-
-def({sw_psd_offset_pA}) subroutine(sw_psd_startend_pA,
-	cbr(4) if(2)
-	cbr(8) if(1)
-	cbr(0) else
-)
-
-def({sw_psd_glass_startend_pA}) subroutine(sw_psd_startend_pA,
-	cbr(1) if(2)
-	cbr(3) if(1)
-	cbr(0) else
-)
-
-def({sw_psd_glass_offset_pA}) calculate({subroutine(sw_psd_glass_startend_pA) * 6 + subroutine(sw_psd_glass_offset_anim)},
-	cbfail() else
-)
-
-// check psd start/end, platform B
-def({sw_psd_start_pB_kws2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_PLATFORM_B_PART2)
-	cbr(1) if(PSD_PLATFORM_C_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_start_pB_kws1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_PLATFORM_B_PART1)
-	cbr(1) if(PSD_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_psd_start_pB}) tinfo_grfid(pos(-1, 0),
-	cbr(0) if(0)
-	ref(sw_psd_start_pB_kws1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pB_kws2) if(VAR_GRFID_KWS_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_end_pB_kws2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_PLATFORM_B_PART2)
-	cbr(2) if(PSD_PLATFORM_C_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_end_pB_kws1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_PLATFORM_B_PART1)
-	cbr(2) if(PSD_PLATFORM_C_PART1)
-	cbr(0) else
-)
-
-def({sw_psd_end_pB}) tinfo_grfid(pos(1, 0),
-	cbr(0) if(0)
-	ref(sw_psd_end_pB_kws1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pB_kws2) if(VAR_GRFID_KWS_PART2)
-	cbr(0) else
-)
-
-def({sw_psd_startend_pB}) calculate({subroutine(sw_psd_start_pB) + subroutine(sw_psd_end_pB)},
-	cbfail() else
-)
-
-def({sw_psd_offset_pB}) subroutine(sw_psd_startend_pB,
-	cbr(4) if(2)
-	cbr(8) if(1)
-	cbr(0) else
-)
-
-def({sw_psd_glass_startend_pB}) subroutine(sw_psd_startend_pB,
-	cbr(2) if(2)
-	cbr(4) if(1)
-	cbr(0) else
-)
-
-def({sw_psd_glass_offset_pB}) calculate({subroutine(sw_psd_glass_startend_pB) * 6 + subroutine(sw_psd_glass_offset_anim)},
-	cbfail() else
-)
-
-def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_set_registers))
-
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
-def({sw_psd_animframe}) anim_frame(
-	animframe(A_STOP) if(3)
-	animframe(A_NEXT, _S_snd_psd_open) if(1)
-	animframe(A_NEXT, _S_snd_psd_close) if(4)
-	animframe(A_NEXT) else
-)
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PSDSFX)
-def({sw_psd_animframe}) anim_frame(
-	animframe(A_STOP) if(3)
-	animframe(A_NEXT) else
-)
-
-def({sw_psd_animctrl_leave}) anim_frame(
-	animcontrol(6) if(0)
-	animcontrol(5) if(1)
-	animcontrol(4) else
-)
-
-def({sw_psd_animctrl}) anim_trigger(
-	animcontrol(1) if(ARRIVE)
-	ref(sw_psd_animctrl_leave) if(LEAVE)
-	animcontrol(A_NOP) else
-)
-
 def({sw_psd_overpass_cb}) callback(
-	ref(sw_psd_overpass_platform_snow) if(CB_LAYOUT)
+	ref(sw_overpass_platform_multi_layout) if(CB_LAYOUT)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_set_reg_psd) else
@@ -296,7 +127,7 @@ forloop(X, {makestation(X, link(ref(sw_psd_overpass_menu_cb), MENU) default(ref(
 forloop(X, {
 definestation(X, "",
 	class(CLASS_PSD)
-	callbacks({CB_AFRAME})
+	callbacks({CB_LAYOUT, CB_AFRAME})
 	anim_info({7, NOLOOP})
 	anim_speed(3)
 	setcargotriggers({PASS})
@@ -310,13 +141,14 @@ layout(PSD_MODULAR_HIGH_HP_A, LAYOUT_PSD_MODULAR_HIGH_HP_A)
 layout(PSD_MODULAR_HIGH_HP_B, LAYOUT_PSD_MODULAR_HIGH_HP_B)
 layout(PSD_MODULAR_HIGH_HP_C, LAYOUT_PSD_MODULAR_HIGH_HP_C)
 
-def({sw_psd_building_cb}) callback(
+def({sw_psd_modular_cb}) callback(
+	ref(sw_modular_overpass_multi_layout) if(CB_LAYOUT)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_set_reg_psd) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_building_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
+forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_modular_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
 
 forloop(X, {
@@ -336,7 +168,7 @@ layout(PSD_UNDERPASS_HP_B_RF_B, LAYOUT_PSD_UNDERPASS_HP_B_RF_B)
 layout(PSD_UNDERPASS_HP_C_RF_B, LAYOUT_PSD_UNDERPASS_HP_C_RF_B)
 
 def({sw_psd_underpass_cb}) callback(
-	ref(sw_platform_layout) if(CB_LAYOUT)
+	ref(sw_platform_multi_layout) if(CB_LAYOUT)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_set_reg_psd) else

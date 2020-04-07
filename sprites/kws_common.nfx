@@ -232,3 +232,330 @@ def({sw_platform_multi_check}) tinfo_grfid(pos(0, 0),
 	ref(sw_platform_multi_check_part2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
 )
+
+// multi-platform calculation
+
+def({sw_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 4 + subroutine(sw_platform_layout)},
+	cbfail() else
+)
+
+def({sw_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 4 + subroutine(sw_platform_layout)},
+	cbfail() else
+)
+
+def({sw_platform_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_platformA_multi_layout) if(1)
+	ref(sw_platformB_multi_layout) if(2)
+	ref(sw_platform_layout) else
+)
+
+def({sw_platform_multi_cb}) callback(
+	ref(sw_platform_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+// modular stations
+
+def({sw_modular_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
+	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
+	cbr(1) else
+)
+def({sw_modular_poleB}) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
+	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
+	cbr(1) else
+)
+def({sw_modular_pole_register}) setregisters(REGISTER_MODULAR_POLE_SKIP, {sub(sw_modular_poleA), sub(sw_modular_poleB)}, ref(sw_set_registers))
+
+def({sw_modular_overpass_register_sub}) subroutine(sw_terrain_snow,
+	cbr(spr_bdoverpass_low_snow - spr_bdoverpass_low) if(1)
+	cbr(0) else
+)
+def({sw_modular_overpass_register}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_modular_overpass_register_sub), ref(sw_modular_pole_register))
+
+def({sw_modular_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
+
+// multi-platform calculation
+def({sw_modular_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_modular_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_modular_overpass_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_modular_overpass_platformA_multi_layout) if(1)
+	ref(sw_modular_overpass_platformB_multi_layout) if(2)
+	ref(sw_platform_layout) else
+)
+
+// overpass
+
+def({sw_overpass_platform_layout_sub2}) plt_posrev(
+	self(
+		cbr(2) if(0)
+		cbr(4) else
+	)
+)
+
+def({sw_overpass_platform_layout_sub1}) plt_midpos(
+	self(
+		cbr(0) if(0)
+		ref(sw_overpass_platform_layout_sub2) else
+	)
+)
+def({sw_overpass_platform_layout}) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_overpass_platform_layout_sub1)},
+	cbfail() else
+)
+
+// multi-platform calculation
+def({sw_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_platform_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_overpass_platformA_multi_layout) if(1)
+	ref(sw_overpass_platformB_multi_layout) if(2)
+	ref(sw_overpass_platform_layout) else
+)
+
+// psd
+
+def({sw_psd_glass_offset_anim}) anim_frame(
+	cbr(2) if(1, 5)
+	cbr(4) if(2 .. 4)
+	cbr(0) else
+)
+
+// check psd start/end, platform A
+def({sw_psd_start_pA_opposite_part1}) tinfo_statid(pos(-1, -1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_B_PART1)
+	cbr(1) if(HIGH_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA_opposite_part2}) tinfo_statid(pos(-1, -1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_B_PART2)
+	cbr(1) if(HIGH_PLATFORM_C_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA_opposite}) tinfo_grfid(pos(-1, -1),
+	ref(sw_psd_start_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_start_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA_part2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(1) if(PSD_PLATFORM_A_PART2)
+	cbr(1) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_start_pA_opposite) if(PSD_PLATFORM_B_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(1) if(PSD_PLATFORM_A_PART1)
+	cbr(1) if(PSD_PLATFORM_C_PART1)
+	ref(sw_psd_start_pA_opposite) if(PSD_PLATFORM_B_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
+	ref(sw_psd_start_pA_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_start_pA_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_opposite_part1}) tinfo_statid(pos(1, -1), shiftmask(0, 0xFF),
+	cbr(2) if(HIGH_PLATFORM_B_PART1)
+	cbr(2) if(HIGH_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_opposite_part2}) tinfo_statid(pos(1, -1), shiftmask(0, 0xFF),
+	cbr(2) if(HIGH_PLATFORM_B_PART2)
+	cbr(2) if(HIGH_PLATFORM_C_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_opposite}) tinfo_grfid(pos(1, 1),
+	ref(sw_psd_end_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_end_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_part2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	cbr(2) if(PSD_PLATFORM_A_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_end_pA_opposite) if(PSD_PLATFORM_B_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	cbr(2) if(PSD_PLATFORM_A_PART1)
+	cbr(2) if(PSD_PLATFORM_C_PART1)
+	ref(sw_psd_end_pA_opposite) if(PSD_PLATFORM_B_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
+	ref(sw_psd_end_pA_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_end_pA_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_startend_pA}) calculate({subroutine(sw_psd_start_pA) + subroutine(sw_psd_end_pA)},
+	cbfail() else
+)
+
+def({sw_psd_offset_pA}) subroutine(sw_psd_startend_pA,
+	cbr(4) if(2)
+	cbr(8) if(1)
+	cbr(0) else
+)
+
+def({sw_psd_glass_startend_pA}) subroutine(sw_psd_startend_pA,
+	cbr(1) if(2)
+	cbr(3) if(1)
+	cbr(0) else
+)
+
+def({sw_psd_glass_offset_pA}) calculate({subroutine(sw_psd_glass_startend_pA) * 6 + subroutine(sw_psd_glass_offset_anim)},
+	cbfail() else
+)
+
+// check psd start/end, platform B
+def({sw_psd_start_pB_opposite_part1}) tinfo_statid(pos(-1, 1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_A_PART1)
+	cbr(1) if(HIGH_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB_opposite_part2}) tinfo_statid(pos(-1, 1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_A_PART2)
+	cbr(1) if(HIGH_PLATFORM_C_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB_opposite}) tinfo_grfid(pos(-1, 1),
+	ref(sw_psd_start_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_start_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB_part2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(1) if(PSD_PLATFORM_B_PART2)
+	cbr(1) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_start_pB_opposite) if(PSD_PLATFORM_A_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(1) if(PSD_PLATFORM_B_PART1)
+	cbr(1) if(PSD_PLATFORM_C_PART1)
+	ref(sw_psd_start_pB_opposite) if(PSD_PLATFORM_A_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB}) tinfo_grfid(pos(-1, 0),
+	cbr(0) if(0)
+	ref(sw_psd_start_pB_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_start_pB_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_opposite_part1}) tinfo_statid(pos(1, 1), shiftmask(0, 0xFF),
+	cbr(2) if(HIGH_PLATFORM_A_PART1)
+	cbr(2) if(HIGH_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_opposite_part2}) tinfo_statid(pos(1, 1), shiftmask(0, 0xFF),
+	cbr(2) if(HIGH_PLATFORM_A_PART2)
+	cbr(2) if(HIGH_PLATFORM_C_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_opposite}) tinfo_grfid(pos(1, 1),
+	ref(sw_psd_end_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_end_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_part2}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	ref(sw_psd_end_pB_opposite) if(PSD_PLATFORM_A_PART2)
+	cbr(2) if(PSD_PLATFORM_B_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	ref(sw_psd_end_pB_opposite) if(PSD_PLATFORM_A_PART1)
+	cbr(2) if(PSD_PLATFORM_B_PART1)
+	cbr(2) if(PSD_PLATFORM_C_PART1)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB}) tinfo_grfid(pos(1, 0),
+	cbr(0) if(0)
+	ref(sw_psd_end_pB_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_end_pB_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_startend_pB}) calculate({subroutine(sw_psd_start_pB) + subroutine(sw_psd_end_pB)},
+	cbfail() else
+)
+
+def({sw_psd_offset_pB}) subroutine(sw_psd_startend_pB,
+	cbr(4) if(2)
+	cbr(8) if(1)
+	cbr(0) else
+)
+
+def({sw_psd_glass_startend_pB}) subroutine(sw_psd_startend_pB,
+	cbr(2) if(2)
+	cbr(4) if(1)
+	cbr(0) else
+)
+
+def({sw_psd_glass_offset_pB}) calculate({subroutine(sw_psd_glass_startend_pB) * 6 + subroutine(sw_psd_glass_offset_anim)},
+	cbfail() else
+)
+
+skipif(1, OTTDVERSION, <, 0x1A000000)
+def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_register))
+
+skipif(1, OTTDVERSION, >, 0x1A000000)
+def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_register))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
+def({sw_psd_animframe}) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT, _S_snd_psd_open) if(1)
+	animframe(A_NEXT, _S_snd_psd_close) if(4)
+	animframe(A_NEXT) else
+)
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PSDSFX)
+def({sw_psd_animframe}) anim_frame(
+	animframe(A_STOP) if(3)
+	animframe(A_NEXT) else
+)
+
+def({sw_psd_animctrl_leave}) anim_frame(
+	animcontrol(6) if(0)
+	animcontrol(5) if(1)
+	animcontrol(4) else
+)
+
+def({sw_psd_animctrl}) anim_trigger(
+	animcontrol(1) if(ARRIVE)
+	ref(sw_psd_animctrl_leave) if(LEAVE)
+	animcontrol(A_NOP) else
+)

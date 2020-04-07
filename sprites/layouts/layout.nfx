@@ -5,6 +5,8 @@ define(_ground, defn({ground}))
 define(_regular, defn({regular}))
 define(_glass, defn({glass}))
 define(_recolour, defn({recolour}))
+define(_compcol, defn({compcol}))
+define(_notransparency, defn({notransparency}))
 
 define(_ORIENT, 0)
 
@@ -54,10 +56,32 @@ define(xrecolour, {dnl
 	)dnl
 })
 
+define(xnotransparency, {dnl
+	ifelse(
+		$#, 2, {_notransparency({$1+_ORIENT}, }$2{)},
+		$#, 3, {_notransparency({$1+_ORIENT}, }$2{, }$3{)},
+		$#, 4, {_notransparency({$1+_ORIENT}, }$2{, }$3{, $4)},
+		$#, 5, {_notransparency({$1+_ORIENT}, }$2{, }$3{, $4, $5)},
+		$#, 6, {_notransparency({$1+_ORIENT}, }$2{, }$3{, $4, $5, $6)},
+		{__error(ERR_NUMPAR "{$0}" $1)}
+	)dnl
+})
+
+define(xcompcol, {dnl
+	ifelse(
+		$#, 2, {_compcol({$1+_ORIENT}, }$2{)},
+		$#, 3, {_compcol({$1+_ORIENT}, }$2{, }$3{)},
+		$#, 4, {_compcol({$1+_ORIENT}, }$2{, }$3{, $4)},
+		$#, 5, {_compcol({$1+_ORIENT}, }$2{, }$3{, $4, $5)},
+		$#, 6, {_compcol({$1+_ORIENT}, }$2{, }$3{, $4, $5, $6)},
+		{__error(ERR_NUMPAR "{$0}" $1)}
+	)dnl
+})
+
 define(xtile, {dnl
-	pushdef({ground}, defn({xground}))pushdef({regular}, defn({xregular}))pushdef({glass}, defn({xglass}))pushdef({recolour}, defn({xrecolour}))pushdef({xyz}, defn({xxyz}))pushdef({dxdydz}, defn({xdxdydz}))dnl
+	pushdef({ground}, defn({xground}))pushdef({regular}, defn({xregular}))pushdef({glass}, defn({xglass}))pushdef({recolour}, defn({xrecolour}))pushdef({compcol}, defn({xcompcol}))pushdef({notransparency}, defn({xnotransparency}))pushdef({xyz}, defn({xxyz}))pushdef({dxdydz}, defn({xdxdydz}))dnl
 	define({_ORIENT}, 0) tile($*) define({_ORIENT}, 1) tile($*)dnl
-	popdef({ground})popdef({regular})popdef({glass})popdef({recolour})popdef({xyz})popdef({dxdydz})dnl
+	popdef({ground})popdef({regular})popdef({glass})popdef({recolour})popdef({compcol})popdef({notransparency})popdef({xyz})popdef({dxdydz})dnl
 })
 
 define(spritelayout_ground, {ground(spr_ground+1)})

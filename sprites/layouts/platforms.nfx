@@ -4,9 +4,9 @@ define(get_platform_buffer_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_buffe
 define(get_platform_buffer_end_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_buffer_end, $1, PLT_TYPE_LOW, spr_platform_l_buffer_end, spr_platform_la_buffer_end)})
 define(get_platform_height, {ifelse($1, PLT_TYPE_HIGH, 3, $1, PLT_TYPE_NONE, 0, 1)})
 
-define(spritelayout_platformA, {regular(get_platform_sprite($1), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
-define(spritelayout_platformB, {regular(get_platform_sprite($1)+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
-define(spritelayout_platform_nontrack, {regular(get_platform_nontrack_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
+define(spritelayout_platformA, {notransparency(get_platform_sprite($1), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
+define(spritelayout_platformB, {notransparency(get_platform_sprite($1)+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
+define(spritelayout_platform_nontrack, {notransparency(get_platform_nontrack_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
 
 define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
 define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
@@ -151,33 +151,33 @@ define(spritelayout_platform_bufferA, {
 	define({tmp_reg}, {ifelse($3, 1, REGISTER_BUFFER_SHADOW_OFFSET, REGISTER_BUFFER_OFFSET)})
 	ifelse($4, 0, {
 		ifelse($1, PLT_TYPE_A, {
-			regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
-			regular(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
 		}, $1, PLT_TYPE_B, {
-			regular(get_platform_buffer_end_sprite($2), xyz(0, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
-			regular(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, $1, PLT_TYPE_C, {
-			regular(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
-			regular(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
-			regular(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, {})
 	}, $4, 1, {
 		ifelse($1, PLT_TYPE_A, {
-			regular(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
-			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
 		}, $1, PLT_TYPE_B, {
-			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
-			regular(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, $1, PLT_TYPE_C, {
-			regular(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
-			regular(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			notransparency(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
 			spritelayout_buffer($4, 0)
-			regular(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
 		}, {})
 	})
 	spritelayout_passenger($1, $2)

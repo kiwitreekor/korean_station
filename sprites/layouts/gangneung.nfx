@@ -8,6 +8,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 			spritelayout_gangneung_concrete()
 			regular(spr_gangneung+X*2, xyz(0,0,8), dxdydz(16,16,30))
 			ifelse(eval(X%3==2), 1, {regular(spr_gangneung_fence2, xyz(0,0,8), dxdydz(0,16,6))})
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base({ifelse(eval((X/3)%2==0), 1, PLT_TYPE_B, PLT_TYPE_A)}, $1, SHADOW_TRUE)})
 		})
 	}, 0 .. 11)
 	xtile({

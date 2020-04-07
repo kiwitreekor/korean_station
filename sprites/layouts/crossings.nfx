@@ -1,10 +1,10 @@
 define(get_platform_crossing_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_platform_ch, $1, PLT_TYPE_LOW, spr_platform_c, spr_platform_ca)})
 
 define(spritelayout_crossingA, {
-	regular(get_platform_crossing_sprite($1)+$2*4, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))
+	notransparency(get_platform_crossing_sprite($1)+$2*4, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))
 })
 define(spritelayout_crossingB, {
-	regular(get_platform_crossing_sprite($1)+$2*4+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))
+	notransparency(get_platform_crossing_sprite($1)+$2*4+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($3, 0, REGISTER_CROSSING_OFFSET, REGISTER_CROSSING_SHADOW_OFFSET)}))
 })
 
 define(spritelayout_crossing, {

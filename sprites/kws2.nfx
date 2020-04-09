@@ -919,6 +919,97 @@ makestation(GWANGMYEONG_STN_PART1, link(ref(sw_gwangmyeong_part1_cb_purchase), M
 makestation(GWANGMYEONG_STN_PART2A, link(ref(sw_gwangmyeong_part2a_cb_purchase), MENU) default(ref(sw_gwangmyeong_part2a_cb)))
 makestation(GWANGMYEONG_STN_PART2B, link(ref(sw_gwangmyeong_part2b_cb_purchase), MENU) default(ref(sw_gwangmyeong_part2b_cb)))
 
+// metro platforms
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+)}, METRO_PLATFORM_START .. METRO_PLATFORM_END)
+
+layout(METRO_HP_A, LAYOUT_METRO_HP_A)
+layout(METRO_HP_B, LAYOUT_METRO_HP_B)
+layout(METRO_HP_C, LAYOUT_METRO_HP_C)
+
+layout(METRO_LP_A, LAYOUT_METRO_LP_A)
+layout(METRO_LP_B, LAYOUT_METRO_LP_B)
+layout(METRO_LP_C, LAYOUT_METRO_LP_C)
+
+layout(METRO_TRACK, LAYOUT_METRO_TRACK)
+
+def({sw_metro_overlap_back_len_sub}) tinfo_lclass(pos(2, 0),
+	cbr(6) if(LC_TUNNELBRIDGE)
+	cbr(0) else
+)
+
+def({sw_metro_overlap_back_len}) tinfo_lclass(pos(1, 0),
+	cbr(2) if(LC_TUNNELBRIDGE)
+	ref(sw_metro_overlap_back_len_sub) else
+)
+
+def({sw_metro_overlap_front_len_sub}) tinfo_lclass(pos(-2, 0),
+	cbr(8) if(LC_TUNNELBRIDGE)
+	cbr(0) else
+)
+
+def({sw_metro_overlap_front_len}) tinfo_lclass(pos(-1, 0),
+	cbr(4) if(LC_TUNNELBRIDGE)
+	ref(sw_metro_overlap_front_len_sub) else
+)
+
+def({sw_metro_overlap_back}) plt_posrev(
+	ref(sw_metro_overlap_back_len) if(0)
+	cbr(0) else
+)
+
+def({sw_metro_overlap_front}) plt_pos(
+	ref(sw_metro_overlap_front_len) if(0)
+	ref(sw_metro_overlap_back) else
+)
+
+def({sw_metro_overlap}) plt_length(
+	cbr(0) if(1)
+	ref(sw_metro_overlap_front) else
+)
+
+def({sw_metro_layout}) calculate({subroutine(sw_terrain_snow) * 10 + subroutine(sw_metro_overlap)},
+	cbfail() else
+)
+
+// multi-platform calculation
+def({sw_metro_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 20 + subroutine(sw_metro_layout)},
+	cbfail() else
+)
+
+def({sw_metro_platformB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 20 + subroutine(sw_metro_layout)},
+	cbfail() else
+)
+
+def({sw_metro_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_metro_platformA_multi_layout) if(1)
+	ref(sw_metro_platformB_multi_layout) if(2)
+	ref(sw_metro_layout) else
+)
+
+def({sw_metro_cb}) callback(
+	ref(sw_metro_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_metro_cb_menu}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_HP_A .. METRO_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_LP_A .. METRO_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
@@ -939,5 +1030,7 @@ setproperties(BUFFER_LP_A_RF_A .. BUFFER_LP_C_RF_B, bridge_height({3,3,3,3}))
 setproperties(BUFFER_LAP_A_RF_A .. BUFFER_LAP_C_RF_B, bridge_height({3,3,3,3}))
 
 setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height({0,1,0,0}))
+
+setproperties(METRO_PLATFORM_START .. METRO_PLATFORM_END, bridge_height({1,1,1,1}))
 
 placelabel(LABEL_ALLOW_BRIDGE)

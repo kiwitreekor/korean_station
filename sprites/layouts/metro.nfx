@@ -1,0 +1,93 @@
+define(spritelayout_metro_pole, {
+	regular(spr_metro_pole, xyz(0,0,0), dxdydz(16,0,0))
+	regular(spr_metro_pole, xyz(0,16,0), dxdydz(16,0,0))
+})
+
+define(spritelayout_metro_cover, {
+	regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0), aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
+})
+
+define(spritelayout_metro_cover_ttd_base, {
+	_regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
+})
+
+define(spritelayout_metro_cover_ttd, {
+	spritelayout_metro_cover_ttd_base($1, $2)
+	ifelse(eval($#>2),1,{spritelayout_metro_cover_ttd({$1}, shift(shift($@)))})
+})
+
+define(LAYOUT_TEMPLATE_METRO_BASE, {
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_concrete, 0)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_concrete, 0, 1)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_concrete, 0, -1)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_concrete, 0, 1, 2)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_concrete, 0, -1, -2)
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_snow, 0)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_snow, 0, 1)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_snow, 0, -1)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_snow, 0, 1, 2)
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover_ttd(spr_ground_nontrack_snow, 0, -1, -2)
+	})
+})
+
+define(LAYOUT_TEMPLATE_METRO, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_BASE}, $@)})
+
+define(LAYOUT_METRO_HP_A, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_A, PLT_TYPE_HIGH)})
+define(LAYOUT_METRO_HP_B, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_B, PLT_TYPE_HIGH)})
+define(LAYOUT_METRO_HP_C, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_C, PLT_TYPE_HIGH)})
+
+define(LAYOUT_METRO_LP_A, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_A, PLT_TYPE_LOW)})
+define(LAYOUT_METRO_LP_B, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_B, PLT_TYPE_LOW)})
+define(LAYOUT_METRO_LP_C, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_C, PLT_TYPE_LOW)})
+
+define(LAYOUT_METRO_TRACK, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_NONE, PLT_TYPE_NONE)})

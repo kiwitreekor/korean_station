@@ -579,11 +579,13 @@ def({sw_psd_glass_offset_pB}) calculate({subroutine(sw_psd_glass_startend_pB) * 
 	cbfail() else
 )
 
-skipif(1, OTTDVERSION, <, 0x1A000000)
+skipif(2, OTTDVERSION, <, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_register))
+def({sw_set_reg_psd_menu}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_menu))
 
-skipif(1, OTTDVERSION, >, 0x1A000000)
+skipif(2, OTTDVERSION, >, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_register))
+def({sw_set_reg_psd_menu}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_menu))
 
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
 def({sw_psd_animframe}) anim_frame(

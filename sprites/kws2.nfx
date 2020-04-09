@@ -118,7 +118,7 @@ def({sw_psd_overpass_cb}) callback(
 
 def({sw_psd_overpass_menu_cb}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_reg_psd) else
+	ref(sw_set_reg_psd_menu) else
 )
 
 forloop(X, {makestation(X, link(ref(sw_psd_overpass_menu_cb), MENU) default(ref(sw_psd_overpass_cb)))}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
@@ -148,7 +148,12 @@ def({sw_psd_modular_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_set_reg_psd), MENU) default(ref(sw_psd_modular_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
+def({sw_psd_modular_menu_cb}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd_menu) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_psd_modular_menu_cb), MENU) default(ref(sw_psd_modular_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
 
 forloop(X, {
@@ -176,7 +181,7 @@ def({sw_psd_underpass_cb}) callback(
 
 def({sw_psd_underpass_menu_cb}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_reg_psd) else
+	ref(sw_set_reg_psd_menu) else
 )
 
 forloop(X, {makestation(X, link(ref(sw_psd_underpass_menu_cb), MENU) default(ref(sw_psd_underpass_cb)))}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)

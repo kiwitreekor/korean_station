@@ -938,6 +938,26 @@ layout(METRO_LP_C, LAYOUT_METRO_LP_C)
 
 layout(METRO_TRACK, LAYOUT_METRO_TRACK)
 
+layout(METRO_EXIT_SOUTH_HP_A, LAYOUT_METRO_EXIT_SOUTH_HP_A)
+layout(METRO_EXIT_SOUTH_HP_B, LAYOUT_METRO_EXIT_SOUTH_HP_B)
+layout(METRO_EXIT_SOUTH_HP_C, LAYOUT_METRO_EXIT_SOUTH_HP_C)
+
+layout(METRO_EXIT_SOUTH_LP_A, LAYOUT_METRO_EXIT_SOUTH_LP_A)
+layout(METRO_EXIT_SOUTH_LP_B, LAYOUT_METRO_EXIT_SOUTH_LP_B)
+layout(METRO_EXIT_SOUTH_LP_C, LAYOUT_METRO_EXIT_SOUTH_LP_C)
+
+layout(METRO_EXIT_SOUTH_TRACK, LAYOUT_METRO_EXIT_SOUTH_TRACK)
+
+layout(METRO_EXIT_NORTH_HP_A, LAYOUT_METRO_EXIT_NORTH_HP_A)
+layout(METRO_EXIT_NORTH_HP_B, LAYOUT_METRO_EXIT_NORTH_HP_B)
+layout(METRO_EXIT_NORTH_HP_C, LAYOUT_METRO_EXIT_NORTH_HP_C)
+
+layout(METRO_EXIT_NORTH_LP_A, LAYOUT_METRO_EXIT_NORTH_LP_A)
+layout(METRO_EXIT_NORTH_LP_B, LAYOUT_METRO_EXIT_NORTH_LP_B)
+layout(METRO_EXIT_NORTH_LP_C, LAYOUT_METRO_EXIT_NORTH_LP_C)
+
+layout(METRO_EXIT_NORTH_TRACK, LAYOUT_METRO_EXIT_NORTH_TRACK)
+
 def({sw_metro_overlap_back_len_sub}) tinfo_lclass(pos(2, 0),
 	cbr(6) if(LC_TUNNELBRIDGE)
 	cbr(0) else
@@ -1009,6 +1029,22 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_SOUTH_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_LP_A .. METRO_EXIT_SOUTH_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_EXIT_SOUTH_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_NORTH_HP_A .. METRO_EXIT_NORTH_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_NORTH_LP_A .. METRO_EXIT_NORTH_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_EXIT_NORTH_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
 
 // bridge_height
 

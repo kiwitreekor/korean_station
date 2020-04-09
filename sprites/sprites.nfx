@@ -450,6 +450,10 @@ spriteblock(
 		tmpl_metro_exit(spr_metro_exit, metro.png, 10, 50)
 		tmpl_metro_exit_glass(spr_metro_exit_glass_under, metro.png, 10, 90)
 		tmpl_metro_exit_glass(spr_metro_exit_glass_over, metro.png, 10, 130)
+		
+		sprite(spr_metro_polesign,
+		       metro.png       8bpp  210  50  5 19  -2 -18 normal)
+		sprite(metro.png       8bpp  230  50  5 19  -2 -18 normal)
 	)
 )
 

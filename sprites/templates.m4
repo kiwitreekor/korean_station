@@ -388,10 +388,10 @@ define(tmpl_gwangmyeong_part2_1, {
 
 define(tmpl_metro_exit, {
 		sprite(ifelse($1,,,{$1,})
-			   $2 8bpp eval($3)     eval($4)   34 19   0   0 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+50)  eval($4)   34 19   0   0 normal)
-		sprite($2 8bpp eval($3+100) eval($4)   34 26   0   0 normal)
-		sprite($2 8bpp eval($3+150) eval($4)   34 26   0   0 normal)
+			   $2 8bpp eval($3)     eval($4)   34 19 -22  -4 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)   34 19 -12  -4 normal)
+		sprite($2 8bpp eval($3+100) eval($4)   34 26 -22 -11 normal)
+		sprite($2 8bpp eval($3+150) eval($4)   34 26 -12 -11 normal)
 })
 
 define(tmpl_metro_exit_glass, {

@@ -828,18 +828,28 @@ define({tmp_condition_direction_part2}, {
 def({sw_check_stasignA_type_right_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_type_part1)
 def({sw_check_stasignA_type_right_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_type_part2)
 
-def({sw_check_stasignA_type_right}) tinfo_grfid(pos(0, 1),
+def({sw_check_stasignA_type_right_sub}) tinfo_grfid(pos(0, 1),
 	ref(sw_check_stasignA_type_right_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_check_stasignA_type_right_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_type_right}) tinfo_statid(pos(0, 1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_type_right_sub) if(0)
 	cbr(0) else
 )
 
 def({sw_check_stasignA_type_left_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_type_part1)
 def({sw_check_stasignA_type_left_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_type_part2)
 
-def({sw_check_stasignA_type_left}) tinfo_grfid(pos(0, -1),
+def({sw_check_stasignA_type_left_sub}) tinfo_grfid(pos(0, -1),
 	ref(sw_check_stasignA_type_left_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_check_stasignA_type_left_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_type_left}) tinfo_statid(pos(0, -1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_type_left_sub) if(0)
 	cbr(0) else
 )
 
@@ -865,18 +875,28 @@ def({sw_check_stasignA_type_pA}) calculate({subroutine(sw_check_stasignA_type_le
 def({sw_check_stasignA_dir_right_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part1)
 def({sw_check_stasignA_dir_right_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
-def({sw_check_stasignA_dir_right}) tinfo_grfid(pos(0, 1),
+def({sw_check_stasignA_dir_right_sub}) tinfo_grfid(pos(0, 1),
 	ref(sw_check_stasignA_type_right_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_check_stasignA_type_right_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_right}) tinfo_statid(pos(0, 1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_dir_right_sub) if(0)
 	cbr(0) else
 )
 
 def({sw_check_stasignA_dir_left_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_direction_part1)
 def({sw_check_stasignA_dir_left_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
-def({sw_check_stasignA_dir_left}) tinfo_grfid(pos(0, -1),
+def({sw_check_stasignA_dir_left_sub}) tinfo_grfid(pos(0, -1),
 	ref(sw_check_stasignA_dir_left_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_check_stasignA_dir_left_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_left}) tinfo_statid(pos(0, -1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_dir_left_sub) if(0)
 	cbr(0) else
 )
 

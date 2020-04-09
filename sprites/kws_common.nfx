@@ -175,9 +175,14 @@ def({sw_platformA_check_opposite_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0x
 	cbr(0) else
 )
 
-def({sw_platformA_check_opposite}) tinfo_grfid(pos(0, 1),
+def({sw_platformA_check_opposite_sub}) tinfo_grfid(pos(0, 1),
 	ref(sw_platformA_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_platformA_check_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_platformA_check_opposite}) tinfo_statid(pos(0, 1), shiftmask(11, 0x1),
+	ref(sw_platformA_check_opposite) if(0)
 	cbr(0) else
 )
 
@@ -201,9 +206,14 @@ def({sw_platformB_check_opposite_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0
 	cbr(0) else
 )
 
-def({sw_platformB_check_opposite}) tinfo_grfid(pos(0, -1),
+def({sw_platformB_check_opposite_sub}) tinfo_grfid(pos(0, -1),
 	ref(sw_platformB_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_platformB_check_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_platformB_check_opposite}) tinfo_statid(pos(0, -1), shiftmask(11, 0x1),
+	ref(sw_platformB_check_opposite) if(0)
 	cbr(0) else
 )
 
@@ -344,9 +354,14 @@ def({sw_psd_start_pA_opposite_part2}) tinfo_statid(pos(-1, -1), shiftmask(0, 0xF
 	cbr(0) else
 )
 
-def({sw_psd_start_pA_opposite}) tinfo_grfid(pos(-1, -1),
+def({sw_psd_start_pA_opposite_sub}) tinfo_grfid(pos(-1, -1),
 	ref(sw_psd_start_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA_opposite}) tinfo_statid(pos(-1, -1), shiftmask(11, 0x1),
+	ref(sw_psd_start_pA_opposite_sub) if(0)
 	cbr(0) else
 )
 
@@ -364,10 +379,15 @@ def({sw_psd_start_pA_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_start_pA}) tinfo_grfid(pos(-1, 0),
+def({sw_psd_start_pA_sub}) tinfo_grfid(pos(-1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_start_pA_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pA_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pA}) tinfo_statid(pos(-1, 0), shiftmask(11, 0x1),
+	ref(sw_psd_start_pA_sub) if(0)
 	cbr(0) else
 )
 
@@ -383,9 +403,14 @@ def({sw_psd_end_pA_opposite_part2}) tinfo_statid(pos(1, -1), shiftmask(0, 0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_end_pA_opposite}) tinfo_grfid(pos(1, 1),
+def({sw_psd_end_pA_opposite_sub}) tinfo_grfid(pos(1, 1),
 	ref(sw_psd_end_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_opposite}) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
+	ref(sw_psd_end_pA_opposite_sub) if(0)
 	cbr(0) else
 )
 
@@ -403,10 +428,15 @@ def({sw_psd_end_pA_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_end_pA}) tinfo_grfid(pos(1, 0),
+def({sw_psd_end_pA_sub}) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_end_pA_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pA_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA}) tinfo_statid(pos(1, 0), shiftmask(11, 0x1),
+	ref(sw_psd_end_pA_sub) if(0)
 	cbr(0) else
 )
 
@@ -443,9 +473,14 @@ def({sw_psd_start_pB_opposite_part2}) tinfo_statid(pos(-1, 1), shiftmask(0, 0xFF
 	cbr(0) else
 )
 
-def({sw_psd_start_pB_opposite}) tinfo_grfid(pos(-1, 1),
+def({sw_psd_start_pB_opposite_sub}) tinfo_grfid(pos(-1, 1),
 	ref(sw_psd_start_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB_opposite}) tinfo_statid(pos(-1, 1), shiftmask(11, 0x1),
+	ref(sw_psd_start_pB_opposite_sub) if(0)
 	cbr(0) else
 )
 
@@ -463,10 +498,15 @@ def({sw_psd_start_pB_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_start_pB}) tinfo_grfid(pos(-1, 0),
+def({sw_psd_start_pB_sub}) tinfo_grfid(pos(-1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_start_pB_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_start_pB_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_start_pB}) tinfo_statid(pos(-1, 0), shiftmask(11, 0x1),
+	ref(sw_psd_start_pB_sub) if(0)
 	cbr(0) else
 )
 
@@ -482,9 +522,14 @@ def({sw_psd_end_pB_opposite_part2}) tinfo_statid(pos(1, 1), shiftmask(0, 0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_end_pB_opposite}) tinfo_grfid(pos(1, 1),
+def({sw_psd_end_pB_opposite_sub}) tinfo_grfid(pos(1, 1),
 	ref(sw_psd_end_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_opposite}) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
+	ref(sw_psd_end_pB_opposite_sub) if(0)
 	cbr(0) else
 )
 
@@ -502,10 +547,15 @@ def({sw_psd_end_pB_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 	cbr(0) else
 )
 
-def({sw_psd_end_pB}) tinfo_grfid(pos(1, 0),
+def({sw_psd_end_pB_sub}) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_end_pB_part1) if(VAR_GRFID_KWS_PART1)
 	ref(sw_psd_end_pB_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB}) tinfo_statid(pos(1, 0), shiftmask(11, 0x1),
+	ref(sw_psd_end_pB_sub) if(0)
 	cbr(0) else
 )
 

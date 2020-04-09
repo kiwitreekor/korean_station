@@ -444,8 +444,12 @@ spriteblock(
 
 // Metro station
 		sprite(spr_metro_pole,
-		       metro.png       8bpp  10   10 32 23 -31  -8 normal)
-		sprite(metro.png       8bpp  60   10 32 23   1  -8 normal)
+		       metro.png       8bpp   10  10 32 23 -31  -8 normal)
+		sprite(metro.png       8bpp   60  10 32 23   1  -8 normal)
+		
+		tmpl_metro_exit(spr_metro_exit, metro.png, 10, 50)
+		tmpl_metro_exit_glass(spr_metro_exit_glass_under, metro.png, 10, 90)
+		tmpl_metro_exit_glass(spr_metro_exit_glass_over, metro.png, 10, 130)
 	)
 )
 

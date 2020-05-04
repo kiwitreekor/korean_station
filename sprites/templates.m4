@@ -387,8 +387,7 @@ define(tmpl_gwangmyeong_part2_1, {
 })
 
 define(tmpl_metro_exit, {
-		sprite(ifelse($1,,,{$1,})
-			   $2 8bpp eval($3)     eval($4)   34 19 -22  -4 normal) ifelse($1,,,{// $1})
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)   34 19 -22  -4 normal) ifelse($1,,,{// $1})
 		sprite($2 8bpp eval($3+50)  eval($4)   34 19 -12  -4 normal)
 		sprite($2 8bpp eval($3+100) eval($4)   34 26 -22 -11 normal)
 		sprite($2 8bpp eval($3+150) eval($4)   34 26 -12 -11 normal)
@@ -400,6 +399,24 @@ define(tmpl_metro_exit_glass, {
 		sprite($2 8bpp eval($3+50)  eval($4)   34 19   0   0 normal)
 		sprite($2 8bpp eval($3+100) eval($4)   34 26   0   0 normal)
 		sprite($2 8bpp eval($3+150) eval($4)   34 26   0   0 normal)
+})
+
+define(tmpl_metro_tree, {
+		sprite(ifelse($1,,,{$1,})
+			   $2 8bpp eval($3)     eval($4)    18 33  -8 -27 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+30)  eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+30)  eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+60)  eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+60)  eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+90)  eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+90)  eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+120) eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+120) eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+150) eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+150) eval($4+40) 18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+180) eval($4)    18 33  -8 -27 normal)
+		sprite($2 8bpp eval($3+180) eval($4+40) 18 33  -8 -27 normal)
 })
 
 define(tmpl_foundation_set, {

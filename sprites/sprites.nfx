@@ -448,12 +448,32 @@ spriteblock(
 		sprite(metro.png       8bpp   60  10 32 23   1  -8 normal)
 		
 		tmpl_metro_exit(spr_metro_exit, metro.png, 10, 50)
+		tmpl_metro_exit(, metro.png, 10, 170)
+		tmpl_metro_exit(, metro.png, 10, 210)
+		tmpl_metro_exit(, metro.png, 10, 250)
+		tmpl_metro_exit(, metro.png, 10, 290)
+		tmpl_metro_exit(, metro.png, 10, 330)
+		tmpl_metro_exit(, metro.png, 10, 370)
+		tmpl_metro_exit(, metro.png, 10, 410)
+		tmpl_metro_exit(, metro.png, 10, 570)
+		tmpl_metro_exit(, metro.png, 10, 530)
+		tmpl_metro_exit(, metro.png, 10, 490)
+		tmpl_metro_exit(, metro.png, 10, 450)
+		
 		tmpl_metro_exit_glass(spr_metro_exit_glass_under, metro.png, 10, 90)
 		tmpl_metro_exit_glass(spr_metro_exit_glass_over, metro.png, 10, 130)
 		
 		sprite(spr_metro_polesign,
 		       metro.png       8bpp  210  50  5 19  -2 -18 normal)
 		sprite(metro.png       8bpp  230  50  5 19  -2 -18 normal)
+		
+		sprite(spr_ground_metro_park,
+			   metro.png       8bpp  510  10 64 31 -31   0 normal)
+		sprite(spr_ground_metro_park_snow,
+			   metro.png       8bpp  590  10 64 31 -31   0 normal)
+		
+		tmpl_metro_tree(spr_metro_tree, metro.png, 510, 100)
+		tmpl_metro_tree(spr_metro_tree_snow, metro.png, 720, 100)
 	)
 )
 

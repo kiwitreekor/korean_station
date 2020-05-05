@@ -862,12 +862,12 @@ def({sw_check_stasignA_type_self}) tinfo_grfid(pos(0, 0),
 	cbr(0) else
 )
 
-def({sw_check_stasignA_type_pB}) calculate({subroutine(sw_check_stasignA_type_right) CMP subroutine(sw_check_stasignA_type_self)},
+def({sw_check_stasignA_type_pB}) calculate({subroutine(sw_check_stasignA_type_right) CMP subroutine(sw_check_stasignA_type_self) AND subroutine(sw_check_right_slope)},
 	cbr(2) if(1)
 	cbr(0) else
 )
 
-def({sw_check_stasignA_type_pA}) calculate({subroutine(sw_check_stasignA_type_left) CMP subroutine(sw_check_stasignA_type_self)},
+def({sw_check_stasignA_type_pA}) calculate({subroutine(sw_check_stasignA_type_left) CMP subroutine(sw_check_stasignA_type_self) AND subroutine(sw_check_left_slope)},
 	cbr(1) if(1)
 	cbr(0) else
 )
@@ -876,8 +876,8 @@ def({sw_check_stasignA_dir_right_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0x
 def({sw_check_stasignA_dir_right_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
 def({sw_check_stasignA_dir_right_sub}) tinfo_grfid(pos(0, 1),
-	ref(sw_check_stasignA_type_right_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_type_right_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_dir_right_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_check_stasignA_dir_right_part2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
 )
 
@@ -909,13 +909,47 @@ def({sw_check_stasignA_dir_self}) tinfo_grfid(pos(0, 0),
 	cbr(0) else
 )
 
-def({sw_check_stasignA_dir_pB}) calculate({subroutine(sw_check_stasignA_dir_right) CMP subroutine(sw_check_stasignA_dir_self)},
+def({sw_check_stasignA_dir_pB_sub1}) subroutine(sw_check_stasignA_dir_right,
+	cbr(0) if(0)
+	cbr(2) else
+)
+
+def({sw_check_stasignA_dir_pB_sub2}) calculate({subroutine(sw_check_stasignA_dir_right) CMP subroutine(sw_check_stasignA_dir_self)},
 	cbr(2) if(1)
 	cbr(0) else
 )
 
-def({sw_check_stasignA_dir_pA}) calculate({subroutine(sw_check_stasignA_dir_left) CMP subroutine(sw_check_stasignA_dir_self)},
+def({sw_check_stasignA_dir_pB_sub3}) subroutine(sw_check_stasignA_dir_right,
+	cbr(2) if(2)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_pB}) subroutine(sw_check_stasignA_dir_self,
+	ref(sw_check_stasignA_dir_pB_sub1) if(1)
+	ref(sw_check_stasignA_dir_pB_sub2) if(2)
+	ref(sw_check_stasignA_dir_pB_sub3) if(3)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_pA_sub1}) subroutine(sw_check_stasignA_dir_left,
+	cbr(0) if(0)
+	cbr(1) else
+)
+
+def({sw_check_stasignA_dir_pA_sub2}) calculate({subroutine(sw_check_stasignA_dir_left) CMP subroutine(sw_check_stasignA_dir_self)},
 	cbr(1) if(1)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_pA_sub3}) subroutine(sw_check_stasignA_dir_left,
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_dir_pA}) subroutine(sw_check_stasignA_dir_self,
+	ref(sw_check_stasignA_dir_pA_sub1) if(2)
+	ref(sw_check_stasignA_dir_pA_sub2) if(1)
+	ref(sw_check_stasignA_dir_pA_sub3) if(3)
 	cbr(0) else
 )
 

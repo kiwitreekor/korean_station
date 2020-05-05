@@ -862,13 +862,23 @@ def({sw_check_stasignA_type_self}) tinfo_grfid(pos(0, 0),
 	cbr(0) else
 )
 
-def({sw_check_stasignA_type_pB}) calculate({subroutine(sw_check_stasignA_type_right) CMP subroutine(sw_check_stasignA_type_self) AND subroutine(sw_check_right_slope)},
+def({sw_check_stasignA_type_pB_sub}) calculate({subroutine(sw_check_stasignA_type_right) CMP subroutine(sw_check_stasignA_type_self)},
 	cbr(2) if(1)
 	cbr(0) else
 )
 
-def({sw_check_stasignA_type_pA}) calculate({subroutine(sw_check_stasignA_type_left) CMP subroutine(sw_check_stasignA_type_self) AND subroutine(sw_check_left_slope)},
+def({sw_check_stasignA_type_pB}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_type_pB_sub) if(1)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_type_pA_sub}) calculate({subroutine(sw_check_stasignA_type_left) CMP subroutine(sw_check_stasignA_type_self)},
 	cbr(1) if(1)
+	cbr(0) else
+)
+
+def({sw_check_stasignA_type_pA}) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_type_pB_sub) if(1)
 	cbr(0) else
 )
 

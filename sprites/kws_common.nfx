@@ -154,6 +154,115 @@ def({sw_platform_cb}) callback(
 	ref(sw_set_registers) else
 )
 
+// slope detection
+def({sw_check_right_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(0)
+	cbr(2) if(NORTH+WEST)
+	cbr(0) else
+)
+
+def({sw_check_right_slope_flat}) tinfo_slope(pos(0, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(NORTH+WEST, 0)
+	cbr(0) else
+)
+
+def({sw_check_right_slope_sloped}) tinfo_slope(pos(0, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST)
+	cbr(0) else
+)
+
+def({sw_check_right_front_slope_flat}) tinfo_slope(pos(-1, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(NORTH+WEST, 0)
+	cbr(0) else
+)
+
+def({sw_check_right_front_slope_sloped}) tinfo_slope(pos(-1, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST)
+	cbr(0) else
+)
+
+def({sw_check_right_back_slope_flat}) tinfo_slope(pos(1, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(NORTH+WEST, 0)
+	cbr(0) else
+)
+
+def({sw_check_right_back_slope_sloped}) tinfo_slope(pos(1, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST)
+	cbr(0) else
+)
+
+def({sw_check_right_slope}) subroutine(sw_check_right_self_slope,
+	ref(sw_check_right_slope_flat) if(1)
+	ref(sw_check_right_slope_sloped) if(2)
+	cbr(0) else
+)
+
+def({sw_check_right_front_slope}) subroutine(sw_check_right_self_slope,
+	ref(sw_check_right_front_slope_flat) if(1)
+	ref(sw_check_right_front_slope_sloped) if(2)
+	cbr(0) else
+)
+
+def({sw_check_right_back_slope}) subroutine(sw_check_right_self_slope,
+	ref(sw_check_right_back_slope_flat) if(1)
+	ref(sw_check_right_back_slope_sloped) if(2)
+	cbr(0) else
+)
+
+def({sw_check_left_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(0)
+	cbr(2) if(NORTH+WEST)
+	cbr(0) else
+)
+
+def({sw_check_left_slope_flat}) tinfo_slope(pos(0, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST, 0)
+	cbr(0) else
+)
+
+def({sw_check_left_slope_sloped}) tinfo_slope(pos(0, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(WEST+NORTH)
+	cbr(0) else
+)
+
+def({sw_check_left_front_slope_flat}) tinfo_slope(pos(-1, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST, 0)
+	cbr(0) else
+)
+
+def({sw_check_left_front_slope_sloped}) tinfo_slope(pos(-1, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(WEST+NORTH)
+	cbr(0) else
+)
+
+def({sw_check_left_back_slope_flat}) tinfo_slope(pos(1, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(SOUTH+EAST, 0)
+	cbr(0) else
+)
+
+def({sw_check_left_back_slope_sloped}) tinfo_slope(pos(1, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
+	cbr(1) if(WEST+NORTH)
+	cbr(0) else
+)
+
+def({sw_check_left_slope}) subroutine(sw_check_left_self_slope,
+	ref(sw_check_left_slope_flat) if(1)
+	ref(sw_check_left_slope_sloped) if(2)
+	cbr(0) else
+)
+
+def({sw_check_left_front_slope}) subroutine(sw_check_left_self_slope,
+	ref(sw_check_left_front_slope_flat) if(1)
+	ref(sw_check_left_front_slope_sloped) if(2)
+	cbr(0) else
+)
+
+def({sw_check_left_back_slope}) subroutine(sw_check_left_self_slope,
+	ref(sw_check_left_back_slope_flat) if(1)
+	ref(sw_check_left_back_slope_sloped) if(2)
+	cbr(0) else
+)
+
 // multi-platform detection
 def({sw_platformA_check_opposite_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
 	cbr(1) if(HIGH_PLATFORM_A_PART1)
@@ -181,24 +290,13 @@ def({sw_platformA_check_opposite_sub}) tinfo_grfid(pos(0, 1),
 	cbr(0) else
 )
 
-def({sw_platformA_check_opposite_slope_flat}) tinfo_slope(pos(0, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformA_check_opposite_sub) if(NORTH+WEST, 0)
-	cbr(0) else
-)
-
-def({sw_platformA_check_opposite_slope_sloped}) tinfo_slope(pos(0, 1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformA_check_opposite_sub) if(SOUTH+EAST)
-	cbr(0) else
-)
-
-def({sw_platformA_check_opposite_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformA_check_opposite_slope_flat) if(0)
-	ref(sw_platformA_check_opposite_slope_sloped) if(NORTH+WEST)
+def({sw_platformA_check_opposite_slope}) subroutine(sw_check_right_slope,
+	ref(sw_platformA_check_opposite_sub) if(1)
 	cbr(0) else
 )
 
 def({sw_platformA_check_opposite}) tinfo_statid(pos(0, 1), shiftmask(11, 0x1),
-	ref(sw_platformA_check_opposite_self_slope) if(0)
+	ref(sw_platformA_check_opposite_slope) if(0)
 	cbr(0) else
 )
 
@@ -228,24 +326,13 @@ def({sw_platformB_check_opposite_sub}) tinfo_grfid(pos(0, -1),
 	cbr(0) else
 )
 
-def({sw_platformB_check_opposite_slope_flat}) tinfo_slope(pos(0, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformB_check_opposite_sub) if(SOUTH+EAST, 0)
-	cbr(0) else
-)
-
-def({sw_platformB_check_opposite_slope_sloped}) tinfo_slope(pos(0, -1), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformB_check_opposite_sub) if(WEST+NORTH)
-	cbr(0) else
-)
-
-def({sw_platformB_check_opposite_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+WEST+SOUTH+EAST),
-	ref(sw_platformB_check_opposite_slope_flat) if(0)
-	ref(sw_platformB_check_opposite_slope_sloped) if(SOUTH+EAST)
+def({sw_platformB_check_opposite_slope}) subroutine(sw_check_left_slope,
+	ref(sw_platformB_check_opposite_sub) if(1)
 	cbr(0) else
 )
 
 def({sw_platformB_check_opposite}) tinfo_statid(pos(0, -1), shiftmask(11, 0x1),
-	ref(sw_platformB_check_opposite_self_slope) if(0)
+	ref(sw_platformB_check_opposite_slope) if(0)
 	cbr(0) else
 )
 
@@ -392,9 +479,14 @@ def({sw_psd_start_pA_opposite_sub}) tinfo_grfid(pos(-1, -1),
 	cbr(0) else
 )
 
-// parallel check
+// parallel, slope check
+def({sw_psd_start_pA_opposite_slope}) subroutine(sw_check_left_front_slope,
+	ref(sw_psd_start_pA_opposite_sub) if(1)
+	cbr(0) else
+)
+
 def({sw_psd_start_pA_opposite}) tinfo_statid(pos(-1, -1), shiftmask(11, 0x1),
-	ref(sw_psd_start_pA_opposite_sub) if(0)
+	ref(sw_psd_start_pA_opposite_slope) if(0)
 	cbr(0) else
 )
 
@@ -443,9 +535,14 @@ def({sw_psd_end_pA_opposite_sub}) tinfo_grfid(pos(1, -1),
 	cbr(0) else
 )
 
-// parallel check
-def({sw_psd_end_pA_opposite}) tinfo_statid(pos(1, -1), shiftmask(11, 0x1),
+// parallel, slope check
+def({sw_psd_end_pA_opposite_slope}) subroutine(sw_check_left_back_slope,
 	ref(sw_psd_end_pA_opposite_sub) if(0)
+	cbr(0) else
+)
+
+def({sw_psd_end_pA_opposite}) tinfo_statid(pos(1, -1), shiftmask(11, 0x1),
+	ref(sw_psd_end_pA_opposite_slope) if(0)
 	cbr(0) else
 )
 
@@ -515,9 +612,14 @@ def({sw_psd_start_pB_opposite_sub}) tinfo_grfid(pos(-1, 1),
 	cbr(0) else
 )
 
-// parallel check
+// parallel, slope check
+def({sw_psd_start_pB_opposite_slope}) subroutine(sw_check_right_front_slope,
+	ref(sw_psd_start_pB_opposite_sub) if(1)
+	cbr(0) else
+)
+
 def({sw_psd_start_pB_opposite}) tinfo_statid(pos(-1, 1), shiftmask(11, 0x1),
-	ref(sw_psd_start_pB_opposite_sub) if(0)
+	ref(sw_psd_start_pB_opposite_slope) if(0)
 	cbr(0) else
 )
 
@@ -566,9 +668,14 @@ def({sw_psd_end_pB_opposite_sub}) tinfo_grfid(pos(1, 1),
 	cbr(0) else
 )
 
-// parallel check
-def({sw_psd_end_pB_opposite}) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
+// parallel, slope check
+def({sw_psd_end_pB_opposite_slope}) subroutine(sw_check_right_back_slope,
 	ref(sw_psd_end_pB_opposite_sub) if(0)
+	cbr(0) else
+)
+
+def({sw_psd_end_pB_opposite}) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
+	ref(sw_psd_end_pB_opposite_slope) if(0)
 	cbr(0) else
 )
 

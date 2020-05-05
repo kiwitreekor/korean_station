@@ -1,7 +1,7 @@
 divert(-1)
 setlangid(UK)
 
-define({STR_GRF_VERSION}, {"v0.8.2"})
+define({STR_GRF_VERSION}, {"v0.8.3"})
 define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
 define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
 

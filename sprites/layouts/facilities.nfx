@@ -12,11 +12,11 @@ define(spritelayout_signA, {
 	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
 		define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
 		ifelse(tmp_type, 0, {
-			regular(spr_signA, xyz(2, 12, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({SKIP}), registers({REGISTER_SIGN_A_SKIP}))
+			regular(spr_signA, xyz(2, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
 		}, tmp_type, 1, {
 			regular(spr_signA+2, xyz(7, 16, get_platform_height(tmp_platform_type)), dxdydz(3, 0, 8))
 		}, tmp_type, 2, {
-			regular(spr_signA, xyz(14, 12, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({SKIP}), registers({REGISTER_SIGN_A_SKIP}))
+			regular(spr_signA, xyz(14, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
 		})
 	})
 })

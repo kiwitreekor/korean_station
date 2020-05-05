@@ -923,17 +923,17 @@ def({sw_stasignA_offset}) calculate({subroutine(sw_check_stasignA_type_pB) OR su
 	cbfail() else
 )
 
-def({sw_reg_signA_skip}) calculate({subroutine(sw_check_stasignA_type_pB) OR subroutine(sw_check_stasignA_dir_pB)},
-	cbr(0) if(2)
-	cbr(1) else
-)
-
-def({sw_reg_signA_offset_y}) calculate({subroutine(sw_check_stasignA_type_pA) OR subroutine(sw_check_stasignA_dir_pA)},
+def({sw_reg_signA_platformA_offset_y}) calculate({subroutine(sw_check_stasignA_type_pA) OR subroutine(sw_check_stasignA_dir_pA)},
 	cbr(-1) if(1)
 	cbr(1) else
 )
 
-def({sw_set_reg_signA}) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_offset_y), sub(sw_reg_signA_skip)}, ref(sw_set_registers))
+def({sw_reg_signA_platformB_offset_y}) calculate({subroutine(sw_check_stasignA_type_pB) OR subroutine(sw_check_stasignA_dir_pB)},
+	cbr(15) if(2)
+	cbr(12) else
+)
+
+def({sw_set_reg_signA}) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_platformA_offset_y), sub(sw_reg_signA_platformB_offset_y)}, ref(sw_set_registers))
 
 def({sw_check_stasign_pos_sub2}) plt_posrev(
 	cbr(2) if(0)

@@ -117,6 +117,7 @@ definestation(X, "",
 definestation(VOID_TILE, "",
 	class(CLASS_PLATFORMS)
 	setcargotriggers({PASS})
+	pylons(TTD_ALLTILES)
 	callbacks({CB_LAYOUT})
 )
 

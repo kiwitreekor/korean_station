@@ -937,6 +937,8 @@ definestation(X, "",
 	anim_info({12, NOLOOP})
 	anim_speed(2)
 	anim_triggers({PERIODIC, LEAVE})
+	include_widths({1})
+	include_lengths({1})
 )}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_NORTH_TRACK)
 
 forloop(X, {

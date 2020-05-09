@@ -947,6 +947,17 @@ definestation(X, "",
 	nowires(TTD_ALLTILES)
 )}, METRO_PARK_HP_A .. METRO_TREE_TRACK)
 
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+	nontrack(TTD_ALLTILES)
+	include_widths({1})
+	include_lengths({1})
+)}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+
 layout(METRO_HP_A, LAYOUT_METRO_HP_A)
 layout(METRO_HP_B, LAYOUT_METRO_HP_B)
 layout(METRO_HP_C, LAYOUT_METRO_HP_C)
@@ -996,6 +1007,9 @@ layout(METRO_TREE_LP_B, LAYOUT_METRO_TREE_LP_B)
 layout(METRO_TREE_LP_C, LAYOUT_METRO_TREE_LP_C)
 
 layout(METRO_TREE_TRACK, LAYOUT_METRO_TREE_TRACK)
+
+layout(METRO_EXIT_SOUTH_NONTRACK, LAYOUT_METRO_EXIT_SOUTH_NONTRACK)
+layout(METRO_EXIT_NORTH_NONTRACK, LAYOUT_METRO_EXIT_NORTH_NONTRACK)
 
 def({sw_metro_overlap_back_slope_sub}) tinfo_slope(pos(2, 0),
 	cbr(6) if(SOUTH+WEST)
@@ -1156,6 +1170,8 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
 
+forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
@@ -1177,6 +1193,7 @@ setproperties(BUFFER_LAP_A_RF_A .. BUFFER_LAP_C_RF_B, bridge_height({3,3,3,3}))
 
 setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height({0,1,0,0}))
 
-setproperties(METRO_PLATFORM_START .. METRO_PLATFORM_END, bridge_height({1,1,1,1}))
+setproperties(METRO_HP_A .. METRO_TRACK, bridge_height({1,1,1,1}))
+setproperties(METRO_PARK_HP_A .. METRO_PARK_TRACK, bridge_height({1,1,1,1}))
 
 placelabel(LABEL_ALLOW_BRIDGE)

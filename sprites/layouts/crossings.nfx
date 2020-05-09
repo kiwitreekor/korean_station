@@ -27,21 +27,21 @@ define(LAYOUT_TEMPLATE_CROSSING_BASE, {
 	define({tmp_shadow}, eval(tmp_roof != ROOF_TYPE_NONE))
 	xtile({
 		tmp_ground
-		regular(spr_crossing, xyz(7, 0, 0), dxdydz(3, 16, 0))
+		notransparency(spr_crossing, xyz(7, 0, 0), dxdydz(3, 16, 0))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 0, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
 	xtile({
 		tmp_ground
-		regular(spr_crossing, xyz(13, 0, 0), dxdydz(3, 16, 0))
+		notransparency(spr_crossing, xyz(13, 0, 0), dxdydz(3, 16, 0))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 1, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
 	xtile({
 		tmp_ground
-		regular(spr_crossing, xyz(0, 0, 0), dxdydz(3, 16, 0))
+		notransparency(spr_crossing, xyz(0, 0, 0), dxdydz(3, 16, 0))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 2, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))

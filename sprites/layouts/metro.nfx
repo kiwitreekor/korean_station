@@ -14,16 +14,22 @@ define(spritelayout_metro_exit, {
 	})
 })
 
+define(spritelayout_metro_snow_overlay, {
+	_regular(spr_ground_snow_overlay, xyoff(0, 0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_METRO_SNOW_SKIP, REGISTER_METRO_SNOW_OFFSET}))
+})
+
 define(spritelayout_metro_tree, {
-	_regular(spr_metro_tree, xyz(6,6,8), dxdydz(4,4,16), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_METRO_TREE_SKIP, REGISTER_METRO_TREE_OFFSET}))
+	_regular(spr_metro_tree, xyz(6,6,8), dxdydz(4,4,16), aslflags({OFFSET_SPRITE}), registers({REGISTER_METRO_TREE_OFFSET}))
 })
 
 define(spritelayout_metro_cover_custom, {
 	regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0))
+	spritelayout_metro_snow_overlay()
 })
 
 define(spritelayout_metro_cover_ttd, {
 	_regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
+	spritelayout_metro_snow_overlay()
 })
 
 define(spritelayout_metro_cover, {
@@ -72,47 +78,10 @@ define(LAYOUT_TEMPLATE_METRO_BASE, {
 		spritelayout_metro_cover(tmp_cover, 0, -1, -2)
 		tmp_layout
 	})
-	
-	xtile({
-		spritelayout_ground()
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		spritelayout_metro_pole()
-		spritelayout_metro_cover(tmp_cover_snow, 0)
-		tmp_layout
-	})
-	xtile({
-		spritelayout_ground()
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		spritelayout_metro_pole()
-		spritelayout_metro_cover(tmp_cover_snow, 0, 1)
-		tmp_layout
-	})
-	xtile({
-		spritelayout_ground()
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		spritelayout_metro_pole()
-		spritelayout_metro_cover(tmp_cover_snow, 0, -1)
-		tmp_layout
-	})
-	xtile({
-		spritelayout_ground()
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		spritelayout_metro_pole()
-		spritelayout_metro_cover(tmp_cover_snow, 0, 1, 2)
-		tmp_layout
-	})
-	xtile({
-		spritelayout_ground()
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		spritelayout_metro_pole()
-		spritelayout_metro_cover(tmp_cover_snow, 0, -1, -2)
-		tmp_layout
-	})
 })
 
 define(LAYOUT_TEMPLATE_METRO_PLAIN_BASE, {
 	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
-	define({tmp_cover_snow}, {spr_ground_nontrack_snow, TTD})
 	define({tmp_layout}, {})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
@@ -131,7 +100,6 @@ define(LAYOUT_METRO_TRACK, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_NONE, PLT_TYPE_NONE)}
 
 define(LAYOUT_TEMPLATE_METRO_EXIT_SOUTH_BASE, {
 	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
-	define({tmp_cover_snow}, {spr_ground_nontrack_snow, TTD})
 	define({tmp_layout}, {spritelayout_metro_exit(0)})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
@@ -150,7 +118,6 @@ define(LAYOUT_METRO_EXIT_SOUTH_TRACK, {LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE
 
 define(LAYOUT_TEMPLATE_METRO_EXIT_NORTH_BASE, {
 	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
-	define({tmp_cover_snow}, {spr_ground_nontrack_snow, TTD})
 	define({tmp_layout}, {spritelayout_metro_exit(1)})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
@@ -169,8 +136,7 @@ define(LAYOUT_METRO_EXIT_NORTH_TRACK, {LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE
 
 define(LAYOUT_TEMPLATE_METRO_PARK_BASE, {
 	define({tmp_cover}, {spr_ground_metro_park})
-	define({tmp_cover_snow}, {spr_ground_metro_park_snow})
-	define({tmp_layout}, {spritelayout_metro_tree()})
+	define({tmp_layout}, {})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
 
@@ -185,3 +151,21 @@ define(LAYOUT_METRO_PARK_LP_B, {LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_B, PLT_TYPE_
 define(LAYOUT_METRO_PARK_LP_C, {LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_C, PLT_TYPE_LOW)})
 
 define(LAYOUT_METRO_PARK_TRACK, {LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_NONE, PLT_TYPE_NONE)})
+
+define(LAYOUT_TEMPLATE_METRO_TREE_BASE, {
+	define({tmp_cover}, {spr_ground_metro_park})
+	define({tmp_layout}, {spritelayout_metro_tree()})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO_TREE, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_TREE_BASE}, $@)})
+
+define(LAYOUT_METRO_TREE_HP_A, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_A, PLT_TYPE_HIGH)})
+define(LAYOUT_METRO_TREE_HP_B, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_B, PLT_TYPE_HIGH)})
+define(LAYOUT_METRO_TREE_HP_C, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_C, PLT_TYPE_HIGH)})
+
+define(LAYOUT_METRO_TREE_LP_A, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_A, PLT_TYPE_LOW)})
+define(LAYOUT_METRO_TREE_LP_B, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_B, PLT_TYPE_LOW)})
+define(LAYOUT_METRO_TREE_LP_C, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_C, PLT_TYPE_LOW)})
+
+define(LAYOUT_METRO_TREE_TRACK, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_NONE, PLT_TYPE_NONE)})

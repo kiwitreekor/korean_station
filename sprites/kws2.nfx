@@ -1156,6 +1156,8 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_EXIT_NORTH_TRACK, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))
 
+forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+
 forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_HP_A .. METRO_PARK_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
@@ -1171,8 +1173,6 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
-
-forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
 
 // bridge_height
 

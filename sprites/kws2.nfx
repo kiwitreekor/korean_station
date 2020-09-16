@@ -934,8 +934,8 @@ definestation(X, "",
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	setcargotriggers({PASS})
 	nowires(TTD_ALLTILES)
-	anim_info({12, NOLOOP})
-	anim_speed(2)
+	anim_info({13, NOLOOP})
+	anim_speed(4)
 	anim_triggers({PERIODIC, LEAVE})
 	include_widths({1})
 	include_lengths({1})
@@ -1084,18 +1084,28 @@ def({sw_metro_multi_layout}) subroutine(sw_platform_multi_check,
 )
 
 def({sw_metro_exit_animframe}) anim_frame(
-	animframe(0) if(7,11)
+	animframe(0) if(8,12)
 	animframe(A_STOP) if(0)
 	animframe(A_NEXT) else
 )
 
+def({sw_metro_exit_animctrl_sub}) anim_frame(
+	animcontrol(A_NOP) if(1 .. 8)
+	animcontrol(9) else
+)
+
 def({sw_metro_exit_animctrl}) anim_trigger(
 	animcontrol(1) if(LEAVE)
-	animcontrol(8) if(PERIODIC)
+	ref(sw_metro_exit_animctrl_sub) if(PERIODIC)
 	animcontrol(A_NOP) else
 )
 
-def({sw_metro_exit_frame}) calculate({anim_frame() * 4},
+// m4nfo bug :(
+def({sw_anim_frame}) anim_frame(
+	cbfail() else
+)
+
+def({sw_metro_exit_frame}) calculate({subroutine(sw_anim_frame) * 4},
 	cbfail() else
 )
 

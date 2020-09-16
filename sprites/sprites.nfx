@@ -455,6 +455,7 @@ spriteblock(
 		tmpl_metro_exit(, metro.png, 10, 330)
 		tmpl_metro_exit(, metro.png, 10, 370)
 		tmpl_metro_exit(, metro.png, 10, 410)
+		tmpl_metro_exit(, metro.png, 10, 610)
 		tmpl_metro_exit(, metro.png, 10, 570)
 		tmpl_metro_exit(, metro.png, 10, 530)
 		tmpl_metro_exit(, metro.png, 10, 490)

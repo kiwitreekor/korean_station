@@ -89,10 +89,17 @@ grfinit(GRFID_KWS_PART1,
 		)
 	)
 )
+	
+grffeaturetest(
+	name("action0_station_prop1B")
+	minversion(1)
+	setparambit(GRFFEATURE_BRIDGE)
+)
+
 textmode_off()
 asl_on()
 
-getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART1, VERSION)
+getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART2, VERSION)
 
 skipif(1, GRFACTIVE, --, GRFID_KWS_PART2)
 skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
@@ -1146,6 +1153,7 @@ makestation(SIMPLE_STN, link(ref(sw_simple_station_cb_menu), MENU) default(ref(s
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), PLATFORM, BITCLR, GRFFEATURE_BRIDGE)
 skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(HP_A .. HP_C, bridge_height({1,1,1,1}))

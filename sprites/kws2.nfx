@@ -19,6 +19,12 @@ grfinit(GRFID_KWS_PART2,
 	grfversion(GRF_VERSION)
 	grfminversion(GRF_MIN_VERSION)
 )
+	
+grffeaturetest(
+	name("action0_station_prop1B")
+	minversion(1)
+	setparambit(GRFFEATURE_BRIDGE)
+)
 textmode_off()
 asl_on()
 
@@ -1187,6 +1193,7 @@ makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_m
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), PLATFORM, BITCLR, GRFFEATURE_BRIDGE)
 skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
 setproperties(CROSSING_HP_A .. CROSSING_HP_C, bridge_height({1,1,1,1}))

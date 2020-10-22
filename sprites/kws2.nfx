@@ -1019,9 +1019,14 @@ layout(METRO_TREE_TRACK, LAYOUT_METRO_TREE_TRACK)
 layout(METRO_EXIT_SOUTH_NONTRACK, LAYOUT_METRO_EXIT_SOUTH_NONTRACK)
 layout(METRO_EXIT_NORTH_NONTRACK, LAYOUT_METRO_EXIT_NORTH_NONTRACK)
 
-def({sw_metro_overlap_back_slope_sub}) tinfo_slope(pos(2, 0),
+def({sw_metro_overlap_back_slope_sub2}) tinfo_slope(pos(2, 0),
 	cbr(6) if(SOUTH+WEST)
 	cbr(0) else
+)
+
+def({sw_metro_overlap_back_slope_sub}) tinfo_slope(pos(1, 0),
+	cbr(0) if(NORTH+EAST, NORTH, EAST)
+	ref(sw_metro_overlap_back_slope_sub2) else
 )
 
 def({sw_metro_overlap_back_len_sub}) tinfo_lclass(pos(2, 0),
@@ -1039,9 +1044,14 @@ def({sw_metro_overlap_back_len}) tinfo_lclass(pos(1, 0),
 	ref(sw_metro_overlap_back_len_sub) else
 )
 
-def({sw_metro_overlap_front_slope_sub}) tinfo_slope(pos(-2, 0),
+def({sw_metro_overlap_front_slope_sub2}) tinfo_slope(pos(-2, 0),
 	cbr(8) if(NORTH+EAST)
 	cbr(0) else
+)
+
+def({sw_metro_overlap_front_slope_sub}) tinfo_slope(pos(-1, 0),
+	cbr(0) if(SOUTH+WEST, SOUTH, WEST)
+	ref(sw_metro_overlap_front_slope_sub2) else
 )
 
 def({sw_metro_overlap_front_len_sub}) tinfo_lclass(pos(-2, 0),

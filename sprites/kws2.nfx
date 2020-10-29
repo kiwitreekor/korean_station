@@ -1200,6 +1200,54 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
 
+// Suseo Stn.
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({2})
+	setcargotriggers({PASS})
+	tiletypelayout(
+		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
+	)
+)}, SUSEO_NONTRACK .. SUSEO_LP)
+
+layout(SUSEO_NONTRACK, LAYOUT_SUSEO_NONTRACK)
+layout(SUSEO_HP, LAYOUT_SUSEO_HP)
+layout(SUSEO_LP, LAYOUT_SUSEO_LP)
+
+def({sw_suseo_layout}) plt_index(
+	self(
+		cbr(0) if(nibble(0,1))
+		cbr(2) if(nibble(1,1))
+		cbr(4) if(nibble(2,1))
+		cbr(6) if(nibble(3,1))
+		cbr(8) if(nibble(0,0))
+		cbr(10) if(nibble(1,0))
+		cbr(12) if(nibble(2,0))
+		cbr(14) if(nibble(3,0))
+		cbr(0) else
+	)
+)
+
+def({sw_suseo_cb}) callback(
+	ref(sw_suseo_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_suseo_cb_purchase}) callback(
+	cbr(16) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))}, SUSEO_NONTRACK .. SUSEO_HP)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	makestation(SUSEO_LP, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)

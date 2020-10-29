@@ -477,5 +477,9 @@ ifelse(file_index, 1, {
 	defstationname(METRO_TREE_TRACK, {"Metro Station with Tree"})
 	defstationname(METRO_EXIT_SOUTH_NONTRACK, {"Metro Entrance (South)"})
 	defstationname(METRO_EXIT_NORTH_NONTRACK, {"Metro Entrance (North)"})
+	
+	defstationname(SUSEO_NONTRACK, {"Suseo Stn."})
+	defstationname(SUSEO_HP, {"Suseo Stn. (High Platform)"})
+	defstationname(SUSEO_LP, {"Suseo Stn. (Low Platform)"})
 })
 divert

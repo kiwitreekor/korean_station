@@ -1,11 +1,10 @@
 define(spritelayout_gangneung_road, {regular(spr_ground_road_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
-define(spritelayout_gangneung_concrete, {_regular(spr_ground_nontrack_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	forloop(X, {
 		xtile({
 			spritelayout_ground()
-			spritelayout_gangneung_concrete()
+			spritelayout_concrete_float()
 			regular(spr_gangneung+X*2, xyz(0,0,8), dxdydz(16,16,30))
 			ifelse(eval(X%3==2), 1, {regular(spr_gangneung_fence2, xyz(0,0,8), dxdydz(0,16,6))})
 			ifelse($1, PLT_TYPE_NONE, {}, {platform_base({ifelse(eval((X/3)%2==0), 1, PLT_TYPE_B, PLT_TYPE_A)}, $1, SHADOW_TRUE)})
@@ -60,7 +59,7 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 	
 	xtile(tile_gangneung_purchase, {
 		spritelayout_ground()
-		spritelayout_gangneung_concrete()
+		spritelayout_concrete_float()
 		regular(spr_gangneung, xyz(16,-16,8), dxdydz(16,16,30))
 		regular(spr_gangneung+2, xyz(0,-16,8), dxdydz(16,16,30))
 		regular(spr_gangneung+4, xyz(-16,-16,8), dxdydz(16,16,30))

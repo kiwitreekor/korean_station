@@ -480,6 +480,13 @@ spriteblock(
 		sprite(metro.png       8bpp  560 100 35 44 -18 -34 normal)
 		sprite(metro.png       8bpp  510 150 26 53 -12 -42 normal)
 		sprite(metro.png       8bpp  560 150 26 53 -12 -42 normal)
+		
+// Suseo Station
+		tmpl_suseo(spr_suseo, suseo.png, 20, 140)
+		
+		sprite(spr_suseo_purchase,
+		       suseo.png       8bpp  400 140 64 56 -31 -25 normal)
+	    sprite(suseo.png       8bpp  400 230 64 56 -31 -25 normal)
 	)
 )
 

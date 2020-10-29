@@ -90,6 +90,8 @@ define(spritelayout_ground_building, {_ground(spr_ground_building, CUSTOM, aslfl
 define(spritelayout_ground_nontrack, {_ground(spr_ground_nontrack, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
 define(spritelayout_ground_nontrack_concrete, {_ground(spr_ground_nontrack_concrete, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
+define(spritelayout_concrete_float, {_regular(spr_ground_nontrack_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
+
 include(sprites/layouts/roofs.nfx)
 include(sprites/layouts/platforms.nfx)
 include(sprites/layouts/crossings.nfx)
@@ -100,4 +102,5 @@ include(sprites/layouts/seoul.nfx)
 include(sprites/layouts/gangneung.nfx)
 include(sprites/layouts/gwangmyeong.nfx)
 include(sprites/layouts/metro.nfx)
+include(sprites/layouts/suseo.nfx)
 divert

@@ -471,5 +471,9 @@ ifelse(file_index, 1, {
 	defstationname(METRO_TREE_TRACK, {"지하철역 + 나무"})
 	defstationname(METRO_EXIT_SOUTH_NONTRACK, {"지하철역 출입구 (남)"})
 	defstationname(METRO_EXIT_NORTH_NONTRACK, {"지하철역 출입구 (북)"})
+	
+	defstationname(SUSEO_NONTRACK, {"수서역"})
+	defstationname(SUSEO_HP, {"수서역 (고상홈)"})
+	defstationname(SUSEO_LP, {"수서역 (저상홈)"})
 })
 divert

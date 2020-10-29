@@ -398,6 +398,10 @@ spriteblock(
 // Gangneung Station
 		tmpl_gangneung(spr_gangneung, gangneung.png, 10, 10)
 		
+		sprite(spr_gangneung_purchase,
+		       gangneung.png   8bpp  55   30 64 60 -31 -29 normal)
+	    sprite(gangneung.png   8bpp 366   30 64 60 -31 -29 normal)
+		
 		sprite(spr_gangneung_fence,
 			   gangneung.png   8bpp  10  130 33 22   0  -7 normal)
 		sprite(gangneung.png   8bpp  50  130 33 22 -33  -7 normal)

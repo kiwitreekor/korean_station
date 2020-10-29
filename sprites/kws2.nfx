@@ -1209,10 +1209,6 @@ definestation(X, "",
 	nowires(TTD_ALLTILES)
 	include_lengths({4})
 	include_widths({2})
-	setcargotriggers({PASS})
-	tiletypelayout(
-		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
-	)
 )}, SUSEO_NONTRACK .. SUSEO_LP)
 
 layout(SUSEO_NONTRACK, LAYOUT_SUSEO_NONTRACK)

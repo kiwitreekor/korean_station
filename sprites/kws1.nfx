@@ -624,6 +624,13 @@ definestation(X, "",
 	class(CLASS_FACILITIES)
 	callbacks({CB_LAYOUT})
 	setcargotriggers({PASS})
+)}, PLATFORM_SIGN_B_ADDITIONAL_START .. PLATFORM_SIGN_B_ADDITIONAL_END)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_FACILITIES)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
 )}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
 
 layout(SIGN_A_HP_A, LAYOUT_SIGN_A_HP_A)
@@ -638,18 +645,24 @@ layout(SIGN_A_LAP_A, LAYOUT_SIGN_A_LAP_A)
 layout(SIGN_A_LAP_B, LAYOUT_SIGN_A_LAP_B)
 layout(SIGN_A_LAP_C, LAYOUT_SIGN_A_LAP_C)
 
+layout(SIGN_B_HP_A_RF_A, LAYOUT_SIGN_B_HP_A_RF_A)
 layout(SIGN_B_HP_B_RF_A, LAYOUT_SIGN_B_HP_B_RF_A)
 layout(SIGN_B_HP_C_RF_A, LAYOUT_SIGN_B_HP_C_RF_A)
+layout(SIGN_B_HP_A_RF_B, LAYOUT_SIGN_B_HP_A_RF_B)
 layout(SIGN_B_HP_B_RF_B, LAYOUT_SIGN_B_HP_B_RF_B)
 layout(SIGN_B_HP_C_RF_B, LAYOUT_SIGN_B_HP_C_RF_B)
 
+layout(SIGN_B_LP_A_RF_A, LAYOUT_SIGN_B_LP_A_RF_A)
 layout(SIGN_B_LP_B_RF_A, LAYOUT_SIGN_B_LP_B_RF_A)
 layout(SIGN_B_LP_C_RF_A, LAYOUT_SIGN_B_LP_C_RF_A)
+layout(SIGN_B_LP_A_RF_B, LAYOUT_SIGN_B_LP_A_RF_B)
 layout(SIGN_B_LP_B_RF_B, LAYOUT_SIGN_B_LP_B_RF_B)
 layout(SIGN_B_LP_C_RF_B, LAYOUT_SIGN_B_LP_C_RF_B)
 
+layout(SIGN_B_LAP_A_RF_A, LAYOUT_SIGN_B_LAP_A_RF_A)
 layout(SIGN_B_LAP_B_RF_A, LAYOUT_SIGN_B_LAP_B_RF_A)
 layout(SIGN_B_LAP_C_RF_A, LAYOUT_SIGN_B_LAP_C_RF_A)
+layout(SIGN_B_LAP_A_RF_B, LAYOUT_SIGN_B_LAP_A_RF_B)
 layout(SIGN_B_LAP_B_RF_B, LAYOUT_SIGN_B_LAP_B_RF_B)
 layout(SIGN_B_LAP_C_RF_B, LAYOUT_SIGN_B_LAP_C_RF_B)
 
@@ -1052,9 +1065,24 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 	forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_B)
+makestation(SIGN_B_HP_A_RF_A, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_A)
+
+makestation(SIGN_B_HP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_B .. SIGN_B_HP_C_RF_B)
+
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LAP_C_RF_B)
+	makestation(SIGN_B_LP_A_RF_A, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LP_C_RF_A)
+
+	makestation(SIGN_B_LP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_B .. SIGN_B_LP_C_RF_B)
+	
+	makestation(SIGN_B_LAP_A_RF_A, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LAP_B_RF_A .. SIGN_B_LAP_C_RF_A)
+
+	makestation(SIGN_B_LAP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LAP_B_RF_B .. SIGN_B_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)

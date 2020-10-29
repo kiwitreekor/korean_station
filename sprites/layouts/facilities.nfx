@@ -22,10 +22,21 @@ define(spritelayout_signA, {
 })
 
 define(spritelayout_signB, {
-	ifelse($2, ROOF_TYPE_A, {
-		regular(spr_signB, xyz(6, 16, get_platform_height($1)+5), dxdydz(5, 0, 4))
-	}, $2, ROOF_TYPE_B, {
-		regular(spr_signB, xyz(6, 13, get_platform_height($1)+4), dxdydz(5, 0, 4))
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		ifelse(tmp_roof, ROOF_TYPE_A, {
+			regular(spr_signB, xyz(6, 0, get_platform_height($2)+5), dxdydz(5, 0, 4))
+		}, tmp_roof, ROOF_TYPE_B, {
+			regular(spr_signB, xyz(6, 3, get_platform_height($2)+4), dxdydz(5, 0, 4))
+		})
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		ifelse(tmp_roof, ROOF_TYPE_A, {
+			regular(spr_signB, xyz(6, 16, get_platform_height(tmp_platform_type)+5), dxdydz(5, 0, 4))
+		}, tmp_roof, ROOF_TYPE_B, {
+			regular(spr_signB, xyz(6, 13, get_platform_height(tmp_platform_type)+4), dxdydz(5, 0, 4))
+		})
 	})
 })
 
@@ -154,7 +165,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-		spritelayout_signB(ifelse($1, PLT_TYPE_MULTI, {$3}, {$2}), tmp_roof)
+		spritelayout_signB($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
 })
@@ -166,18 +177,24 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_SINGLE, {
 
 define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_SIGN_B_SINGLE}, $@)})
 
+define(LAYOUT_SIGN_B_HP_A_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_HP_B_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_HP_C_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A)})
+define(LAYOUT_SIGN_B_HP_A_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_HP_B_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_HP_C_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B)})
 
+define(LAYOUT_SIGN_B_LP_A_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_LP_B_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_LP_C_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A)})
+define(LAYOUT_SIGN_B_LP_A_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_LP_B_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_LP_C_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B)})
 
+define(LAYOUT_SIGN_B_LAP_A_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_LAP_B_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A)})
 define(LAYOUT_SIGN_B_LAP_C_RF_A, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A)})
+define(LAYOUT_SIGN_B_LAP_A_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_LAP_B_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B)})
 define(LAYOUT_SIGN_B_LAP_C_RF_B, {LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B)})
 

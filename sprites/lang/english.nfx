@@ -484,5 +484,14 @@ ifelse(file_index, 1, {
 	defstationname(SUSEO_NONTRACK, {"Suseo Stn."})
 	defstationname(SUSEO_HP, {"Suseo Stn. (High Platform)"})
 	defstationname(SUSEO_LP, {"Suseo Stn. (Low Platform)"})
+	
+	defstationname(SUSEO_PARKING_LOT_NONTRACK, {"Parking Lot"})
+	defstationname(SUSEO_PARKING_LOT_HP_A, {"Parking Lot, High Platform A"})
+	defstationname(SUSEO_PARKING_LOT_HP_B, {"Parking Lot, High Platform B"})
+	defstationname(SUSEO_PARKING_LOT_HP_C, {"Parking Lot, High Platform C"})
+	defstationname(SUSEO_PARKING_LOT_LP_A, {"Parking Lot, Low Platform A"})
+	defstationname(SUSEO_PARKING_LOT_LP_B, {"Parking Lot, Low Platform B"})
+	defstationname(SUSEO_PARKING_LOT_LP_C, {"Parking Lot, Low Platform C"})
+	defstationname(SUSEO_PARKING_LOT_TRACK, {"Parking Lot"})
 })
 divert

@@ -1,7 +1,7 @@
 define(spritelayout_ground_road_junction, {_ground(spr_ground_road_concrete+$1, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 define(spritelayout_ground_road, {ground(spr_ground_road_concrete+1, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
-define(spritelayout_cars, {regular(spr_seoul_car, xyz($1, 0, $2), dxdydz(12, 16, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_CARS_OFFSET}))})
+define(spritelayout_seoul_cars, {regular(spr_seoul_car, xyz($1, 0, $2), dxdydz(12, 16, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_CARS_OFFSET}))})
 
 define(LAYOUT_SEOUL_STATION_OLD, {
 	forloop(X, {
@@ -77,7 +77,7 @@ define(LAYOUT_SEOUL_STATION_PART1_BASE, {
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
 		regular(spr_seoul_part1+4, xyz(0,0,20), dxdydz(16,16,10))
-		spritelayout_cars(-3, 33)
+		spritelayout_seoul_cars(-3, 33)
 	})
 	xtile({
 		spritelayout_ground()
@@ -93,7 +93,7 @@ define(LAYOUT_SEOUL_STATION_PART1_BASE, {
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
 		regular(spr_seoul_part1+10, xyz(0,0,20), dxdydz(16,16,10))
-		spritelayout_cars(6, 36)
+		spritelayout_seoul_cars(6, 36)
 	})
 	
 	xtile({
@@ -118,7 +118,7 @@ define(LAYOUT_SEOUL_STATION_PART2, {
 	xtile({
 		spritelayout_ground()
 		regular(spr_seoul_part2_track+2, xyz(8,0,13), dxdydz(8,16,16))
-		spritelayout_cars(15, 29)
+		spritelayout_seoul_cars(15, 29)
 	})
 	
 	xtile({
@@ -128,7 +128,7 @@ define(LAYOUT_SEOUL_STATION_PART2, {
 	xtile({
 		spritelayout_ground_nontrack()
 		regular(spr_seoul_part2_ground+2, xyz(8,0,0), dxdydz(8,16,29))
-		spritelayout_cars(15, 29)
+		spritelayout_seoul_cars(15, 29)
 	})
 	
 	xtile(tile_seoul_part2_purchase, {

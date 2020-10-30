@@ -478,5 +478,14 @@ ifelse(file_index, 1, {
 	defstationname(SUSEO_NONTRACK, {"수서역"})
 	defstationname(SUSEO_HP, {"수서역 (고상홈)"})
 	defstationname(SUSEO_LP, {"수서역 (저상홈)"})
+	
+	defstationname(SUSEO_PARKING_LOT_NONTRACK, {"주차장"})
+	defstationname(SUSEO_PARKING_LOT_HP_A, {"주차장, 고상홈 A"})
+	defstationname(SUSEO_PARKING_LOT_HP_B, {"주차장, 고상홈 B"})
+	defstationname(SUSEO_PARKING_LOT_HP_C, {"주차장, 고상홈 C"})
+	defstationname(SUSEO_PARKING_LOT_LP_A, {"주차장, 저상홈 A"})
+	defstationname(SUSEO_PARKING_LOT_LP_B, {"주차장, 저상홈 B"})
+	defstationname(SUSEO_PARKING_LOT_LP_C, {"주차장, 저상홈 C"})
+	defstationname(SUSEO_PARKING_LOT_TRACK, {"주차장"})
 })
 divert

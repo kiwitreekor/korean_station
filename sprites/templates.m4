@@ -433,4 +433,16 @@ define(tmpl_suseo, {
 		sprite($2 8bpp eval($3+340) eval($4)     32 37 -31  -6 normal)
 		sprite($2 8bpp eval($3+340) eval($4+90)  32 37   1  -6 normal)
 })
+
+define(tmpl_suseo_parking_lot_cars, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4)     64 31 -31   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+80)  eval($4)     64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+80)  eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+160) eval($4)     64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+160) eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+240) eval($4)     64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+240) eval($4+40)  64 31 -31   0 normal)
+})
 divert

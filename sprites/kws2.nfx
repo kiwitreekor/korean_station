@@ -1215,9 +1215,32 @@ setproperties(SUSEO_NONTRACK,
 	nontrack(TTD_ALLTILES)
 )
 
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+)}, SUSEO_PARKING_LOT_NONTRACK .. SUSEO_PARKING_LOT_TRACK)
+
+setproperties(SUSEO_PARKING_LOT_NONTRACK,
+	nontrack(TTD_ALLTILES)
+)
+
 layout(SUSEO_NONTRACK, LAYOUT_SUSEO_NONTRACK)
 layout(SUSEO_HP, LAYOUT_SUSEO_HP)
 layout(SUSEO_LP, LAYOUT_SUSEO_LP)
+
+layout(SUSEO_PARKING_LOT_NONTRACK, LAYOUT_SUSEO_PARKING_LOT_NONTRACK)
+
+layout(SUSEO_PARKING_LOT_HP_A, LAYOUT_SUSEO_PARKING_LOT_HP_A)
+layout(SUSEO_PARKING_LOT_HP_B, LAYOUT_SUSEO_PARKING_LOT_HP_B)
+layout(SUSEO_PARKING_LOT_HP_C, LAYOUT_SUSEO_PARKING_LOT_HP_C)
+
+layout(SUSEO_PARKING_LOT_LP_A, LAYOUT_SUSEO_PARKING_LOT_LP_A)
+layout(SUSEO_PARKING_LOT_LP_B, LAYOUT_SUSEO_PARKING_LOT_LP_B)
+layout(SUSEO_PARKING_LOT_LP_C, LAYOUT_SUSEO_PARKING_LOT_LP_C)
+
+layout(SUSEO_PARKING_LOT_TRACK, LAYOUT_SUSEO_PARKING_LOT_TRACK)
 
 def({sw_suseo_layout}) plt_index(
 	self(
@@ -1243,10 +1266,40 @@ def({sw_suseo_cb_purchase}) callback(
 	ref(sw_set_registers) else
 )
 
+def({sw_suseo_parking_lotA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_suseo_parking_lotB_multi_layout}) calculate({subroutine(sw_platformB_check_opposite) * 2},
+	cbfail() else
+)
+
+def({sw_suseo_parking_lot_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_suseo_parking_lotA_multi_layout) if(1)
+	ref(sw_suseo_parking_lotB_multi_layout) if(2)
+	cbr(0) else
+)
+
+def({sw_suseo_parking_lot_cb}) callback(
+	ref(sw_suseo_parking_lot_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_cars) else
+)
+
+def({sw_suseo_parking_lot_cb_purchase}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
 forloop(X, {makestation(X, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))}, SUSEO_NONTRACK .. SUSEO_HP)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	makestation(SUSEO_LP, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))}, SUSEO_PARKING_LOT_NONTRACK .. SUSEO_PARKING_LOT_HP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))}, SUSEO_PARKING_LOT_LP_A .. SUSEO_PARKING_LOT_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SUSEO_PARKING_LOT_TRACK, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))
 
 // bridge_height
 

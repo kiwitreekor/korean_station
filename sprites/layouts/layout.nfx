@@ -14,13 +14,23 @@ define(xxyz, {ifelse(_ORIENT, 0, {_xyz($1, $2, $3)}, {_xyz($2, $1, $3)})})
 define(xdxdydz, {ifelse(_ORIENT, 0, {_dxdydz($1, $2, $3)}, {_dxdydz($2, $1, $3)})})
 
 define(xground, {dnl
-	ifelse(
-		$#, 1, {_ground({$1-_ORIENT})},
-		$#, 2, {_ground({$1-_ORIENT}, $2)},
-		$#, 3, {_ground({$1-_ORIENT}, $2, $3)},
-		$#, 4, {_ground({$1-_ORIENT}, $2, $3, $4)},
-		{__error(ERR_NUMPAR "{$0}")}
-	)dnl
+	ifelse($2, REVERSE, {
+		ifelse(
+			$#, 2, {_ground({$1+_ORIENT})},
+			$#, 3, {_ground({$1+_ORIENT}, $3)},
+			$#, 4, {_ground({$1+_ORIENT}, $3, $4)},
+			$#, 5, {_ground({$1+_ORIENT}, $3, $4, $5)},
+			{__error(ERR_NUMPAR "{$0}")}
+		)dnl
+	}, {
+		ifelse(
+			$#, 1, {_ground({$1-_ORIENT})},
+			$#, 2, {_ground({$1-_ORIENT}, $2)},
+			$#, 3, {_ground({$1-_ORIENT}, $2, $3)},
+			$#, 4, {_ground({$1-_ORIENT}, $2, $3, $4)},
+			{__error(ERR_NUMPAR "{$0}")}
+		)dnl
+	})
 })
 
 define(xregular, {dnl

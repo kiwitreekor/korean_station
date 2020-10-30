@@ -32,3 +32,38 @@ define(LAYOUT_TEMPLATE_SUSEO_TRACK, {
 define(LAYOUT_SUSEO_NONTRACK, {LAYOUT_TEMPLATE_SUSEO()})
 define(LAYOUT_SUSEO_HP, {LAYOUT_TEMPLATE_SUSEO_TRACK(PLT_TYPE_HIGH)})
 define(LAYOUT_SUSEO_LP, {LAYOUT_TEMPLATE_SUSEO_TRACK(PLT_TYPE_LOW)})
+
+define(spritelayout_ground_suseo_parking_lot, {ground(spr_suseo_parking_lot, REVERSE, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
+define(spritelayout_suseo_parking_lot_float, {regular(spr_suseo_parking_lot, xyz(0, 0, 8), dxdydz(16, 16, 0))})
+define(spritelayout_suseo_cars, {regular(spr_suseo_parking_lot_car, xyz(0, 0, $1), dxdydz(16, 16, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_CARS_OFFSET}))})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT, {
+	xtile({
+		spritelayout_ground_suseo_parking_lot()
+		spritelayout_suseo_cars(0)
+	})
+})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK_BASE, {
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_suseo_parking_lot_float()
+		spritelayout_suseo_cars(8)
+	})
+})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK_BASE}, $@)})
+
+define(LAYOUT_SUSEO_PARKING_LOT_NONTRACK, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT()})
+
+define(LAYOUT_SUSEO_PARKING_LOT_HP_A, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_A, PLT_TYPE_HIGH)})
+define(LAYOUT_SUSEO_PARKING_LOT_HP_B, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_B, PLT_TYPE_HIGH)})
+define(LAYOUT_SUSEO_PARKING_LOT_HP_C, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_C, PLT_TYPE_HIGH)})
+
+define(LAYOUT_SUSEO_PARKING_LOT_LP_A, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_A, PLT_TYPE_LOW)})
+define(LAYOUT_SUSEO_PARKING_LOT_LP_B, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_B, PLT_TYPE_LOW)})
+define(LAYOUT_SUSEO_PARKING_LOT_LP_C, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_C, PLT_TYPE_LOW)})
+
+define(LAYOUT_SUSEO_PARKING_LOT_TRACK, {LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_NONE, PLT_TYPE_NONE)})

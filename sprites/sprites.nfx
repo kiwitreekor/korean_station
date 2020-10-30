@@ -491,6 +491,14 @@ spriteblock(
 		sprite(spr_suseo_purchase,
 		       suseo.png       8bpp  400 140 64 56 -31 -25 normal)
 	    sprite(suseo.png       8bpp  400 230 64 56 -31 -25 normal)
+		
+		sprite(spr_suseo_parking_lot,
+		       suseo.png       8bpp   20 310 64 31 -31   0 normal)
+	    sprite(suseo.png       8bpp  100 310 64 31 -31   0 normal)
+		
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car, suseo.png, 20, 360)
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car2, suseo.png, 340, 360)
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car3, suseo.png, 660, 360)
 	)
 )
 

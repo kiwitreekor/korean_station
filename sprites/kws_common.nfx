@@ -27,11 +27,6 @@ def({sw_reg_roof_colour}) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0xF),
 
 def({sw_set_reg_roof_colour}) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
 
-def({sw_reg_roof_overpass}) subroutine(sw_terrain_snow,
-	cbr(spr_roofs_overpass_snow - spr_roofs_overpass) if(1)
-	cbr(0) else
-)
-
 def({sw_reg_overpass_guide}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
 	cbr(spr_overpass_guide_s - spr_overpass_guide) if(1)
 	cbr(0) else
@@ -41,7 +36,7 @@ def({sw_reg_overpass}) subroutine(sw_terrain_snow,
 	cbr(spr_overpass_snow - spr_overpass) if(1)
 	cbr(0) else
 )
-def({sw_set_reg_overpass}) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide), sub(sw_reg_roof_overpass)}, ref(sw_set_reg_roof_colour))
+def({sw_set_reg_overpass}) setregisters(REGISTER_OVERPASS_OFFSET, {sub(sw_reg_overpass), sub(sw_reg_overpass_guide)}, ref(sw_set_reg_roof_colour))
 
 
 def({sw_reg_crossing_shadow}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
@@ -60,7 +55,7 @@ def({sw_reg_platform_shadow}) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SH
 )
 
 def({sw_reg_roof}) subroutine(sw_terrain_snow,
-	cbr(spr_roofs_snow - spr_roofs) if(1)
+	cbr(spr_roofA_snow - spr_roofA) if(1)
 	cbr(0) else
 )
 

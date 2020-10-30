@@ -1200,7 +1200,7 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
 
-// Suseo Stn
+// Suseo Stn.
 
 forloop(X, {
 definestation(X, "",
@@ -1300,6 +1300,97 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 	forloop(X, {makestation(X, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))}, SUSEO_PARKING_LOT_LP_A .. SUSEO_PARKING_LOT_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 makestation(SUSEO_PARKING_LOT_TRACK, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))
+
+// Overpass Stairs
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
+	include_lengths({1})
+	setcargotriggers({PASS})
+)}, OVERPASS_STAIR_START .. OVERPASS_STAIR_END)
+
+layout(OVERPASS_STAIR_HP_A, LAYOUT_OVERPASS_STAIR_HP_A)
+layout(OVERPASS_STAIR_HP_B, LAYOUT_OVERPASS_STAIR_HP_B)
+layout(OVERPASS_STAIR_HP_C, LAYOUT_OVERPASS_STAIR_HP_C)
+layout(OVERPASS_STAIR_HP_A_RF_A, LAYOUT_OVERPASS_STAIR_HP_A_RF_A)
+layout(OVERPASS_STAIR_HP_B_RF_A, LAYOUT_OVERPASS_STAIR_HP_B_RF_A)
+layout(OVERPASS_STAIR_HP_C_RF_A, LAYOUT_OVERPASS_STAIR_HP_C_RF_A)
+layout(OVERPASS_STAIR_HP_A_RF_B, LAYOUT_OVERPASS_STAIR_HP_A_RF_B)
+layout(OVERPASS_STAIR_HP_B_RF_B, LAYOUT_OVERPASS_STAIR_HP_B_RF_B)
+layout(OVERPASS_STAIR_HP_C_RF_B, LAYOUT_OVERPASS_STAIR_HP_C_RF_B)
+layout(OVERPASS_STAIR_LP_A, LAYOUT_OVERPASS_STAIR_LP_A)
+layout(OVERPASS_STAIR_LP_B, LAYOUT_OVERPASS_STAIR_LP_B)
+layout(OVERPASS_STAIR_LP_C, LAYOUT_OVERPASS_STAIR_LP_C)
+layout(OVERPASS_STAIR_LP_A_RF_A, LAYOUT_OVERPASS_STAIR_LP_A_RF_A)
+layout(OVERPASS_STAIR_LP_B_RF_A, LAYOUT_OVERPASS_STAIR_LP_B_RF_A)
+layout(OVERPASS_STAIR_LP_C_RF_A, LAYOUT_OVERPASS_STAIR_LP_C_RF_A)
+layout(OVERPASS_STAIR_LP_A_RF_B, LAYOUT_OVERPASS_STAIR_LP_A_RF_B)
+layout(OVERPASS_STAIR_LP_B_RF_B, LAYOUT_OVERPASS_STAIR_LP_B_RF_B)
+layout(OVERPASS_STAIR_LP_C_RF_B, LAYOUT_OVERPASS_STAIR_LP_C_RF_B)
+layout(OVERPASS_STAIR_LAP_A, LAYOUT_OVERPASS_STAIR_LAP_A)
+layout(OVERPASS_STAIR_LAP_B, LAYOUT_OVERPASS_STAIR_LAP_B)
+layout(OVERPASS_STAIR_LAP_C, LAYOUT_OVERPASS_STAIR_LAP_C)
+layout(OVERPASS_STAIR_LAP_A_RF_A, LAYOUT_OVERPASS_STAIR_LAP_A_RF_A)
+layout(OVERPASS_STAIR_LAP_B_RF_A, LAYOUT_OVERPASS_STAIR_LAP_B_RF_A)
+layout(OVERPASS_STAIR_LAP_C_RF_A, LAYOUT_OVERPASS_STAIR_LAP_C_RF_A)
+layout(OVERPASS_STAIR_LAP_A_RF_B, LAYOUT_OVERPASS_STAIR_LAP_A_RF_B)
+layout(OVERPASS_STAIR_LAP_B_RF_B, LAYOUT_OVERPASS_STAIR_LAP_B_RF_B)
+layout(OVERPASS_STAIR_LAP_C_RF_B, LAYOUT_OVERPASS_STAIR_LAP_C_RF_B)
+
+
+def({sw_overpass_stair_back_sub}) tinfo_statid(pos(1, 0),
+	cbr(2) if(MODULAR_START .. MODULAR_END)
+	cbr(0) else
+)
+
+def({sw_overpass_stair_back}) tinfo_grfid(pos(1, 0),
+	ref(sw_overpass_stair_back_sub) if(VAR_GRFID_KWS_PART1)
+	cbr(0) else
+)
+
+def({sw_overpass_stair_layout}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_overpass_stair_back)},
+	cbfail() else
+)
+
+def({sw_overpass_pA_stair_layout}) calculate({subroutine(sw_platformA_check_opposite) * 8 + subroutine(sw_overpass_stair_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_pB_stair_layout}) calculate({subroutine(sw_platformB_check_opposite) * 8 + subroutine(sw_overpass_stair_layout)},
+	cbfail() else
+)
+
+def({sw_overpass_stair_multi_layout}) subroutine(sw_platform_multi_check,
+	ref(sw_overpass_pA_stair_layout) if(1)
+	ref(sw_overpass_pB_stair_layout) if(2)
+	ref(sw_overpass_stair_layout) else
+)
+
+def({sw_reg_overpass_stair_offset}) calculate({subroutine(sw_terrain_snow) * 4},
+	cbfail() else
+)
+
+def({sw_set_reg_overpass_stair}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_registers))
+
+def({sw_set_reg_overpass_stair_purchase}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers))
+
+def({sw_overpass_stairs_platform_cb}) callback(
+	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_overpass_stair) else
+)
+
+def({sw_overpass_stairs_platform_cb_purchase}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_overpass_stair_purchase) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_HP_A .. OVERPASS_STAIR_HP_C_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_LP_A .. OVERPASS_STAIR_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
 
 // bridge_height
 

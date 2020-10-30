@@ -499,6 +499,13 @@ spriteblock(
 		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car, suseo.png, 20, 360)
 		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car2, suseo.png, 340, 360)
 		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car3, suseo.png, 660, 360)
+
+// Overpass stairs
+		tmpl_overpass_stairs(spr_overpass_stair, platforms.png, 600, 780)
+		tmpl_overpass_stairs(spr_overpass_stair_snow, platforms.png, 700, 780)
+		
+		tmpl_overpass_stairs_low(spr_overpass_stair_low, platforms.png, 800, 780)
+		tmpl_overpass_stairs_low(spr_overpass_stair_low_snow, platforms.png, 900, 780)
 	)
 )
 

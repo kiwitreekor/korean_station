@@ -445,4 +445,20 @@ define(tmpl_suseo_parking_lot_cars, {
 		sprite($2 8bpp eval($3+240) eval($4)     64 31 -31   0 normal)
 		sprite($2 8bpp eval($3+240) eval($4+40)  64 31 -31   0 normal)
 })
+
+define(tmpl_overpass_stairs, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4)     30 30 -23 -16 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     30 30  -5 -16 normal)
+		sprite($2 8bpp eval($3)     eval($4+40)  30 19 -31  -2 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+40)  30 19   3  -2 normal)
+})
+
+define(tmpl_overpass_stairs_low, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)     eval($4)     30 32 -23 -18 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     30 32  -5 -18 normal)
+		sprite($2 8bpp eval($3)     eval($4+40)  30 20 -31  -4 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+40)  30 20   3  -4 normal)
+})
 divert

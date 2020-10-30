@@ -331,14 +331,26 @@ def({sw_platform_multi_cb}) callback(
 
 // modular stations
 
-def({sw_modular_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0x1FF),
-	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
+def({sw_modular_poleA_part1}) tinfo_statid(pos(0, -1), shiftmask(0,0xFF),
+	cbr(0) if(MODULAR_LOW .. MODULAR_HIGH)
 	cbr(1) else
 )
-def({sw_modular_poleB}) tinfo_statid(pos(0, 1), shiftmask(0,0x1FF),
-	cbr(0) if(0x100+MODULAR_LOW .. 0x100+MODULAR_HIGH)
+
+def({sw_modular_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0xFF),
+	ref(sw_modular_poleA_part1) if(VAR_GRFID_KWS_PART1)
 	cbr(1) else
 )
+
+def({sw_modular_poleB_part1}) tinfo_statid(pos(0, 1), shiftmask(0,0xFF),
+	cbr(0) if(MODULAR_LOW .. MODULAR_HIGH)
+	cbr(1) else
+)
+
+def({sw_modular_poleB}) tinfo_grfid(pos(0, 1),
+	ref(sw_modular_poleB_part1) if(VAR_GRFID_KWS_PART1)
+	cbr(1) else
+)
+
 def({sw_modular_pole_register}) setregisters(REGISTER_MODULAR_POLE_SKIP, {sub(sw_modular_poleA), sub(sw_modular_poleB)}, ref(sw_set_registers))
 
 def({sw_modular_overpass_register_sub}) subroutine(sw_terrain_snow,

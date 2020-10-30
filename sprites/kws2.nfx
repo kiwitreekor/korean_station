@@ -1200,7 +1200,7 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
 
-// Suseo Stn.
+// Suseo Stn
 
 forloop(X, {
 definestation(X, "",
@@ -1210,6 +1210,10 @@ definestation(X, "",
 	include_lengths({4})
 	include_widths({2})
 )}, SUSEO_NONTRACK .. SUSEO_LP)
+
+setproperties(SUSEO_NONTRACK,
+	nontrack(TTD_ALLTILES)
+)
 
 layout(SUSEO_NONTRACK, LAYOUT_SUSEO_NONTRACK)
 layout(SUSEO_HP, LAYOUT_SUSEO_HP)

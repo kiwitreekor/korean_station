@@ -16,6 +16,7 @@ define(LAYOUT_TEMPLATE_SUSEO_TRACK, {
 	forloop(X, {
 		xtile({
 			spritelayout_ground()
+			spritelayout_metro_pole()
 			spritelayout_concrete_float()
 			regular(spr_suseo+X*2, xyz(0,0,9), dxdydz(16,16,40))
 			ifelse($1, PLT_TYPE_NONE, {}, {platform_base({ifelse(eval((X/4)%2==0), 1, PLT_TYPE_A, PLT_TYPE_B)}, $1, SHADOW_TRUE)})

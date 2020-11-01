@@ -687,11 +687,42 @@ skipif(2, OTTDVERSION, >, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_register))
 def({sw_set_reg_psd_menu}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_menu))
 
+def({sw_psd_check_sound_part2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(0) if(PSD_PLATFORM_A_PART2)
+	cbr(0) if(PSD_PLATFORM_B_PART2)
+	cbr(0) if(PSD_PLATFORM_C_PART2)
+	cbr(1) else
+)
+
+def({sw_psd_check_sound_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(0) if(PSD_PLATFORM_A_PART1)
+	cbr(0) if(PSD_PLATFORM_B_PART1)
+	cbr(0) if(PSD_PLATFORM_C_PART1)
+	cbr(1) else
+)
+
+def({sw_psd_check_sound}) tinfo_grfid(pos(-1, 0),
+	cbr(1) if(0)
+	ref(sw_psd_end_pB_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_end_pB_part2) if(VAR_GRFID_KWS_PART2)
+	cbr(1) else
+)
+
+def({sw_psd_sound_open}) subroutine(sw_psd_check_sound,
+	animframe(A_NEXT, _S_snd_psd_open) if(1)
+	animframe(A_NEXT) else
+)
+
+def({sw_psd_sound_close}) subroutine(sw_psd_check_sound,
+	animframe(A_NEXT, _S_snd_psd_close) if(1)
+	animframe(A_NEXT) else
+)
+
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_PSDSFX)
 def({sw_psd_animframe}) anim_frame(
 	animframe(A_STOP) if(3)
-	animframe(A_NEXT, _S_snd_psd_open) if(1)
-	animframe(A_NEXT, _S_snd_psd_close) if(4)
+	ref(sw_psd_sound_open) if(1)
+	ref(sw_psd_sound_close) if(4)
 	animframe(A_NEXT) else
 )
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_PSDSFX)

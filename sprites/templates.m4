@@ -18,6 +18,48 @@ define(tmpl_low_platform, {tmpl_base_platform($1, $2, $3, $4, 1)})
 define(tmpl_high_platform_nontrack, {tmpl_base_platform_nontrack($1, $2, $3, $4, 3)})
 define(tmpl_low_platform_nontrack, {tmpl_base_platform_nontrack($1, $2, $3, $4, 1)})
 
+define(tmpl_roofA, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 20 -31  -2 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 20 -11  -2 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 26 -31  -5 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 26 -11  -5 normal)
+})
+
+define(tmpl_roofA_stairs, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 20 -31  -2 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 20 -11  -2 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 26 -31  -5 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 26 -11  -5 normal)
+		sprite($2 8bpp eval($3+200) eval($4)     44 26 -31  -5 normal)
+		sprite($2 8bpp eval($3+250) eval($4)     44 26 -11  -5 normal)
+})
+
+define(tmpl_roofA_nontrack, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3+70)  eval($4)     64 34 -31  -2 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4)     64 34 -31  -2 normal)
+})
+
+define(tmpl_roofB, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 24 -31  -6 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 24 -11  -6 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 24 -31  -6 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 24 -11  -6 normal)
+})
+
+define(tmpl_roofB_stairs, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 24 -31  -6 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 24 -11  -6 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 24 -31  -6 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 24 -11  -6 normal)
+		sprite($2 8bpp eval($3+200) eval($4)     44 24 -31  -6 normal)
+		sprite($2 8bpp eval($3+250) eval($4)     44 24 -11  -6 normal)
+})
+
+define(tmpl_roofB_nontrack, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3+70)  eval($4)     64 34 -31  -6 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4)     64 34 -31  -6 normal)
+})
+
 define(tmpl_high_platform_crossing, {
 	tmpl_high_platform($1, $2, $3, $4)
 	tmpl_high_platform(, $2, $3, $4+40)
@@ -437,28 +479,28 @@ define(tmpl_suseo, {
 define(tmpl_suseo_parking_lot_cars, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4)     64 31 -31   0 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3)     eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3)     eval($4+50)  64 31 -31   0 normal)
 		sprite($2 8bpp eval($3+80)  eval($4)     64 31 -31   0 normal)
-		sprite($2 8bpp eval($3+80)  eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+80)  eval($4+50)  64 31 -31   0 normal)
 		sprite($2 8bpp eval($3+160) eval($4)     64 31 -31   0 normal)
-		sprite($2 8bpp eval($3+160) eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+160) eval($4+50)  64 31 -31   0 normal)
 		sprite($2 8bpp eval($3+240) eval($4)     64 31 -31   0 normal)
-		sprite($2 8bpp eval($3+240) eval($4+40)  64 31 -31   0 normal)
+		sprite($2 8bpp eval($3+240) eval($4+50)  64 31 -31   0 normal)
 })
 
 define(tmpl_overpass_stairs, {
 		sprite(ifelse($1,,,{$1,})
-		       $2 8bpp eval($3)     eval($4)     30 30 -23 -16 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+50)  eval($4)     30 30  -5 -16 normal)
-		sprite($2 8bpp eval($3)     eval($4+40)  30 19 -31  -2 normal)
-		sprite($2 8bpp eval($3+50)  eval($4+40)  30 19   3  -2 normal)
+		       $2 8bpp eval($3)     eval($4)     38 39 -31 -21 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     38 39  -5 -16 normal)
+		sprite($2 8bpp eval($3)     eval($4+50)  38 23 -31  -9 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+50)  38 23   3  -9 normal)
 })
 
 define(tmpl_overpass_stairs_low, {
 		sprite(ifelse($1,,,{$1,})
-		       $2 8bpp eval($3)     eval($4)     30 32 -23 -18 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+50)  eval($4)     30 32  -5 -18 normal)
-		sprite($2 8bpp eval($3)     eval($4+40)  30 20 -31  -4 normal)
-		sprite($2 8bpp eval($3+50)  eval($4+40)  30 20   3  -4 normal)
+		       $2 8bpp eval($3)     eval($4)     38 41 -31 -21 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     38 41  -5 -16 normal)
+		sprite($2 8bpp eval($3)     eval($4+50)  38 23 -31  -9 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+50)  38 23   3  -9 normal)
 })
 divert

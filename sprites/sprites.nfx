@@ -53,33 +53,27 @@ spriteblock(
 		sprite(platforms.png    8bpp 600   10 44 23 -31  -4 normal) // passenger 5-2, platform B
 		sprite(platforms.png    8bpp 650   10 44 23 -11  -4 normal)
 // roof
-		sprite(spr_roofs,
-			   roofs.png        8bpp  10   10 44 20 -31  -2 normal) // roof A, platform A
-		sprite(roofs.png        8bpp  60   10 44 20 -11  -2 normal)
-		sprite(roofs.png        8bpp 110   10 44 26 -31  -5 normal) // roof A, platform B
-		sprite(roofs.png        8bpp 160   10 44 26 -11  -5 normal)
-		sprite(roofs.png        8bpp 300   10 64 34 -31  -2 normal) // roof A, non-track
-		sprite(roofs.png        8bpp 230   10 64 34 -31  -2 normal)
-		sprite(roofs.png        8bpp  10  200 44 24 -31  -6 normal) // roof B, platform A
-		sprite(roofs.png        8bpp  60  200 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 110  200 44 24 -31  -6 normal) // roof B, platform B
-		sprite(roofs.png        8bpp 160  200 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 300  200 64 34 -31  -6 normal) // roof B, non-track
-		sprite(roofs.png        8bpp 230  200 64 34 -31  -6 normal)
+		tmpl_roofA(spr_roofA, roofs.png, 10, 10)
+		tmpl_roofA_nontrack(, roofs.png, 230, 10)
+		tmpl_roofB(spr_roofB, roofs.png, 10, 200)
+		tmpl_roofB_nontrack(, roofs.png, 230, 200)
+		tmpl_roofA(spr_roofA_overpass, roofs.png, 10, 130)
+		tmpl_roofB(spr_roofB_overpass, roofs.png, 10, 320)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_front, roofs.png, 10, 400)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_front, roofs.png, 10, 460)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_back, roofs.png, 10, 520)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_back, roofs.png, 10, 580)
 // roof with snow
-		sprite(spr_roofs_snow,
-			   roofs.png        8bpp  10  100 44 20 -31  -2 normal) // roof A, platform A
-		sprite(roofs.png        8bpp  60  100 44 20 -11  -2 normal)
-		sprite(roofs.png        8bpp 110  100 44 26 -31  -5 normal) // roof A, platform B
-		sprite(roofs.png        8bpp 160  100 44 26 -11  -5 normal)
-		sprite(roofs.png        8bpp 300  100 64 34 -31  -2 normal) // roof A, non-track
-		sprite(roofs.png        8bpp 230  100 64 34 -31  -2 normal)
-		sprite(roofs.png        8bpp  10  290 44 24 -31  -6 normal) // roof B, platform A
-		sprite(roofs.png        8bpp  60  290 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 110  290 44 24 -31  -6 normal) // roof B, platform B
-		sprite(roofs.png        8bpp 160  290 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 300  290 64 34 -31  -6 normal) // roof B, non-track
-		sprite(roofs.png        8bpp 230  290 64 34 -31  -6 normal)
+		tmpl_roofA(spr_roofA_snow, roofs.png, 10, 100)
+		tmpl_roofA_nontrack(, roofs.png, 230, 100)
+		tmpl_roofB(spr_roofB_snow, roofs.png, 10, 290)
+		tmpl_roofB_nontrack(, roofs.png, 230, 290)
+		tmpl_roofA(spr_roofA_overpass_snow, roofs.png, 10, 160)
+		tmpl_roofB(spr_roofB_overpass_snow, roofs.png, 10, 350)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_front_snow, roofs.png, 10, 430)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_front_snow, roofs.png, 10, 490)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_back_snow, roofs.png, 10, 550)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_back_snow, roofs.png, 10, 610)
 // pole
 		sprite(spr_poles,
 			   roofs.png        8bpp  10   60 33 25 -31  -9 normal) // poles for roof A, platform A
@@ -250,24 +244,6 @@ spriteblock(
 		sprite(platforms.png    8bpp 820  540 44 21 -11   0 normal)
 		sprite(platforms.png    8bpp 750  570 44 21 -31   0 normal)
 		sprite(platforms.png    8bpp 820  570 44 21 -11   0 normal)
-		sprite(spr_roofs_overpass,
-			   roofs.png        8bpp  10  130 44 20 -31  -2 normal) // roof A, platform A
-		sprite(roofs.png        8bpp  60  130 44 20 -11  -2 normal)
-		sprite(roofs.png        8bpp 110  130 44 26 -31  -5 normal) // roof A, platform B
-		sprite(roofs.png        8bpp 160  130 44 26 -11  -5 normal)
-		sprite(roofs.png        8bpp  10  320 44 24 -31  -6 normal) // roof B, platform A
-		sprite(roofs.png        8bpp  60  320 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 110  320 44 24 -31  -6 normal) // roof B, platform B
-		sprite(roofs.png        8bpp 160  320 44 24 -11  -6 normal)
-		sprite(spr_roofs_overpass_snow,
-			   roofs.png        8bpp  10  160 44 20 -31  -2 normal) // roof A, platform A
-		sprite(roofs.png        8bpp  60  160 44 20 -11  -2 normal)
-		sprite(roofs.png        8bpp 110  160 44 26 -31  -5 normal) // roof A, platform B
-		sprite(roofs.png        8bpp 160  160 44 26 -11  -5 normal)
-		sprite(roofs.png        8bpp  10  350 44 24 -31  -6 normal) // roof B, platform A
-		sprite(roofs.png        8bpp  60  350 44 24 -11  -6 normal)
-		sprite(roofs.png        8bpp 110  350 44 24 -31  -6 normal) // roof B, platform B
-		sprite(roofs.png        8bpp 160  350 44 24 -11  -6 normal)
 // facilities
 		sprite(spr_signA,
 			   platforms.png    8bpp 500  220  5  9   0  -7 normal) // station sign A, end

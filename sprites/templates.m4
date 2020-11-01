@@ -492,15 +492,15 @@ define(tmpl_overpass_stairs, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4)     38 39 -31 -21 normal) ifelse($1,,,{// $1})
 		sprite($2 8bpp eval($3+50)  eval($4)     38 39  -5 -21 normal)
-		sprite($2 8bpp eval($3)     eval($4+50)  38 23 -31  -9 normal)
-		sprite($2 8bpp eval($3+50)  eval($4+50)  38 23  -5  -9 normal)
+		sprite($2 8bpp eval($3)     eval($4+50)  38 22 -31  -8 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+50)  38 22  -5  -8 normal)
 })
 
 define(tmpl_overpass_stairs_low, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)     eval($4)     38 41 -31 -23 normal) ifelse($1,,,{// $1})
 		sprite($2 8bpp eval($3+50)  eval($4)     38 41  -5 -23 normal)
-		sprite($2 8bpp eval($3)     eval($4+50)  38 23 -31 -11 normal)
-		sprite($2 8bpp eval($3+50)  eval($4+50)  38 23  -5 -11 normal)
+		sprite($2 8bpp eval($3)     eval($4+50)  38 23 -31  -9 normal)
+		sprite($2 8bpp eval($3+50)  eval($4+50)  38 23  -5  -9 normal)
 })
 divert

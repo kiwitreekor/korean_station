@@ -91,23 +91,27 @@ define(LAYOUT_SIMPLE_STN, {
 	})
 })
 
-define(get_overpass_stair_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_overpass_stair, $1, PLT_TYPE_LOW, spr_overpass_stair_low, $1, PLT_TYPE_LOW_ASPHALT, spr_overpass_stair_low, spr_overpass_stair)})
+define(get_overpass_stair_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_overpass_stair, $1, PLT_TYPE_LOW, spr_overpass_stair_low, $1, PLT_TYPE_LOW_ASPHALT, spr_overpass_stair_low, spr_overpass_stair) + ifelse($2, ROOF_TYPE_STAIR_FRONT, 0, 2)})
 
 define(spritelayout_overpass_stair, {
+	define({tmp_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
 	ifelse($1, PLT_TYPE_A, {
-		regular(get_overpass_stair_sprite($2), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
-		$3
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_B, {
-		$3
-		regular(get_overpass_stair_sprite($2), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_C, {
-		regular(get_overpass_stair_sprite($2), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
-		$3
-		regular(get_overpass_stair_sprite($2), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_MULTI, {
-		regular(get_overpass_stair_sprite($2), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
-		$4
-		regular(get_overpass_stair_sprite($3), xyz(0, 13, get_platform_height($3)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($3, tmp_type), xyz(0, 13, get_platform_height($3)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, {})
 })
 
@@ -117,14 +121,12 @@ define(LAYOUT_TEMPLATE_OVERPASS_STAIR_SINGLE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT))
-		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
 	})
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK))
-		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
 	})
 })
 

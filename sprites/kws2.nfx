@@ -1368,7 +1368,7 @@ def({sw_overpass_stair_multi_layout}) subroutine(sw_platform_multi_check,
 	ref(sw_overpass_stair_layout) else
 )
 
-def({sw_reg_overpass_stair_offset}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_overpass_stair_back)},
+def({sw_reg_overpass_stair_offset}) calculate({subroutine(sw_terrain_snow) * 4},
 	cbfail() else
 )
 
@@ -1377,7 +1377,7 @@ def({sw_set_reg_overpass_stair}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {s
 def({sw_set_reg_overpass_stair_purchase}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers))
 
 def({sw_overpass_stairs_platform_cb}) callback(
-	ref(sw_overpass_stair_layout) if(CB_LAYOUT)
+	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
 	ref(sw_set_reg_overpass_stair) else
 )
 

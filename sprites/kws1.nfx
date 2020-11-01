@@ -354,18 +354,19 @@ definestation(X, "",
 layout(MODULAR_LOW, LAYOUT_MODULAR_LOW)
 layout(MODULAR_HIGH, LAYOUT_MODULAR_HIGH)
 
-def({sw_calc_nearby_info_sub2}) tinfo_statid(pos(0, 1),
-	cbr(0) if(0xFFFF)
+def({sw_building_nearby_info_parallel}) calculate({register(REGISTER_BUILDING_POS) RESTORE tinfo_statid(REGISTER,) AND 0x800},
+	cbr(2) if(0x800)
 	cbr(1) else
 )
 
-def({sw_calc_nearby_info_sub1}) tinfo_statid(pos(0, -1),
-	cbr(0) if(0xFFFF)
-	cbr(2) else
+def({sw_building_nearby_info_part1}) calculate({register(REGISTER_BUILDING_POS) RESTORE tinfo_statid(REGISTER,) AND 0xFF},
+	ref(sw_building_nearby_info_parallel) if(MODULAR_LOW .. MODULAR_HIGH)
+	cbr(0) else
 )
 
-def({sw_calc_nearby_info}) calculate({tinfo_trackconnect() >> 10 AND 3 OR subroutine(sw_calc_nearby_info_sub1) OR subroutine(sw_calc_nearby_info_sub2)},
-	cbfail() else
+def({sw_building_nearby_info}) calculate({register(REGISTER_BUILDING_POS) RESTORE tinfo_grfid(REGISTER,)},
+	ref(sw_building_nearby_info_part1) if(VAR_GRFID_KWS_PART1)
+	cbr(0) else
 )
 
 def({sw_building_register_sub_snow}) subroutine(sw_terrain_snow,
@@ -373,13 +374,177 @@ def({sw_building_register_sub_snow}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
-def({sw_building_layout_sub2}) subroutine(sw_calc_nearby_info,
-	cbr(1) if(1)
-	cbr(10) if(3)
+def({sw_building_layout_single_sub3_1}) calculate({0xFF store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(7) if(1,2)
+	cbr(8) else
+)
+
+def({sw_building_layout_single_sub3_2}) tinfo_trackexist(0x3,
+	cbr(4) if(1)
+	cbr(3) if(2)
+	cbr(1) else
+)
+
+def({sw_building_layout_single_sub3}) calculate({0xF0 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1)
+	ref(sw_building_layout_single_sub3_1) if(2)
+	ref(sw_building_layout_single_sub3_2) else
+)
+
+def({sw_building_layout_single_sub2_4}) calculate({0x11 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(1) if(1,2)
+	ref(6) else
+)
+
+def({sw_building_layout_single_sub2_8}) tinfo_trackexist(0x3,
+	cbr(1) if(2)
+	cbr(4) else
+)
+
+def({sw_building_layout_single_sub2_3}) calculate({0x11 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub2_8) if(1,2)
+	cbr(6) else
+)
+
+def({sw_building_layout_single_sub2_2}) calculate({0x0F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub2_4) if(1,2)
+	ref(sw_building_layout_single_sub2_3) else
+)
+
+def({sw_building_layout_single_sub2_9}) calculate({0x0F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(1) if(1,2)
+	cbr(4) else
+)
+
+def({sw_building_layout_single_sub2_7}) tinfo_trackexist(0x3,
+	ref(sw_building_layout_single_sub2_9) if(1)
+	cbr(3) else
+)
+
+def({sw_building_layout_single_sub2_1}) calculate({0x01 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub2_2) if(1,2)
+	ref(sw_building_layout_single_sub2_7) else
+)
+
+def({sw_building_layout_single_sub2_6}) calculate({0x1F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1,2)
+	cbr(9) else
+)
+
+def({sw_building_layout_single_sub2_5}) calculate({0x11 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub2_6) if(1,2)
+	cbr(6) else
+)
+
+def({sw_building_layout_single_sub2}) calculate({0xF0 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub2_5) if(1)
+	cbr(10) if(2)
+	ref(sw_building_layout_single_sub2_1) else
+)
+
+def({sw_building_layout_single_sub1_9}) tinfo_trackexist(0x3,
+	cbr(0) if(2)
+	cbr(5) else
+)
+
+def({sw_building_layout_single_sub1_2}) calculate({0x0F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(0) if(1,2)
+	ref(sw_building_layout_single_sub1_9) else
+)
+
+def({sw_building_layout_single_sub1_10}) tinfo_trackexist(0x3,
+	cbr(0) if(2)
+	cbr(5) else
+)
+
+def({sw_building_layout_single_sub1_5}) calculate({0xF1 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub1_10) if(2)
 	cbr(0) else
 )
 
-def({sw_building_x_layout_sub}) subroutine(sw_building_layout_sub2,
+def({sw_building_layout_single_sub1_7}) tinfo_trackexist(0x3,
+	cbr(0) if(2)
+	ref(sw_building_layout_single_sub1_5) else
+)
+
+def({sw_building_layout_single_sub1_6}) calculate({0x0F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(0) if(1,2)
+	ref(sw_building_layout_single_sub1_5) else
+)
+
+def({sw_building_layout_single_sub1_8}) calculate({0x0F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(0) if(1,2)
+	cbr(5) else
+)
+
+def({sw_building_layout_single_sub1_4}) tinfo_trackexist(0x3,
+	ref(sw_building_layout_single_sub1_8) if(1)
+	cbr(2) else
+)
+
+def({sw_building_layout_single_sub1_1}) calculate({0x01 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub1_2) if(1)
+	ref(sw_building_layout_single_sub1_6) if(2)
+	ref(sw_building_layout_single_sub1_4) else
+)
+
+def({sw_building_layout_single_sub1_3}) tinfo_trackexist(0x3,
+	cbr(5) if(1)
+	cbr(2) if(2)
+	cbr(0) else
+)
+
+def({sw_building_layout_single_sub1}) calculate({0xF0 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub1_1) if(2)
+	ref(sw_building_layout_single_sub1_3) else
+)
+
+def({sw_building_layout_single}) calculate({0x10 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_single_sub3) if(1)
+	ref(sw_building_layout_single_sub2) if(2)
+	ref(sw_building_layout_single_sub1) else
+)
+
+def({sw_building_layout_front_sub1_1}) calculate({0x1F store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1,2)
+	cbr(9) else
+)
+
+def({sw_building_layout_front_sub1}) calculate({0x11 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_front_sub1_1) if(1,2)
+	cbr(6) else
+)
+
+def({sw_building_layout_front}) calculate({0x10 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1)
+	ref(sw_building_layout_front_sub1) if(2)
+	cbr(0) else
+)
+
+def({sw_building_layout_back_sub1_1}) calculate({0xFF store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1,2)
+	cbr(8) else
+)
+
+def({sw_building_layout_back_sub1}) calculate({0xF1 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	ref(sw_building_layout_back_sub1_1) if(1,2)
+	cbr(7) else
+)
+
+def({sw_building_layout_back}) calculate({0xF0 store(REGISTER_BUILDING_POS) subroutine(sw_building_nearby_info)},
+	cbr(10) if(1)
+	ref(sw_building_layout_back_sub1) if(2)
+	cbr(1) else
+)
+
+def({sw_building_layout}) tinfo_trackexist(0xC,
+	ref(sw_building_layout_back) if(0x4)
+	ref(sw_building_layout_front) if(0x8)
+	cbr(10) if(0xC)
+	ref(sw_building_layout_single) else
+)
+
+def({sw_building_x_layout_sub}) subroutine(sw_building_layout,
 	cbr(0) if(0)
 	cbr(2) if(1)
 	cbr(4) if(2)
@@ -394,7 +559,7 @@ def({sw_building_x_layout_sub}) subroutine(sw_building_layout_sub2,
 	cbr(0) else
 )
 
-def({sw_building_y_layout_sub}) subroutine(sw_building_layout_sub2,
+def({sw_building_y_layout_sub}) subroutine(sw_building_layout,
 	cbr(1) if(0)
 	cbr(3) if(1)
 	cbr(4) if(2)
@@ -409,7 +574,7 @@ def({sw_building_y_layout_sub}) subroutine(sw_building_layout_sub2,
 	cbr(0) else
 )
 
-def({sw_building_ground_x_register_sub2}) subroutine(sw_building_layout_sub2,
+def({sw_building_ground_x_register_sub2}) subroutine(sw_building_layout,
 	cbr(2) if(0)
 	cbr(4) if(1)
 	cbr(6) if(2)
@@ -423,7 +588,7 @@ def({sw_building_ground_x_register_sub2}) subroutine(sw_building_layout_sub2,
 	cbr(0) else
 )
 
-def({sw_building_ground_y_register_sub2}) subroutine(sw_building_layout_sub2,
+def({sw_building_ground_y_register_sub2}) subroutine(sw_building_layout,
 	cbr(3) if(0)
 	cbr(5) if(1)
 	cbr(6) if(2)
@@ -458,8 +623,11 @@ def({sw_building_y_register_sub}) calculate({subroutine(sw_building_y_layout_sub
 def({sw_building_ground_register}) setregisters(REGISTER_MODULAR_GROUND_OFFSET, {sub(sw_building_ground_x_register_sub), sub(sw_building_ground_y_register_sub)}, ref(sw_set_registers))
 def({sw_building_registers}) setregisters(REGISTER_MODULAR_OFFSET, {sub(sw_building_x_register_sub), sub(sw_building_y_register_sub)}, ref(sw_building_ground_register))
 
+def({sw_building_ground_register_purchase}) setregisters(REGISTER_MODULAR_GROUND_OFFSET, {0, 0}, ref(sw_set_registers))
+def({sw_building_registers_purchase}) setregisters(REGISTER_MODULAR_OFFSET, {0, 1}, ref(sw_building_ground_register_purchase))
+
 // spriteset links
-forloop(X, {makestation(X, default(ref(sw_building_registers)))}, MODULAR_LOW .. MODULAR_HIGH)
+forloop(X, {makestation(X, link(ref(sw_building_registers_purchase), MENU) default(ref(sw_building_registers)))}, MODULAR_LOW .. MODULAR_HIGH)
 
 // modular station overpasses
 forloop(X, {

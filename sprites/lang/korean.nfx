@@ -515,5 +515,15 @@ ifelse(file_index, 1, {
 	defstationname(OVERPASS_STAIR_LAP_A_RF_B, {"아스팔트 저상홈 A + 계단 + 지붕 B"})
 	defstationname(OVERPASS_STAIR_LAP_B_RF_B, {"아스팔트 저상홈 B + 계단 + 지붕 B"})
 	defstationname(OVERPASS_STAIR_LAP_C_RF_B, {"아스팔트 저상홈 C + 계단 + 지붕 B"})
+
+	defstationname(PSD_OVERPASS_STAIR_HP_A, {"고상홈 A + PSD + 계단"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B, {"고상홈 B + PSD + 계단"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C, {"고상홈 C + PSD + 계단"})
+	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_A, {"고상홈 A + PSD + 계단 + 지붕 A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_A, {"고상홈 B + PSD + 계단 + 지붕 A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_A, {"고상홈 C + PSD + 계단 + 지붕 A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_B, {"고상홈 A + PSD + 계단 + 지붕 B"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_B, {"고상홈 B + PSD + 계단 + 지붕 B"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_B, {"고상홈 C + PSD + 계단 + 지붕 B"})
 })
 divert

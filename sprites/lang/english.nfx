@@ -521,5 +521,15 @@ ifelse(file_index, 1, {
 	defstationname(OVERPASS_STAIR_LAP_A_RF_B, {"Low Asphalt Platform A + Stair + Roof B"})
 	defstationname(OVERPASS_STAIR_LAP_B_RF_B, {"Low Asphalt Platform B + Stair + Roof B"})
 	defstationname(OVERPASS_STAIR_LAP_C_RF_B, {"Low Asphalt Platform C + Stair + Roof B"})
+
+	defstationname(PSD_OVERPASS_STAIR_HP_A, {"High Platform A + PSD + Stair"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B, {"High Platform B + PSD + Stair"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C, {"High Platform C + PSD + Stair"})
+	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_A, {"High Platform A + PSD + Stair + Roof A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_A, {"High Platform B + PSD + Stair + Roof A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_A, {"High Platform C + PSD + Stair + Roof A"})
+	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_B, {"High Platform A + PSD + Stair + Roof B"})
+	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_B, {"High Platform B + PSD + Stair + Roof B"})
+	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_B, {"High Platform C + PSD + Stair + Roof B"})
 })
 divert

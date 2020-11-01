@@ -1311,6 +1311,17 @@ definestation(X, "",
 	setcargotriggers({PASS})
 )}, OVERPASS_STAIR_START .. OVERPASS_STAIR_END)
 
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_lengths({1})
+)}, PSD_OVERPASS_STAIR_START .. PSD_OVERPASS_STAIR_END)
+
 layout(OVERPASS_STAIR_HP_A, LAYOUT_OVERPASS_STAIR_HP_A)
 layout(OVERPASS_STAIR_HP_B, LAYOUT_OVERPASS_STAIR_HP_B)
 layout(OVERPASS_STAIR_HP_C, LAYOUT_OVERPASS_STAIR_HP_C)
@@ -1339,14 +1350,30 @@ layout(OVERPASS_STAIR_LAP_A_RF_B, LAYOUT_OVERPASS_STAIR_LAP_A_RF_B)
 layout(OVERPASS_STAIR_LAP_B_RF_B, LAYOUT_OVERPASS_STAIR_LAP_B_RF_B)
 layout(OVERPASS_STAIR_LAP_C_RF_B, LAYOUT_OVERPASS_STAIR_LAP_C_RF_B)
 
+layout(PSD_OVERPASS_STAIR_HP_A, LAYOUT_PSD_OVERPASS_STAIR_HP_A)
+layout(PSD_OVERPASS_STAIR_HP_B, LAYOUT_PSD_OVERPASS_STAIR_HP_B)
+layout(PSD_OVERPASS_STAIR_HP_C, LAYOUT_PSD_OVERPASS_STAIR_HP_C)
+layout(PSD_OVERPASS_STAIR_HP_A_RF_A, LAYOUT_PSD_OVERPASS_STAIR_HP_A_RF_A)
+layout(PSD_OVERPASS_STAIR_HP_B_RF_A, LAYOUT_PSD_OVERPASS_STAIR_HP_B_RF_A)
+layout(PSD_OVERPASS_STAIR_HP_C_RF_A, LAYOUT_PSD_OVERPASS_STAIR_HP_C_RF_A)
+layout(PSD_OVERPASS_STAIR_HP_A_RF_B, LAYOUT_PSD_OVERPASS_STAIR_HP_A_RF_B)
+layout(PSD_OVERPASS_STAIR_HP_B_RF_B, LAYOUT_PSD_OVERPASS_STAIR_HP_B_RF_B)
+layout(PSD_OVERPASS_STAIR_HP_C_RF_B, LAYOUT_PSD_OVERPASS_STAIR_HP_C_RF_B)
 
-def({sw_overpass_stair_back_sub}) tinfo_statid(pos(1, 0),
+
+def({sw_overpass_stair_back_part1}) tinfo_statid(pos(1, 0),
 	cbr(2) if(MODULAR_START .. MODULAR_END)
 	cbr(0) else
 )
 
+def({sw_overpass_stair_back_part2}) tinfo_statid(pos(1, 0),
+	cbr(2) if(PSD_MODULAR_START .. PSD_MODULAR_END)
+	cbr(0) else
+)
+
 def({sw_overpass_stair_back}) tinfo_grfid(pos(1, 0),
-	ref(sw_overpass_stair_back_sub) if(VAR_GRFID_KWS_PART1)
+	ref(sw_overpass_stair_back_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_overpass_stair_back_part2) if(VAR_GRFID_KWS_PART2)
 	cbr(0) else
 )
 
@@ -1386,11 +1413,29 @@ def({sw_overpass_stairs_platform_cb_purchase}) callback(
 	ref(sw_set_reg_overpass_stair_purchase) else
 )
 
+def({sw_set_reg_psd_overpass_stair}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_reg_psd))
+
+def({sw_set_reg_psd_overpass_stair_purchase}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_reg_psd_menu))
+
+def({sw_psd_overpass_stairs_platform_cb}) callback(
+	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd_overpass_stair) else
+)
+
+def({sw_psd_overpass_stairs_platform_cb_purchase}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd_overpass_stair_purchase) else
+)
+
 forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_HP_A .. OVERPASS_STAIR_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_LP_A .. OVERPASS_STAIR_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_psd_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_psd_overpass_stairs_platform_cb)))}, PSD_OVERPASS_STAIR_HP_A .. PSD_OVERPASS_STAIR_HP_C_RF_B)
 
 // bridge_height
 

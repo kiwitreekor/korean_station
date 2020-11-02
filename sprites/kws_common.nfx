@@ -701,11 +701,16 @@ def({sw_psd_check_sound_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(1) else
 )
 
-def({sw_psd_check_sound}) tinfo_grfid(pos(-1, 0),
+def({sw_psd_check_sound_grfid}) tinfo_grfid(pos(-1, 0),
 	cbr(1) if(0)
-	ref(sw_psd_end_pB_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pB_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_check_sound_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_psd_check_sound_part2) if(VAR_GRFID_KWS_PART2)
 	cbr(1) else
+)
+
+def({sw_psd_check_sound}) tinfo_statid(pos(-1, 0), shiftmask(11, 0x1),
+	cbr(1) if(1)
+	ref(sw_psd_check_sound_grfid) else
 )
 
 def({sw_psd_sound_open}) subroutine(sw_psd_check_sound,

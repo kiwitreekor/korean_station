@@ -157,12 +157,12 @@ def({sw_check_right_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+WEST+
 	cbr(0) else
 )
 
-def({sw_check_right_slope_flat}) calculate({register(REGISTER_FUNCTION_PARAM) store(REGISTER_FUNCTION_PARAM) tinfo_slope(REGISTER,) AND 0xF},
+def({sw_check_right_slope_flat}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_slope(REGISTER,) AND 0xF},
 	cbr(1) if(NORTH+WEST, NORTH+WEST+EAST, NORTH+WEST+SOUTH, NORTH+SOUTH, WEST+EAST, 0)
 	cbr(0) else
 )
 
-def({sw_check_right_slope_sloped}) calculate({register(REGISTER_FUNCTION_PARAM) store(REGISTER_FUNCTION_PARAM) tinfo_slope(REGISTER,) AND 0xF},
+def({sw_check_right_slope_sloped}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_slope(REGISTER,) AND 0xF},
 	cbr(1) if(SOUTH+EAST, SOUTH+EAST+NORTH, SOUTH+EAST+WEST, NORTH+SOUTH, WEST+EAST)
 	cbr(0) else
 )
@@ -181,12 +181,12 @@ def({sw_check_left_self_slope}) tinfo_slope(pos(0, 0), shiftmask(0, NORTH+SOUTH+
 	cbr(0) else
 )
 
-def({sw_check_left_slope_flat}) calculate({register(REGISTER_FUNCTION_PARAM) store(REGISTER_FUNCTION_PARAM) tinfo_slope(REGISTER,) AND 0xF},
+def({sw_check_left_slope_flat}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_slope(REGISTER,) AND 0xF},
 	cbr(1) if(SOUTH+EAST, SOUTH+EAST+NORTH, SOUTH+EAST+WEST, NORTH+SOUTH, WEST+EAST, 0)
 	cbr(0) else
 )
 
-def({sw_check_left_slope_sloped}) calculate({register(REGISTER_FUNCTION_PARAM) store(REGISTER_FUNCTION_PARAM) tinfo_slope(REGISTER,) AND 0xF},
+def({sw_check_left_slope_sloped}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_slope(REGISTER,) AND 0xF},
 	cbr(1) if(NORTH+WEST, NORTH+WEST+EAST, NORTH+WEST+SOUTH, NORTH+SOUTH, WEST+EAST)
 	cbr(0) else
 )

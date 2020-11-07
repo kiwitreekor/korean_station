@@ -8,7 +8,7 @@ define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
 define({GRF_STABLE}, 0)
 
 defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 1"})
-defstr({STR_GRF_DESC}, {UTF8 "copyright 2017 - 2020 " T_WHITE "kiwitree" 
+defstr({STR_GRF_DESC}, {"copyright 2017 - 2020 " T_WHITE "kiwitree" 
 	CRLF T_LGRAY "Bug Report: " T_LBLUE STR_GRF_CONTACT 
 	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
 	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version."}, "")})

@@ -456,8 +456,8 @@ spriteblock(
 			   metro.png       8bpp  510  10 64 31 -31   0 normal)
 		sprite(metro.png       8bpp  510  10 64 31 -31   0 normal)
 		sprite(spr_ground_snow_overlay,
-			   metro.png       8bpp  590  10 64 31   0   0 normal)
-		sprite(metro.png       8bpp  670  10 64 31   0   0 normal)
+			   metro.png       8bpp  590  10 64 31 -31   0 normal)
+		sprite(metro.png       8bpp  670  10 64 31 -31   0 normal)
 		
 		sprite(spr_metro_tree,
 		       metro.png       8bpp  510 100 35 44 -18 -34 normal)

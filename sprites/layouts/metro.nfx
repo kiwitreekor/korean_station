@@ -15,7 +15,7 @@ define(spritelayout_metro_exit, {
 })
 
 define(spritelayout_metro_snow_overlay, {
-	_regular(spr_ground_snow_overlay, xyoff(0, 0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_METRO_SNOW_SKIP, REGISTER_METRO_SNOW_OFFSET}))
+	_regular(spr_ground_snow_overlay, xyz(0,0,$1*8), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_METRO_SNOW_SKIP, REGISTER_METRO_SNOW_OFFSET}))
 })
 
 define(spritelayout_metro_tree, {
@@ -24,12 +24,12 @@ define(spritelayout_metro_tree, {
 
 define(spritelayout_metro_cover_custom, {
 	regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0))
-	spritelayout_metro_snow_overlay()
+	spritelayout_metro_snow_overlay(1)
 })
 
 define(spritelayout_metro_cover_ttd, {
 	_regular($1, xyz({ifelse(eval($#>1),1,{eval($2*16)},{0})},0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))
-	spritelayout_metro_snow_overlay()
+	spritelayout_metro_snow_overlay(1)
 })
 
 define(spritelayout_metro_cover, {
@@ -173,7 +173,7 @@ define(LAYOUT_METRO_TREE_TRACK, {LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_NONE, PLT_T
 define(LAYOUT_METRO_EXIT_SOUTH_NONTRACK, {
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		spritelayout_metro_snow_overlay()
+		spritelayout_metro_snow_overlay(0)
 		spritelayout_metro_exit(0, 0)
 	})
 })
@@ -181,7 +181,7 @@ define(LAYOUT_METRO_EXIT_SOUTH_NONTRACK, {
 define(LAYOUT_METRO_EXIT_NORTH_NONTRACK, {
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		spritelayout_metro_snow_overlay()
+		spritelayout_metro_snow_overlay(0)
 		spritelayout_metro_exit(1, 0)
 	})
 })

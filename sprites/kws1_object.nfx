@@ -49,7 +49,7 @@ def({obj_metro_exit_layout_1}) spriteset(
 	regular(0, xyz(3,5,0), dxdydz(10,6,10))
 	glass(4, xyoff(0,0))
 	glass(8, xyoff(0,0))
-	regular(12, xyz(13,13,0), dxdydz(2,2,16))
+	recolour(12, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
 )
 
 def({obj_metro_exit_layout_2}) spriteset(
@@ -58,7 +58,7 @@ def({obj_metro_exit_layout_2}) spriteset(
 	regular(1, xyz(5,3,0), dxdydz(6,10,10))
 	glass(5, xyoff(0,0))
 	glass(9, xyoff(0,0))
-	regular(13, xyz(13,13,0), dxdydz(2,2,16))
+	recolour(13, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
 )
 
 def({obj_metro_exit_layout_3}) spriteset(
@@ -67,7 +67,7 @@ def({obj_metro_exit_layout_3}) spriteset(
 	regular(2, xyz(3,5,0), dxdydz(10,6,10))
 	glass(6, xyoff(0,0))
 	glass(10, xyoff(0,0))
-	regular(12, xyz(1,1,0), dxdydz(2,2,16))
+	recolour(12, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
 )
 
 def({obj_metro_exit_layout_4}) spriteset(
@@ -76,7 +76,7 @@ def({obj_metro_exit_layout_4}) spriteset(
 	regular(3, xyz(5,3,0), dxdydz(6,10,10))
 	glass(7, xyoff(0,0))
 	glass(11, xyoff(0,0))
-	regular(13, xyz(1,1,0), dxdydz(2,2,16))
+	recolour(13, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
 )
 
 def({obj_metro_exit_layout}) getviews(
@@ -98,10 +98,14 @@ def({sw_terrain_snow}) objinfo_terrain(
 	cbr(0) else
 )
 
+def({sw_obj_colour}) colour(
+	cbfail() else
+)
+
 def({sw_metro_snow_random}) randomrel(CONSTRUCT, 0, cbr(0), cbr(1))
 
-def({sw_metro_exit}) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random)}, ref(obj_metro_exit_layout))
-def({sw_metro_exit_purchase}) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0}, ref(obj_metro_exit_layout))
+def({sw_metro_exit}) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random), sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
+def({sw_metro_exit_purchase}) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0, sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
 
 deftxt(text_class_metro, STR_OBJ_CLASS_METRO)
 deftxt(text_metro_exit, STR_OBJ_METRO_EXIT)

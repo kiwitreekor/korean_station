@@ -54,6 +54,9 @@ defstr({STR_PARAM_ROOF_COLOUR_BROWN}, {"갈색"})
 defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"회색"})
 defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"흰색"})
 
+defstr({STR_OBJ_CLASS_METRO}, {"[KWS] 지하철역"})
+defstr({STR_OBJ_METRO_EXIT}, {"지하철역 출입구"})
+
 divert(2)
 ifelse(file_index, 1, {
 	// kws1.grf

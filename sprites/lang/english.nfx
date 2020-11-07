@@ -58,6 +58,9 @@ defstr({STR_PARAM_ROOF_COLOUR_ORANGE}, {"Orange"})
 defstr({STR_PARAM_ROOF_COLOUR_BROWN}, {"Brown"})
 defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"Grey"})
 defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"White"})
+
+defstr({STR_OBJ_CLASS_METRO}, {"[KWS] Metro Stations"})
+defstr({STR_OBJ_METRO_EXIT}, {"Metro Entrance"})
 divert
 
 divert(2)

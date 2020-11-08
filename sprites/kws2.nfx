@@ -122,12 +122,12 @@ def({sw_psd_overpass_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-def({sw_psd_overpass_menu_cb}) callback(
+def({sw_psd_overpass_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_reg_psd_menu) else
+	ref(sw_set_reg_psd_purchase) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_psd_overpass_menu_cb), MENU) default(ref(sw_psd_overpass_cb)))}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
+forloop(X, {makestation(X, link(ref(sw_psd_overpass_cb_purchase), MENU) default(ref(sw_psd_overpass_cb)))}, PSD_OVERPASS_START .. PSD_OVERPASS_END)
 
 
 forloop(X, {
@@ -154,12 +154,12 @@ def({sw_psd_modular_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-def({sw_psd_modular_menu_cb}) callback(
+def({sw_psd_modular_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_reg_psd_menu) else
+	ref(sw_set_reg_psd_purchase) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_psd_modular_menu_cb), MENU) default(ref(sw_psd_modular_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
+forloop(X, {makestation(X, link(ref(sw_psd_modular_cb_purchase), MENU) default(ref(sw_psd_modular_cb)))}, PSD_MODULAR_START .. PSD_MODULAR_END)
 
 
 forloop(X, {
@@ -185,12 +185,12 @@ def({sw_psd_underpass_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-def({sw_psd_underpass_menu_cb}) callback(
+def({sw_psd_underpass_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_reg_psd_menu) else
+	ref(sw_set_reg_psd_purchase) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_psd_underpass_menu_cb), MENU) default(ref(sw_psd_underpass_cb)))}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)
+forloop(X, {makestation(X, link(ref(sw_psd_underpass_cb_purchase), MENU) default(ref(sw_psd_underpass_cb)))}, PSD_UNDERPASS_START .. PSD_UNDERPASS_END)
 
 // buffers
 
@@ -841,7 +841,7 @@ def({sw_gwangmyeong_reg_skip}) subroutine(sw_gwangmyeong_reg_offset,
 )
 
 def({sw_gwangmyeong_reg}) setregisters(REGISTER_GWANGMYEONG_FRAME_SKIP, {sub(sw_gwangmyeong_reg_skip), sub(sw_gwangmyeong_reg_offset)}, ref(sw_set_registers))
-def({sw_gwangmyeong_reg_menu}) setregisters(REGISTER_GWANGMYEONG_FRAME_SKIP, {1, 16}, ref(sw_set_registers))
+def({sw_gwangmyeong_reg_purchase}) setregisters(REGISTER_GWANGMYEONG_FRAME_SKIP, {1, 16}, ref(sw_set_registers))
 
 def({sw_gwangmyeong_part1_layout_size_8}) plt_numrev(
 	self(
@@ -891,7 +891,7 @@ def({sw_gwangmyeong_part1_cb}) callback(
 
 def({sw_gwangmyeong_part1_cb_purchase}) callback(
 	cbr(28) if(CB_LAYOUT)
-	ref(sw_gwangmyeong_reg_menu) else
+	ref(sw_gwangmyeong_reg_purchase) else
 )
 
 def({sw_gwangmyeong_part2_sprtype}) spritetype(
@@ -920,7 +920,7 @@ def({sw_gwangmyeong_part2a_cb}) callback(
 
 def({sw_gwangmyeong_part2a_cb_purchase}) callback(
 	cbr(4) if(CB_LAYOUT)
-	ref(sw_gwangmyeong_reg_menu) else
+	ref(sw_gwangmyeong_reg_purchase) else
 )
 
 def({sw_gwangmyeong_part2b_layout_size_2}) plt_num(
@@ -944,7 +944,7 @@ def({sw_gwangmyeong_part2b_cb}) callback(
 
 def({sw_gwangmyeong_part2b_cb_purchase}) callback(
 	cbr(4) if(CB_LAYOUT)
-	ref(sw_gwangmyeong_reg_menu) else
+	ref(sw_gwangmyeong_reg_purchase) else
 )
 
 makestation(GWANGMYEONG_STN_PART1, link(ref(sw_gwangmyeong_part1_cb_purchase), MENU) default(ref(sw_gwangmyeong_part1_cb)))
@@ -1161,16 +1161,16 @@ def({sw_metro_tree_offset}) calculate({subroutine(sw_metro_tree_type) * 2 + subr
 def({sw_metro_snow_random}) random(BUILT, 16, cbr(0), cbr(1))
 
 def({sw_metro_reg}) setregisters(REGISTER_METRO_EXIT_OFFSET, {sub(sw_metro_exit_frame), sub(sw_metro_tree_offset), sub(sw_terrain_snow), sub(sw_metro_snow_random)}, ref(sw_set_registers))
-def({sw_metro_reg_menu}) setregisters(REGISTER_METRO_EXIT_OFFSET, {0, 0, 0, 0}, ref(sw_set_registers))
+def({sw_metro_reg_purchase}) setregisters(REGISTER_METRO_EXIT_OFFSET, {0, 0, 0, 0}, ref(sw_set_registers))
 
 def({sw_metro_cb}) callback(
 	ref(sw_metro_multi_layout) if(CB_LAYOUT)
 	ref(sw_metro_reg) else
 )
 
-def({sw_metro_cb_menu}) callback(
+def({sw_metro_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_metro_reg_menu) else
+	ref(sw_metro_reg_purchase) else
 )
 
 def({sw_metro_exit_cb}) callback(
@@ -1180,52 +1180,52 @@ def({sw_metro_exit_cb}) callback(
 	ref(sw_metro_reg) else
 )
 
-def({sw_metro_exit_cb_menu}) callback(
+def({sw_metro_exit_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_metro_reg_menu) else
+	ref(sw_metro_reg_purchase) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_HP_A .. METRO_HP_C)
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_HP_A .. METRO_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_LP_A .. METRO_LP_C)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_LP_A .. METRO_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(METRO_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+makestation(METRO_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))
 
-forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_SOUTH_HP_C)
+forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_SOUTH_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_LP_A .. METRO_EXIT_SOUTH_LP_C)
+	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_LP_A .. METRO_EXIT_SOUTH_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(METRO_EXIT_SOUTH_TRACK, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))
+makestation(METRO_EXIT_SOUTH_TRACK, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))
 
-forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_HP_A .. METRO_EXIT_NORTH_HP_C)
+forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_HP_A .. METRO_EXIT_NORTH_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_LP_A .. METRO_EXIT_NORTH_LP_C)
+	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_LP_A .. METRO_EXIT_NORTH_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(METRO_EXIT_NORTH_TRACK, link(ref(sw_metro_exit_cb_menu), MENU) default(ref(sw_metro_exit_cb)))
+makestation(METRO_EXIT_NORTH_TRACK, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))
 
-forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
 
-forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_HP_A .. METRO_PARK_HP_C)
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_HP_A .. METRO_PARK_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_LP_A .. METRO_PARK_LP_C)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_LP_A .. METRO_PARK_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(METRO_PARK_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+makestation(METRO_PARK_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))
 
-forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_HP_A .. METRO_TREE_HP_C)
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_HP_A .. METRO_TREE_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_LP_A .. METRO_TREE_LP_C)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_LP_A .. METRO_TREE_LP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_menu), MENU) default(ref(sw_metro_cb)))
+makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))
 
 // Suseo Stn.
 
@@ -1442,7 +1442,7 @@ def({sw_overpass_stairs_platform_cb_purchase}) callback(
 
 def({sw_set_reg_psd_overpass_stair}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_reg_psd))
 
-def({sw_set_reg_psd_overpass_stair_purchase}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_reg_psd_menu))
+def({sw_set_reg_psd_overpass_stair_purchase}) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_reg_psd_purchase))
 
 def({sw_psd_overpass_stairs_platform_cb}) callback(
 	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)

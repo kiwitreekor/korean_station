@@ -302,13 +302,13 @@ def({sw_crossing_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-def({sw_crossing_menu_cb}) callback(
+def({sw_crossing_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_crossing_cb) else
 )
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-forloop(X, {makestation(X, link(ref(sw_crossing_menu_cb), MENU) default(ref(sw_crossing_cb)))}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_crossing_cb_purchase), MENU) default(ref(sw_crossing_cb)))}, CROSSING_LP_A .. CROSSING_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 
@@ -337,11 +337,11 @@ def({sw_crossing_track_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-def({sw_crossing_track_menu}) callback(
+def({sw_crossing_track_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
-makestation(CROSSING_TRACK, link(ref(sw_crossing_track_menu), MENU) default(ref(sw_crossing_track_cb)))
+makestation(CROSSING_TRACK, link(ref(sw_crossing_track_purchase), MENU) default(ref(sw_crossing_track_cb)))
 
 // building blocks
 forloop(X, {
@@ -670,18 +670,18 @@ def({sw_modular_overpass_cb}) callback(
 	ref(sw_modular_overpass_register) else
 )
 
-def({sw_modular_overpass_menu_cb}) callback(
+def({sw_modular_overpass_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_modular_overpass_menu) else
+	ref(sw_modular_overpass_purchase) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
+forloop(X, {makestation(X, link(ref(sw_modular_overpass_cb_purchase), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_HP_A .. MODULAR_HIGH_HP_C)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
+	forloop(X, {makestation(X, link(ref(sw_modular_overpass_cb_purchase), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_LP_A .. MODULAR_HIGH_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, link(ref(sw_modular_overpass_menu_cb), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
+forloop(X, {makestation(X, link(ref(sw_modular_overpass_cb_purchase), MENU) default(ref(sw_modular_overpass_cb)))}, MODULAR_LOW_TRACK .. MODULAR_HIGH_TRACK)
 
 // non-track tiles
 forloop(X, {
@@ -758,7 +758,7 @@ layout(OVERPASS_TRACK, LAYOUT_OVERPASS_TRACK)
 
 copylayout(OVERPASS_TRACK, OVERPASS_TRACK_WAYP)
 
-def({sw_overpass_platform_menu_cb}) callback(
+def({sw_overpass_platform_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
@@ -777,10 +777,10 @@ def({sw_overpass_track_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_overpass_platform_menu_cb), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_overpass_platform_cb_purchase), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_overpass_platform_menu_cb), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_overpass_platform_cb_purchase), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
@@ -1214,7 +1214,7 @@ def({sw_stasignA_cb}) callback(
 	ref(sw_set_reg_signA) else
 )
 
-def({sw_stasignA_menu_cb}) callback(
+def({sw_stasignA_cb_purchase}) callback(
 	cbr(2) if(CB_LAYOUT)
 	ref(sw_set_reg_signA) else
 )
@@ -1225,9 +1225,9 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
+forloop(X, {makestation(X, link(ref(sw_stasignA_cb_purchase), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, link(ref(sw_stasignA_menu_cb), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
+	forloop(X, {makestation(X, link(ref(sw_stasignA_cb_purchase), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_A)
@@ -1298,12 +1298,12 @@ def({sw_psd_cb}) callback(
 	ref(sw_set_reg_psd) else
 )
 
-def({sw_psd_menu_cb}) callback(
+def({sw_psd_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_reg_psd) else
 )
 
-forloop(X, {makestation(X, link(ref(sw_psd_menu_cb), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
+forloop(X, {makestation(X, link(ref(sw_psd_cb_purchase), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)
 
 // Simple station
 
@@ -1333,12 +1333,12 @@ def({sw_simple_station_cb}) callback(
 	ref(sw_set_registers) else
 )
 
-def({sw_simple_station_cb_menu}) callback(
+def({sw_simple_station_cb_purchase}) callback(
 	cbr(0) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
-makestation(SIMPLE_STN, link(ref(sw_simple_station_cb_menu), MENU) default(ref(sw_simple_station_cb)))
+makestation(SIMPLE_STN, link(ref(sw_simple_station_cb_purchase), MENU) default(ref(sw_simple_station_cb)))
 
 // bridge_height
 

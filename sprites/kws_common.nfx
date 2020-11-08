@@ -354,7 +354,7 @@ def({sw_modular_overpass_register_sub}) subroutine(sw_terrain_snow,
 )
 def({sw_modular_overpass_register}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_modular_overpass_register_sub), ref(sw_modular_pole_register))
 
-def({sw_modular_overpass_menu}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
+def({sw_modular_overpass_purchase}) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
 
 // multi-platform calculation
 def({sw_modular_overpass_platformA_multi_layout}) calculate({subroutine(sw_platformA_check_opposite) * 2},
@@ -685,11 +685,11 @@ def({sw_psd_glass_offset_pB}) calculate({subroutine(sw_psd_glass_startend_pB) * 
 
 skipif(2, OTTDVERSION, <, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_register))
-def({sw_set_reg_psd_menu}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_menu))
+def({sw_set_reg_psd_purchase}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_pA), sub(sw_psd_glass_offset_pB), sub(sw_psd_offset_pA), sub(sw_psd_offset_pB)}, ref(sw_modular_overpass_purchase))
 
 skipif(2, OTTDVERSION, >, 0x1A000000)
 def({sw_set_reg_psd}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_register))
-def({sw_set_reg_psd_menu}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_menu))
+def({sw_set_reg_psd_purchase}) setregisters(REGISTER_PSD_GLASS_OFFSET, {sub(sw_psd_glass_offset_anim), sub(sw_psd_glass_offset_anim), 0, 0}, ref(sw_modular_overpass_purchase))
 
 def({sw_psd_check_sound_part2}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(0) if(PSD_PLATFORM_A_PART2)

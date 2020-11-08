@@ -65,3 +65,27 @@ define(LAYOUT_TEMPLATE_GANGNEUNG, {
 
 define(LAYOUT_GANGNEUNG_HP, {LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_HIGH)})
 define(LAYOUT_GANGNEUNG_LP, {LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_LOW)})
+
+define(LAYOUT_TEMPLATE_GANGNEUNG_NONTRACK, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_gangneung+X*2, xyz(0,-8,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 5)
+	
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_gangneung+12+X*2, xyz(0,-8,0), dxdydz(16,16,30))
+			regular(spr_gangneung+18+X*2, xyz(0,8,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 2)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_gangneung_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+define(LAYOUT_GANGNEUNG_NONTRACK, {LAYOUT_TEMPLATE_GANGNEUNG_NONTRACK()})

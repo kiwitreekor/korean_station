@@ -682,7 +682,8 @@ makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) d
 
 // Gangneung Stn.
 
-definestation(GANGNEUNG_HP, "",
+forloop(X, {
+definestation(X, "",
 	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
 	nowires(TTD_ALLTILES)
@@ -692,22 +693,21 @@ definestation(GANGNEUNG_HP, "",
 	tiletypelayout(
 		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
 	)
-)
+)}, GANGNEUNG_HP .. GANGNEUNG_LP)
 
-definestation(GANGNEUNG_LP, "",
+definestation(GANGNEUNG_NONTRACK, "",
 	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
-	include_lengths({4})
-	include_widths({4})
-	setcargotriggers({PASS})
-	tiletypelayout(
-		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
-	)
+	include_lengths({3})
+	include_widths({3})
 )
 
 layout(GANGNEUNG_HP, LAYOUT_GANGNEUNG_HP)
 layout(GANGNEUNG_LP, LAYOUT_GANGNEUNG_LP)
+
+layout(GANGNEUNG_NONTRACK, LAYOUT_GANGNEUNG_NONTRACK)
 
 def({sw_gangneung_layout_road1}) plt_axis(
 	cbr(24) if(0)
@@ -745,6 +745,20 @@ def({sw_gangneung_tiletype}) test_pos(
 	cbr(0) else
 )
 
+def({sw_gangneung_nontrack_layout}) plt_index(
+	self(
+		cbr(0) if(nibble(2,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) if(nibble(0,0))
+		cbr(6) if(nibble(2,1))
+		cbr(8) if(nibble(1,1))
+		cbr(10) if(nibble(0,1))
+		cbr(12) if(nibble(2,2))
+		cbr(14) if(nibble(1,2))
+		cbr(16) else
+	)
+)
+
 def({sw_gangneung_cb}) callback(
 	ref(sw_gangneung_layout) if(CB_LAYOUT)
 	ref(sw_gangneung_tiletype) if(CB_TILETYPE)
@@ -756,10 +770,23 @@ def({sw_gangneung_cb_purchase}) callback(
 	ref(sw_set_registers) else
 )
 
+def({sw_gangneung_nontrack_cb}) callback(
+	ref(sw_gangneung_nontrack_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_gangneung_nontrack_cb_purchase}) callback(
+	cbr(18) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
 makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(GANGNEUNG_NONTRACK, link(ref(sw_gangneung_nontrack_cb_purchase), MENU) default(ref(sw_gangneung_nontrack_cb)))
 
 // Gwangmyeong Stn.
 

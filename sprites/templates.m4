@@ -545,7 +545,7 @@ define(tmpl_sinhaeundae, {
 		sprite($2 8bpp eval($3+1020) eval($4)     32 32   1 -16 normal)
 		sprite($2 8bpp eval($3+1020) eval($4+60)  32 32 -31 -16 normal)
 		sprite($2 8bpp eval($3+1070) eval($4)     32 32   1 -16 normal)
-		sprite($2 8bpp eval($3+1070) eval($4+60)  32 32 -31   0 normal)
+		sprite($2 8bpp eval($3+1070) eval($4+60)  32 32 -31 -16 normal)
 		sprite($2 8bpp eval($3+1120) eval($4)     32 31   1   0 normal)
 		sprite($2 8bpp eval($3+1120) eval($4+60)  32 31 -31   0 normal)
 		sprite($2 8bpp eval($3+1170) eval($4)     32 16   1   0 normal)

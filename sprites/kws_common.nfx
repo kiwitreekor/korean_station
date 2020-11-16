@@ -16,11 +16,11 @@ def({sw_terrain_snow}) tinfo_terrain(
 	cbr(0) else
 )
 
-def({sw_get_param_roof_colour}) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0xF + 0x307 - 1},
+def({sw_get_param_roof_colour}) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0x1F + 0x307 - 1},
 	cbfail() else
 )
 
-def({sw_reg_roof_colour}) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0xF),
+def({sw_reg_roof_colour}) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0x1F),
 	cbr(0) if(0)
 	ref(sw_get_param_roof_colour) else
 )

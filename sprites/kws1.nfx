@@ -62,11 +62,11 @@ grfinit(GRFID_KWS_PART1,
 			setdefault(0)
 		)
 		grfsetting(
-			settype(ENUM,PARAM_ROOF_COLOUR,0,4)
+			settype(ENUM,PARAM_ROOF_COLOUR,0,5)
 			setname(STR_PARAM_ROOF_COLOUR_NAME)
 			setdescription(STR_PARAM_ROOF_COLOUR_DESC)
 			setdefault(9)
-			setlimits(0,15)
+			setlimits(0,16)
 			setvalues(
 				menuvalue(0,STR_PARAM_ROOF_COLOUR_CC)
 				menuvalue(1,STR_PARAM_ROOF_COLOUR_DBLUE)

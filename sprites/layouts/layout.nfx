@@ -101,6 +101,7 @@ define(spritelayout_ground_nontrack, {_ground(spr_ground_nontrack, aslflags({OFF
 define(spritelayout_ground_nontrack_concrete, {_ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 define(spritelayout_concrete_float, {_regular(spr_ground_building, xyz(0,0,8), dxdydz(16,16,0))})
+define(spritelayout_road_float, {regular(spr_ground_road_concrete, xyz(0,0,8), dxdydz(16,16,0), TTD, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 include(sprites/layouts/roofs.nfx)
 include(sprites/layouts/platforms.nfx)

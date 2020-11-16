@@ -29,7 +29,7 @@ define(LAYOUT_TEMPLATE_SINHAEUNDAE, {
 		xtile({
 			spritelayout_ground()
 			spritelayout_metro_pole()
-			spritelayout_gangneung_road()
+			spritelayout_road_float()
 			platform_base({ifelse(eval(X%2 == 0), 1, PLT_TYPE_B, PLT_TYPE_A)}, {ifelse(eval(X%4 == 0 || X%4 == 3), 1, $1, $2)}, SHADOW_TRUE)
 		})
 	}, 0 .. 3)

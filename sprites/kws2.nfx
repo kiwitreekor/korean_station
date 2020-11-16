@@ -709,16 +709,6 @@ layout(GANGNEUNG_LP, LAYOUT_GANGNEUNG_LP)
 
 layout(GANGNEUNG_NONTRACK, LAYOUT_GANGNEUNG_NONTRACK)
 
-def({sw_gangneung_layout_road1}) plt_axis(
-	cbr(24) if(0)
-	cbr(26) else
-)
-
-def({sw_gangneung_layout_road2}) plt_axis(
-	cbr(32) if(0)
-	cbr(34) else
-)
-
 def({sw_gangneung_layout}) plt_index(
 	self(
 		cbr(0) if(nibble(2,0))
@@ -733,10 +723,10 @@ def({sw_gangneung_layout}) plt_index(
 		cbr(18) if(nibble(2,3))
 		cbr(20) if(nibble(1,3))
 		cbr(22) if(nibble(0,3))
-		ref(sw_gangneung_layout_road1) if(nibble(3,0))
-		cbr(28) if(nibble(3,1))
-		cbr(30) if(nibble(3,2))
-		ref(sw_gangneung_layout_road2) else
+		cbr(24) if(nibble(3,0))
+		cbr(26) if(nibble(3,1))
+		cbr(28) if(nibble(3,2))
+		cbr(30) else
 	)
 )
 

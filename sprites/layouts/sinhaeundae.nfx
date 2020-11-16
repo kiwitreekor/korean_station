@@ -25,14 +25,36 @@ define(LAYOUT_TEMPLATE_SINHAEUNDAE, {
 		})
 	}, 0 .. 23)
 	
-	forloop(X, {
-		xtile({
-			spritelayout_ground()
-			spritelayout_metro_pole()
-			spritelayout_road_float()
-			platform_base({ifelse(eval(X%2 == 0), 1, PLT_TYPE_B, PLT_TYPE_A)}, {ifelse(eval(X%4 == 0 || X%4 == 3), 1, $1, $2)}, SHADOW_TRUE)
-		})
-	}, 0 .. 3)
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 6, 5), xyz(0,-16,8), dxdydz(16,16,0), TTD)
+		spritelayout_road_float()
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_A, $2, SHADOW_TRUE)
+		spritelayout_road_float()
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_B, $2, SHADOW_TRUE)
+		spritelayout_road_float()
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 4, 3), xyz(0,16,8), dxdydz(16,16,0), TTD)
+		spritelayout_road_float()
+	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()

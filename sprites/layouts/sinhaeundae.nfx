@@ -51,7 +51,7 @@ define(LAYOUT_TEMPLATE_SINHAEUNDAE, {
 	xtile({
 		spritelayout_ground()
 		spritelayout_metro_pole()
-		platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)
+		platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)
 		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 4, 3), xyz(0,16,8), dxdydz(16,16,0), TTD)
 		spritelayout_road_float()
 	})

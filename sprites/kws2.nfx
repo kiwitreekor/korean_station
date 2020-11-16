@@ -781,12 +781,12 @@ def({sw_gangneung_nontrack_cb_purchase}) callback(
 )
 
 
+makestation(GANGNEUNG_NONTRACK, link(ref(sw_gangneung_nontrack_cb_purchase), MENU) default(ref(sw_gangneung_nontrack_cb)))
+
 makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
 placelabel(LABEL_HIGHPLATFORM_MODE)
-
-makestation(GANGNEUNG_NONTRACK, link(ref(sw_gangneung_nontrack_cb_purchase), MENU) default(ref(sw_gangneung_nontrack_cb)))
 
 // Gwangmyeong Stn.
 

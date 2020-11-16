@@ -81,7 +81,7 @@ define(LAYOUT_TEMPLATE_METRO_BASE, {
 })
 
 define(LAYOUT_TEMPLATE_METRO_PLAIN_BASE, {
-	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
+	define({tmp_cover}, {spr_ground_building})
 	define({tmp_layout}, {})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
@@ -99,7 +99,7 @@ define(LAYOUT_METRO_LP_C, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_C, PLT_TYPE_LOW)})
 define(LAYOUT_METRO_TRACK, {LAYOUT_TEMPLATE_METRO(PLT_TYPE_NONE, PLT_TYPE_NONE)})
 
 define(LAYOUT_TEMPLATE_METRO_EXIT_SOUTH_BASE, {
-	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
+	define({tmp_cover}, {spr_ground_building})
 	define({tmp_layout}, {spritelayout_metro_exit(0, 1)})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })
@@ -117,7 +117,7 @@ define(LAYOUT_METRO_EXIT_SOUTH_LP_C, {LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_
 define(LAYOUT_METRO_EXIT_SOUTH_TRACK, {LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_NONE, PLT_TYPE_NONE)})
 
 define(LAYOUT_TEMPLATE_METRO_EXIT_NORTH_BASE, {
-	define({tmp_cover}, {spr_ground_nontrack_concrete, TTD})
+	define({tmp_cover}, {spr_ground_building})
 	define({tmp_layout}, {spritelayout_metro_exit(1, 1)})
 	LAYOUT_TEMPLATE_METRO_BASE($@)
 })

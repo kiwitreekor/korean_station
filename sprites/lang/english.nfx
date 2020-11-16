@@ -536,5 +536,10 @@ ifelse(file_index, 1, {
 	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_B, {"High Platform A + PSD + Stair + Roof B"})
 	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_B, {"High Platform B + PSD + Stair + Roof B"})
 	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_B, {"High Platform C + PSD + Stair + Roof B"})
+	
+	defstationname(SINHAEUNDAE_NONTRACK, {"Sinhaeundae Stn."})
+	defstationname(SINHAEUNDAE_HP, {"Sinhaeundae Stn. (High Platform)"})
+	defstationname(SINHAEUNDAE_LP, {"Sinhaeundae Stn. (Low Platform)"})
+	defstationname(SINHAEUNDAE_HLP, {"Sinhaeundae Stn. (High + Low Platform)"})
 })
 divert

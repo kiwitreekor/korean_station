@@ -98,7 +98,7 @@ define(spritelayout_ground, {ground(spr_ground+1)})
 define(spritelayout_ground_snow, {ground(spr_ground_snow+1)})
 define(spritelayout_ground_building, {_ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_GROUND_OFFSET+$1}))})
 define(spritelayout_ground_nontrack, {_ground(spr_ground_nontrack, aslflags({OFFSET_SPRITE}), registers({REGISTER_GROUND_NONTRACK_OFFSET}))})
-define(spritelayout_ground_nontrack_concrete, {_ground(spr_ground_building, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
+define(spritelayout_ground_nontrack_concrete, {_ground(spr_ground_building, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
 
 define(spritelayout_concrete_float, {_regular(spr_ground_building, xyz(0,0,8), dxdydz(16,16,0))})
 
@@ -113,4 +113,5 @@ include(sprites/layouts/gangneung.nfx)
 include(sprites/layouts/gwangmyeong.nfx)
 include(sprites/layouts/metro.nfx)
 include(sprites/layouts/suseo.nfx)
+include(sprites/layouts/sinhaeundae.nfx)
 divert

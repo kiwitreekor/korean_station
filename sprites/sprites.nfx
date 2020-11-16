@@ -486,6 +486,13 @@ spriteblock(
 		
 		tmpl_overpass_stairs_low(spr_overpass_stair_low, platforms.png, 800, 780)
 		tmpl_overpass_stairs_low(spr_overpass_stair_low_snow, platforms.png, 900, 780)
+
+// Sinhaeundae Station
+		tmpl_sinhaeundae(spr_sinhaeundae, sinhaeundae.png, 10, 210)
+		
+		sprite(spr_sinhaeundae_purchase,
+		       sinhaeundae.png  8bpp   10 330 64 64 -31 -33 normal)
+		sprite(sinhaeundae.png  8bpp   90 330 64 64 -31 -33 normal)
 	)
 )
 

@@ -1464,6 +1464,127 @@ placelabel(LABEL_HIGHPLATFORM_MODE)
 
 forloop(X, {makestation(X, link(ref(sw_psd_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_psd_overpass_stairs_platform_cb)))}, PSD_OVERPASS_STAIR_HP_A .. PSD_OVERPASS_STAIR_HP_C_RF_B)
 
+// Sinhaeundae Stn.
+
+definestation(SINHAEUNDAE_NONTRACK, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({6})
+	include_widths({4})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({7})
+	include_widths({4})
+	setcargotriggers({PASS})
+	tiletypelayout(
+		tiletypes({{0,0,0,0,0,0,2},{0,0,0,0,0,0,2},{0,0,0,0,0,0,2},{0,0,0,0,0,0,2}})
+	)
+)}, SINHAEUNDAE_HP .. SINHAEUNDAE_HLP)
+
+layout(SINHAEUNDAE_HP, LAYOUT_SINHAEUNDAE_HP)
+layout(SINHAEUNDAE_LP, LAYOUT_SINHAEUNDAE_LP)
+layout(SINHAEUNDAE_HLP, LAYOUT_SINHAEUNDAE_HLP)
+
+layout(SINHAEUNDAE_NONTRACK, LAYOUT_SINHAEUNDAE_NONTRACK)
+
+def({sw_sinhaeundae_layout}) plt_index(
+	self(
+		cbr(0) if(nibble(5,3))
+		cbr(2) if(nibble(5,2))
+		cbr(4) if(nibble(5,1))
+		cbr(6) if(nibble(5,0))
+		cbr(8) if(nibble(4,3))
+		cbr(10) if(nibble(4,2))
+		cbr(12) if(nibble(4,1))
+		cbr(14) if(nibble(4,0))
+		cbr(16) if(nibble(3,3))
+		cbr(18) if(nibble(3,2))
+		cbr(20) if(nibble(3,1))
+		cbr(22) if(nibble(3,0))
+		cbr(24) if(nibble(2,3))
+		cbr(26) if(nibble(2,2))
+		cbr(28) if(nibble(2,1))
+		cbr(30) if(nibble(2,0))
+		cbr(32) if(nibble(1,3))
+		cbr(34) if(nibble(1,2))
+		cbr(36) if(nibble(1,1))
+		cbr(38) if(nibble(1,0))
+		cbr(40) if(nibble(0,3))
+		cbr(42) if(nibble(0,2))
+		cbr(44) if(nibble(0,1))
+		cbr(46) if(nibble(0,0))
+		cbr(48) if(nibble(6,0))
+		cbr(50) if(nibble(6,1))
+		cbr(52) if(nibble(6,2))
+		cbr(54) else
+	)
+)
+
+def({sw_sinhaeundae_nontrack_layout}) plt_index(
+	self(
+		cbr(0) if(nibble(5,3))
+		cbr(2) if(nibble(5,2))
+		cbr(4) if(nibble(5,1))
+		cbr(6) if(nibble(5,0))
+		cbr(8) if(nibble(4,3))
+		cbr(10) if(nibble(4,2))
+		cbr(12) if(nibble(4,1))
+		cbr(14) if(nibble(4,0))
+		cbr(16) if(nibble(3,3))
+		cbr(18) if(nibble(3,2))
+		cbr(20) if(nibble(3,1))
+		cbr(22) if(nibble(3,0))
+		cbr(24) if(nibble(2,3))
+		cbr(26) if(nibble(2,2))
+		cbr(28) if(nibble(2,1))
+		cbr(30) if(nibble(2,0))
+		cbr(32) if(nibble(1,3))
+		cbr(34) if(nibble(1,2))
+		cbr(36) if(nibble(1,1))
+		cbr(38) if(nibble(1,0))
+		cbr(40) if(nibble(0,3))
+		cbr(42) if(nibble(0,2))
+		cbr(44) if(nibble(0,1))
+		cbr(46) else
+	)
+)
+
+def({sw_sinhaeundae_cb}) callback(
+	ref(sw_sinhaeundae_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_sinhaeundae_nontrack_cb}) callback(
+	ref(sw_sinhaeundae_nontrack_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_sinhaeundae_cb_purchase}) callback(
+	cbr(56) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_sinhaeundae_nontrack_cb_purchase}) callback(
+	cbr(48) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
+makestation(SINHAEUNDAE_NONTRACK, link(ref(sw_sinhaeundae_nontrack_cb_purchase), MENU) default(ref(sw_sinhaeundae_nontrack_cb)))
+
+makestation(SINHAEUNDAE_HP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	makestation(SINHAEUNDAE_LP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+	makestation(SINHAEUNDAE_HLP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
@@ -1488,5 +1609,7 @@ setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height({0,1,0,0}))
 
 setproperties(METRO_HP_A .. METRO_TRACK, bridge_height({1,1,1,1}))
 setproperties(METRO_PARK_HP_A .. METRO_PARK_TRACK, bridge_height({1,1,1,1}))
+
+setproperties(SINHAEUNDAE_HP .. SINHAEUNDAE_HLP, bridge_height({0,1,0,0}))
 
 placelabel(LABEL_ALLOW_BRIDGE)

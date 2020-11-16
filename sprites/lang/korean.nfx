@@ -530,5 +530,10 @@ ifelse(file_index, 1, {
 	defstationname(PSD_OVERPASS_STAIR_HP_A_RF_B, {"고상홈 A + PSD + 계단 + 지붕 B"})
 	defstationname(PSD_OVERPASS_STAIR_HP_B_RF_B, {"고상홈 B + PSD + 계단 + 지붕 B"})
 	defstationname(PSD_OVERPASS_STAIR_HP_C_RF_B, {"고상홈 C + PSD + 계단 + 지붕 B"})
+	
+	defstationname(SINHAEUNDAE_NONTRACK, {"신해운대역"})
+	defstationname(SINHAEUNDAE_HP, {"신해운대역 (고상홈)"})
+	defstationname(SINHAEUNDAE_LP, {"신해운대역 (저상홈)"})
+	defstationname(SINHAEUNDAE_HLP, {"신해운대역 (고상홈 + 저상홈)"})
 })
 divert

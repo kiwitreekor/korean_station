@@ -115,4 +115,5 @@ include(sprites/layouts/gwangmyeong.nfx)
 include(sprites/layouts/metro.nfx)
 include(sprites/layouts/suseo.nfx)
 include(sprites/layouts/sinhaeundae.nfx)
+include(sprites/layouts/jije.nfx)
 divert

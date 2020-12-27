@@ -493,6 +493,22 @@ spriteblock(
 		sprite(spr_sinhaeundae_purchase,
 		       sinhaeundae.png  8bpp   10 330 64 64 -31 -33 normal)
 		sprite(sinhaeundae.png  8bpp   90 330 64 64 -31 -33 normal)
+
+// Jije Station
+		tmpl_jije_part1_front(spr_jije_part1_front, jije.png, 10, 10)
+		tmpl_jije_part1_back(spr_jije_part1_back, jije.png, 160, 10)
+		
+		tmpl_jije_part2(spr_jije_part2, jije.png, 10, 180)
+		
+		tmpl_jije_part3_front(spr_jije_part3_front, jije.png, 10, 340)
+		tmpl_jije_part3_back(spr_jije_part3_back, jije.png, 210, 340)
+		tmpl_jije_part3_wing(spr_jije_part3_wing, jije.png, 420, 340)
+		
+		tmpl_jije_part4_front(spr_jije_part4_front, jije.png, 10, 490)
+		tmpl_jije_part4_back(spr_jije_part4_back, jije.png, 10, 660)
+		
+		tmpl_jije_part5_front(spr_jije_part5_front, jije.png, 10, 840)
+		tmpl_jije_part5_back(spr_jije_part5_back, jije.png, 130, 840)
 	)
 )
 

@@ -1385,6 +1385,8 @@ def({sw_overpass_stair_back_part1}) tinfo_statid(pos(1, 0),
 
 def({sw_overpass_stair_back_part2}) tinfo_statid(pos(1, 0),
 	cbr(2) if(PSD_MODULAR_START .. PSD_MODULAR_END)
+	cbr(2) if(JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
+	cbr(2) if(JIJE_PART4_HP_A .. JIJE_PART4_TRACK)
 	cbr(0) else
 )
 
@@ -1574,6 +1576,299 @@ skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PA
 	makestation(SINHAEUNDAE_LP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
 	makestation(SINHAEUNDAE_HLP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
 placelabel(LABEL_HIGHPLATFORM_MODE)
+
+// Jije Stn.
+
+definestation(JIJE_PART1, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+	setcargotriggers({PASS})
+)}, JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
+
+definestation(JIJE_PART3, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+	setcargotriggers({PASS})
+	anim_triggers(BUILT, PERIODIC)
+)}, JIJE_PART4_HP_A .. JIJE_PART4_TRACK)
+
+definestation(JIJE_PART5, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+layout(JIJE_PART1, LAYOUT_JIJE_PART1)
+
+layout(JIJE_PART2_HP_A, LAYOUT_JIJE_PART2_HP_A)
+layout(JIJE_PART2_HP_B, LAYOUT_JIJE_PART2_HP_B)
+layout(JIJE_PART2_LP_A, LAYOUT_JIJE_PART2_LP_A)
+layout(JIJE_PART2_LP_B, LAYOUT_JIJE_PART2_LP_B)
+layout(JIJE_PART2_TRACK, LAYOUT_JIJE_PART2_TRACK)
+
+layout(JIJE_PART3, LAYOUT_JIJE_PART3)
+
+layout(JIJE_PART4_HP_A, LAYOUT_JIJE_PART4_HP_A)
+layout(JIJE_PART4_HP_B, LAYOUT_JIJE_PART4_HP_B)
+layout(JIJE_PART4_LP_A, LAYOUT_JIJE_PART4_LP_A)
+layout(JIJE_PART4_LP_B, LAYOUT_JIJE_PART4_LP_B)
+layout(JIJE_PART4_TRACK, LAYOUT_JIJE_PART4_TRACK)
+
+layout(JIJE_PART5, LAYOUT_JIJE_PART5)
+
+def({sw_jije_part2_check}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART2_HP_A .. 0x100+JIJE_PART2_TRACK)
+	cbr(0) else
+)
+
+def({sw_jije_part3_check}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART3)
+	cbr(0) else
+)
+
+def({sw_jije_part4_check}) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART4_HP_A .. 0x100+JIJE_PART4_TRACK)
+	cbr(0) else
+)
+
+def({sw_jije_part1_layout_sub1}) plt_index(
+	self(
+		cbr(0) if(nibble(0,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) else
+	)
+)
+
+def({sw_jije_part1_layout_direction}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(0) if(0)
+	cbr(6) else
+)
+
+def({sw_jije_part1_layout}) calculate({subroutine(sw_jije_part1_layout_sub1) + subroutine(sw_jije_part1_layout_direction)},
+	cbfail() else
+)
+
+def({sw_jije_part2_layout_pos}) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def({sw_jije_part2_layout_platform_sub4}) calculate({0xE0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(3) if(0)
+	cbr(2) else
+)
+
+def({sw_jije_part2_layout_platform_sub3}) calculate({0xE0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(5) if(0)
+	cbr(1) else
+)
+
+def({sw_jije_part2_layout_platform_sub2}) calculate({0x20 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	ref(sw_jije_part2_layout_platform_sub3) if(0)
+	ref(sw_jije_part2_layout_platform_sub4) else
+)
+
+def({sw_jije_part2_layout_platform_sub1}) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(4) if(0)
+	ref(sw_jije_part2_layout_platform_sub2) else
+)
+
+def({sw_jije_part2_layout_platform}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(0) if(0)
+	ref(sw_jije_part2_layout_platform_sub1) else
+)
+
+def({sw_jije_part2_layout}) calculate({subroutine(sw_jije_part2_layout_platform) * 6 + subroutine(sw_jije_part2_layout_pos)},
+	cbfail() else
+)
+
+def({sw_reg_jije_part3_sub1}) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def({sw_reg_jije_part3}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(1) if(1)
+	ref(sw_reg_jije_part3_sub1) else
+)
+
+def({sw_set_reg_jije_part3}) setregisters(REGISTER_JIJE_PART3_SKIP, {sub(sw_reg_jije_part3)}, ref(sw_set_registers))
+
+def({sw_set_reg_jije_part3_purchase}) setregisters(REGISTER_JIJE_PART3_SKIP, {0}, ref(sw_set_registers))
+
+def({sw_jije_part3_layout_direction}) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(6) if(1)
+	cbr(0) else
+)
+
+def({sw_jije_part3_layout_pos}) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def({sw_jije_part3_layout}) calculate({subroutine(sw_jije_part3_layout_pos) + subroutine(sw_jije_part3_layout_direction)},
+	cbfail() else
+)
+
+def({sw_jije_part4_layout_pos}) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def({sw_jije_part4_direction_sub2}) anim_frame(pos(0, 1),
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def({sw_jije_part4_direction_sub1}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	ref(sw_jije_part4_direction_sub2) if(1)
+	cbr(0) else
+)
+	
+def({sw_jije_part4_direction}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part3_check)},
+	cbr(1) if(1)
+	ref(sw_jije_part4_direction_sub1) else
+)
+
+def({sw_jije_part4_layout_end_sub1}) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(12) if(0)
+	cbr(6) else
+)
+
+def({sw_jije_part4_layout_end}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(0) if(0)
+	ref(sw_jije_part4_layout_end_sub1) else
+)
+
+def({sw_jije_part4_layout}) calculate({subroutine(sw_jije_part4_direction) * 18 + subroutine(sw_jije_part4_layout_end) + subroutine(sw_jije_part4_layout_pos)},
+	cbfail() else
+)
+
+def({sw_jije_part5_layout_direction}) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(6) if(1)
+	cbr(0) else
+)
+
+def({sw_jije_part5_layout_pos}) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def({sw_jije_part5_layout}) calculate({subroutine(sw_jije_part5_layout_direction) + subroutine(sw_jije_part5_layout_pos)},
+	cbfail() else
+)
+
+def({sw_jije_part1_cb}) callback(
+	ref(sw_jije_part1_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part1_cb_purchase}) callback(
+	cbr(12) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part2_cb}) callback(
+	ref(sw_jije_part2_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part2_cb_purchase}) callback(
+	cbr(36) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part3_cb}) callback(
+	ref(sw_jije_part3_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_jije_part3) else
+)
+
+def({sw_jije_part3_cb_purchase}) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_set_reg_jije_part3_purchase) else
+)
+
+def({sw_jije_part4_cb}) callback(
+	ref(sw_jije_part4_layout) if(CB_LAYOUT)
+	ref(sw_jije_part4_direction) if(CB_AFRAME, CB_ACONTROL)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part4_cb_purchase}) callback(
+	cbr(36) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part5_cb}) callback(
+	ref(sw_jije_part5_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_jije_part5_cb_purchase}) callback(
+	cbr(12) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
+makestation(JIJE_PART1, link(ref(sw_jije_part1_cb_purchase), MENU) default(ref(sw_jije_part1_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))}, JIJE_PART2_HP_A .. JIJE_PART2_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))}, JIJE_PART2_LP_A .. JIJE_PART2_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(JIJE_PART2_TRACK, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))
+
+makestation(JIJE_PART3, link(ref(sw_jije_part3_cb_purchase), MENU) default(ref(sw_jije_part3_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))}, JIJE_PART4_HP_A .. JIJE_PART4_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))}, JIJE_PART4_LP_A .. JIJE_PART4_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(JIJE_PART4_TRACK, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))
+
+makestation(JIJE_PART5, link(ref(sw_jije_part5_cb_purchase), MENU) default(ref(sw_jije_part5_cb)))
+
 
 // bridge_height
 

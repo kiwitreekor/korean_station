@@ -49,6 +49,7 @@ define(LAYOUT_TEMPLATE_JIJE_PART2, {
 	
 	xtile({
 		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
 		regular(spr_jije_part2+28, xyz(0,0,16), dxdydz(16,16,30))
 		regular(spr_jije_part2+26, xyz(-16,0,16), dxdydz(16,16,30))
 		regular(spr_jije_part2+22, xyz(0,16,16), dxdydz(16,16,30))
@@ -114,6 +115,7 @@ define(LAYOUT_TEMPLATE_JIJE_PART4, {
 	
 	xtile({
 		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
 		regular(spr_jije_part4_front, xyz(0,0,16), dxdydz(16,16,30))
 		regular(spr_jije_part4_front+6, xyz(0,-16,16), dxdydz(16,16,30))
 		regular(spr_jije_part4_front+2, xyz(16,0,16), dxdydz(16,16,30))

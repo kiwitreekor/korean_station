@@ -88,12 +88,15 @@ grfinit(GRFID_KWS_PART1,
 			)
 		)
 	)
-)
 	
-grffeaturetest(
-	name("action0_station_prop1B")
-	minversion(1)
-	setparambit(GRFFEATURE_BRIDGE)
+	feature_test(
+		feature(STAT_BRIDGES)
+		feature_version(1)
+	)
+	feature_propertymapping(
+		mapping(STAT_BRIDGES, {bridge_height})
+		fallback(0)
+	)
 )
 
 textmode_off()
@@ -183,7 +186,7 @@ def({sw_platform_normal_layout2_2}) tinfo_statid(pos(0, 1), shiftmask(0, 0x3FF),
 )
 
 def({sw_platform_normal_layout2_1}) tinfo_grfid(pos(0, 1),
-	ref(sw_platform_normal_layout2_2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_normal_layout2_2) if(label(GRFID_KWS_PART2))
 	ref(sw_platform_layout) else
 )
 
@@ -193,7 +196,7 @@ def({sw_platform_normal_layout1_2}) tinfo_statid(pos(0, -1), shiftmask(0, 0x3FF)
 )
 
 def({sw_platform_normal_layout}) tinfo_grfid(pos(0, -1),
-	ref(sw_platform_normal_layout1_2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_normal_layout1_2) if(label(GRFID_KWS_PART2))
 	ref(sw_platform_normal_layout2_1) else
 )
 
@@ -365,7 +368,7 @@ def({sw_building_nearby_info_part1}) calculate({register(REGISTER_BUILDING_POS) 
 )
 
 def({sw_building_nearby_info}) calculate({register(REGISTER_BUILDING_POS) RESTORE tinfo_grfid(REGISTER,)},
-	ref(sw_building_nearby_info_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_building_nearby_info_part1) if(label(GRFID_KWS_PART1))
 	cbr(0) else
 )
 
@@ -1015,8 +1018,8 @@ def({sw_check_stasignA_type_right_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0
 def({sw_check_stasignA_type_right_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_type_part2)
 
 def({sw_check_stasignA_type_right_sub2}) tinfo_grfid(pos(0, 1),
-	ref(sw_check_stasignA_type_right_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_type_right_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_type_right_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_right_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1034,8 +1037,8 @@ def({sw_check_stasignA_type_left_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0
 def({sw_check_stasignA_type_left_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_type_part2)
 
 def({sw_check_stasignA_type_left_sub2}) tinfo_grfid(pos(0, -1),
-	ref(sw_check_stasignA_type_left_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_type_left_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_type_left_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_left_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1053,8 +1056,8 @@ def({sw_check_stasignA_type_self_part1}) tinfo_statid(pos(0, 0), shiftmask(0, 0x
 def({sw_check_stasignA_type_self_part2}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_type_part2)
 
 def({sw_check_stasignA_type_self}) tinfo_grfid(pos(0, 0),
-	ref(sw_check_stasignA_type_self_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_type_self_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_type_self_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_self_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1072,8 +1075,8 @@ def({sw_check_stasignA_dir_right_part1}) tinfo_statid(pos(0, 1), shiftmask(0, 0x
 def({sw_check_stasignA_dir_right_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
 def({sw_check_stasignA_dir_right_sub2}) tinfo_grfid(pos(0, 1),
-	ref(sw_check_stasignA_dir_right_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_dir_right_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_dir_right_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_right_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1091,8 +1094,8 @@ def({sw_check_stasignA_dir_left_part1}) tinfo_statid(pos(0, -1), shiftmask(0, 0x
 def({sw_check_stasignA_dir_left_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
 def({sw_check_stasignA_dir_left_sub2}) tinfo_grfid(pos(0, -1),
-	ref(sw_check_stasignA_dir_left_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_dir_left_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_dir_left_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_left_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1110,8 +1113,8 @@ def({sw_check_stasignA_dir_self_part1}) tinfo_statid(pos(0, 0), shiftmask(0, 0xF
 def({sw_check_stasignA_dir_self_part2}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_direction_part2)
 
 def({sw_check_stasignA_dir_self}) tinfo_grfid(pos(0, 0),
-	ref(sw_check_stasignA_dir_self_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_check_stasignA_dir_self_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_check_stasignA_dir_self_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_self_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1343,53 +1346,53 @@ makestation(SIMPLE_STN, link(ref(sw_simple_station_cb_purchase), MENU) default(r
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
-skipif(reflabel(LABEL_ALLOW_BRIDGE), PLATFORM, BITCLR, GRFFEATURE_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), MAPPING, !=, STAT_BRIDGES)
 skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
-setproperties(HP_A .. HP_C, bridge_height({1,1,1,1}))
-setproperties(LP_A .. LP_A, bridge_height({1,1,1,1}))
-setproperties(LAP_A .. LAP_A, bridge_height({1,1,1,1}))
+setproperties(HP_A .. HP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(LP_A .. LP_A, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(LAP_A .. LAP_A, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(HP_A_RF_A .. HP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(LP_A_RF_A .. LP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(LAP_A_RF_A .. LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(HP_A_RF_A .. HP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(LP_A_RF_A .. LP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(LAP_A_RF_A .. LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(CROSSING_LP_A .. CROSSING_LP_C, bridge_height({1,1,1,1}))
-setproperties(CROSSING_LAP_A .. CROSSING_LAP_C, bridge_height({1,1,1,1}))
+setproperties(CROSSING_LP_A .. CROSSING_LP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(CROSSING_LAP_A .. CROSSING_LAP_C, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(CROSSING_LP_A_RF_A .. CROSSING_LP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(CROSSING_LAP_A_RF_A .. CROSSING_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(CROSSING_LP_A_RF_A .. CROSSING_LP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(CROSSING_LAP_A_RF_A .. CROSSING_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(HP_NONTRACK, bridge_height({1,1,1,1}))
-setproperties(LP_NONTRACK, bridge_height({1,1,1,1}))
-setproperties(LAP_NONTRACK, bridge_height({1,1,1,1}))
+setproperties(HP_NONTRACK, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(LP_NONTRACK, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(LAP_NONTRACK, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(HP_NONTRACK_RF_A .. HP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
-setproperties(LP_NONTRACK_RF_A .. LP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
-setproperties(LAP_NONTRACK_RF_A .. LAP_NONTRACK_RF_B, bridge_height({3,3,3,3}))
+setproperties(HP_NONTRACK_RF_A .. HP_NONTRACK_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(LP_NONTRACK_RF_A .. LP_NONTRACK_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(LAP_NONTRACK_RF_A .. LAP_NONTRACK_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(OVERPASS_START .. OVERPASS_END, bridge_height({3,3,3,3}))
+setproperties(OVERPASS_START .. OVERPASS_END, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(SIGN_A_HP_A .. SIGN_A_LAP_C, bridge_height({1,1,1,1}))
-setproperties(SIGN_B_HP_B_RF_A .. SIGN_B_LAP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(SIGN_C_HP_A .. SIGN_C_LAP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(LED_HP_A_RF_A .. LED_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(SIGN_A_HP_A .. SIGN_A_LAP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(SIGN_B_HP_B_RF_A .. SIGN_B_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(SIGN_C_HP_A .. SIGN_C_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(LED_HP_A_RF_A .. LED_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(WAITINGROOM_HP_A .. WAITINGROOM_HP_C, bridge_height({1,1,1,1}))
-setproperties(WAITINGROOM_LP_A .. WAITINGROOM_LP_C, bridge_height({1,1,1,1}))
-setproperties(WAITINGROOM_LAP_A .. WAITINGROOM_LAP_C, bridge_height({1,1,1,1}))
+setproperties(WAITINGROOM_HP_A .. WAITINGROOM_HP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(WAITINGROOM_LP_A .. WAITINGROOM_LP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(WAITINGROOM_LAP_A .. WAITINGROOM_LAP_C, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(WAITINGROOM_HP_A_RF_A .. WAITINGROOM_HP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(WAITINGROOM_LP_A_RF_A .. WAITINGROOM_LP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(WAITINGROOM_LAP_A_RF_A .. WAITINGROOM_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(WAITINGROOM_HP_A_RF_A .. WAITINGROOM_HP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(WAITINGROOM_LP_A_RF_A .. WAITINGROOM_LP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(WAITINGROOM_LAP_A_RF_A .. WAITINGROOM_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(LIGHT_HP_A .. LIGHT_LAP_C, bridge_height({3,3,3,3}))
+setproperties(LIGHT_HP_A .. LIGHT_LAP_C, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(UNDERPASS_HP_A_RF_A .. UNDERPASS_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(UNDERPASS_HP_A_RF_A .. UNDERPASS_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(PSD_HP_A .. PSD_HP_C, bridge_height({1,1,1,1}))
-setproperties(PSD_HP_A_RF_A .. PSD_HP_C_RF_B, bridge_height({1,1,1,1}))
+setproperties(PSD_HP_A .. PSD_HP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(PSD_HP_A_RF_A .. PSD_HP_C_RF_B, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(VOID_TILE, bridge_height({1,1,1,1}))
+setproperties(VOID_TILE, bridge_height(1,1,1,1,1,1,1,1))
 
 placelabel(LABEL_ALLOW_BRIDGE)

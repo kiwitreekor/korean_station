@@ -226,8 +226,8 @@ def({sw_platformA_check_opposite_part2}) tinfo_statid(pos(0, 1), shiftmask(0, 0x
 )
 
 def({sw_platformA_check_opposite_sub}) tinfo_grfid(pos(0, 1),
-	ref(sw_platformA_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_platformA_check_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platformA_check_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_platformA_check_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -262,8 +262,8 @@ def({sw_platformB_check_opposite_part2}) tinfo_statid(pos(0, -1), shiftmask(0, 0
 )
 
 def({sw_platformB_check_opposite_sub}) tinfo_grfid(pos(0, -1),
-	ref(sw_platformB_check_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_platformB_check_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platformB_check_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_platformB_check_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -298,8 +298,8 @@ def({sw_platform_multi_check_part2}) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
 )
 
 def({sw_platform_multi_check}) tinfo_grfid(pos(0, 0),
-	ref(sw_platform_multi_check_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_platform_multi_check_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_platform_multi_check_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_platform_multi_check_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -332,7 +332,7 @@ def({sw_modular_poleA_part1}) tinfo_statid(pos(0, -1), shiftmask(0,0xFF),
 )
 
 def({sw_modular_poleA}) tinfo_statid(pos(0, -1), shiftmask(0,0xFF),
-	ref(sw_modular_poleA_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_modular_poleA_part1) if(label(GRFID_KWS_PART1))
 	cbr(1) else
 )
 
@@ -342,7 +342,7 @@ def({sw_modular_poleB_part1}) tinfo_statid(pos(0, 1), shiftmask(0,0xFF),
 )
 
 def({sw_modular_poleB}) tinfo_grfid(pos(0, 1),
-	ref(sw_modular_poleB_part1) if(VAR_GRFID_KWS_PART1)
+	ref(sw_modular_poleB_part1) if(label(GRFID_KWS_PART1))
 	cbr(1) else
 )
 
@@ -427,8 +427,8 @@ def({sw_psd_start_pA_opposite_part2}) tinfo_statid(pos(-1, -1), shiftmask(0, 0xF
 )
 
 def({sw_psd_start_pA_opposite_sub}) tinfo_grfid(pos(-1, -1),
-	ref(sw_psd_start_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_start_pA_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_start_pA_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -459,8 +459,8 @@ def({sw_psd_start_pA_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 
 def({sw_psd_start_pA_sub}) tinfo_grfid(pos(-1, 0),
 	cbr(0) if(0)
-	ref(sw_psd_start_pA_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pA_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_start_pA_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_start_pA_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -483,8 +483,8 @@ def({sw_psd_end_pA_opposite_part2}) tinfo_statid(pos(1, -1), shiftmask(0, 0xFF),
 )
 
 def({sw_psd_end_pA_opposite_sub}) tinfo_grfid(pos(1, -1),
-	ref(sw_psd_end_pA_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pA_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_end_pA_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_end_pA_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -515,8 +515,8 @@ def({sw_psd_end_pA_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 
 def({sw_psd_end_pA_sub}) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
-	ref(sw_psd_end_pA_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pA_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_end_pA_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_end_pA_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -562,8 +562,8 @@ def({sw_psd_start_pB_opposite_part2}) tinfo_statid(pos(-1, 1), shiftmask(0, 0xFF
 )
 
 def({sw_psd_start_pB_opposite_sub}) tinfo_grfid(pos(-1, 1),
-	ref(sw_psd_start_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_start_pB_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_start_pB_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -594,8 +594,8 @@ def({sw_psd_start_pB_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 
 def({sw_psd_start_pB_sub}) tinfo_grfid(pos(-1, 0),
 	cbr(0) if(0)
-	ref(sw_psd_start_pB_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_start_pB_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_start_pB_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_start_pB_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -618,8 +618,8 @@ def({sw_psd_end_pB_opposite_part2}) tinfo_statid(pos(1, 1), shiftmask(0, 0xFF),
 )
 
 def({sw_psd_end_pB_opposite_sub}) tinfo_grfid(pos(1, 1),
-	ref(sw_psd_end_pB_opposite_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pB_opposite_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_end_pB_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_end_pB_opposite_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -650,8 +650,8 @@ def({sw_psd_end_pB_part1}) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 
 def({sw_psd_end_pB_sub}) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
-	ref(sw_psd_end_pB_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_end_pB_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_end_pB_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_end_pB_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -707,8 +707,8 @@ def({sw_psd_check_sound_part1}) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 
 def({sw_psd_check_sound_grfid}) tinfo_grfid(pos(-1, 0),
 	cbr(1) if(0)
-	ref(sw_psd_check_sound_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_psd_check_sound_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_psd_check_sound_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_psd_check_sound_part2) if(label(GRFID_KWS_PART2))
 	cbr(1) else
 )
 

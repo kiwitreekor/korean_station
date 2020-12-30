@@ -119,10 +119,10 @@ define({defclassname}, {classnames($1, {_langid, UTF8 {$2}})})
 ifdef({tinfo_grfid},,{define(tinfo_grfid, {89 ifelse($1,REGISTER,{7B 6A},{6A $1}) 00 FF FF FF FF __byte(__count)
 __postprocess(2,$2) define({__count},0) define({__wordflag}, 0)})})
 
-define({grffeaturetest}, {dnl
-pushdef({name}, {"T" "NAME" 00 $}{1 00})dnl
-pushdef({minversion}, {"B" "MINV" __word(2) __word($}{1)})dnl
-pushdef({maxversion}, {"B" "MAXV" __word(2) __word($}{1)})dnl
-pushdef({setparambit}, {"B" "SETP" __word(1) __byte($}{1)})dnl
-__NUMBER * 0 14 "C" "FTST" $1 00 00dnl
-popdef({name})popdef({minversion})popdef({maxversion})popdef({setparambit})})
+define(__signedbyte, {ifelse(eval($1<0),1,__byte(256 + $1),__byte($1))})
+pushdef({xyz}, {__signedbyte($1) __signedbyte($2) __signedbyte($3)})
+
+pushdef({tinfo_statid}, {dnl
+ifelse($#,3,{85 ifelse($1,REGISTER,{7B 68},{68 $1}) ifelse(len($2),5,$2 00,$2) __byte(__count) dnl always make mask a WORD!
+__postprocess(1,$3)},$#,2,{85 ifelse($1,REGISTER,{7B 68},{68 $1}) 00 FF FF __byte(__count)
+__postprocess(1,$2)},{__error(ERR_NUMPAR "{$0}")}) define({__count},0) define({__wordflag},0)})

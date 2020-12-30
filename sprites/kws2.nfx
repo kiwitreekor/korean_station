@@ -18,13 +18,17 @@ grfinit(GRFID_KWS_PART2,
 	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
 	grfversion(GRF_VERSION)
 	grfminversion(GRF_MIN_VERSION)
+
+	feature_test(
+		feature(STAT_BRIDGES)
+		feature_version(1)
+	)
+	feature_propertymapping(
+		mapping(STAT_BRIDGES, {bridge_height})
+		fallback(0)
+	)
 )
-	
-grffeaturetest(
-	name("action0_station_prop1B")
-	minversion(1)
-	setparambit(GRFFEATURE_BRIDGE)
-)
+
 textmode_off()
 asl_on()
 
@@ -1391,8 +1395,8 @@ def({sw_overpass_stair_back_part2}) tinfo_statid(pos(1, 0),
 )
 
 def({sw_overpass_stair_back}) tinfo_grfid(pos(1, 0),
-	ref(sw_overpass_stair_back_part1) if(VAR_GRFID_KWS_PART1)
-	ref(sw_overpass_stair_back_part2) if(VAR_GRFID_KWS_PART2)
+	ref(sw_overpass_stair_back_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_overpass_stair_back_part2) if(label(GRFID_KWS_PART2))
 	cbr(0) else
 )
 
@@ -1873,28 +1877,28 @@ makestation(JIJE_PART5, link(ref(sw_jije_part5_cb_purchase), MENU) default(ref(s
 // bridge_height
 
 deflabel(LABEL_ALLOW_BRIDGE)
-skipif(reflabel(LABEL_ALLOW_BRIDGE), PLATFORM, BITCLR, GRFFEATURE_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), MAPPING, !=, STAT_BRIDGES)
 skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
 
-setproperties(CROSSING_HP_A .. CROSSING_HP_C, bridge_height({1,1,1,1}))
-setproperties(CROSSING_HP_A_RF_A .. CROSSING_HP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(CROSSING_HP_A .. CROSSING_HP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(CROSSING_HP_A_RF_A .. CROSSING_HP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END, bridge_height({3,3,3,3}))
-setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END, bridge_height({3,3,3,3}))
+setproperties(PSD_OVERPASS_START .. PSD_OVERPASS_END, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(PSD_UNDERPASS_START .. PSD_UNDERPASS_END, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(BUFFER_HP_A .. BUFFER_HP_C, bridge_height({1,1,1,1}))
-setproperties(BUFFER_LP_A .. BUFFER_LP_C, bridge_height({1,1,1,1}))
-setproperties(BUFFER_LAP_A .. BUFFER_LAP_C, bridge_height({1,1,1,1}))
+setproperties(BUFFER_HP_A .. BUFFER_HP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(BUFFER_LP_A .. BUFFER_LP_C, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(BUFFER_LAP_A .. BUFFER_LAP_C, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(BUFFER_HP_A_RF_A .. BUFFER_HP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(BUFFER_LP_A_RF_A .. BUFFER_LP_C_RF_B, bridge_height({3,3,3,3}))
-setproperties(BUFFER_LAP_A_RF_A .. BUFFER_LAP_C_RF_B, bridge_height({3,3,3,3}))
+setproperties(BUFFER_HP_A_RF_A .. BUFFER_HP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(BUFFER_LP_A_RF_A .. BUFFER_LP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
+setproperties(BUFFER_LAP_A_RF_A .. BUFFER_LAP_C_RF_B, bridge_height(3,3,3,3,3,3,3,3))
 
-setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height({0,1,0,0}))
+setproperties(GANGNEUNG_HP .. GANGNEUNG_LP, bridge_height(0,0,1,1,0,0,0,0))
 
-setproperties(METRO_HP_A .. METRO_TRACK, bridge_height({1,1,1,1}))
-setproperties(METRO_PARK_HP_A .. METRO_PARK_TRACK, bridge_height({1,1,1,1}))
+setproperties(METRO_HP_A .. METRO_TRACK, bridge_height(1,1,1,1,1,1,1,1))
+setproperties(METRO_PARK_HP_A .. METRO_PARK_TRACK, bridge_height(1,1,1,1,1,1,1,1))
 
-setproperties(SINHAEUNDAE_HP .. SINHAEUNDAE_HLP, bridge_height({0,1,0,0}))
+setproperties(SINHAEUNDAE_HP .. SINHAEUNDAE_HLP, bridge_height(0,0,1,1,0,0,0,0))
 
 placelabel(LABEL_ALLOW_BRIDGE)

@@ -59,10 +59,10 @@ def({sw_reg_roof}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
-def({sw_reg_passenger_skip_random1}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random2}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(0), cbr(1))
-def({sw_reg_passenger_skip_random3}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(0), cbr(1), cbr(1))
-def({sw_reg_passenger_skip_random4}) random(NEWCARGO + ARRIVE + LEAVE, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random1}) random({NEWCARGO, ARRIVE, LEAVE}, 16, cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random2}) random({NEWCARGO, ARRIVE, LEAVE}, 16, cbr(0), cbr(0), cbr(0), cbr(1))
+def({sw_reg_passenger_skip_random3}) random({NEWCARGO, ARRIVE, LEAVE}, 16, cbr(0), cbr(0), cbr(1), cbr(1))
+def({sw_reg_passenger_skip_random4}) random({NEWCARGO, ARRIVE, LEAVE}, 16, cbr(0), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1), cbr(1))
 
 def({sw_reg_passenger_skip_sub}) cargowaiting(PASS,
 	cbr(0) if(0)
@@ -83,16 +83,16 @@ def({sw_reg_platform}) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 
-def({sw_reg_passenger5_random}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(16), cbr(20))
+def({sw_reg_passenger5_random}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(16), cbr(20))
 
-def({sw_reg_passenger_random1}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(0), cbr(4))
-def({sw_reg_passenger_random2}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(0), cbr(4), cbr(4))
-def({sw_reg_passenger_random3}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(0), cbr(4), cbr(4), cbr(8))
-def({sw_reg_passenger_random4}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(4), cbr(8), cbr(8))
-def({sw_reg_passenger_random5}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(4), cbr(8), cbr(8), cbr(12))
-def({sw_reg_passenger_random6}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(8), cbr(12), cbr(12))
-def({sw_reg_passenger_random7}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
-def({sw_reg_passenger_random8}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
+def({sw_reg_passenger_random1}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(0), cbr(0), cbr(0), cbr(4))
+def({sw_reg_passenger_random2}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(0), cbr(0), cbr(4), cbr(4))
+def({sw_reg_passenger_random3}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(0), cbr(4), cbr(4), cbr(8))
+def({sw_reg_passenger_random4}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(4), cbr(4), cbr(8), cbr(8))
+def({sw_reg_passenger_random5}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(4), cbr(8), cbr(8), cbr(12))
+def({sw_reg_passenger_random6}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(8), cbr(8), cbr(12), cbr(12))
+def({sw_reg_passenger_random7}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(8), cbr(12), cbr(12), ref(sw_reg_passenger5_random))
+def({sw_reg_passenger_random8}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, cbr(12), cbr(12), ref(sw_reg_passenger5_random), ref(sw_reg_passenger5_random))
 
 def({sw_reg_passenger}) cargowaiting(PASS,
 	cbr(0) if(0 .. 31)
@@ -122,7 +122,7 @@ setregisters(REGISTER_PASSENGER_OFFSET,
 )
 
 // re-randomisation
-def({sw_reg_passenger_rerandom}) random(NEWCARGO + ARRIVE + LEAVE + LOADING, 16, 
+def({sw_reg_passenger_rerandom}) random({NEWCARGO, ARRIVE, LEAVE, LOADING}, 16, 
 	ref(sw_set_reg_passenger), 
 	ref(sw_set_reg_passenger), 
 	ref(sw_set_reg_passenger), 

@@ -1,0 +1,64 @@
+define(LAYOUT_TEMPLATE_SIGNAL_FRONT, {
+	xtile({
+		spritelayout_ground()
+		regular($1, xyz(12, 12, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground()
+		regular($1, xyz(12, 4, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground_snow()
+		regular($1, xyz(12, 12, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground_snow()
+		regular($1, xyz(12, 4, 0), dxdydz(2, 2, 4))
+	})
+})
+
+define(LAYOUT_TEMPLATE_SIGNAL_BACK, {
+	xtile({
+		spritelayout_ground()
+		regular($1+2, xyz(2, 4, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground()
+		regular($1+2, xyz(2, 12, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground_snow()
+		regular($1+2, xyz(2, 4, 0), dxdydz(2, 2, 4))
+	})
+	xtile({
+		spritelayout_ground_snow()
+		regular($1+2, xyz(2, 12, 0), dxdydz(2, 2, 4))
+	})
+})
+
+define(LAYOUT_SIGNAL_1A_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_1A)})
+define(LAYOUT_SIGNAL_1A_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_1A)})
+define(LAYOUT_SIGNAL_1B_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_1B)})
+define(LAYOUT_SIGNAL_1B_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_1B)})
+define(LAYOUT_SIGNAL_2_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_2)})
+define(LAYOUT_SIGNAL_2_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_2)})
+define(LAYOUT_SIGNAL_3_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_3)})
+define(LAYOUT_SIGNAL_3_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_3)})
+define(LAYOUT_SIGNAL_4_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_4)})
+define(LAYOUT_SIGNAL_4_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_4)})
+define(LAYOUT_SIGNAL_5_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_5)})
+define(LAYOUT_SIGNAL_5_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_5)})
+define(LAYOUT_SIGNAL_6_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_6)})
+define(LAYOUT_SIGNAL_6_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_6)})
+define(LAYOUT_SIGNAL_7_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_7)})
+define(LAYOUT_SIGNAL_7_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_7)})
+define(LAYOUT_SIGNAL_8_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_8)})
+define(LAYOUT_SIGNAL_8_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_8)})
+define(LAYOUT_SIGNAL_9_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_9)})
+define(LAYOUT_SIGNAL_9_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_9)})
+define(LAYOUT_SIGNAL_10_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_10)})
+define(LAYOUT_SIGNAL_10_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_10)})
+define(LAYOUT_SIGNAL_11_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_11)})
+define(LAYOUT_SIGNAL_11_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_11)})
+define(LAYOUT_SIGNAL_12_A, {LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_12)})
+define(LAYOUT_SIGNAL_12_B, {LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_12)})

@@ -2,7 +2,7 @@ divert(-1)
 setlangid(KR)
 
 defstr({STR_GRF_NAME}, {"키위트리 한국역 세트 " STR_GRF_VERSION " Part 1"})
-defstr({STR_GRF_DESC}, {"copyright 2017 - 2020 " T_WHITE "kiwitree" 
+defstr({STR_GRF_DESC}, {"copyright 2017 - 2021 " T_WHITE "kiwitree" 
 	CRLF T_BLACK "버그 제보: " T_LBLUE STR_GRF_CONTACT 
 	CRLF T_BLACK "라이선스: " T_WHITE STR_GRF_LICENSE
 	CRLF CRLF T_BLACK "Special Thanks: " T_GREEN "Las, EightonEight" T_WHITE

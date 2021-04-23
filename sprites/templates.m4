@@ -715,16 +715,16 @@ define(tmpl_signal_shunting, {
 define(tmpl_signal_slowapproach, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)      eval($4)      5 11  -2 -11 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+60)   eval($4)      5 11  -2 -11 normal)
-		sprite($2 8bpp eval($3+41)   eval($4)      5 11  -2 -11 normal)
+		sprite($2 8bpp eval($3+59)   eval($4)      5 11  -2 -11 normal)
+		sprite($2 8bpp eval($3+40)   eval($4)      5 11  -2 -11 normal)
 		sprite($2 8bpp eval($3+19)   eval($4)      5 11  -2 -11 normal)
 })
 
 define(tmpl_signal_common, {
 		sprite(ifelse($1,,,{$1,})
 		       $2 8bpp eval($3)      eval($4)      5 10  -2 -10 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+60)   eval($4)      5 10  -2 -10 normal)
-		sprite($2 8bpp eval($3+41)   eval($4)      5 10  -2 -10 normal)
+		sprite($2 8bpp eval($3+59)   eval($4)      5 10  -2 -10 normal)
+		sprite($2 8bpp eval($3+40)   eval($4)      5 10  -2 -10 normal)
 		sprite($2 8bpp eval($3+19)   eval($4)      5 10  -2 -10 normal)
 })
 

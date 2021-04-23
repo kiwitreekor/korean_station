@@ -1910,7 +1910,7 @@ layout(SIGNAL_12_A, LAYOUT_SIGNAL_12_A)
 layout(SIGNAL_12_B, LAYOUT_SIGNAL_12_B)
 
 def({sw_signal_side_driving}) trafficside(
-	cbr(0) if(1)
+	cbr(0) if(16)
 	cbr(2) else
 )
 

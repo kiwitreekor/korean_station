@@ -1,11 +1,11 @@
 divert(-1)
 setlangid(UK)
 
-define({STR_GRF_VERSION}, {"v1.1-alpha"})
+define({STR_GRF_VERSION}, {"v1.1"})
 define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
 define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
 
-define({GRF_STABLE}, 0)
+define({GRF_STABLE}, 1)
 
 defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 1"})
 defstr({STR_GRF_DESC}, {"copyright 2017 - 2020 " T_WHITE "kiwitree" 

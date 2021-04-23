@@ -509,6 +509,21 @@ spriteblock(
 		
 		tmpl_jije_part5_front(spr_jije_part5_front, jije.png, 10, 840)
 		tmpl_jije_part5_back(spr_jije_part5_back, jije.png, 130, 840)
+
+// Signal Waypoints
+		tmpl_signal_shunting(spr_signal_1A, signals.png, 167, 21)
+		tmpl_signal_shunting(spr_signal_1B, signals.png, 167, 62)
+		tmpl_signal_slowapproach(spr_signal_2, signals.png, 167, 100)
+		tmpl_signal_common(spr_signal_3, signals.png, 167, 142)
+		tmpl_signal_common(spr_signal_4, signals.png, 167, 183)
+		tmpl_signal_common(spr_signal_5, signals.png, 167, 223)
+		tmpl_signal_common(spr_signal_6, signals.png, 167, 260)
+		tmpl_signal_common(spr_signal_7, signals.png, 167, 301)
+		tmpl_signal_common(spr_signal_8, signals.png, 167, 337)
+		tmpl_signal_hsr(spr_signal_9, signals.png, 167, 370)
+		tmpl_signal_hsr(spr_signal_10, signals.png, 167, 402)
+		tmpl_signal_common(spr_signal_11, signals.png, 167, 439)
+		tmpl_signal_common(spr_signal_12, signals.png, 167, 476)
 	)
 )
 

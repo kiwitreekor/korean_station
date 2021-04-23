@@ -36,6 +36,7 @@ getothergrfparameter(PARAM_FLAGS, GRFID_KWS_PART1, PARAM_FLAGS)
 getothergrfparameter(PARAM_MODE, GRFID_KWS_PART1, PARAM_MODE)
 getothergrfparameter(PARAM_ROOF_COLOUR, GRFID_KWS_PART1, PARAM_ROOF_COLOUR)
 getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART1, VERSION)
+getothergrfparameter(PARAM_SIGNAL_SIDE, GRFID_KWS_PART1, PARAM_SIGNAL_SIDE)
 
 skipif(1, GRFACTIVE, -, GRFID_KWS_PART1)
 skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
@@ -1873,6 +1874,67 @@ makestation(JIJE_PART4_TRACK, link(ref(sw_jije_part4_cb_purchase), MENU) default
 
 makestation(JIJE_PART5, link(ref(sw_jije_part5_cb_purchase), MENU) default(ref(sw_jije_part5_cb)))
 
+// Signal waypoints
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_WAYPOINT)
+	callbacks({CB_LAYOUT})
+)}, SIGNAL_START .. SIGNAL_END)
+
+layout(SIGNAL_1A_A, LAYOUT_SIGNAL_1A_A)
+layout(SIGNAL_1A_B, LAYOUT_SIGNAL_1A_B)
+layout(SIGNAL_1B_A, LAYOUT_SIGNAL_1B_A)
+layout(SIGNAL_1B_B, LAYOUT_SIGNAL_1B_B)
+layout(SIGNAL_2_A, LAYOUT_SIGNAL_2_A)
+layout(SIGNAL_2_B, LAYOUT_SIGNAL_2_B)
+layout(SIGNAL_3_A, LAYOUT_SIGNAL_3_A)
+layout(SIGNAL_3_B, LAYOUT_SIGNAL_3_B)
+layout(SIGNAL_4_A, LAYOUT_SIGNAL_4_A)
+layout(SIGNAL_4_B, LAYOUT_SIGNAL_4_B)
+layout(SIGNAL_5_A, LAYOUT_SIGNAL_5_A)
+layout(SIGNAL_5_B, LAYOUT_SIGNAL_5_B)
+layout(SIGNAL_6_A, LAYOUT_SIGNAL_6_A)
+layout(SIGNAL_6_B, LAYOUT_SIGNAL_6_B)
+layout(SIGNAL_7_A, LAYOUT_SIGNAL_7_A)
+layout(SIGNAL_7_B, LAYOUT_SIGNAL_7_B)
+layout(SIGNAL_8_A, LAYOUT_SIGNAL_8_A)
+layout(SIGNAL_8_B, LAYOUT_SIGNAL_8_B)
+layout(SIGNAL_9_A, LAYOUT_SIGNAL_9_A)
+layout(SIGNAL_9_B, LAYOUT_SIGNAL_9_B)
+layout(SIGNAL_10_A, LAYOUT_SIGNAL_10_A)
+layout(SIGNAL_10_B, LAYOUT_SIGNAL_10_B)
+layout(SIGNAL_11_A, LAYOUT_SIGNAL_11_A)
+layout(SIGNAL_11_B, LAYOUT_SIGNAL_11_B)
+layout(SIGNAL_12_A, LAYOUT_SIGNAL_12_A)
+layout(SIGNAL_12_B, LAYOUT_SIGNAL_12_B)
+
+def({sw_signal_side_driving}) trafficside(
+	cbr(0) if(1)
+	cbr(2) else
+)
+
+def({sw_signal_side}) getparameter(PARAM_SIGNAL_SIDE, 
+	cbr(0) if(PARAM_SIGNAL_SIDE_RIGHT)
+	cbr(2) if(PARAM_SIGNAL_SIDE_LEFT)
+	ref(sw_signal_side_driving) else
+)
+
+def({sw_signal_layout}) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_signal_side)},
+	cbfail() else
+)
+
+def({sw_signal_cb}) callback(
+	ref(sw_signal_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def({sw_signal_cb_purchase}) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_signal_cb_purchase), MENU) default(ref(sw_signal_cb)))}, SIGNAL_START .. SIGNAL_END)
 
 // bridge_height
 

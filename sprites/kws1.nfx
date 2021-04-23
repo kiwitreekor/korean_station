@@ -87,6 +87,18 @@ grfinit(GRFID_KWS_PART1,
 				menuvalue(16,STR_PARAM_ROOF_COLOUR_WHITE)
 			)
 		)
+		grfsetting(
+			settype(ENUM,PARAM_SIGNAL_SIDE,0,2)
+			setname(STR_PARAM_SIGNAL_SIDE_NAME)
+			setdescription(STR_PARAM_SIGNAL_SIDE_DESC)
+			setdefault(1)
+			setlimits(0,2)
+			setvalues(
+				menuvalue(0,STR_PARAM_SIGNAL_SIDE_LEFT)
+				menuvalue(1,STR_PARAM_SIGNAL_SIDE_DRIVING)
+				menuvalue(2,STR_PARAM_SIGNAL_SIDE_RIGHT)
+			)
+		)
 	)
 	
 	feature_test(

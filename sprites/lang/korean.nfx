@@ -55,6 +55,13 @@ defstr({STR_PARAM_ROOF_COLOUR_BROWN}, {"갈색"})
 defstr({STR_PARAM_ROOF_COLOUR_GREY}, {"회색"})
 defstr({STR_PARAM_ROOF_COLOUR_WHITE}, {"흰색"})
 
+defstr({STR_PARAM_SIGNAL_SIDE_NAME}, {"신호기 보이기"})
+defstr({STR_PARAM_SIGNAL_SIDE_DESC}, {"선로의 어느 쪽에 신호기를 설치할 지 선택합니다."})
+
+defstr({STR_PARAM_SIGNAL_SIDE_LEFT}, {"왼쪽에"})
+defstr({STR_PARAM_SIGNAL_SIDE_DRIVING}, {"진행 방향에"})
+defstr({STR_PARAM_SIGNAL_SIDE_RIGHT}, {"오른쪽에"})
+
 defstr({STR_OBJ_CLASS_METRO}, {"[KWS] 지하철역"})
 defstr({STR_OBJ_METRO_EXIT}, {"지하철역 출입구"})
 

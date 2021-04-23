@@ -703,4 +703,30 @@ define(tmpl_jije_part5_back, {
 		sprite($2 8bpp eval($3+50)   eval($4)     54 44 -21 -19 normal)
 		sprite($2 8bpp eval($3+50)   eval($4+60)  54 44 -31 -19 normal)
 })
+
+define(tmpl_signal_shunting, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)      eval($4)      4  8  -2  -8 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+60)   eval($4)      4  8  -2  -8 normal)
+		sprite($2 8bpp eval($3+41)   eval($4)      4  8  -2  -8 normal)
+		sprite($2 8bpp eval($3+19)   eval($4)      4  8  -2  -8 normal)
+})
+
+define(tmpl_signal_slowapproach, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)      eval($4)      5 11  -2 -11 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+60)   eval($4)      5 11  -2 -11 normal)
+		sprite($2 8bpp eval($3+41)   eval($4)      5 11  -2 -11 normal)
+		sprite($2 8bpp eval($3+19)   eval($4)      5 11  -2 -11 normal)
+})
+
+define(tmpl_signal_common, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)      eval($4)      5 10  -2 -10 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+60)   eval($4)      5 10  -2 -10 normal)
+		sprite($2 8bpp eval($3+41)   eval($4)      5 10  -2 -10 normal)
+		sprite($2 8bpp eval($3+19)   eval($4)      5 10  -2 -10 normal)
+})
+
+define(tmpl_signal_hsr, defn({tmpl_signal_slowapproach}))
 divert

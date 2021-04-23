@@ -1909,14 +1909,24 @@ layout(SIGNAL_11_B, LAYOUT_SIGNAL_11_B)
 layout(SIGNAL_12_A, LAYOUT_SIGNAL_12_A)
 layout(SIGNAL_12_B, LAYOUT_SIGNAL_12_B)
 
-def({sw_signal_side_driving}) trafficside(
-	cbr(0) if(16)
+def({sw_signal_side_left}) plt_axis(
+	cbr(0) if(0)
 	cbr(2) else
 )
 
+def({sw_signal_side_right}) plt_axis(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def({sw_signal_side_driving}) trafficside(
+	ref(sw_signal_side_left) if(16)
+	ref(sw_signal_side_right) else
+)
+
 def({sw_signal_side}) getparameter(PARAM_SIGNAL_SIDE, 
-	cbr(0) if(PARAM_SIGNAL_SIDE_RIGHT)
-	cbr(2) if(PARAM_SIGNAL_SIDE_LEFT)
+	ref(sw_signal_side_left) if(PARAM_SIGNAL_SIDE_RIGHT)
+	ref(sw_signal_side_right) if(PARAM_SIGNAL_SIDE_LEFT)
 	ref(sw_signal_side_driving) else
 )
 

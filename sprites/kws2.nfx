@@ -1383,12 +1383,12 @@ layout(PSD_OVERPASS_STAIR_HP_B_RF_B, LAYOUT_PSD_OVERPASS_STAIR_HP_B_RF_B)
 layout(PSD_OVERPASS_STAIR_HP_C_RF_B, LAYOUT_PSD_OVERPASS_STAIR_HP_C_RF_B)
 
 
-def({sw_overpass_stair_back_part1}) tinfo_statid(pos(1, 0),
+def({sw_overpass_stair_back_part1}) tinfo_statid(pos(1, 0), shiftmask(0, 0xFF),
 	cbr(2) if(MODULAR_START .. MODULAR_END)
 	cbr(0) else
 )
 
-def({sw_overpass_stair_back_part2}) tinfo_statid(pos(1, 0),
+def({sw_overpass_stair_back_part2}) tinfo_statid(pos(1, 0), shiftmask(0, 0xFF),
 	cbr(2) if(PSD_MODULAR_START .. PSD_MODULAR_END)
 	cbr(2) if(JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
 	cbr(2) if(JIJE_PART4_HP_A .. JIJE_PART4_TRACK)

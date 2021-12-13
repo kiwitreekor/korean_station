@@ -1,0 +1,174 @@
+// Suseo Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/metro.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({2})
+)}, SUSEO_NONTRACK .. SUSEO_LP)
+
+setproperties(SUSEO_NONTRACK,
+	nontrack(TTD_ALLTILES)
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+)}, SUSEO_PARKING_LOT_NONTRACK .. SUSEO_PARKING_LOT_TRACK)
+
+setproperties(SUSEO_PARKING_LOT_NONTRACK,
+	nontrack(TTD_ALLTILES)
+)
+
+
+// layouts
+define(LAYOUT_TEMPLATE_SUSEO, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_suseo+X*2, xyz(0,0,0), dxdydz(16,16,40))
+		})
+	}, 0 .. 7)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_suseo_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+define(LAYOUT_TEMPLATE_SUSEO_TRACK, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			spritelayout_metro_pole()
+			spritelayout_concrete_float()
+			regular(spr_suseo+X*2, xyz(0,0,9), dxdydz(16,16,40))
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base({ifelse(eval((X/4)%2==0), 1, PLT_TYPE_A, PLT_TYPE_B)}, $1, SHADOW_TRUE)})
+		})
+	}, 0 .. 7)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_suseo_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+layout(SUSEO_NONTRACK, LAYOUT_TEMPLATE_SUSEO())
+layout(SUSEO_HP, LAYOUT_TEMPLATE_SUSEO_TRACK(PLT_TYPE_HIGH))
+layout(SUSEO_LP, LAYOUT_TEMPLATE_SUSEO_TRACK(PLT_TYPE_LOW))
+
+define(spritelayout_ground_suseo_parking_lot, {ground(spr_suseo_parking_lot, REVERSE, CUSTOM, aslflags({OFFSET_SPRITE}), registers({REGISTER_NONE}))})
+define(spritelayout_suseo_parking_lot_float, {regular(spr_suseo_parking_lot, xyz(0, 0, 8), dxdydz(16, 16, 0))})
+define(spritelayout_suseo_cars, {regular(spr_suseo_parking_lot_car, xyz(0, 0, $1), dxdydz(16, 16, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_CARS_OFFSET}))})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT, {
+	xtile({
+		spritelayout_ground_suseo_parking_lot()
+		spritelayout_suseo_cars(0)
+	})
+})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK_BASE, {
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_suseo_parking_lot_float()
+		spritelayout_suseo_cars(8)
+	})
+})
+
+define(LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK_BASE}, $@)})
+
+layout(SUSEO_PARKING_LOT_NONTRACK, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT())
+
+layout(SUSEO_PARKING_LOT_HP_A, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SUSEO_PARKING_LOT_HP_B, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SUSEO_PARKING_LOT_HP_C, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(SUSEO_PARKING_LOT_LP_A, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SUSEO_PARKING_LOT_LP_B, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SUSEO_PARKING_LOT_LP_C, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(SUSEO_PARKING_LOT_TRACK, LAYOUT_TEMPLATE_SUSEO_PARKING_LOT_TRACK(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+// switches
+def(40, sw_suseo_layout) plt_index(
+	self(
+		cbr(0) if(nibble(0,1))
+		cbr(2) if(nibble(1,1))
+		cbr(4) if(nibble(2,1))
+		cbr(6) if(nibble(3,1))
+		cbr(8) if(nibble(0,0))
+		cbr(10) if(nibble(1,0))
+		cbr(12) if(nibble(2,0))
+		cbr(14) if(nibble(3,0))
+		cbr(0) else
+	)
+)
+
+def(41, sw_suseo_cb) callback(
+	ref(sw_suseo_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(42, sw_suseo_cb_purchase) callback(
+	cbr(16) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(43, sw_suseo_parking_lotA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 2},
+	cbfail() else
+)
+
+def(44, sw_suseo_parking_lotB_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 2},
+	cbfail() else
+)
+
+def(45, sw_suseo_parking_lot_multi_layout) subroutine(sw_platform_multi_check,
+	ref(sw_suseo_parking_lotA_multi_layout) if(1)
+	ref(sw_suseo_parking_lotB_multi_layout) if(2)
+	cbr(0) else
+)
+
+def(46, sw_suseo_parking_lot_cb) callback(
+	ref(sw_suseo_parking_lot_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_cars) else
+)
+
+def(47, sw_suseo_parking_lot_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))}, SUSEO_NONTRACK .. SUSEO_HP)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	makestation(SUSEO_LP, link(ref(sw_suseo_cb_purchase), MENU) default(ref(sw_suseo_cb)))
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))}, SUSEO_PARKING_LOT_NONTRACK .. SUSEO_PARKING_LOT_HP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))}, SUSEO_PARKING_LOT_LP_A .. SUSEO_PARKING_LOT_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SUSEO_PARKING_LOT_TRACK, link(ref(sw_suseo_parking_lot_cb_purchase), MENU) default(ref(sw_suseo_parking_lot_cb)))

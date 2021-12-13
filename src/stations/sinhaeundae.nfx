@@ -1,0 +1,201 @@
+// Sinhaeundae Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/metro.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+definestation(SINHAEUNDAE_NONTRACK, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({6})
+	include_widths({4})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({7})
+	include_widths({4})
+	setcargotriggers({PASS})
+	tiletypelayout(
+		tiletypes({{0,0,0,0,0,0,2},{0,0,0,0,0,0,2},{0,0,0,0,0,0,2},{0,0,0,0,0,0,2}})
+	)
+)}, SINHAEUNDAE_HP .. SINHAEUNDAE_HLP)
+
+// layouts
+define(LAYOUT_TEMPLATE_SINHAEUNDAE_NONTRACK, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_sinhaeundae+X*2, xyz(0,0,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 23)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_sinhaeundae_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+layout(SINHAEUNDAE_NONTRACK, LAYOUT_TEMPLATE_SINHAEUNDAE_NONTRACK())
+
+define(LAYOUT_TEMPLATE_SINHAEUNDAE, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			spritelayout_metro_pole()
+			spritelayout_concrete_float()
+			regular(spr_sinhaeundae+X*2, xyz(0,0,8), dxdydz(16,16,30))
+			platform_base({ifelse(eval(X%2 == 0), 1, PLT_TYPE_A, PLT_TYPE_B)}, {ifelse(eval(X%4 == 0 || X%4 == 3), 1, $1, $2)}, SHADOW_TRUE)
+		})
+	}, 0 .. 23)
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 6, 5), xyz(0,-16,8), dxdydz(16,16,0), TTD)
+		spritelayout_road_float()
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_A, $2, SHADOW_TRUE)
+		spritelayout_road_float()
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_B, $2, SHADOW_TRUE)
+		spritelayout_road_float()
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_metro_pole()
+		platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 4, 3), xyz(0,16,8), dxdydz(16,16,0), TTD)
+		spritelayout_road_float()
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_sinhaeundae_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+layout(SINHAEUNDAE_HP, LAYOUT_TEMPLATE_SINHAEUNDAE(PLT_TYPE_HIGH, PLT_TYPE_HIGH))
+layout(SINHAEUNDAE_LP, LAYOUT_TEMPLATE_SINHAEUNDAE(PLT_TYPE_LOW, PLT_TYPE_LOW))
+layout(SINHAEUNDAE_HLP, LAYOUT_TEMPLATE_SINHAEUNDAE(PLT_TYPE_LOW, PLT_TYPE_HIGH))
+
+// switches
+def(40, sw_sinhaeundae_layout) plt_index(
+	self(
+		cbr(0) if(nibble(5,3))
+		cbr(2) if(nibble(5,2))
+		cbr(4) if(nibble(5,1))
+		cbr(6) if(nibble(5,0))
+		cbr(8) if(nibble(4,3))
+		cbr(10) if(nibble(4,2))
+		cbr(12) if(nibble(4,1))
+		cbr(14) if(nibble(4,0))
+		cbr(16) if(nibble(3,3))
+		cbr(18) if(nibble(3,2))
+		cbr(20) if(nibble(3,1))
+		cbr(22) if(nibble(3,0))
+		cbr(24) if(nibble(2,3))
+		cbr(26) if(nibble(2,2))
+		cbr(28) if(nibble(2,1))
+		cbr(30) if(nibble(2,0))
+		cbr(32) if(nibble(1,3))
+		cbr(34) if(nibble(1,2))
+		cbr(36) if(nibble(1,1))
+		cbr(38) if(nibble(1,0))
+		cbr(40) if(nibble(0,3))
+		cbr(42) if(nibble(0,2))
+		cbr(44) if(nibble(0,1))
+		cbr(46) if(nibble(0,0))
+		cbr(48) if(nibble(6,0))
+		cbr(50) if(nibble(6,1))
+		cbr(52) if(nibble(6,2))
+		cbr(54) else
+	)
+)
+
+def(41, sw_sinhaeundae_nontrack_layout) plt_index(
+	self(
+		cbr(0) if(nibble(5,3))
+		cbr(2) if(nibble(5,2))
+		cbr(4) if(nibble(5,1))
+		cbr(6) if(nibble(5,0))
+		cbr(8) if(nibble(4,3))
+		cbr(10) if(nibble(4,2))
+		cbr(12) if(nibble(4,1))
+		cbr(14) if(nibble(4,0))
+		cbr(16) if(nibble(3,3))
+		cbr(18) if(nibble(3,2))
+		cbr(20) if(nibble(3,1))
+		cbr(22) if(nibble(3,0))
+		cbr(24) if(nibble(2,3))
+		cbr(26) if(nibble(2,2))
+		cbr(28) if(nibble(2,1))
+		cbr(30) if(nibble(2,0))
+		cbr(32) if(nibble(1,3))
+		cbr(34) if(nibble(1,2))
+		cbr(36) if(nibble(1,1))
+		cbr(38) if(nibble(1,0))
+		cbr(40) if(nibble(0,3))
+		cbr(42) if(nibble(0,2))
+		cbr(44) if(nibble(0,1))
+		cbr(46) else
+	)
+)
+
+def(42, sw_sinhaeundae_cb) callback(
+	ref(sw_sinhaeundae_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(43, sw_sinhaeundae_nontrack_cb) callback(
+	ref(sw_sinhaeundae_nontrack_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(44, sw_sinhaeundae_cb_purchase) callback(
+	cbr(56) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(45, sw_sinhaeundae_nontrack_cb_purchase) callback(
+	cbr(48) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
+makestation(SINHAEUNDAE_NONTRACK, link(ref(sw_sinhaeundae_nontrack_cb_purchase), MENU) default(ref(sw_sinhaeundae_nontrack_cb)))
+
+makestation(SINHAEUNDAE_HP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	makestation(SINHAEUNDAE_LP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+	makestation(SINHAEUNDAE_HLP, link(ref(sw_sinhaeundae_cb_purchase), MENU) default(ref(sw_sinhaeundae_cb)))
+placelabel(LABEL_HIGHPLATFORM_MODE)

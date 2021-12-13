@@ -1,0 +1,545 @@
+include(src/includes/templates.m4)
+
+setfeature(_STATION)
+setpath(images)
+
+spriteblock(
+	set(
+// normal
+		tmpl_high_platform(spr_platform, platforms.png, 10, 10)
+		tmpl_low_platform(spr_platform_l, platforms.png, 10, 50)
+		tmpl_low_platform(spr_platform_la, platforms.png, 10, 90)
+		
+		tmpl_high_platform_nontrack(spr_platform_nontrack, platforms.png, 230, 10)
+		tmpl_low_platform_nontrack(spr_platform_l_nontrack, platforms.png, 230, 50)
+		tmpl_low_platform_nontrack(spr_platform_la_nontrack, platforms.png, 230, 90)
+// shadowed
+		tmpl_high_platform(spr_platform_s, platforms.png, 10, 400)
+		tmpl_low_platform(spr_platform_sl, platforms.png, 10, 440)
+		tmpl_low_platform(spr_platform_sla, platforms.png, 10, 480)
+		
+		tmpl_high_platform_nontrack(spr_platform_s_nontrack, platforms.png, 230, 400)
+		tmpl_low_platform_nontrack(spr_platform_sl_nontrack, platforms.png, 230, 440)
+		tmpl_low_platform_nontrack(spr_platform_sla_nontrack, platforms.png, 230, 480)
+// snow
+		tmpl_high_platform(spr_platform_snow, platforms.png, 10, 780)
+		tmpl_low_platform(spr_platform_l_snow, platforms.png, 10, 820)
+		tmpl_low_platform(spr_platform_la_snow, platforms.png, 10, 860)
+		
+		tmpl_high_platform_nontrack(spr_platform_snow_nontrack, platforms.png, 230, 780)
+		tmpl_low_platform_nontrack(spr_platform_l_snow_nontrack, platforms.png, 230, 820)
+		tmpl_low_platform_nontrack(spr_platform_la_snow_nontrack, platforms.png, 230, 860)
+// passengers
+		sprite(spr_passengers, 
+			   platforms.png    8bpp 500  160 44 23 -31  -4 normal) // passenger 1, platform A
+		sprite(platforms.png    8bpp 550  160 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  160 44 23 -31  -4 normal) // passenger 1, platform B
+		sprite(platforms.png    8bpp 650  160 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500  130 44 23 -31  -4 normal) // passenger 2, platform A
+		sprite(platforms.png    8bpp 550  130 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  130 44 23 -31  -4 normal) // passenger 2, platform B
+		sprite(platforms.png    8bpp 650  130 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500  100 44 23 -31  -4 normal) // passenger 3, platform A
+		sprite(platforms.png    8bpp 550  100 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600  100 44 23 -31  -4 normal) // passenger 3, platform B
+		sprite(platforms.png    8bpp 650  100 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   70 44 23 -31  -4 normal) // passenger 4, platform A
+		sprite(platforms.png    8bpp 550   70 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   70 44 23 -31  -4 normal) // passenger 4, platform B
+		sprite(platforms.png    8bpp 650   70 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   40 44 23 -31  -4 normal) // passenger 5-1, platform A
+		sprite(platforms.png    8bpp 550   40 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   40 44 23 -31  -4 normal) // passenger 5-1, platform B
+		sprite(platforms.png    8bpp 650   40 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 500   10 44 23 -31  -4 normal) // passenger 5-2, platform A
+		sprite(platforms.png    8bpp 550   10 44 23 -11  -4 normal)
+		sprite(platforms.png    8bpp 600   10 44 23 -31  -4 normal) // passenger 5-2, platform B
+		sprite(platforms.png    8bpp 650   10 44 23 -11  -4 normal)
+// roof
+		tmpl_roofA(spr_roofA, roofs.png, 10, 10)
+		tmpl_roofA_nontrack(, roofs.png, 230, 10)
+		tmpl_roofB(spr_roofB, roofs.png, 10, 200)
+		tmpl_roofB_nontrack(, roofs.png, 230, 200)
+		tmpl_roofA(spr_roofA_overpass, roofs.png, 10, 130)
+		tmpl_roofB(spr_roofB_overpass, roofs.png, 10, 320)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_front, roofs.png, 10, 400)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_front, roofs.png, 10, 460)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_back, roofs.png, 10, 520)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_back, roofs.png, 10, 580)
+// roof with snow
+		tmpl_roofA(spr_roofA_snow, roofs.png, 10, 100)
+		tmpl_roofA_nontrack(, roofs.png, 230, 100)
+		tmpl_roofB(spr_roofB_snow, roofs.png, 10, 290)
+		tmpl_roofB_nontrack(, roofs.png, 230, 290)
+		tmpl_roofA(spr_roofA_overpass_snow, roofs.png, 10, 160)
+		tmpl_roofB(spr_roofB_overpass_snow, roofs.png, 10, 350)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_front_snow, roofs.png, 10, 430)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_front_snow, roofs.png, 10, 490)
+		tmpl_roofA_stairs(spr_roofA_overpass_stair_back_snow, roofs.png, 10, 550)
+		tmpl_roofB_stairs(spr_roofB_overpass_stair_back_snow, roofs.png, 10, 610)
+// pole
+		sprite(spr_poles,
+			   roofs.png        8bpp  10   60 33 25 -31  -9 normal) // poles for roof A, platform A
+		sprite(roofs.png        8bpp  60   60 33 25   0  -9 normal)
+		sprite(roofs.png        8bpp  10   60 33 25 -32 -10 normal) // poles for roof A, platform B
+		sprite(roofs.png        8bpp  60   60 33 25   1 -10 normal)
+		sprite(roofs.png        8bpp  10  250 33 28 -32 -12 normal) // poles for roof B, platform A
+		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
+		sprite(roofs.png        8bpp  10  250 33 28 -32 -12 normal) // poles for roof B, platform B
+		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
+// crossing
+		tmpl_high_platform_crossing(spr_platform_ch, platforms.png, 230, 260)
+		tmpl_low_platform_crossing(spr_platform_c, platforms.png, 10, 140)
+		tmpl_low_platform_crossing(spr_platform_ca, platforms.png, 10, 260)
+// crossing, shadow
+		tmpl_high_platform_crossing(spr_platform_csh, platforms.png, 230, 650)
+		tmpl_low_platform_crossing(spr_platform_cs, platforms.png, 10, 530)
+		tmpl_low_platform_crossing(spr_platform_csa, platforms.png, 10, 650)
+// crossing, snow
+		tmpl_high_platform_crossing(spr_platform_ch_snow, platforms.png, 230, 1030)
+		tmpl_low_platform_crossing(spr_platform_c_snow, platforms.png, 10, 910)
+		tmpl_low_platform_crossing(spr_platform_ca_snow, platforms.png, 10, 1030)
+		sprite(spr_crossing,
+			   platforms.png    8bpp 230  140 38 18  -5   0 normal) // crossing
+		sprite(platforms.png    8bpp 280  140 38 18 -31   0 normal)
+// building
+		sprite(spr_bdoverpass_low,
+			   buildings.png    8bpp  10   10 64 47 -31 -16 normal) // low overpass
+		sprite(buildings.png    8bpp  90   10 64 47 -31 -16 normal) 
+		sprite(spr_bdoverpass_high,
+			   buildings.png    8bpp  10   70 64 79 -31 -48 normal) // high overpass
+		sprite(buildings.png    8bpp  90   70 64 79 -31 -48 normal) 
+		sprite(spr_building_low,
+			   buildings.png    8bpp 170   10 64 59 -31 -28 normal) // low building block, south
+		sprite(buildings.png    8bpp 250   10 64 59 -31 -28 normal) 
+		sprite(buildings.png    8bpp 330   10 64 59 -31 -28 normal) // low building block, north
+		sprite(buildings.png    8bpp 410   10 64 59 -31 -28 normal)
+		sprite(spr_building_low_corner,
+			   buildings.png    8bpp 170  180 64 59 -31 -28 normal) // \/
+		sprite(buildings.png    8bpp 250  180 64 59 -31 -28 normal) // < 
+		sprite(buildings.png    8bpp 330  180 64 59 -31 -28 normal) // /\
+		sprite(buildings.png    8bpp 410  180 64 59 -31 -28 normal) //  >
+		sprite(buildings.png    8bpp 170  360 64 59 -31 -28 normal) // /\
+		sprite(buildings.png    8bpp 250  360 64 59 -31 -28 normal) //  >
+		sprite(buildings.png    8bpp 330  360 64 59 -31 -28 normal) // \/
+		sprite(buildings.png    8bpp 410  360 64 59 -31 -28 normal) // <
+		sprite(spr_building_low_full,
+			   buildings.png    8bpp 490   10 64 59 -31 -28 normal) // low building block
+		sprite(buildings.png    8bpp 570   10 64 59 -31 -28 normal)
+		sprite(spr_building_high,
+			   buildings.png    8bpp 170   80 64 91 -31 -60 normal) // high building block, south
+		sprite(buildings.png    8bpp 250   80 64 91 -31 -60 normal) 
+		sprite(buildings.png    8bpp 330   80 64 91 -31 -60 normal) // high building block, north
+		sprite(buildings.png    8bpp 410   80 64 91 -31 -60 normal)
+		sprite(spr_building_high_corner,
+			   buildings.png    8bpp 170  250 64 91 -31 -60 normal) // \/
+		sprite(buildings.png    8bpp 250  250 64 91 -31 -60 normal) // <
+		sprite(buildings.png    8bpp 330  250 64 91 -31 -60 normal) // /\
+		sprite(buildings.png    8bpp 410  250 64 91 -31 -60 normal) //  >
+		sprite(buildings.png    8bpp 170  430 64 91 -31 -60 normal) // /\
+		sprite(buildings.png    8bpp 250  430 64 91 -31 -60 normal) //  >
+		sprite(buildings.png    8bpp 330  430 64 91 -31 -60 normal) // \/
+		sprite(buildings.png    8bpp 410  430 64 91 -31 -60 normal) // <
+		sprite(spr_building_high_full,
+			   buildings.png    8bpp 490   80 64 91 -31 -60 normal) // high building block
+		sprite(buildings.png    8bpp 570   80 64 91 -31 -60 normal)
+// building, snow
+		sprite(spr_bdoverpass_low_snow,
+			   buildings.png    8bpp  10  610 64 47 -31 -16 normal) // low overpass
+		sprite(buildings.png    8bpp  90  610 64 47 -31 -16 normal) 
+		sprite(spr_bdoverpass_high_snow,
+			   buildings.png    8bpp  10  670 64 79 -31 -48 normal) // high overpass
+		sprite(buildings.png    8bpp  90  670 64 79 -31 -48 normal) 
+		sprite(spr_building_low_snow,
+			   buildings.png    8bpp 170  610 64 59 -31 -28 normal) // low building block, south
+		sprite(buildings.png    8bpp 250  610 64 59 -31 -28 normal) 
+		sprite(buildings.png    8bpp 330  610 64 59 -31 -28 normal) // low building block, north
+		sprite(buildings.png    8bpp 410  610 64 59 -31 -28 normal)
+		sprite(spr_building_low_corner_snow,
+			   buildings.png    8bpp 170  780 64 59 -31 -28 normal) // \/
+		sprite(buildings.png    8bpp 250  780 64 59 -31 -28 normal) // < 
+		sprite(buildings.png    8bpp 330  780 64 59 -31 -28 normal) // /\
+		sprite(buildings.png    8bpp 410  780 64 59 -31 -28 normal) //  >
+		sprite(buildings.png    8bpp 170  960 64 59 -31 -28 normal) // /\
+		sprite(buildings.png    8bpp 250  960 64 59 -31 -28 normal) //  >
+		sprite(buildings.png    8bpp 330  960 64 59 -31 -28 normal) // \/
+		sprite(buildings.png    8bpp 410  960 64 59 -31 -28 normal) // <
+		sprite(spr_building_low_full_snow,
+			   buildings.png    8bpp 490  610 64 59 -31 -28 normal) // low building block
+		sprite(buildings.png    8bpp 570  610 64 59 -31 -28 normal)
+		sprite(spr_building_high_snow,
+			   buildings.png    8bpp 170  680 64 91 -31 -60 normal) // high building block, south
+		sprite(buildings.png    8bpp 250  680 64 91 -31 -60 normal) 
+		sprite(buildings.png    8bpp 330  680 64 91 -31 -60 normal) // high building block, north
+		sprite(buildings.png    8bpp 410  680 64 91 -31 -60 normal)
+		sprite(spr_building_high_corner_snow,
+			   buildings.png    8bpp 170  850 64 91 -31 -60 normal) // \/
+		sprite(buildings.png    8bpp 250  850 64 91 -31 -60 normal) // <
+		sprite(buildings.png    8bpp 330  850 64 91 -31 -60 normal) // /\
+		sprite(buildings.png    8bpp 410  850 64 91 -31 -60 normal) //  >
+		sprite(buildings.png    8bpp 170 1030 64 91 -31 -60 normal) // /\
+		sprite(buildings.png    8bpp 250 1030 64 91 -31 -60 normal) //  >
+		sprite(buildings.png    8bpp 330 1030 64 91 -31 -60 normal) // \/
+		sprite(buildings.png    8bpp 410 1030 64 91 -31 -60 normal) // <
+		sprite(spr_building_high_full_snow,
+			   buildings.png    8bpp 490  680 64 91 -31 -60 normal) // high building block
+		sprite(buildings.png    8bpp 570  680 64 91 -31 -60 normal)
+// pole
+		sprite(spr_building_pole_hp,
+			   buildings.png    8bpp  10  160 32 24 -31  -9 normal) // for high platforms
+		sprite(buildings.png    8bpp  90  160 32 24   1  -9 normal)
+		sprite(spr_building_pole_lp,
+			   buildings.png    8bpp  10  200 32 26 -31 -11 normal) // for low platforms
+		sprite(buildings.png    8bpp  90  200 32 26   1 -11 normal)
+		sprite(spr_building_pole,
+			   buildings.png    8bpp  50  160 32 27 -31 -12 normal)
+		sprite(buildings.png    8bpp 130  160 32 27   1 -12 normal)
+// overpass
+		sprite(spr_overpass,
+			   platforms.png    8bpp 600  200 49 31 -31 -13 normal)
+		sprite(platforms.png    8bpp 670  200 49 31 -17 -13 normal)
+		sprite(platforms.png    8bpp 600  250 53 42 -46 -24 normal)
+		sprite(platforms.png    8bpp 670  250 53 42  -5 -24 normal)
+		sprite(platforms.png    8bpp 600  350 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  350 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  380 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  380 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  410 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  410 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  440 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 670  440 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 600  680 49 33 -31 -15 normal)
+		sprite(platforms.png    8bpp 670  680 49 33 -17 -15 normal)
+		sprite(platforms.png    8bpp 600  730 53 44 -46 -26 normal)
+		sprite(platforms.png    8bpp 670  730 53 44  -5 -26 normal)
+		sprite(spr_overpass_snow,
+			   platforms.png    8bpp 750  200 49 31 -31 -13 normal)
+		sprite(platforms.png    8bpp 820  200 49 31 -17 -13 normal)
+		sprite(platforms.png    8bpp 750  250 53 42 -46 -24 normal)
+		sprite(platforms.png    8bpp 820  250 53 42  -5 -24 normal)
+		sprite(platforms.png    8bpp 750  350 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 820  350 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 750  380 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 820  380 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 750  410 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 820  410 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 750  440 38 25  -6  -7 normal)
+		sprite(platforms.png    8bpp 820  440 38 25 -31  -7 normal)
+		sprite(platforms.png    8bpp 750  680 49 33 -31 -15 normal)
+		sprite(platforms.png    8bpp 820  680 49 33 -17 -15 normal)
+		sprite(platforms.png    8bpp 750  730 53 44 -46 -26 normal)
+		sprite(platforms.png    8bpp 820  730 53 44  -5 -26 normal)
+		sprite(spr_overpass_guide,
+			   platforms.png    8bpp 600  480 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 670  480 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 600  510 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 670  510 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 600  540 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 670  540 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 600  570 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 670  570 44 21 -11   0 normal)
+		sprite(spr_overpass_guide_s,
+			   platforms.png    8bpp 750  480 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 820  480 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 750  510 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 820  510 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 750  540 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 820  540 44 21 -11   0 normal)
+		sprite(platforms.png    8bpp 750  570 44 21 -31   0 normal)
+		sprite(platforms.png    8bpp 820  570 44 21 -11   0 normal)
+// facilities
+		sprite(spr_signA,
+			   platforms.png    8bpp 500  220  5  9   0  -7 normal) // station sign A, end
+		sprite(platforms.png    8bpp 510  220  5  9  -5  -7 normal)
+		sprite(platforms.png    8bpp 520  220  5  9  -5  -7 normal) // station sign A, middle
+		sprite(platforms.png    8bpp 530  220  5  9   0  -7 normal)
+		sprite(spr_signB,
+			   platforms.png    8bpp 500  200 11 10 -10  -5 normal) // station sign B
+		sprite(platforms.png    8bpp 520  200 11 10   0  -5 normal)
+		sprite(spr_signC,
+			   platforms.png    8bpp 500  320 12 18   0 -18 normal) // station sign C, platform A
+		sprite(platforms.png    8bpp 520  320 12 18 -10 -18 normal)
+		sprite(platforms.png    8bpp 540  320 12 20   0 -15 normal) // station sign C, platform B
+		sprite(platforms.png    8bpp 560  320 12 20 -10 -15 normal)
+		sprite(platforms.png    8bpp 500  350 11  8   0  -3 normal) // station sign C, platform A, roof
+		sprite(platforms.png    8bpp 520  350 11  8 -10  -3 normal)
+		sprite(platforms.png    8bpp 540  350 10  8   0  -3 normal) // station sign C, platform B, roof
+		sprite(platforms.png    8bpp 560  350 10  8 -10  -3 normal)
+		sprite(spr_led,
+			   platforms.png    8bpp 500  240  8  7   0  -5 normal) // station LED
+		sprite(platforms.png    8bpp 520  240  8  7  -6  -5 normal)
+		sprite(spr_waitingroom,
+			   platforms.png    8bpp 500  260 24 19 -16  -8 normal) // waiting room
+		sprite(platforms.png    8bpp 530  260 24 19  -8  -8 normal)
+		sprite(spr_waitingroom_glass,
+			   platforms.png    8bpp 500  290 24 19   0   0 normal) // waiting room, glass
+		sprite(platforms.png    8bpp 530  290 24 19   0   0 normal)
+		sprite(spr_light,
+			   platforms.png    8bpp 500  370 10 19  -8 -17 normal) // light
+		sprite(platforms.png    8bpp 520  370 10 19   0 -17 normal)
+		sprite(spr_underpass,
+		       platforms.png    8bpp 500  400 26 15 -20  -2 normal) // underpass
+		sprite(platforms.png    8bpp 540  400 26 15  -5  -4 normal)
+// psd
+		tmpl_psd(spr_psd, platforms.png, 500, 900)
+		tmpl_psd(, platforms.png, 500, 980)
+		tmpl_psd(, platforms.png, 540, 900)
+		tmpl_psd(, platforms.png, 540, 980)
+		tmpl_psd(, platforms.png, 580, 900)
+		tmpl_psd(, platforms.png, 580, 980)
+		tmpl_psd(, platforms.png, 620, 900)
+		tmpl_psd(, platforms.png, 620, 980)
+		
+		tmpl_psd_glass(spr_psd_glass, platforms.png, 690, 900)
+		tmpl_psd_glass(, platforms.png, 820, 900)
+		tmpl_psd_glass(, platforms.png, 820, 980)
+		tmpl_psd_glass(, platforms.png, 950, 900)
+		tmpl_psd_glass(, platforms.png, 950, 980)
+		tmpl_psd_glass(, platforms.png, 1080, 900)
+		tmpl_psd_glass(, platforms.png, 1080, 980)
+// buffer platforms
+		tmpl_high_platform_buffer(spr_platform_buffer, platforms.png, 900, 10)
+		tmpl_low_platform_buffer(spr_platform_l_buffer, platforms.png, 900, 70)
+		tmpl_low_platform_buffer(spr_platform_la_buffer, platforms.png, 900, 130)
+		
+		tmpl_high_platform_buffer(spr_platform_buffer_s, platforms.png, 900, 190)
+		tmpl_low_platform_buffer(spr_platform_l_buffer_s, platforms.png, 900, 250)
+		tmpl_low_platform_buffer(spr_platform_la_buffer_s, platforms.png, 900, 310)
+		
+		tmpl_high_platform_buffer(spr_platform_buffer_snow, platforms.png, 900, 370)
+		tmpl_low_platform_buffer(spr_platform_l_buffer_snow, platforms.png, 900, 430)
+		tmpl_low_platform_buffer(spr_platform_la_buffer_snow, platforms.png, 900, 490)
+		
+		tmpl_high_platform_buffer_end(spr_platform_buffer_end, platforms.png, 1100, 10)
+		tmpl_low_platform_buffer_end(spr_platform_l_buffer_end, platforms.png, 1100, 70)
+		tmpl_low_platform_buffer_end(spr_platform_la_buffer_end, platforms.png, 1100, 130)
+		
+		tmpl_high_platform_buffer_end(spr_platform_buffer_end_snow, platforms.png, 1100, 370)
+		tmpl_low_platform_buffer_end(spr_platform_l_buffer_end_snow, platforms.png, 1100, 430)
+		tmpl_low_platform_buffer_end(spr_platform_la_buffer_end_snow, platforms.png, 1100, 490)
+		
+		sprite(spr_buffer,
+			   platforms.png    8bpp 520  430 14 12  -6  -6 normal)
+		sprite(platforms.png    8bpp 500  430 14 12  -8  -6 normal)
+		sprite(platforms.png    8bpp 560  430 14 14  -8  -7 normal)
+		sprite(platforms.png    8bpp 540  430 14 14  -5  -7 normal)
+// custom grounds
+		sprite(spr_ground_building,
+			   buildings.png    8bpp  10  250 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  250 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  800 64 31 -31   0 normal) // snow
+		sprite(buildings.png    8bpp  90  800 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  840 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  90  840 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  880 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  90  880 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  920 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  90  920 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10  960 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  90  960 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  10 1000 64 31 -31   0 normal)
+		sprite(buildings.png    8bpp  90 1000 64 31 -31   0 normal)
+// Seoul Station
+		tmpl_seoul_old(spr_seoul_old, seoul.png, 10, 10)
+		tmpl_seoul_old(spr_seoul_old_snow, seoul.png, 10, 620)
+		
+		tmpl_seoul_building(spr_seoul_building, seoul.png, 350, 10)
+		tmpl_seoul_part1(spr_seoul_part1, seoul.png, 350, 200)
+	
+		tmpl_seoul_part1_roof(spr_seoul_part1_roof, seoul.png, 10, 100, CHILDSPRITE_FALSE)
+		tmpl_seoul_part1_roof(spr_seoul_part1_roof_glass, seoul.png, 10, 150, CHILDSPRITE_TRUE)
+	
+		sprite(spr_seoul_part2_track,
+		       seoul.png        8bpp  10  200 64 55 -31 -24 normal)
+		sprite(seoul.png        8bpp 116  200 64 55 -32 -24 normal)
+		sprite(seoul.png        8bpp  74  200 16 55  17 -16 normal)
+		sprite(seoul.png        8bpp 100  200 16 55 -32 -16 normal)
+	
+		sprite(spr_seoul_part2_ground,
+		       seoul.png        8bpp  10  270 64 68 -31 -37 normal)
+		sprite(seoul.png        8bpp 116  270 64 68 -32 -37 normal)
+		sprite(seoul.png        8bpp  74  270 16 68  17 -29 normal)
+		sprite(seoul.png        8bpp 100  270 16 68 -32 -29 normal)
+		
+		tmpl_seoul_part3A(spr_seoul_part3A, seoul.png, 10, 360, CHILDSPRITE_FALSE)
+		tmpl_seoul_part3A(spr_seoul_part3A_glass, seoul.png, 10, 430, CHILDSPRITE_TRUE)
+		
+		tmpl_seoul_part3B(spr_seoul_part3B, seoul.png, 10, 500, CHILDSPRITE_FALSE)
+		tmpl_seoul_part3B(spr_seoul_part3B_glass, seoul.png, 10, 560, CHILDSPRITE_TRUE)
+		
+		sprite(spr_seoul_part3C,
+			   seoul.png       8bpp 200  100 64 35 -31  -4 normal)
+		sprite(seoul.png       8bpp 200  100 64 35 -31  -4 normal)
+		
+		tmpl_seoul_part4A(spr_seoul_part4A, seoul.png, 350, 350)
+		tmpl_seoul_part4B(spr_seoul_part4B, seoul.png, 350, 500)
+		
+		tmpl_seoul_car(spr_seoul_car, seoul.png, 350, 690)
+		tmpl_seoul_car(spr_seoul_car2, seoul.png, 350, 740)
+		tmpl_seoul_car(spr_seoul_car3, seoul.png, 350, 790)
+		
+// Gangneung Station
+		tmpl_gangneung(spr_gangneung, gangneung.png, 10, 10)
+		
+		sprite(spr_gangneung_purchase,
+		       gangneung.png   8bpp  55   30 64 60 -31 -29 normal)
+	    sprite(gangneung.png   8bpp 366   30 64 60 -31 -29 normal)
+		
+		sprite(spr_gangneung_fence,
+			   gangneung.png   8bpp  10  130 33 22   0  -7 normal)
+		sprite(gangneung.png   8bpp  50  130 33 22 -33  -7 normal)
+		
+		sprite(spr_gangneung_fence_glass,
+			   gangneung.png   8bpp  10  160 33 22   0   0 normal)
+		sprite(gangneung.png   8bpp  50  160 33 22   0   0 normal)
+		
+		sprite(spr_gangneung_fence2,
+			   gangneung.png   8bpp  90  130 32 21   0  -6 normal)
+		sprite(gangneung.png   8bpp 130  130 32 21 -32  -6 normal)
+		
+// Gwangmyeong Station
+		tmpl_gwangmyeong_8(spr_gwangmyeong_8, gwm.png, 10, 10)
+		
+		tmpl_gwangmyeong_frame_8(spr_gwangmyeong_frame_8, gwm.png, 10, 80)
+		tmpl_gwangmyeong_frame_glass_8(spr_gwangmyeong_frame_glass_8, gwm.png, 10, 170)
+		
+		tmpl_gwangmyeong_6(spr_gwangmyeong_6, gwm.png, 10, 280)
+		
+		tmpl_gwangmyeong_frame_6(spr_gwangmyeong_frame_6, gwm.png, 10, 350)
+		tmpl_gwangmyeong_frame_glass_6(spr_gwangmyeong_frame_glass_6, gwm.png, 10, 440)
+		
+		tmpl_gwangmyeong_4(spr_gwangmyeong_4, gwm.png, 10, 530)
+		
+		tmpl_gwangmyeong_frame_4(spr_gwangmyeong_frame_4, gwm.png, 10, 590)
+		tmpl_gwangmyeong_frame_glass_4(spr_gwangmyeong_frame_glass_4, gwm.png, 10, 680)
+		
+		tmpl_gwangmyeong_part2(spr_gwangmyeong_part2, gwm.png, 10, 780)
+		tmpl_gwangmyeong_part2_1(spr_gwangmyeong_part2_1, gwm.png, 10, 870)
+		
+		sprite(spr_gwangmyeong_pole,
+		       gwm.png         8bpp 1300  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1350  10 32 53   0 -39 normal)
+		sprite(gwm.png         8bpp 1410  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1460  10 32 53   0 -39 normal)
+
+// Simple station
+		sprite(spr_simple_stn,
+		       buildings.png   8bpp  10 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp  90 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp 170 1200 64 43 -31 -12 normal)
+		sprite(buildings.png   8bpp 250 1200 64 43 -31 -12 normal)
+
+// Metro station
+		sprite(spr_metro_pole,
+		       metro.png       8bpp   10  10 32 23 -31  -8 normal)
+		sprite(metro.png       8bpp   60  10 32 23   1  -8 normal)
+		
+		tmpl_metro_exit(spr_metro_exit, metro.png, 10, 50)
+		tmpl_metro_exit(, metro.png, 10, 170)
+		tmpl_metro_exit(, metro.png, 10, 210)
+		tmpl_metro_exit(, metro.png, 10, 250)
+		tmpl_metro_exit(, metro.png, 10, 290)
+		tmpl_metro_exit(, metro.png, 10, 330)
+		tmpl_metro_exit(, metro.png, 10, 370)
+		tmpl_metro_exit(, metro.png, 10, 410)
+		tmpl_metro_exit(, metro.png, 10, 610)
+		tmpl_metro_exit(, metro.png, 10, 570)
+		tmpl_metro_exit(, metro.png, 10, 530)
+		tmpl_metro_exit(, metro.png, 10, 490)
+		tmpl_metro_exit(, metro.png, 10, 450)
+		
+		tmpl_metro_exit_glass(spr_metro_exit_glass_under, metro.png, 10, 90)
+		tmpl_metro_exit_glass(spr_metro_exit_glass_over, metro.png, 10, 130)
+		
+		sprite(spr_metro_polesign,
+		       metro.png       8bpp  210  50  5 19  -2 -18 normal)
+		sprite(metro.png       8bpp  230  50  5 19  -2 -18 normal)
+		
+		sprite(spr_ground_metro_park,
+			   metro.png       8bpp  510  10 64 31 -31   0 normal)
+		sprite(metro.png       8bpp  510  10 64 31 -31   0 normal)
+		sprite(spr_ground_snow_overlay,
+			   metro.png       8bpp  590  10 64 31 -31   0 normal)
+		sprite(metro.png       8bpp  670  10 64 31 -31   0 normal)
+		
+		sprite(spr_metro_tree,
+		       metro.png       8bpp  510 100 35 44 -18 -34 normal)
+		sprite(metro.png       8bpp  560 100 35 44 -18 -34 normal)
+		sprite(metro.png       8bpp  510 150 26 53 -12 -42 normal)
+		sprite(metro.png       8bpp  560 150 26 53 -12 -42 normal)
+		
+// Suseo Station
+		tmpl_suseo(spr_suseo, suseo.png, 20, 140)
+		
+		sprite(spr_suseo_purchase,
+		       suseo.png       8bpp  400 140 64 56 -31 -25 normal)
+	    sprite(suseo.png       8bpp  400 230 64 56 -31 -25 normal)
+		
+		sprite(spr_suseo_parking_lot,
+		       suseo.png       8bpp   20 310 64 31 -31   0 normal)
+	    sprite(suseo.png       8bpp  100 310 64 31 -31   0 normal)
+		
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car, suseo.png, 20, 360)
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car2, suseo.png, 340, 360)
+		tmpl_suseo_parking_lot_cars(spr_suseo_parking_lot_car3, suseo.png, 660, 360)
+
+// Overpass stairs
+		tmpl_overpass_stairs(spr_overpass_stair, platforms.png, 600, 780)
+		tmpl_overpass_stairs(spr_overpass_stair_snow, platforms.png, 700, 780)
+		
+		tmpl_overpass_stairs_low(spr_overpass_stair_low, platforms.png, 800, 780)
+		tmpl_overpass_stairs_low(spr_overpass_stair_low_snow, platforms.png, 900, 780)
+
+// Sinhaeundae Station
+		tmpl_sinhaeundae(spr_sinhaeundae, sinhaeundae.png, 10, 210)
+		
+		sprite(spr_sinhaeundae_purchase,
+		       sinhaeundae.png  8bpp   10 330 64 64 -31 -33 normal)
+		sprite(sinhaeundae.png  8bpp   90 330 64 64 -31 -33 normal)
+
+// Jije Station
+		tmpl_jije_part1_front(spr_jije_part1_front, jije.png, 10, 10)
+		tmpl_jije_part1_back(spr_jije_part1_back, jije.png, 160, 10)
+		
+		tmpl_jije_part2(spr_jije_part2, jije.png, 10, 180)
+		
+		tmpl_jije_part3_front(spr_jije_part3_front, jije.png, 10, 340)
+		tmpl_jije_part3_back(spr_jije_part3_back, jije.png, 210, 340)
+		tmpl_jije_part3_wing(spr_jije_part3_wing, jije.png, 420, 340)
+		
+		tmpl_jije_part4_front(spr_jije_part4_front, jije.png, 10, 490)
+		tmpl_jije_part4_back(spr_jije_part4_back, jije.png, 10, 660)
+		
+		tmpl_jije_part5_front(spr_jije_part5_front, jije.png, 10, 840)
+		tmpl_jije_part5_back(spr_jije_part5_back, jije.png, 130, 840)
+
+// Signal Waypoints
+		tmpl_signal_shunting(spr_signal_1A, signals.png, 167, 21)
+		tmpl_signal_shunting(spr_signal_1B, signals.png, 167, 62)
+		tmpl_signal_slowapproach(spr_signal_2, signals.png, 167, 100)
+		tmpl_signal_common(spr_signal_3, signals.png, 167, 142)
+		tmpl_signal_common(spr_signal_4, signals.png, 167, 183)
+		tmpl_signal_common(spr_signal_5, signals.png, 167, 223)
+		tmpl_signal_common(spr_signal_6, signals.png, 167, 260)
+		tmpl_signal_common(spr_signal_7, signals.png, 167, 301)
+		tmpl_signal_common(spr_signal_8, signals.png, 167, 337)
+		tmpl_signal_hsr(spr_signal_9, signals.png, 167, 370)
+		tmpl_signal_hsr(spr_signal_10, signals.png, 167, 402)
+		tmpl_signal_common(spr_signal_11, signals.png, 167, 439)
+		tmpl_signal_common(spr_signal_12, signals.png, 167, 476)
+	)
+)
+
+def(0, sprset_default) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(gwm.png, 1010, 280)
+)
+
+def(1, sprset_gwangmyeong_foundation) spriteset(little(0), lots(0))
+
+setpath(sounds)
+soundtable(
+	defsnd(snd_psd_open, PSD_open.wav)
+	defsnd(snd_psd_close, PSD_close.wav)
+)

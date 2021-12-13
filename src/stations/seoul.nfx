@@ -1,0 +1,577 @@
+// Seoul Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+
+// Seoul Stn. (old)
+definestation(SEOUL_STATION_OLD, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({2})
+)
+
+// layouts
+layout(SEOUL_STATION_OLD, 
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_seoul_old+X*2, xyz(0,0,0), dxdydz(16,16,40), aslflags({OFFSET_SPRITE}), registers({REGISTER_SEOUL_OLD_SNOW_OFFSET}))
+		})
+	}, 0 .. 3)
+	xtile({
+		spritelayout_ground_road_junction(9)
+	})
+	xtile({
+		spritelayout_ground_road_junction(10)
+	})
+	xtile({
+		spritelayout_ground_road_junction(7)
+	})
+	xtile({
+		spritelayout_ground_road()
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	
+	xtile(tile_seoul_old_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_seoul_old+6, xyz(-24,0,0),   dxdydz(16,16,40))
+		regular(spr_seoul_old+4, xyz(-8,0,0),   dxdydz(16,16,40))
+		regular(spr_seoul_old+2, xyz(8,0,0),  dxdydz(16,16,40))
+	})
+)
+
+// switches
+def(41, sw_seoul_old_layout_road1) plt_axis(
+	cbr(8) if(0)
+	cbr(12) else
+)
+
+def(40, sw_seoul_old_layout) plt_index(
+	self(
+		cbr(0) if(nibble(3,0))
+		cbr(2) if(nibble(2,0))
+		cbr(4) if(nibble(1,0))
+		cbr(6) if(nibble(0,0))
+		ref(sw_seoul_old_layout_road1) if(nibble(3,1))
+		cbr(10) if(nibble(0,1))
+		cbr(14) if(nibble(1,1), nibble(2,1))
+		cbr(16) else
+	)
+)
+
+def(41, sw_seoul_old_snow) subroutine(sw_terrain_snow,
+	cbr(spr_seoul_old_snow - spr_seoul_old) if(1)
+	cbr(0) else
+)
+
+def(42, sw_set_reg_seoul_old) setregisters(REGISTER_SEOUL_OLD_SNOW_OFFSET, sub(sw_seoul_old_snow), ref(sw_set_registers))
+
+def(43, sw_seoul_old_cb) callback(
+	ref(sw_seoul_old_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_old) else
+)
+
+def(44, sw_seoul_old_cb_purchase) callback(
+	reftile(tile_seoul_old_purchase) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_old) else
+)
+
+makestation(SEOUL_STATION_OLD, link(ref(sw_seoul_old_cb_purchase), MENU) default(ref(sw_seoul_old_cb)))
+
+
+
+// Seoul Stn. (new)
+
+definestation(SEOUL_STATION_BUILDING, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	setcargotriggers({PASS})
+	include_lengths({6})
+	include_widths({3})
+)
+
+// layout
+layout(SEOUL_STATION_BUILDING, 
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_seoul_building+X*2, xyz(0,0,0), dxdydz(16,16,40))
+			ifelse(eval(X>=8 && X<=9), 1, {spritelayout_passengerB(0)})
+		})
+	}, 0 .. 9)
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		spritelayout_passengerB(0)
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	
+	xtile(tile_seoul_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_seoul_building+10,  xyz(-32,0,0),  dxdydz(16,16,40))
+		regular(spr_seoul_building+8,  xyz(-16,0,0),   dxdydz(16,16,40))
+		regular(spr_seoul_building+6,  xyz(0,0,0),   dxdydz(16,16,40))
+		regular(spr_seoul_building+4,  xyz(16,0,0),  dxdydz(16,16,40))
+		regular(spr_seoul_building+18, xyz(0,16,0),   dxdydz(16,16,40))
+		regular(spr_seoul_building+16, xyz(16,16,0),   dxdydz(16,16,40))
+		regular(spr_seoul_building+14,  xyz(32,16,0),  dxdydz(16,16,40))
+	})
+)
+
+// switches
+def(40, sw_seoul_building_layout) plt_index(
+	self(
+		cbr(0) if(nibble(5,0))
+		cbr(2) if(nibble(4,1))
+		cbr(4) if(nibble(3,1))
+		cbr(6) if(nibble(2,1))
+		cbr(8) if(nibble(1,1))
+		cbr(10) if(nibble(0,1))
+		cbr(12) if(nibble(5,2))
+		cbr(14) if(nibble(4,2))
+		cbr(16) if(nibble(3,2))
+		cbr(18) if(nibble(2,2))
+		cbr(20) if(nibble(1,2))
+		cbr(20) if(nibble(0,2))
+		cbr(22) else
+	)
+)
+
+def(41, sw_seoul_building_cb) callback(
+	ref(sw_seoul_building_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(42, sw_seoul_building_cb_purchase) callback(
+	reftile(tile_seoul_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(SEOUL_STATION_BUILDING, link(ref(sw_seoul_building_cb_purchase), MENU) default(ref(sw_seoul_building_cb)))
+
+// Seoul Stn. (new) pt.1
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	include_lengths({7})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+)}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_TRACK)
+
+// layout
+define(LAYOUT_SEOUL_STATION_PART1_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1, xyz(0,0,20), dxdydz(16,16,20))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1+2, xyz(0,0,20), dxdydz(16,16,10))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1+4, xyz(0,0,20), dxdydz(16,16,10))
+		spritelayout_seoul_cars(-3, 33)
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1+6, xyz(0,0,20), dxdydz(16,16,10))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1+8, xyz(0,0,20), dxdydz(16,16,10))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1+10, xyz(0,0,20), dxdydz(16,16,10))
+		spritelayout_seoul_cars(6, 36)
+	})
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_seoul_part1_roof, xyz(-7,0,20), dxdydz(23,16,2))
+		glass(spr_seoul_part1_roof_glass, xyoff(0,0))
+	})
+})
+
+layout(SEOUL_STATION_PART1_HP_A, LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART1_HP_B, LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART1_LP_A, LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART1_LP_B, LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART1_TRACK, LAYOUT_SEOUL_STATION_PART1_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+// switches
+def(42, sw_seoul_part1_layout2) plt_pos(
+	self(
+		cbr(0) if(5)
+		cbr(2) if(4)
+		cbr(4) if(3)
+		cbr(6) if(2)
+		cbr(8) if(1)
+		cbr(10) if(0)
+		cbr(12) if(6)
+		cbr(0) else
+	)
+)
+
+def(41, sw_seoul_part1_layout) plt_size(
+	self(
+		cbr(12) if(nibble(1,1))
+		ref(sw_seoul_part1_layout2) else
+	)
+)
+
+def(40, sw_seoul_part1_cb) callback(
+	ref(sw_seoul_part1_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_cars) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_HP_A .. SEOUL_STATION_PART1_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_seoul_part1_cb)))}, SEOUL_STATION_PART1_LP_A .. SEOUL_STATION_PART1_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SEOUL_STATION_PART1_TRACK, default(ref(sw_seoul_part1_cb)))
+
+
+
+// Seoul Stn. (new) pt.2
+
+definestation(SEOUL_STATION_PART2, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack({2,3})
+	nowires({2,3})
+	setcargotriggers({PASS})
+	include_lengths({2})
+)
+
+// layout
+layout(SEOUL_STATION_PART2, 
+	xtile({
+		spritelayout_ground()
+		regular(spr_seoul_part2_track, xyz(0,0,13), dxdydz(16,16,16))
+	})
+	xtile({
+		spritelayout_ground()
+		regular(spr_seoul_part2_track+2, xyz(8,0,13), dxdydz(8,16,16))
+		spritelayout_seoul_cars(15, 29)
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack()
+		regular(spr_seoul_part2_ground, xyz(0,0,0), dxdydz(16,16,29))
+	})
+	xtile({
+		spritelayout_ground_nontrack()
+		regular(spr_seoul_part2_ground+2, xyz(8,0,0), dxdydz(8,16,29))
+		spritelayout_seoul_cars(15, 29)
+	})
+	
+	xtile(tile_seoul_part2_purchase, {
+		spritelayout_ground_nontrack()
+		regular(spr_seoul_part2_track+2, xyz(-4,-16,13), dxdydz(8,16,16))
+		regular(spr_seoul_part2_track, xyz(4,-16,13), dxdydz(16,16,16))
+		regular(spr_seoul_part2_ground+2, xyz(-4,0,0), dxdydz(8,16,29))
+		regular(spr_seoul_part2_ground, xyz(4,0,0), dxdydz(16,16,29))
+	})
+)
+
+// switches
+def(45, sw_seoul_part2_1_layout) plt_pos(
+	self(
+		cbr(2) if(0)
+		cbr(0) else
+	)
+)
+
+def(44, sw_seoul_part2_2_layout) plt_pos(
+	self(
+		cbr(6) if(0)
+		cbr(4) else
+	)
+)
+
+def(43, sw_seoul_part2_layout) plt_numrev(
+	self(
+		ref(sw_seoul_part2_2_layout) if(0)
+		ref(sw_seoul_part2_1_layout) else
+	)
+)
+
+def(42, sw_seoul_part2_tiletype) test_numrev(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def(40, sw_seoul_part2_cb) callback(
+	ref(sw_seoul_part2_layout) if(CB_LAYOUT)
+	ref(sw_seoul_part2_tiletype) if(CB_TILETYPE)
+	ref(sw_set_reg_seoul_cars) else
+)
+
+def(41, sw_seoul_part2_cb_purchase) callback(
+	reftile(tile_seoul_part2_purchase) if(CB_LAYOUT)
+	ref(sw_set_reg_seoul_cars) else
+)
+
+makestation(SEOUL_STATION_PART2, link(ref(sw_seoul_part2_cb_purchase), MENU) default(ref(sw_seoul_part2_cb)))
+
+
+// Seoul Stn. (new) pt.3
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_triggers({BUILT})
+	setcargotriggers({PASS})
+	include_widths({1})
+)}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3B_TRACK)
+
+// layouts
+define(LAYOUT_SEOUL_STATION_PART3A_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		
+		regular(spr_seoul_part3A, xyz(0,-16,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3A_glass, xyoff(0,0))
+		
+		regular(spr_seoul_part3A+2, xyz(0,0,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3A_glass+2, xyoff(0,0))
+	})
+})
+
+layout(SEOUL_STATION_PART3A_HP_A, LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3A_HP_B, LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3A_LP_A, LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3A_LP_B, LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3A_TRACK, LAYOUT_SEOUL_STATION_PART3A_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_SEOUL_STATION_PART3B_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		
+		regular(spr_seoul_part3B, xyz(0,0,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3B_glass, xyoff(0,0))
+		
+		regular(spr_seoul_part3B+2, xyz(0,16,20), dxdydz(16,16,4))
+		glass(spr_seoul_part3B_glass+2, xyoff(0,0))
+	})
+})
+
+layout(SEOUL_STATION_PART3B_HP_A, LAYOUT_SEOUL_STATION_PART3B_BASE(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3B_HP_B, LAYOUT_SEOUL_STATION_PART3B_BASE(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3B_LP_A, LAYOUT_SEOUL_STATION_PART3B_BASE(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3B_LP_B, LAYOUT_SEOUL_STATION_PART3B_BASE(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3B_TRACK, LAYOUT_SEOUL_STATION_PART3B_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	setcargotriggers({PASS})
+)}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_TRACK)
+
+define(LAYOUT_SEOUL_STATION_PART3C_BASE, {
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		
+		regular(spr_seoul_part3C, xyz(0,0,20), dxdydz(16,16,4))
+	})
+})
+
+layout(SEOUL_STATION_PART3C_HP_A, LAYOUT_SEOUL_STATION_PART3C_BASE(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3C_HP_B, LAYOUT_SEOUL_STATION_PART3C_BASE(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SEOUL_STATION_PART3C_LP_A, LAYOUT_SEOUL_STATION_PART3C_BASE(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3C_LP_B, LAYOUT_SEOUL_STATION_PART3C_BASE(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SEOUL_STATION_PART3C_TRACK, LAYOUT_SEOUL_STATION_PART3C_BASE(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+// switches
+def(40, sw_seoul_part3_cb) callback(
+	cbr(0x80) if(CB_ACONTROL, CB_AFRAME)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3A_HP_A .. SEOUL_STATION_PART3A_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3A_LP_A .. SEOUL_STATION_PART3A_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SEOUL_STATION_PART3A_TRACK, default(ref(sw_seoul_part3_cb)))
+
+forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3B_HP_A .. SEOUL_STATION_PART3B_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_seoul_part3_cb)))}, SEOUL_STATION_PART3B_LP_A .. SEOUL_STATION_PART3B_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SEOUL_STATION_PART3B_TRACK, default(ref(sw_seoul_part3_cb)))
+
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, SEOUL_STATION_PART3C_HP_A .. SEOUL_STATION_PART3C_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_set_registers)))}, SEOUL_STATION_PART3C_LP_A .. SEOUL_STATION_PART3C_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(SEOUL_STATION_PART3C_TRACK, default(ref(sw_set_registers)))
+
+
+// Seoul Stn. (new) pt.4A
+
+definestation(SEOUL_STATION_PART4A, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+// layout
+layout(SEOUL_STATION_PART4A, 
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_seoul_part4A+X*2, xyz(0,0,0), dxdydz(16,16,40))
+		})
+	}, 0 .. 2)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	
+	xtile(tile_seoul_part4a_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_seoul_part4A+2,  xyz(-8,0,0),   dxdydz(16,16,40))
+		regular(spr_seoul_part4A,  xyz(8,0,0),   dxdydz(16,16,40))
+	})
+)
+
+// switches
+def(43, sw_seoul_part4a_layout2) plt_index(
+	self(
+		cbr(0) if(nibble(2,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) else
+	)
+)
+
+def(42, sw_seoul_part4a_layout) plt_size(
+	self(
+		ref(sw_seoul_part4a_layout2) if(nibble(3,1))
+		cbr(4) else
+	)
+)
+
+def(40, sw_seoul_part4a_cb) callback(
+	ref(sw_seoul_part4a_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(41, sw_seoul_part4a_cb_purchase) callback(
+	reftile(tile_seoul_part4a_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(SEOUL_STATION_PART4A, link(ref(sw_seoul_part4a_cb_purchase), MENU) default(ref(sw_seoul_part4a_cb)))
+
+// Seoul Stn. (new) pt.4B
+
+definestation(SEOUL_STATION_PART4B, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({6})
+	include_widths({2})
+)
+
+// layout
+layout(SEOUL_STATION_PART4B, 
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_seoul_part4B+X*2, xyz(0,0,0), dxdydz(16,16,40))
+		})
+	}, 0 .. 11)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	
+	xtile(tile_seoul_part4b_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_seoul_part4B+8,  xyz(-16,-8,0), dxdydz(16,16,40))
+		regular(spr_seoul_part4B+6,  xyz(0,-8,0),   dxdydz(16,16,40))
+		regular(spr_seoul_part4B+4,  xyz(16,-8,0),  dxdydz(16,16,40))
+		regular(spr_seoul_part4B+20,  xyz(-16,8,0),  dxdydz(16,16,40))
+		regular(spr_seoul_part4B+18,  xyz(0,8,0),    dxdydz(16,16,40))
+		regular(spr_seoul_part4B+16,  xyz(16,8,0),   dxdydz(16,16,40))
+		regular(spr_seoul_part4B+14,  xyz(32,8,0),   dxdydz(16,16,40))
+	})
+)
+
+// switches
+def(43, sw_seoul_part4b_layout2) plt_index(
+	self(
+		cbr(0) if(nibble(5,0))
+		cbr(2) if(nibble(4,0))
+		cbr(4) if(nibble(3,0))
+		cbr(6) if(nibble(2,0))
+		cbr(8) if(nibble(1,0))
+		cbr(10) if(nibble(0,0))
+		cbr(12) if(nibble(5,1))
+		cbr(14) if(nibble(4,1))
+		cbr(16) if(nibble(3,1))
+		cbr(18) if(nibble(2,1))
+		cbr(20) if(nibble(1,1))
+		cbr(22) else
+	)
+)
+
+def(42, sw_seoul_part4b_layout) plt_size(
+	self(
+		ref(sw_seoul_part4b_layout2) if(nibble(6,2))
+		cbr(24) else
+	)
+)
+
+def(40, sw_seoul_part4b_cb) callback(
+	ref(sw_seoul_part4b_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(41, sw_seoul_part4b_cb_purchase) callback(
+	reftile(tile_seoul_part4b_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(SEOUL_STATION_PART4B, link(ref(sw_seoul_part4b_cb_purchase), MENU) default(ref(sw_seoul_part4b_cb)))

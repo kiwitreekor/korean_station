@@ -1,0 +1,450 @@
+// Jije Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+definestation(JIJE_PART1, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+	setcargotriggers({PASS})
+)}, JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
+
+definestation(JIJE_PART3, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+	setcargotriggers({PASS})
+	anim_triggers(BUILT, PERIODIC)
+)}, JIJE_PART4_HP_A .. JIJE_PART4_TRACK)
+
+definestation(JIJE_PART5, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({1})
+)
+
+// layouts
+define(LAYOUT_TEMPLATE_JIJE_PART1, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_jije_part1_front+X*2, xyz(0,0,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 2)
+	
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_jije_part1_back+X*2, xyz(0,0,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 2)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part1_front, xyz(0,0,0), dxdydz(16,16,30))
+		regular(spr_jije_part1_front+2, xyz(16,0,0), dxdydz(16,16,30))
+	})
+})
+
+layout(JIJE_PART1, LAYOUT_TEMPLATE_JIJE_PART1())
+
+define(LAYOUT_TEMPLATE_JIJE_PART2, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+			regular(spr_jije_part2+X*2, xyz(0,0,16), dxdydz(16,16,30))
+		})
+	}, 0 .. 14)
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_jije_part2+6, xyz(0,0,16), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_jije_part2+8, xyz(0,0,16), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_jije_part2+30, xyz(0,0,16), dxdydz(16,16,30))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_jije_part2+28, xyz(0,0,16), dxdydz(16,16,30))
+		regular(spr_jije_part2+26, xyz(-16,0,16), dxdydz(16,16,30))
+		regular(spr_jije_part2+22, xyz(0,16,16), dxdydz(16,16,30))
+	})
+})
+
+layout(JIJE_PART2_HP_A, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(JIJE_PART2_HP_B, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(JIJE_PART2_LP_A, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(JIJE_PART2_LP_B, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(JIJE_PART2_TRACK, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_JIJE_PART3, {
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_front, xyz(0,0,0), dxdydz(16,16,20))
+		regular(spr_jije_part3_wing, xyz(0,0,20), dxdydz(16,16,10), aslflags({SKIP}), registers({REGISTER_JIJE_PART3_SKIP}))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_front+2, xyz(0,0,0), dxdydz(16,16,20))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_front+4, xyz(0,0,0), dxdydz(16,16,20))
+		regular(spr_jije_part3_wing+2, xyz(0,0,20), dxdydz(16,16,10), aslflags({SKIP}), registers({REGISTER_JIJE_PART3_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_back, xyz(0,0,0), dxdydz(16,16,20))
+		regular(spr_jije_part3_wing+4, xyz(0,0,20), dxdydz(16,16,10), aslflags({SKIP}), registers({REGISTER_JIJE_PART3_SKIP}))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_back+2, xyz(0,0,0), dxdydz(16,16,20))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part3_back+4, xyz(0,0,0), dxdydz(16,16,20))
+		regular(spr_jije_part3_wing+6, xyz(0,0,20), dxdydz(16,16,10), aslflags({SKIP}), registers({REGISTER_JIJE_PART3_SKIP}))
+	})
+})
+
+layout(JIJE_PART3, LAYOUT_TEMPLATE_JIJE_PART3())
+
+define(LAYOUT_TEMPLATE_JIJE_PART4, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+			regular(spr_jije_part4_front+X*2, xyz(0,0,16), dxdydz(16,16,30))
+		})
+	}, 0 .. 8)
+	
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+			regular(spr_jije_part4_back+X*2, xyz(0,0,16), dxdydz(16,16,30))
+		})
+	}, 0 .. 8)
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		regular(spr_jije_part4_front, xyz(0,0,16), dxdydz(16,16,30))
+		regular(spr_jije_part4_front+6, xyz(0,-16,16), dxdydz(16,16,30))
+		regular(spr_jije_part4_front+2, xyz(16,0,16), dxdydz(16,16,30))
+	})
+})
+
+layout(JIJE_PART4_HP_A, LAYOUT_TEMPLATE_JIJE_PART4(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(JIJE_PART4_HP_B, LAYOUT_TEMPLATE_JIJE_PART4(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(JIJE_PART4_LP_A, LAYOUT_TEMPLATE_JIJE_PART4(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(JIJE_PART4_LP_B, LAYOUT_TEMPLATE_JIJE_PART4(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(JIJE_PART4_TRACK, LAYOUT_TEMPLATE_JIJE_PART4(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_JIJE_PART5, {
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_jije_part5_front+X*2, xyz(0,0,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 1)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+	})
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_jije_part5_back+X*2, xyz(0,0,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 1)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_jije_part5_front, xyz(-16,0,0), dxdydz(16,16,30))
+		regular(spr_jije_part5_front+2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+})
+
+layout(JIJE_PART5, LAYOUT_TEMPLATE_JIJE_PART5())
+
+def(40, sw_jije_part2_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART2_HP_A .. 0x100+JIJE_PART2_TRACK)
+	cbr(0) else
+)
+
+def(41, sw_jije_part3_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART3)
+	cbr(0) else
+)
+
+def(42, sw_jije_part4_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
+	cbr(1) if(0x100+JIJE_PART4_HP_A .. 0x100+JIJE_PART4_TRACK)
+	cbr(0) else
+)
+
+def(43, sw_jije_part1_layout_sub1) plt_index(
+	self(
+		cbr(0) if(nibble(0,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) else
+	)
+)
+
+def(44, sw_jije_part1_layout_direction) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(0) if(0)
+	cbr(6) else
+)
+
+def(45, sw_jije_part1_layout) calculate({subroutine(sw_jije_part1_layout_sub1) + subroutine(sw_jije_part1_layout_direction)},
+	cbfail() else
+)
+
+def(46, sw_jije_part2_layout_pos) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def(47, sw_jije_part2_layout_platform_sub4) calculate({0xE0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(3) if(0)
+	cbr(2) else
+)
+
+def(48, sw_jije_part2_layout_platform_sub3) calculate({0xE0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(5) if(0)
+	cbr(1) else
+)
+
+def(49, sw_jije_part2_layout_platform_sub2) calculate({0x20 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	ref(sw_jije_part2_layout_platform_sub3) if(0)
+	ref(sw_jije_part2_layout_platform_sub4) else
+)
+
+def(50, sw_jije_part2_layout_platform_sub1) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(4) if(0)
+	ref(sw_jije_part2_layout_platform_sub2) else
+)
+
+def(51, sw_jije_part2_layout_platform) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
+	cbr(0) if(0)
+	ref(sw_jije_part2_layout_platform_sub1) else
+)
+
+def(52, sw_jije_part2_layout) calculate({subroutine(sw_jije_part2_layout_platform) * 6 + subroutine(sw_jije_part2_layout_pos)},
+	cbfail() else
+)
+
+def(53, sw_reg_jije_part3_sub1) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def(54, sw_reg_jije_part3) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(1) if(1)
+	ref(sw_reg_jije_part3_sub1) else
+)
+
+def(55, sw_set_reg_jije_part3) setregisters(REGISTER_JIJE_PART3_SKIP, {sub(sw_reg_jije_part3)}, ref(sw_set_registers))
+
+def(56, sw_set_reg_jije_part3_purchase) setregisters(REGISTER_JIJE_PART3_SKIP, {0}, ref(sw_set_registers))
+
+def(57, sw_jije_part3_layout_direction) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(6) if(1)
+	cbr(0) else
+)
+
+def(58, sw_jije_part3_layout_pos) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def(59, sw_jije_part3_layout) calculate({subroutine(sw_jije_part3_layout_pos) + subroutine(sw_jije_part3_layout_direction)},
+	cbfail() else
+)
+
+def(60, sw_jije_part4_layout_pos) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def(61, sw_jije_part4_direction_sub2) anim_frame(pos(0, 1),
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def(62, sw_jije_part4_direction_sub1) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	ref(sw_jije_part4_direction_sub2) if(1)
+	cbr(0) else
+)
+	
+def(63, sw_jije_part4_direction) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part3_check)},
+	cbr(1) if(1)
+	ref(sw_jije_part4_direction_sub1) else
+)
+
+def(64, sw_jije_part4_layout_end_sub1) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(12) if(0)
+	cbr(6) else
+)
+
+def(65, sw_jije_part4_layout_end) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(0) if(0)
+	ref(sw_jije_part4_layout_end_sub1) else
+)
+
+def(66, sw_jije_part4_layout) calculate({subroutine(sw_jije_part4_direction) * 18 + subroutine(sw_jije_part4_layout_end) + subroutine(sw_jije_part4_layout_pos)},
+	cbfail() else
+)
+
+def(67, sw_jije_part5_layout_direction) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part4_check)},
+	cbr(6) if(1)
+	cbr(0) else
+)
+
+def(68, sw_jije_part5_layout_pos) plt_pos(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) else
+	)
+)
+
+def(69, sw_jije_part5_layout) calculate({subroutine(sw_jije_part5_layout_direction) + subroutine(sw_jije_part5_layout_pos)},
+	cbfail() else
+)
+
+def(70, sw_jije_part1_cb) callback(
+	ref(sw_jije_part1_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(71, sw_jije_part1_cb_purchase) callback(
+	cbr(12) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(72, sw_jije_part2_cb) callback(
+	ref(sw_jije_part2_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(73, sw_jije_part2_cb_purchase) callback(
+	cbr(36) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(74, sw_jije_part3_cb) callback(
+	ref(sw_jije_part3_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_jije_part3) else
+)
+
+def(75, sw_jije_part3_cb_purchase) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_set_reg_jije_part3_purchase) else
+)
+
+def(76, sw_jije_part4_cb) callback(
+	ref(sw_jije_part4_layout) if(CB_LAYOUT)
+	ref(sw_jije_part4_direction) if(CB_AFRAME, CB_ACONTROL)
+	ref(sw_set_registers) else
+)
+
+def(77, sw_jije_part4_cb_purchase) callback(
+	cbr(36) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(78, sw_jije_part5_cb) callback(
+	ref(sw_jije_part5_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(79, sw_jije_part5_cb_purchase) callback(
+	cbr(12) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
+makestation(JIJE_PART1, link(ref(sw_jije_part1_cb_purchase), MENU) default(ref(sw_jije_part1_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))}, JIJE_PART2_HP_A .. JIJE_PART2_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))}, JIJE_PART2_LP_A .. JIJE_PART2_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(JIJE_PART2_TRACK, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))
+
+makestation(JIJE_PART3, link(ref(sw_jije_part3_cb_purchase), MENU) default(ref(sw_jije_part3_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))}, JIJE_PART4_HP_A .. JIJE_PART4_HP_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))}, JIJE_PART4_LP_A .. JIJE_PART4_LP_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+makestation(JIJE_PART4_TRACK, link(ref(sw_jije_part4_cb_purchase), MENU) default(ref(sw_jije_part4_cb)))
+
+makestation(JIJE_PART5, link(ref(sw_jije_part5_cb_purchase), MENU) default(ref(sw_jije_part5_cb)))

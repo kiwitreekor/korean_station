@@ -1,0 +1,236 @@
+// Overpass Stairs
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_MODULAR)
+	callbacks({CB_LAYOUT})
+	include_lengths({1})
+	setcargotriggers({PASS})
+)}, OVERPASS_STAIR_START .. OVERPASS_STAIR_END)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_lengths({1})
+)}, PSD_OVERPASS_STAIR_START .. PSD_OVERPASS_STAIR_END)
+
+// layout
+define(get_overpass_stair_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_overpass_stair, $1, PLT_TYPE_LOW, spr_overpass_stair_low, $1, PLT_TYPE_LOW_ASPHALT, spr_overpass_stair_low, spr_overpass_stair) + ifelse($2, ROOF_TYPE_STAIR_FRONT, 0, 2)})
+
+define(spritelayout_overpass_stair, {
+	define({tmp_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	ifelse($1, PLT_TYPE_A, {
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+	}, $1, PLT_TYPE_B, {
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+	}, $1, PLT_TYPE_C, {
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+	}, $1, PLT_TYPE_MULTI, {
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+		regular(get_overpass_stair_sprite($3, tmp_type), xyz(0, 13, get_platform_height($3)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
+	}, {})
+})
+
+define(LAYOUT_TEMPLATE_OVERPASS_STAIR_SINGLE, {
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
+	})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
+	})
+})
+
+define(LAYOUT_TEMPLATE_OVERPASS_STAIR_SNOW, {
+	LAYOUT_TEMPLATE_OVERPASS_STAIR_SINGLE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_OVERPASS_STAIR_SINGLE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_OVERPASS_STAIR, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_OVERPASS_STAIR_SNOW}, $@)})
+
+layout(OVERPASS_STAIR_HP_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(OVERPASS_STAIR_HP_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(OVERPASS_STAIR_HP_C, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(OVERPASS_STAIR_HP_A_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_HP_B_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_HP_C_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+
+layout(OVERPASS_STAIR_HP_A_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_HP_B_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_HP_C_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(OVERPASS_STAIR_LP_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(OVERPASS_STAIR_LP_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(OVERPASS_STAIR_LP_C, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(OVERPASS_STAIR_LP_A_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_LP_B_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_LP_C_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+
+layout(OVERPASS_STAIR_LP_A_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_LP_B_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_LP_C_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(OVERPASS_STAIR_LAP_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(OVERPASS_STAIR_LAP_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(OVERPASS_STAIR_LAP_C, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+layout(OVERPASS_STAIR_LAP_A_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_LAP_B_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(OVERPASS_STAIR_LAP_C_RF_A, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+
+layout(OVERPASS_STAIR_LAP_A_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_LAP_B_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(OVERPASS_STAIR_LAP_C_RF_B, LAYOUT_TEMPLATE_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+define(LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SINGLE, {
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
+	})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
+	})
+})
+
+define(LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SNOW, {
+	LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SINGLE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SINGLE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SNOW}, $@)})
+
+layout(PSD_OVERPASS_STAIR_HP_A, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(PSD_OVERPASS_STAIR_HP_B, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(PSD_OVERPASS_STAIR_HP_C, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(PSD_OVERPASS_STAIR_HP_A_RF_A, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(PSD_OVERPASS_STAIR_HP_B_RF_A, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(PSD_OVERPASS_STAIR_HP_C_RF_A, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+
+layout(PSD_OVERPASS_STAIR_HP_A_RF_B, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(PSD_OVERPASS_STAIR_HP_B_RF_B, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(PSD_OVERPASS_STAIR_HP_C_RF_B, LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+// switches
+def(40, sw_overpass_stair_back_part1) tinfo_statid(pos(1, 0), shiftmask(0, 0xFF),
+	cbr(2) if(MODULAR_START .. MODULAR_END)
+	cbr(0) else
+)
+
+def(41, sw_overpass_stair_back_part2) tinfo_statid(pos(1, 0), shiftmask(0, 0xFF),
+	cbr(2) if(PSD_MODULAR_START .. PSD_MODULAR_END)
+	cbr(2) if(JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
+	cbr(2) if(JIJE_PART4_HP_A .. JIJE_PART4_TRACK)
+	cbr(0) else
+)
+
+def(42, sw_overpass_stair_back) tinfo_grfid(pos(1, 0),
+	ref(sw_overpass_stair_back_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_overpass_stair_back_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(43, sw_overpass_stair_layout) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_overpass_stair_back)},
+	cbfail() else
+)
+
+def(44, sw_overpass_pA_stair_layout) calculate({subroutine(sw_platformA_check_opposite) * 8 + subroutine(sw_overpass_stair_layout)},
+	cbfail() else
+)
+
+def(45, sw_overpass_pB_stair_layout) calculate({subroutine(sw_platformB_check_opposite) * 8 + subroutine(sw_overpass_stair_layout)},
+	cbfail() else
+)
+
+def(46, sw_overpass_stair_multi_layout) subroutine(sw_platform_multi_check,
+	ref(sw_overpass_pA_stair_layout) if(1)
+	ref(sw_overpass_pB_stair_layout) if(2)
+	ref(sw_overpass_stair_layout) else
+)
+
+def(47, sw_reg_overpass_stair_offset) calculate({subroutine(sw_terrain_snow) * 4},
+	cbfail() else
+)
+
+def(48, sw_set_reg_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_registers))
+
+def(49, sw_set_reg_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers))
+
+def(50, sw_overpass_stairs_platform_cb) callback(
+	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_overpass_stair) else
+)
+
+def(51, sw_overpass_stairs_platform_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_overpass_stair_purchase) else
+)
+
+def(52, sw_set_reg_psd_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_reg_psd))
+
+def(53, sw_set_reg_psd_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_reg_psd_purchase))
+
+def(54, sw_psd_overpass_stairs_platform_cb) callback(
+	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd_overpass_stair) else
+)
+
+def(55, sw_psd_overpass_stairs_platform_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd_overpass_stair_purchase) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_HP_A .. OVERPASS_STAIR_HP_C_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_overpass_stairs_platform_cb)))}, OVERPASS_STAIR_LP_A .. OVERPASS_STAIR_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_psd_overpass_stairs_platform_cb_purchase), MENU) default(ref(sw_psd_overpass_stairs_platform_cb)))}, PSD_OVERPASS_STAIR_HP_A .. PSD_OVERPASS_STAIR_HP_C_RF_B)

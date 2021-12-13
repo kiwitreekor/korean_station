@@ -1,0 +1,225 @@
+// platforms
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PLATFORMS)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+)}, PLATFORM_START .. PLATFORM_END)
+
+
+definestation(VOID_TILE, "",
+	class(CLASS_PLATFORMS)
+	setcargotriggers({PASS})
+	pylons(TTD_ALLTILES)
+	callbacks({CB_LAYOUT})
+)
+
+// non-track tiles
+forloop(X, {
+definestation(X, "",
+	class(CLASS_NONTRACK)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+)}, NONTRACK_START .. NONTRACK_END)
+
+layout(HP_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(HP_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(HP_C, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_HIGH))
+layout(HP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH))
+
+layout(HP_A_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A)) // HP_A
+layout(HP_B_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(HP_C_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(HP_NONTRACK_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH, ROOF_TYPE_A))
+
+layout(HP_A_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(HP_B_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(HP_C_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(HP_NONTRACK_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(LP_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(LP_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(LP_C, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW))
+layout(LP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW))
+
+layout(LP_A_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LP_B_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LP_C_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LP_NONTRACK_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW, ROOF_TYPE_A))
+
+layout(LP_A_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(LP_B_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(LP_C_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(LP_NONTRACK_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(LAP_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(LAP_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(LAP_C, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+layout(LAP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT))
+
+layout(LAP_A_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LAP_B_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LAP_C_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LAP_NONTRACK_RF_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+
+layout(LAP_A_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(LAP_B_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(LAP_C_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(LAP_NONTRACK_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+layout(VOID_TILE, 
+	xtile({
+		spritelayout_ground()
+	})
+	xtile({
+		spritelayout_ground_snow()
+	})
+)
+
+// switches
+
+// seoul station detection
+def(41, sw_platform_get_frame2) anim_frame(pos(0,1),
+	cbr(4) if(0x80)
+	cbr(0) else
+)
+
+def(42, sw_platform_get_frame) anim_frame(pos(0,-1),
+	cbr(4) if(0x80)
+	cbr(0) else
+)
+
+def(43) tinfo_statid(pos(0, 1), shiftmask(0, 0x3FF),
+	ref(sw_platform_get_frame2) if(0x200+SEOUL_STATION_PART3A_HP_A .. 0x200+SEOUL_STATION_PART3A_TRACK)
+	ref(sw_platform_layout) else
+)
+
+def(44) tinfo_grfid(pos(0, 1),
+	ref(43) if(label(GRFID_KWS_PART2))
+	ref(sw_platform_layout) else
+)
+
+def(45) tinfo_statid(pos(0, -1), shiftmask(0, 0x3FF),
+	ref(sw_platform_get_frame) if(0x200+SEOUL_STATION_PART3B_HP_A .. 0x200+SEOUL_STATION_PART3B_TRACK)
+	ref(44) else
+)
+
+def(40, sw_platform_normal_layout) tinfo_grfid(pos(0, -1),
+	ref(45) if(label(GRFID_KWS_PART2))
+	ref(44) else
+)
+
+def(41, sw_platformA_plain_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 6 + subroutine(sw_platform_normal_layout)},
+	cbfail() else
+)
+
+def(42, sw_platformB_plain_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 6 + subroutine(sw_platform_normal_layout)},
+	cbfail() else
+)
+
+def(43, sw_platform_plain_multi_layout) subroutine(sw_platform_multi_check,
+	ref(sw_platformA_plain_multi_layout) if(1)
+	ref(sw_platformB_plain_multi_layout) if(2)
+	ref(sw_platform_layout) else
+)
+
+def(44, sw_platform_plain_multi_cb) callback(
+	ref(sw_platform_plain_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, HP_A .. HP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, HP_A_RF_A .. HP_C_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, LP_A .. LP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LP_A_RF_A .. LP_C_RF_B)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, LAP_A .. LAP_C)
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LAP_A_RF_A .. LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(VOID_TILE, default(ref(sw_platform_cb)))
+
+forloop(X, {makestation(X, default(ref(sw_set_registers)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_set_registers)))}, LP_NONTRACK .. LAP_NONTRACK_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+
+
+// psd
+forloop(X, {
+definestation(X, "",
+	class(CLASS_PSD)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+	setcargotriggers({PASS})
+)}, PSD_START .. PSD_END)
+
+// layouts
+define(LAYOUT_TEMPLATE_PSD_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_PSD_SINGLE, {
+	LAYOUT_TEMPLATE_PSD_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_PSD_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_PSD, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_PSD_SINGLE}, $@)})
+
+layout(PSD_HP_A, LAYOUT_TEMPLATE_PSD(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(PSD_HP_B, LAYOUT_TEMPLATE_PSD(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(PSD_HP_C, LAYOUT_TEMPLATE_PSD(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(PSD_HP_A_RF_A, LAYOUT_TEMPLATE_PSD(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(PSD_HP_B_RF_A, LAYOUT_TEMPLATE_PSD(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(PSD_HP_C_RF_A, LAYOUT_TEMPLATE_PSD(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(PSD_HP_A_RF_B, LAYOUT_TEMPLATE_PSD(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(PSD_HP_B_RF_B, LAYOUT_TEMPLATE_PSD(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(PSD_HP_C_RF_B, LAYOUT_TEMPLATE_PSD(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+// switches
+def(40, sw_psd_cb) callback(
+	ref(sw_platform_multi_cb) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd) else
+)
+
+def(41, sw_psd_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_reg_psd) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_psd_cb_purchase), MENU) default(ref(sw_psd_cb)))}, PSD_START .. PSD_END)

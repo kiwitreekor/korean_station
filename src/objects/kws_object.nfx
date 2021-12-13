@@ -1,0 +1,131 @@
+divert(-1)
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+divert
+
+define({file_index}, 11)
+
+include(lang/english.nfx)
+include(lang/korean.nfx)
+
+setfeature(_OBJECT)
+setpath(images)
+
+define(tmpl_metro_exit, {
+	set(sprite($1 8bpp eval($2)     eval($3) 34 26 -22  -4 normal))
+	set(sprite($1 8bpp eval($2+50)  eval($3) 34 26 -12  -4 normal))
+	set(sprite($1 8bpp eval($2+100) eval($3) 34 26 -22 -11 normal))
+	set(sprite($1 8bpp eval($2+150) eval($3) 34 26 -12 -11 normal))
+})
+
+define(tmpl_metro_exit_glass, {
+	set(sprite($1 8bpp eval($2)     eval($3) 34 26   0   0 normal))
+	set(sprite($1 8bpp eval($2+50)  eval($3) 34 26   0   0 normal))
+	set(sprite($1 8bpp eval($2+100) eval($3) 34 26   0   0 normal))
+	set(sprite($1 8bpp eval($2+150) eval($3) 34 26   0   0 normal))
+})
+
+spriteblock(
+	tmpl_metro_exit(metro.png, 10, 50)
+	tmpl_metro_exit_glass(metro.png, 10, 90)
+	tmpl_metro_exit_glass(metro.png, 10, 130)
+	
+	set(sprite(metro.png 8bpp  210  50  5 19  -2 -18 normal))
+	set(sprite(metro.png 8bpp  230  50  5 19  -2 -18 normal))
+)
+
+spriteblock(+14,
+	set(
+		sprite(metro.png 8bpp  590  10 64 31 -31   0 normal)
+		sprite(metro.png 8bpp  670  10 64 31 -31   0 normal)
+	)
+)
+
+asl_on()
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SNOW)
+def(0, sw_terrain_snow) objinfo_terrain(
+	cbr(1) if(SNOW)
+	cbr(0) else
+)
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_SNOW)
+def(0, sw_terrain_snow) objinfo_terrain(
+	cbr(0) if(SNOW)
+	cbr(0) else
+)
+
+def(40) spriteset(
+	ground(spr_ground_nontrack_concrete, TTD)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(0, xyz(3,5,0), dxdydz(10,6,10))
+	glass(4, xyoff(0,0))
+	glass(8, xyoff(0,0))
+	recolour(12, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(41) spriteset(
+	ground(spr_ground_nontrack_concrete, TTD)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(1, xyz(5,3,0), dxdydz(6,10,10))
+	glass(5, xyoff(0,0))
+	glass(9, xyoff(0,0))
+	recolour(13, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(42) spriteset(
+	ground(spr_ground_nontrack_concrete, TTD)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(2, xyz(3,5,0), dxdydz(10,6,10))
+	glass(6, xyoff(0,0))
+	glass(10, xyoff(0,0))
+	recolour(12, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(43) spriteset(
+	ground(spr_ground_nontrack_concrete, TTD)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(3, xyz(5,3,0), dxdydz(6,10,10))
+	glass(7, xyoff(0,0))
+	glass(11, xyoff(0,0))
+	recolour(13, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(5, obj_metro_exit_layout) getviews(
+	ref(40) if(0)
+	ref(41) if(1)
+	ref(42) if(2)
+	ref(43) else
+)
+
+def(1, sw_obj_colour) colour(
+	cbfail() else
+)
+
+def(2, sw_metro_snow_random) randomrel(CONSTRUCT, 0, cbr(0), cbr(1))
+
+def(3, sw_metro_exit) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random), sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
+def(4, sw_metro_exit_purchase) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0, sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
+
+deftxt(text_class_metro, STR_OBJ_CLASS_METRO)
+deftxt(text_metro_exit, STR_OBJ_METRO_EXIT)
+
+defineobject(OBJ_METRO_EXIT,
+	classid(CLASS_OBJ_METRO)
+	classname(text_class_metro)
+	objectname(text_metro_exit)
+	
+	climate(TEMPERATE, ARCTIC, TROPIC, TOYLAND)
+	timeframe(1900-01-01 .. 500000-01-01)
+	
+	numviews(4)
+	size(1,1)
+	buildingheight(2)
+	
+	price(10)
+)
+
+makeobject(OBJ_METRO_EXIT,
+	link(ref(sw_metro_exit_purchase), MENU)
+	default(ref(sw_metro_exit))
+)

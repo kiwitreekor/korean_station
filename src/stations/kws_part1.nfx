@@ -1,0 +1,117 @@
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+include(lang/english.nfx)
+include(lang/korean.nfx)
+
+setfeature(_STATION)
+
+textmode_on()
+grfinit(GRFID_KWS_PART1,
+	grfname(STR_GRF_NAME)
+	grfdescription(STR_GRF_DESC)
+	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
+	grfversion(GRF_VERSION)
+	grfminversion(GRF_MIN_VERSION)
+	
+	grfparameter(
+		grfsetting(
+			settype(ENUM,PARAM_MODE,0,32)
+			setname(STR_PARAM_MODE_NAME)
+			setdescription(STR_PARAM_MODE_DESC)
+			setdefault(0)
+			setlimits(0,1)
+			setvalues(
+				menuvalue(0,STR_PARAM_MODE_LIST_NORMAL)
+				menuvalue(1,STR_PARAM_MODE_LIST_HIGHPLATFORMS)
+			)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_PSDSFX,1)
+			setname(STR_PARAM_PSDSFX_NAME)
+			setdescription(STR_PARAM_PSDSFX_DESC)
+			setdefault(1)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_PASSENGER,1)
+			setname(STR_PARAM_PASSENGER_NAME)
+			setdescription(STR_PARAM_PASSENGER_DESC)
+			setdefault(1)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_SHADOW,1)
+			setname(STR_PARAM_SHADOW_NAME)
+			setdescription(STR_PARAM_SHADOW_DESC)
+			setdefault(1)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_SNOW,1)
+			setname(STR_PARAM_SNOW_NAME)
+			setdescription(STR_PARAM_SNOW_DESC)
+			setdefault(1)
+		)
+		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_BRIDGE,1)
+			setname(STR_PARAM_BRIDGE_NAME)
+			setdescription(STR_PARAM_BRIDGE_DESC)
+			setdefault(0)
+		)
+		grfsetting(
+			settype(ENUM,PARAM_ROOF_COLOUR,0,5)
+			setname(STR_PARAM_ROOF_COLOUR_NAME)
+			setdescription(STR_PARAM_ROOF_COLOUR_DESC)
+			setdefault(9)
+			setlimits(0,16)
+			setvalues(
+				menuvalue(0,STR_PARAM_ROOF_COLOUR_CC)
+				menuvalue(1,STR_PARAM_ROOF_COLOUR_DBLUE)
+				menuvalue(2,STR_PARAM_ROOF_COLOUR_PGREEN)
+				menuvalue(3,STR_PARAM_ROOF_COLOUR_PINK)
+				menuvalue(4,STR_PARAM_ROOF_COLOUR_YELLOW)
+				menuvalue(5,STR_PARAM_ROOF_COLOUR_RED)
+				menuvalue(6,STR_PARAM_ROOF_COLOUR_LBLUE)
+				menuvalue(7,STR_PARAM_ROOF_COLOUR_GREEN)
+				menuvalue(8,STR_PARAM_ROOF_COLOUR_DGREEN)
+				menuvalue(9,STR_PARAM_ROOF_COLOUR_BLUE)
+				menuvalue(10,STR_PARAM_ROOF_COLOUR_CREAM)
+				menuvalue(11,STR_PARAM_ROOF_COLOUR_MAUVE)
+				menuvalue(12,STR_PARAM_ROOF_COLOUR_PURPLE)
+				menuvalue(13,STR_PARAM_ROOF_COLOUR_ORANGE)
+				menuvalue(14,STR_PARAM_ROOF_COLOUR_BROWN)
+				menuvalue(15,STR_PARAM_ROOF_COLOUR_GREY)
+				menuvalue(16,STR_PARAM_ROOF_COLOUR_WHITE)
+			)
+		)
+		grfsetting(
+			settype(ENUM,PARAM_SIGNAL_SIDE,0,2)
+			setname(STR_PARAM_SIGNAL_SIDE_NAME)
+			setdescription(STR_PARAM_SIGNAL_SIDE_DESC)
+			setdefault(1)
+			setlimits(0,2)
+			setvalues(
+				menuvalue(0,STR_PARAM_SIGNAL_SIDE_LEFT)
+				menuvalue(1,STR_PARAM_SIGNAL_SIDE_DRIVING)
+				menuvalue(2,STR_PARAM_SIGNAL_SIDE_RIGHT)
+			)
+		)
+	)
+	
+	feature_test(
+		feature(STAT_BRIDGES)
+		feature_version(1)
+	)
+	feature_propertymapping(
+		mapping(STAT_BRIDGES, {bridge_height})
+		fallback(0)
+	)
+)
+
+textmode_off()
+
+getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART2, VERSION)
+
+skipif(1, GRFACTIVE, --, GRFID_KWS_PART2)
+skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
+error(FATAL, ALL, 04, "kws_part2.grf")
+
+deflabel(LABEL_HIGHPLATFORM_MODE)

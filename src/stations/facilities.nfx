@@ -1,0 +1,737 @@
+// facilites
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_FACILITIES)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+)}, PLATFORM_SIGN_B_ADDITIONAL_START .. PLATFORM_SIGN_B_ADDITIONAL_END)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_FACILITIES)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+)}, PLATFORM_FACILITIES_START .. PLATFORM_FACILITIES_END)
+
+// layouts
+// sign type A
+define(spritelayout_signA, {
+	define({tmp_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		ifelse(tmp_type, 0, {
+			regular(spr_signA, xyz(2, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
+		}, tmp_type, 1, {
+			regular(spr_signA+2, xyz(7, 0, get_platform_height($2)), dxdydz(3, 0, 8))
+		}, tmp_type, 2, {
+			regular(spr_signA, xyz(14, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
+		})
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+		ifelse(tmp_type, 0, {
+			regular(spr_signA, xyz(2, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
+		}, tmp_type, 1, {
+			regular(spr_signA+2, xyz(7, 16, get_platform_height(tmp_platform_type)), dxdydz(3, 0, 8))
+		}, tmp_type, 2, {
+			regular(spr_signA, xyz(14, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
+		})
+	})
+})
+
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	forloop(X, {
+		xtile({
+			tmp_ground
+			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X)
+			spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		})
+	}, 0 .. 2)
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_SIGN_A_SINGLE}, $@)})
+
+layout(SIGN_A_HP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SIGN_A_HP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SIGN_A_HP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(SIGN_A_LP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SIGN_A_LP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SIGN_A_LP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(SIGN_A_LAP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(SIGN_A_LAP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(SIGN_A_LAP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_A(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+
+// sign type B
+define(spritelayout_signB, {
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		ifelse(tmp_roof, ROOF_TYPE_A, {
+			regular(spr_signB, xyz(6, 0, get_platform_height($2)+5), dxdydz(5, 0, 4))
+		}, tmp_roof, ROOF_TYPE_B, {
+			regular(spr_signB, xyz(6, 3, get_platform_height($2)+4), dxdydz(5, 0, 4))
+		})
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		ifelse(tmp_roof, ROOF_TYPE_A, {
+			regular(spr_signB, xyz(6, 16, get_platform_height(tmp_platform_type)+5), dxdydz(5, 0, 4))
+		}, tmp_roof, ROOF_TYPE_B, {
+			regular(spr_signB, xyz(6, 13, get_platform_height(tmp_platform_type)+4), dxdydz(5, 0, 4))
+		})
+	})
+})
+
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_signB($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_SIGN_B_SINGLE}, $@)})
+
+layout(SIGN_B_HP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(SIGN_B_HP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(SIGN_B_HP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(SIGN_B_HP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(SIGN_B_HP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(SIGN_B_LP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(SIGN_B_LP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(SIGN_B_LP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(SIGN_B_LP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(SIGN_B_LP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(SIGN_B_LAP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(SIGN_B_LAP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(SIGN_B_LAP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(SIGN_B_LAP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(SIGN_B_LAP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_B(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+// sign type C
+define(spritelayout_signC, {
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(tmp_roof, ROOF_TYPE_A, {
+		ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC+4, xyz(16, 0, get_platform_height($2)+7), dxdydz(0, 5, 3))
+		})
+		ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC+6, xyz(16, 11, get_platform_height(tmp_platform_type)+7), dxdydz(0, 5, 3))
+		})
+	}, tmp_roof, ROOF_TYPE_B, {
+		ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC+4, xyz(16, 0, get_platform_height($2)+9), dxdydz(0, 5, 3))
+		})
+		ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC+6, xyz(16, 11, get_platform_height(tmp_platform_type)+9), dxdydz(0, 5, 3))
+		})
+	}, tmp_roof, ROOF_TYPE_NONE, {
+		ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC, xyz(8, 0, get_platform_height($2)), dxdydz(0, 5, 18))
+		})
+		ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+			regular(spr_signC+2, xyz(8, 11, get_platform_height(tmp_platform_type)), dxdydz(0, 5, 18))
+		})
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_C_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_signC($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_C_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_C_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_SIGN_C_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_SIGN_C, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_SIGN_C_SINGLE}, $@)})
+
+layout(SIGN_C_HP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(SIGN_C_HP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(SIGN_C_HP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(SIGN_C_HP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(SIGN_C_HP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(SIGN_C_HP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(SIGN_C_HP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(SIGN_C_HP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(SIGN_C_HP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(SIGN_C_LP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(SIGN_C_LP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(SIGN_C_LP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(SIGN_C_LP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(SIGN_C_LP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(SIGN_C_LP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(SIGN_C_LP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(SIGN_C_LP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(SIGN_C_LP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(SIGN_C_LAP_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(SIGN_C_LAP_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(SIGN_C_LAP_C, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+layout(SIGN_C_LAP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(SIGN_C_LAP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(SIGN_C_LAP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(SIGN_C_LAP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(SIGN_C_LAP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(SIGN_C_LAP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_SIGN_C(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+// LED
+define(spritelayout_led, {
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_led, xyz(16, 1, get_platform_height($2)+7), dxdydz(0, 3, 3))
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_led, xyz(16, 12, get_platform_height(tmp_platform_type)+7), dxdydz(0, 3, 3))
+	})
+})
+
+
+define(LAYOUT_TEMPLATE_FACILITIES_LED_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_led($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_LED_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_LED_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_LED_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_LED, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_LED_SINGLE}, $@)})
+
+layout(LED_HP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(LED_HP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(LED_HP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(LED_HP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(LED_HP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(LED_HP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(LED_LP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LED_LP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LED_LP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(LED_LP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(LED_LP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(LED_LP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(LED_LAP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LED_LAP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LED_LAP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(LED_LAP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(LED_LAP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(LED_LAP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_LED(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+// waiting room
+define(spritelayout_waitingroom, {
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_waitingroom, xyz(4, 0, get_platform_height($2)), dxdydz(8, 4, 8))
+		glass(spr_waitingroom_glass, xyoff(0, 0))
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_waitingroom, xyz(4, 12, get_platform_height(tmp_platform_type)), dxdydz(8, 4, 8))
+		glass(spr_waitingroom_glass, xyoff(0, 0))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_waitingroom($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_SINGLE}, $@)})
+
+layout(WAITINGROOM_HP_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(WAITINGROOM_HP_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(WAITINGROOM_HP_C, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(WAITINGROOM_HP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(WAITINGROOM_HP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(WAITINGROOM_HP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(WAITINGROOM_HP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(WAITINGROOM_HP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(WAITINGROOM_HP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(WAITINGROOM_LP_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(WAITINGROOM_LP_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(WAITINGROOM_LP_C, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(WAITINGROOM_LP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(WAITINGROOM_LP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(WAITINGROOM_LP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(WAITINGROOM_LP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(WAITINGROOM_LP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(WAITINGROOM_LP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(WAITINGROOM_LAP_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(WAITINGROOM_LAP_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(WAITINGROOM_LAP_C, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+layout(WAITINGROOM_LAP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(WAITINGROOM_LAP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(WAITINGROOM_LAP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(WAITINGROOM_LAP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(WAITINGROOM_LAP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(WAITINGROOM_LAP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+// underpass
+define(LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_underpass($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_UNDERPASS, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_SINGLE}, $@)})
+
+layout(UNDERPASS_HP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(UNDERPASS_HP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(UNDERPASS_HP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(UNDERPASS_HP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(UNDERPASS_HP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(UNDERPASS_HP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(UNDERPASS_LP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(UNDERPASS_LP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(UNDERPASS_LP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(UNDERPASS_LP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(UNDERPASS_LP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(UNDERPASS_LP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(UNDERPASS_LAP_A_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(UNDERPASS_LAP_B_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(UNDERPASS_LAP_C_RF_A, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(UNDERPASS_LAP_A_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(UNDERPASS_LAP_B_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(UNDERPASS_LAP_C_RF_B, LAYOUT_TEMPLATE_FACILITIES_UNDERPASS(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+
+// light
+define(spritelayout_light, {
+	define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
+	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_light, xyz(6, 0, get_platform_height($2)), dxdydz(4, 0, 18))
+	})
+	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
+		regular(spr_light, xyz(6, 16, get_platform_height(tmp_platform_type)), dxdydz(4, 0, 18))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_LIGHT_BASE, {
+	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_light($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_LIGHT_SINGLE, {
+	LAYOUT_TEMPLATE_FACILITIES_LIGHT_BASE($@, {spritelayout_ground()})
+	LAYOUT_TEMPLATE_FACILITIES_LIGHT_BASE($@, {spritelayout_ground_snow()})
+})
+
+define(LAYOUT_TEMPLATE_FACILITIES_LIGHT, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_FACILITIES_LIGHT_SINGLE}, $@)})
+
+layout(LIGHT_HP_A, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(LIGHT_HP_B, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(LIGHT_HP_C, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_C, PLT_TYPE_HIGH))
+layout(LIGHT_LP_A, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(LIGHT_LP_B, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(LIGHT_LP_C, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_C, PLT_TYPE_LOW))
+layout(LIGHT_LAP_A, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(LIGHT_LAP_B, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(LIGHT_LAP_C, LAYOUT_TEMPLATE_FACILITIES_LIGHT(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+
+// Platform + Sign A Start
+// TODO: improve layout determination algorithm
+define({tmp_condition_type_part1}, {
+	cbr(1) if(HIGH_PLATFORM_A_PART1)
+	cbr(1) if(HIGH_PLATFORM_B_PART1)
+	cbr(1) if(HIGH_PLATFORM_C_PART1)
+	cbr(2) if(LOW_PLATFORM_A_PART1)
+	cbr(2) if(LOW_PLATFORM_B_PART1)
+	cbr(2) if(LOW_PLATFORM_C_PART1)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_C_PART1)
+	cbr(0) else
+})
+
+define({tmp_condition_type_part2}, {
+	cbr(1) if(HIGH_PLATFORM_A_PART2)
+	cbr(1) if(HIGH_PLATFORM_B_PART2)
+	cbr(1) if(HIGH_PLATFORM_C_PART2)
+	cbr(2) if(LOW_PLATFORM_A_PART2)
+	cbr(2) if(LOW_PLATFORM_B_PART2)
+	cbr(2) if(LOW_PLATFORM_C_PART2)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_A_PART2)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_B_PART2)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_C_PART2)
+	cbr(0) else
+})
+
+define({tmp_condition_direction_part1}, {
+	cbr(1) if(HIGH_PLATFORM_A_PART1)
+	cbr(2) if(HIGH_PLATFORM_B_PART1)
+	cbr(3) if(HIGH_PLATFORM_C_PART1)
+	cbr(1) if(LOW_PLATFORM_A_PART1)
+	cbr(2) if(LOW_PLATFORM_B_PART1)
+	cbr(3) if(LOW_PLATFORM_C_PART1)
+	cbr(1) if(LOW_ASPHALT_PLATFORM_A_PART1)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_B_PART1)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART1)
+	cbr(0) else
+})
+
+define({tmp_condition_direction_part2}, {
+	cbr(1) if(HIGH_PLATFORM_A_PART2)
+	cbr(2) if(HIGH_PLATFORM_B_PART2)
+	cbr(3) if(HIGH_PLATFORM_C_PART2)
+	cbr(1) if(LOW_PLATFORM_A_PART2)
+	cbr(2) if(LOW_PLATFORM_B_PART2)
+	cbr(3) if(LOW_PLATFORM_C_PART2)
+	cbr(1) if(LOW_ASPHALT_PLATFORM_A_PART2)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_B_PART2)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART2)
+	cbr(0) else
+})
+
+def(41, sw_check_stasignA_type_right_part1) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_type_part1)
+def(42, sw_check_stasignA_type_right_part2) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_type_part2)
+
+def(43, sw_check_stasignA_type_right_sub2) tinfo_grfid(pos(0, 1),
+	ref(sw_check_stasignA_type_right_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_right_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(44, sw_check_stasignA_type_right_sub1) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_type_right_sub2) if(1)
+	cbr(0) else
+)
+
+def(40, sw_check_stasignA_type_right) tinfo_statid(pos(0, 1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_type_right_sub1) if(0)
+	cbr(0) else
+)
+
+def(42, sw_check_stasignA_type_left_part1) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_type_part1)
+def(43, sw_check_stasignA_type_left_part2) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_type_part2)
+
+def(44, sw_check_stasignA_type_left_sub2) tinfo_grfid(pos(0, -1),
+	ref(sw_check_stasignA_type_left_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_left_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(45, sw_check_stasignA_type_left_sub1) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_type_left_sub2) if(1)
+	cbr(0) else
+)
+
+def(41, sw_check_stasignA_type_left) tinfo_statid(pos(0, -1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_type_left_sub1) if(0)
+	cbr(0) else
+)
+
+def(43, sw_check_stasignA_type_self_part1) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_type_part1)
+def(44, sw_check_stasignA_type_self_part2) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_type_part2)
+
+def(42, sw_check_stasignA_type_self) tinfo_grfid(pos(0, 0),
+	ref(sw_check_stasignA_type_self_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_type_self_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(43, sw_check_stasignA_type_pB) calculate({subroutine(sw_check_stasignA_type_right) CMP subroutine(sw_check_stasignA_type_self)},
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(44, sw_check_stasignA_type_pA) calculate({subroutine(sw_check_stasignA_type_left) CMP subroutine(sw_check_stasignA_type_self)},
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def(46, sw_check_stasignA_dir_right_part1) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part1)
+def(47, sw_check_stasignA_dir_right_part2) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
+
+def(48, sw_check_stasignA_dir_right_sub2) tinfo_grfid(pos(0, 1),
+	ref(sw_check_stasignA_dir_right_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_right_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(49, sw_check_stasignA_dir_right_sub1) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_dir_right_sub2) if(1)
+	cbr(0) else
+)
+
+def(45, sw_check_stasignA_dir_right) tinfo_statid(pos(0, 1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_dir_right_sub1) if(0)
+	cbr(0) else
+)
+
+def(47, sw_check_stasignA_dir_left_part1) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_direction_part1)
+def(48, sw_check_stasignA_dir_left_part2) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF), tmp_condition_direction_part2)
+
+def(49, sw_check_stasignA_dir_left_sub2) tinfo_grfid(pos(0, -1),
+	ref(sw_check_stasignA_dir_left_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_left_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(50, sw_check_stasignA_dir_left_sub1) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+	ref(sw_check_stasignA_dir_left_sub2) if(1)
+	cbr(0) else
+)
+
+def(46, sw_check_stasignA_dir_left) tinfo_statid(pos(0, -1), shiftmask(11, 0x1), 
+	ref(sw_check_stasignA_dir_left_sub1) if(0)
+	cbr(0) else
+)
+
+def(48, sw_check_stasignA_dir_self_part1) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_direction_part1)
+def(49, sw_check_stasignA_dir_self_part2) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF), tmp_condition_direction_part2)
+
+def(47, sw_check_stasignA_dir_self) tinfo_grfid(pos(0, 0),
+	ref(sw_check_stasignA_dir_self_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_check_stasignA_dir_self_part2) if(label(GRFID_KWS_PART2))
+	cbr(0) else
+)
+
+def(49, sw_check_stasignA_dir_pB_sub1) subroutine(sw_check_stasignA_dir_right,
+	cbr(0) if(0)
+	cbr(2) else
+)
+
+def(50, sw_check_stasignA_dir_pB_sub2) calculate({subroutine(sw_check_stasignA_dir_right) CMP subroutine(sw_check_stasignA_dir_self)},
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(51, sw_check_stasignA_dir_pB_sub3) subroutine(sw_check_stasignA_dir_right,
+	cbr(2) if(2)
+	cbr(0) else
+)
+
+def(48, sw_check_stasignA_dir_pB) subroutine(sw_check_stasignA_dir_self,
+	ref(sw_check_stasignA_dir_pB_sub1) if(1)
+	ref(sw_check_stasignA_dir_pB_sub2) if(2)
+	ref(sw_check_stasignA_dir_pB_sub3) if(3)
+	cbr(0) else
+)
+
+def(50, sw_check_stasignA_dir_pA_sub1) subroutine(sw_check_stasignA_dir_left,
+	cbr(0) if(0)
+	cbr(1) else
+)
+
+def(51, sw_check_stasignA_dir_pA_sub2) calculate({subroutine(sw_check_stasignA_dir_left) CMP subroutine(sw_check_stasignA_dir_self)},
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def(52, sw_check_stasignA_dir_pA_sub3) subroutine(sw_check_stasignA_dir_left,
+	cbr(1) if(1)
+	cbr(0) else
+)
+
+def(49, sw_check_stasignA_dir_pA) subroutine(sw_check_stasignA_dir_self,
+	ref(sw_check_stasignA_dir_pA_sub1) if(2)
+	ref(sw_check_stasignA_dir_pA_sub2) if(1)
+	ref(sw_check_stasignA_dir_pA_sub3) if(3)
+	cbr(0) else
+)
+
+def(50, sw_stasignA_offset) calculate({subroutine(sw_check_stasignA_type_pB) OR subroutine(sw_check_stasignA_dir_pB) OR subroutine(sw_check_stasignA_type_pA) OR subroutine(sw_check_stasignA_dir_pA)},
+	cbfail() else
+)
+
+def(51, sw_reg_signA_platformA_offset_y) calculate({subroutine(sw_check_stasignA_type_pA) OR subroutine(sw_check_stasignA_dir_pA)},
+	cbr(-1) if(1)
+	cbr(1) else
+)
+
+def(52, sw_reg_signA_platformB_offset_y) calculate({subroutine(sw_check_stasignA_type_pB) OR subroutine(sw_check_stasignA_dir_pB)},
+	cbr(15) if(2)
+	cbr(12) else
+)
+
+def(53, sw_set_reg_signA) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_platformA_offset_y), sub(sw_reg_signA_platformB_offset_y)}, ref(sw_set_registers))
+
+def(54, sw_check_stasign_pos_sub2) plt_posrev(
+	cbr(2) if(0)
+	cbr(1) else
+)
+
+def(55, sw_check_stasign_pos_sub1) plt_pos(
+	cbr(0) if(0)
+	ref(sw_check_stasign_pos_sub2) else
+)
+
+def(56, sw_check_stasign_pos) plt_length(
+	cbr(1) if(1)
+	ref(sw_check_stasign_pos_sub1) else
+)
+
+def(57, sw_stasignA_layout) calculate({subroutine(sw_terrain_snow) * 3 + subroutine(sw_check_stasign_pos) * 2},
+	cbfail() else
+)
+
+// multi-platform calculation
+def(58, sw_stasignA_platformA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_stasignA_layout)},
+	cbfail() else
+)
+
+def(59, sw_stasignA_platformB_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_stasignA_layout)},
+	cbfail() else
+)
+
+def(60, sw_stasignA_multi_layout) subroutine(sw_platform_multi_check,
+	ref(sw_stasignA_platformA_multi_layout) if(1)
+	ref(sw_stasignA_platformB_multi_layout) if(2)
+	ref(sw_stasignA_layout) else
+)
+
+def(61, sw_stasignA_cb) callback(
+	ref(sw_stasignA_multi_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_signA) else
+)
+
+def(62, sw_stasignA_cb_purchase) callback(
+	cbr(2) if(CB_LAYOUT)
+	ref(sw_set_reg_signA) else
+)
+// Platform + Sign A End
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LIGHT_HP_A .. LIGHT_HP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LIGHT_LP_A .. LIGHT_LAP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_stasignA_cb_purchase), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_HP_A .. SIGN_A_HP_C)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_stasignA_cb_purchase), MENU) default(ref(sw_stasignA_cb)))}, SIGN_A_LP_A .. SIGN_A_LAP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_A .. SIGN_B_HP_C_RF_A)
+
+makestation(SIGN_B_HP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_HP_B_RF_B .. SIGN_B_HP_C_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_A .. SIGN_B_LP_C_RF_A)
+
+	makestation(SIGN_B_LP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LP_B_RF_B .. SIGN_B_LP_C_RF_B)
+	
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LAP_B_RF_A .. SIGN_B_LAP_C_RF_A)
+
+	makestation(SIGN_B_LAP_A_RF_B, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_B_LAP_B_RF_B .. SIGN_B_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_C_HP_A .. SIGN_C_HP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, SIGN_C_LP_A .. SIGN_C_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LED_HP_A_RF_A .. LED_HP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LED_LP_A_RF_A .. LED_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, WAITINGROOM_HP_A .. WAITINGROOM_HP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, WAITINGROOM_LP_A .. WAITINGROOM_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, UNDERPASS_HP_A_RF_A .. UNDERPASS_HP_C_RF_B)
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, UNDERPASS_LP_A_RF_A .. UNDERPASS_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)

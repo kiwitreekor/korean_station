@@ -1,0 +1,188 @@
+// Gangneung Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nowires(TTD_ALLTILES)
+	include_lengths({4})
+	include_widths({4})
+	setcargotriggers({PASS})
+	tiletypelayout(
+		tiletypes({{0,0,0,2},{0,0,0,2},{0,0,0,2},{0,0,0,2}})
+	)
+)}, GANGNEUNG_HP .. GANGNEUNG_LP)
+
+definestation(GANGNEUNG_NONTRACK, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+	include_lengths({3})
+	include_widths({3})
+)
+
+// layouts
+define(LAYOUT_TEMPLATE_GANGNEUNG, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground()
+			spritelayout_concrete_float()
+			regular(spr_gangneung+X*2, xyz(0,0,8), dxdydz(16,16,30))
+			ifelse(eval(X%3==2), 1, {regular(spr_gangneung_fence2, xyz(0,0,8), dxdydz(0,16,6))})
+			ifelse($1, PLT_TYPE_NONE, {}, {platform_base({ifelse(eval((X/3)%2==0), 1, PLT_TYPE_B, PLT_TYPE_A)}, $1, SHADOW_TRUE)})
+		})
+	}, 0 .. 11)
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 6, 5), xyz(0,-16,8), dxdydz(16,16,0), TTD)
+		spritelayout_road_float()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
+		glass(spr_gangneung_fence_glass, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
+		spritelayout_road_float()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
+		glass(spr_gangneung_fence_glass, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_B, $1, SHADOW_TRUE)})
+		spritelayout_road_float()
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
+		glass(spr_gangneung_fence_glass, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base(PLT_TYPE_A, $1, SHADOW_TRUE)})
+		spritelayout_road_float()
+		_regular(spr_ground_road_concrete+ifelse(_ORIENT, ORIENT_NE, 4, 3), xyz(0,16,8), dxdydz(16,16,0), TTD)
+		regular(spr_gangneung_fence, xyz(16,0,8), dxdydz(0,16,6))
+		glass(spr_gangneung_fence_glass, xyoff(0,0))
+	})
+	
+	xtile(tile_gangneung_purchase, {
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_gangneung_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+layout(GANGNEUNG_HP, LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_HIGH))
+layout(GANGNEUNG_LP, LAYOUT_TEMPLATE_GANGNEUNG(PLT_TYPE_LOW))
+
+define(LAYOUT_TEMPLATE_GANGNEUNG_NONTRACK, {
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_gangneung+X*2, xyz(0,-8,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 5)
+	
+	forloop(X, {
+		xtile({
+			spritelayout_ground_nontrack_concrete()
+			regular(spr_gangneung+12+X*2, xyz(0,-8,0), dxdydz(16,16,30))
+			regular(spr_gangneung+18+X*2, xyz(0,8,0), dxdydz(16,16,30))
+		})
+	}, 0 .. 2)
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_gangneung_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+})
+
+layout(GANGNEUNG_NONTRACK, LAYOUT_TEMPLATE_GANGNEUNG_NONTRACK())
+
+// switches
+def(46, sw_gangneung_layout) plt_index(
+	self(
+		cbr(0) if(nibble(2,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) if(nibble(0,0))
+		cbr(6) if(nibble(2,1))
+		cbr(8) if(nibble(1,1))
+		cbr(10) if(nibble(0,1))
+		cbr(12) if(nibble(2,2))
+		cbr(14) if(nibble(1,2))
+		cbr(16) if(nibble(0,2))
+		cbr(18) if(nibble(2,3))
+		cbr(20) if(nibble(1,3))
+		cbr(22) if(nibble(0,3))
+		cbr(24) if(nibble(3,0))
+		cbr(26) if(nibble(3,1))
+		cbr(28) if(nibble(3,2))
+		cbr(30) else
+	)
+)
+
+def(45, sw_gangneung_tiletype) test_pos(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def(44, sw_gangneung_nontrack_layout) plt_index(
+	self(
+		cbr(0) if(nibble(2,0))
+		cbr(2) if(nibble(1,0))
+		cbr(4) if(nibble(0,0))
+		cbr(6) if(nibble(2,1))
+		cbr(8) if(nibble(1,1))
+		cbr(10) if(nibble(0,1))
+		cbr(12) if(nibble(2,2))
+		cbr(14) if(nibble(1,2))
+		cbr(16) else
+	)
+)
+
+def(40, sw_gangneung_cb) callback(
+	ref(sw_gangneung_layout) if(CB_LAYOUT)
+	ref(sw_gangneung_tiletype) if(CB_TILETYPE)
+	ref(sw_set_registers) else
+)
+
+def(41, sw_gangneung_cb_purchase) callback(
+	reftile(tile_gangneung_purchase) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(42, sw_gangneung_nontrack_cb) callback(
+	ref(sw_gangneung_nontrack_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(43, sw_gangneung_nontrack_cb_purchase) callback(
+	cbr(18) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+
+makestation(GANGNEUNG_NONTRACK, link(ref(sw_gangneung_nontrack_cb_purchase), MENU) default(ref(sw_gangneung_nontrack_cb)))
+
+makestation(GANGNEUNG_HP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	makestation(GANGNEUNG_LP, link(ref(sw_gangneung_cb_purchase), MENU) default(ref(sw_gangneung_cb)))
+placelabel(LABEL_HIGHPLATFORM_MODE)

@@ -1,0 +1,28 @@
+// header file for switches
+
+
+define(sprset_default, 0)
+define(sprset_gwangmyeong_foundation, 1)
+
+define(sw_terrain_snow, 200)
+define(sw_set_reg_overpass, 201)
+define(sw_platform_multi_layout, 202)
+define(sw_platform_multi_cb, 203)
+define(sw_set_registers, 204)
+define(sw_platform_layout, 205)
+define(sw_platform_cb, 206)
+define(sw_check_slope, 207)
+define(sw_platformA_check_opposite, 208)
+define(sw_platformB_check_opposite, 209)
+define(sw_platform_multi_check, 210)
+define(sw_platform_multi_layout, 211)
+define(sw_platform_multi_layout, 212)
+define(sw_modular_overpass_register, 213)
+define(sw_modular_overpass_purchase, 214)
+define(sw_modular_overpass_multi_layout, 215)
+define(sw_overpass_platform_multi_layout, 216)
+define(sw_psd_animframe, 217)
+define(sw_psd_animctrl, 218)
+define(sw_set_reg_psd, 219)
+define(sw_set_reg_psd_purchase, 220)
+define(sw_set_reg_seoul_cars, 221)

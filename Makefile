@@ -1,23 +1,38 @@
 # 'kiwitree korean station set' makefile
 
-V = sprites
+.PHONY = all bundle clean
+
+VPATH = src
+NFO_DIR = nfo
+OBJ_DIR = obj
+
+rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 # include macro files, header, trains, names etc
-LAYOUTS := $(wildcard sprites/layouts/*.nfx)
-LANGUAGES := $(wildcard sprites/lang/*.nfx)
-INCLUDES = $V\kws_func.nfx $V\kws_common.nfx $V\kws.m4 $V\sprites.nfx $V\templates.m4 $(LAYOUTS) $(LANGUAGES)
+HEADERS := $(call rwildcard,$(VPATH),*.m4)
+LANGUAGES := $(wildcard lang/*.nfx)
+INCLUDES = $(HEADERS) $(LANGUAGES)
 
 # .nfo target files
-STATION_NFOFILES = $V\kws1.nfo $V\kws2.nfo
-OBJECT_NFOFILES = $V\kws1_object.nfo
+STATION_NFXFILES = $(wildcard $(VPATH)/stations/*.nfx)
+OBJECT_NFXFILES = $(wildcard $(VPATH)/objects/*.nfx)
 
+STATION_NFOFILES = $(patsubst $(VPATH)/%.nfx,$(NFO_DIR)/%.nfo,$(STATION_NFXFILES))
+OBJECT_NFOFILES = $(patsubst $(VPATH)/%.nfx,$(NFO_DIR)/%.nfo,$(OBJECT_NFXFILES))
 NFOFILES = $(STATION_NFOFILES) $(OBJECT_NFOFILES)
 
-GRFFILES = $(notdir $(STATION_NFOFILES:.nfo=.grf))
+OBJFILES = $(patsubst $(NFO_DIR)/%.nfo,$(OBJ_DIR)/%.grf,$(NFOFILES))
+
+OBJFILES_PART1 = $(addprefix obj/stations/,kws_part1.grf sprites.grf switches.grf platforms.grf crossings.grf buildings.grf overpasses.grf facilities.grf strings_part1.grf) obj/objects/kws_object.grf
+OBJFILES_PART2 = $(addprefix obj/stations/,kws_part2.grf sprites.grf switches.grf crossings_high.grf psd_extra.grf buffers.grf seoul.grf gangneung.grf gwangmyeong.grf metro.grf suseo.grf overpass_stairs.grf sinhaeundae.grf jije.grf signals.grf strings_part2.grf) 
+
+DEPFILES = $(patsubst %.nfo,%.d,$(NFOFILES))
+
+GRFFILES = kws_part1.grf kws_part2.grf
 TARFILES = $(GRFFILES:.grf=.tar)
 
 # graphics source files
-PNGDIR = sprites/gfx/
+PNGDIR = images/
 PNGFILES = $(wildcard $(PNGDIR)*.png)
 
 # m4 text processor
@@ -34,41 +49,41 @@ NFORENUMFLAGS = --beautify on
 
 LINKGRF = linkgrf
 
-all: $(GRFFILES) $(NFOFILES)
+all: $(GRFFILES)
 	
 # rule to make .nfo from .nfx
-$(STATION_NFOFILES): %.nfo : %.nfx $(INCLUDES)
-	copy act2id.m4 + $< $*.tt
-	$(M4) $(M4FLAGS) $*.tt >$*.tt2
-	del $*.tt2
-	$(M4) $(M4FLAGS) -R m4nfo_stations.m4 $< >$@
-	copy count32.m4 + $@ $*.tt
-	$(M4) $(M4FLAGS)  <$*.tt >$@
-	del $*.tt
-	$(NFORENUM) $(NFORENUMFLAGS) $@
+$(STATION_NFOFILES): $(NFO_DIR)/%.nfo : $(VPATH)/%.nfx | $(OBJ_DIR)
+	$(M4) $(M4FLAGS) -R m4nfo_stations.m4 $(subst /,\,$<) >$(subst /,\,$@)
+	$(M4) $(M4FLAGS) dependency.m4 $(subst /,\,$<) >$(patsubst %.nfo,%.d,$(subst /,\,$@))
+	copy count32.m4 + $(subst /,\,$@) $(notdir $*).tt
+	$(M4) $(M4FLAGS)  <$(notdir $*).tt >$(subst /,\,$@)
+	del $(notdir $*).tt
+	$(NFORENUM) $(NFORENUMFLAGS) $(subst /,\,$@)
 	
-$(OBJECT_NFOFILES): %.nfo : %.nfx $(INCLUDES)
-	copy act2id.m4 + $< $*.tt
-	$(M4) $(M4FLAGS) $*.tt >$*.tt2
-	del $*.tt2
-	$(M4) $(M4FLAGS) -R m4nfo_objects.m4 $< >$@
-	copy count32.m4 + $@ $*.tt
-	$(M4) $(M4FLAGS)  <$*.tt >$@
-	del $*.tt
-	$(NFORENUM) $(NFORENUMFLAGS) $@
+$(OBJECT_NFOFILES): $(NFO_DIR)/%.nfo : $(VPATH)/%.nfx | $(OBJ_DIR)
+	$(M4) $(M4FLAGS) -R m4nfo_objects.m4 $(subst /,\,$<) >$(subst /,\,$@)
+	$(M4) $(M4FLAGS) dependency.m4 $(subst /,\,$<) >$(patsubst %.nfo,%.d,$(subst /,\,$@))
+	copy count32.m4 + $(subst /,\,$@) $(notdir $*).tt
+	$(M4) $(M4FLAGS)  <$(notdir $*).tt >$(subst /,\,$@)
+	del $(notdir $*).tt
+	$(NFORENUM) $(NFORENUMFLAGS) $(subst /,\,$@)
 
-# rule to make test.grf from .nfo and .png
-kws1.grf : $V\kws1.nfo $V\kws1_object.nfo $(PNGFILES)
-	$(GRFCODEC) $(GRFCODECFLAGS) kws1.grf
-	$(GRFCODEC) $(GRFCODECFLAGS) kws1_object.grf
-	$(LINKGRF) -f kws1_final.grf kws1.grf kws1_object.grf
-	del kws1.grf
-	ren kws1_final.grf kws1.grf
+-include $(DEPFILES)
+
+# rule to make .grf from .nfo and .png
+kws_part1.grf : $(OBJFILES_PART1)
+	$(LINKGRF) -f $@ $(OBJFILES_PART1)
 	copy /Y $@ "%HOMEDRIVE%%HOMEPATH%/Documents/OpenTTD/newgrf/$@"
 
-kws2.grf : $V\kws2.nfo $(PNGFILES)
-	$(GRFCODEC) $(GRFCODECFLAGS) $@
+kws_part2.grf : $(OBJFILES_PART2)
+	$(LINKGRF) -f $@ $(OBJFILES_PART2)
 	copy /Y $@ "%HOMEDRIVE%%HOMEPATH%/Documents/OpenTTD/newgrf/$@"
+
+$(OBJFILES): $(OBJ_DIR)/%.grf : $(NFO_DIR)/%.nfo $(PNGFILES)
+	$(GRFCODEC) $(GRFCODECFLAGS) $@ ../../$(dir $<)
+
+$(OBJ_DIR):
+	mkdir $(subst /,\,$(sort $(dir $(OBJFILES)) $(dir $(NFOFILES))))
 
 # rule to make bundle
 %.tar : %.grf
@@ -79,6 +94,6 @@ bundle: $(GRFFILES) $(TARFILES) $(NFOFILES)
 
 clean:
 	del *.grf
-	del sprites\*.nfo
-	del *.bak
 	del *.tar
+	rmdir /S /Q nfo
+	rmdir /S /Q obj

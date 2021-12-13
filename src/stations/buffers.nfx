@@ -1,0 +1,266 @@
+// buffers
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUFFERS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	setcargotriggers({PASS})
+)}, PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END)
+
+definestation(BUFFER_TRACK, "",
+	class(CLASS_BUFFERS)
+	callbacks({CB_LAYOUT})
+	nontrack(TTD_ALLTILES)
+	setcargotriggers({PASS})
+)
+
+// layouts
+define(spritelayout_buffer, {
+	ifelse($2, 0, {
+		ifelse($1, 0, {
+			regular(spr_buffer, xyz(6, 6, 0), dxdydz(4, 4, 8))
+		}, $1, 1, {
+			regular(spr_buffer+2, xyz(6, 6, 0), dxdydz(4, 4, 8))
+		})
+	}, $2, 1, {
+		ifelse($1, 0, {
+			regular(spr_buffer, xyz(0, 6, 0), dxdydz(4, 4, 8))
+		}, $1, 1, {
+			regular(spr_buffer+2, xyz(12, 6, 0), dxdydz(4, 4, 8))
+		})
+	})
+})
+
+define(spritelayout_platform_bufferA, {
+	define({tmp_reg}, {ifelse($3, 1, REGISTER_BUFFER_SHADOW_OFFSET, REGISTER_BUFFER_OFFSET)})
+	ifelse($4, 0, {
+		ifelse($1, PLT_TYPE_A, {
+			notransparency(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+		}, $1, PLT_TYPE_B, {
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+			notransparency(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+		}, $1, PLT_TYPE_C, {
+			notransparency(get_platform_buffer_sprite($2), xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2), xyz(0, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+			notransparency(get_platform_buffer_sprite($2)+4, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+		}, {})
+	}, $4, 1, {
+		ifelse($1, PLT_TYPE_A, {
+			notransparency(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+		}, $1, PLT_TYPE_B, {
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 0, 0), dxdydz(6, 10, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+			notransparency(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+		}, $1, PLT_TYPE_C, {
+			notransparency(get_platform_buffer_sprite($2)+2, xyz(0, 0, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+			notransparency(get_platform_buffer_end_sprite($2)+2, xyz(10, 6, 0), dxdydz(6, 4, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({REGISTER_BUFFER_END_OFFSET}))
+			spritelayout_buffer($4, 0)
+			notransparency(get_platform_buffer_sprite($2)+6, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($2)), aslflags({OFFSET_SPRITE}), registers({tmp_reg}))
+		}, {})
+	})
+	spritelayout_passenger($1, $2)
+})
+
+define(LAYOUT_TEMPLATE_BUFFER, {
+	ifelse($1, PLT_TYPE_NONE, {
+		xtile({
+			spritelayout_ground()
+			spritelayout_buffer(0, 1)
+		})
+		xtile({
+			spritelayout_ground()
+			spritelayout_buffer(1, 1)
+		})
+		xtile({
+			spritelayout_ground_snow()
+			spritelayout_buffer(0, 1)
+		})
+		xtile({
+			spritelayout_ground_snow()
+			spritelayout_buffer(1, 1)
+		})
+	}, {
+		define({tmp_roof}, {ifelse(eval($#>2), 1, $3, ROOF_TYPE_NONE)})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_buffer(0, 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_buffer(1, 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
+			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
+			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
+			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_buffer(0, 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
+			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_buffer(1, 1)
+			spritelayout_roof(tmp_roof, $1, $2)
+		})
+	})
+})
+
+layout(BUFFER_HP_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(BUFFER_HP_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(BUFFER_HP_C, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(BUFFER_HP_A_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(BUFFER_HP_B_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(BUFFER_HP_C_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+
+layout(BUFFER_HP_A_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(BUFFER_HP_B_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(BUFFER_HP_C_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+layout(BUFFER_LP_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(BUFFER_LP_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(BUFFER_LP_C, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(BUFFER_LP_A_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(BUFFER_LP_B_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_A))
+layout(BUFFER_LP_C_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_A))
+
+layout(BUFFER_LP_A_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(BUFFER_LP_B_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW, ROOF_TYPE_B))
+layout(BUFFER_LP_C_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW, ROOF_TYPE_B))
+
+layout(BUFFER_LAP_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT))
+layout(BUFFER_LAP_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT))
+layout(BUFFER_LAP_C, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT))
+
+layout(BUFFER_LAP_A_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(BUFFER_LAP_B_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+layout(BUFFER_LAP_C_RF_A, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_A))
+
+layout(BUFFER_LAP_A_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_A, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(BUFFER_LAP_B_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_B, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+layout(BUFFER_LAP_C_RF_B, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_C, PLT_TYPE_LOW_ASPHALT, ROOF_TYPE_B))
+
+layout(BUFFER_TRACK, LAYOUT_TEMPLATE_BUFFER(PLT_TYPE_NONE, PLT_TYPE_NONE, ROOF_TYPE_B))
+
+def(40, sw_buffer_end_offset) subroutine(sw_terrain_snow,
+	cbr(spr_platform_buffer_end_snow - spr_platform_buffer_end) if(1)
+	cbr(0) else
+)
+
+def(41, sw_buffer_shadow_offset) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
+	cbr(spr_platform_buffer_s - spr_platform_buffer) if(1)
+	cbr(0) else
+)
+
+def(42, sw_buffer_offset) subroutine(sw_terrain_snow,
+	cbr(spr_platform_buffer_snow - spr_platform_buffer) if(1)
+	cbr(0) else
+)
+
+def(43, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_offset), sub(sw_buffer_end_offset)}, ref(sw_set_registers))
+
+def(44, sw_buffer_layout_sub2_4) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
+	cbr(0) if(BUFFER_PLATFORM_A_PART2)
+	cbr(0) if(BUFFER_PLATFORM_C_PART2)
+	cbr(2) else
+)
+
+def(45, sw_buffer_layout_sub2_3) tinfo_statid(pos(0, -1), shiftmask(0, 0x100),
+	ref(sw_buffer_layout_sub2_4) if(0x100)
+	cbr(2) else
+)
+
+def(46, sw_buffer_layout_sub2_2) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
+	cbr(0) if(BUFFER_PLATFORM_B_PART2)
+	cbr(0) if(BUFFER_PLATFORM_C_PART2)
+	cbr(2) else
+)
+
+def(47, sw_buffer_layout_sub2_1) tinfo_statid(pos(0, 1), shiftmask(0, 0x100),
+	ref(sw_buffer_layout_sub2_2) if(0x100)
+	cbr(2) else
+)
+
+def(48, sw_buffer_layout_sub2) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
+	ref(sw_buffer_layout_sub2_1) if(BUFFER_PLATFORM_A_PART2)
+	ref(sw_buffer_layout_sub2_3) if(BUFFER_PLATFORM_B_PART2)
+	cbr(0) else
+)
+
+def(49, sw_buffer_layout_sub1) tinfo_trackconnect(shiftmask(0, 0x02),
+	cbr(0) if(0)
+	cbr(2) else
+)
+
+def(44, sw_buffer_layout) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub2) * 2 + subroutine(sw_buffer_layout_sub1)},
+	cbfail() else
+)
+
+def(45, sw_buffer_cb) callback(
+	ref(sw_buffer_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_buffer) else
+)
+
+def(46, sw_buffer_track_layout) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub1)},
+	cbfail() else
+)
+
+def(47, sw_buffer_track_cb) callback(
+	ref(sw_buffer_track_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_buffer) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_HP_A .. BUFFER_HP_C_RF_B)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_LAP_C_RF_B)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(BUFFER_TRACK, default(ref(sw_buffer_track_cb)))

@@ -1,0 +1,68 @@
+// crossings (high)
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/crossings.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_CROSSINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	setcargotriggers({PASS})
+	anim_triggers({BUILT})
+)}, CROSSING_HIGH_START .. CROSSING_HIGH_END)
+
+layout(CROSSING_HP_A, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(CROSSING_HP_B, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(CROSSING_HP_C, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(CROSSING_HP_A_RF_A, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(CROSSING_HP_B_RF_A, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_A))
+layout(CROSSING_HP_C_RF_A, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_A))
+
+layout(CROSSING_HP_A_RF_B, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_A, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(CROSSING_HP_B_RF_B, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_B, PLT_TYPE_HIGH, ROOF_TYPE_B))
+layout(CROSSING_HP_C_RF_B, LAYOUT_TEMPLATE_CROSSING(PLT_TYPE_C, PLT_TYPE_HIGH, ROOF_TYPE_B))
+
+// switches
+
+// sw_crossing_pos
+def(40) plt_posrev(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def(41) plt_pos(
+	cbr(4) if(0)
+	ref(40) else
+)
+
+def(42, sw_crossing_pos) plt_length(
+	cbr(0) if(1)
+	ref(41) else
+)
+
+def(43, sw_crossing_layout) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_crossing_pos)},
+	cbfail() else
+)
+
+def(44, sw_crossing_cb) callback(
+	ref(sw_crossing_layout) if(CB_LAYOUT)
+	ref(sw_crossing_pos) if(CB_ACONTROL, CB_AFRAME)
+	ref(sw_set_registers) else
+)
+
+forloop(X, {makestation(X, default(ref(sw_crossing_cb)))}, CROSSING_HIGH_START .. CROSSING_HIGH_END)

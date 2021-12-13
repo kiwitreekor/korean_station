@@ -1,0 +1,385 @@
+// metro platforms
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/metro.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+)}, METRO_HP_A .. METRO_TRACK)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+	anim_info({13, NOLOOP})
+	anim_speed(4)
+	anim_triggers({PERIODIC, LEAVE})
+	include_widths({1})
+	include_lengths({1})
+)}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_NORTH_TRACK)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+)}, METRO_PARK_HP_A .. METRO_TREE_TRACK)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_METRO)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+	nontrack(TTD_ALLTILES)
+	include_widths({1})
+	include_lengths({1})
+)}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+
+// layouts
+define(LAYOUT_TEMPLATE_METRO_BASE, {
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover(tmp_cover, 0)
+		tmp_layout
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover(tmp_cover, 0, 1)
+		tmp_layout
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover(tmp_cover, 0, -1)
+		tmp_layout
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover(tmp_cover, 0, 1, 2)
+		tmp_layout
+	})
+	xtile({
+		spritelayout_ground()
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		spritelayout_metro_pole()
+		spritelayout_metro_cover(tmp_cover, 0, -1, -2)
+		tmp_layout
+	})
+})
+
+define(LAYOUT_TEMPLATE_METRO_PLAIN_BASE, {
+	define({tmp_cover}, {spr_ground_building})
+	define({tmp_layout}, {})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_PLAIN_BASE}, $@)})
+
+layout(METRO_HP_A, LAYOUT_TEMPLATE_METRO(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(METRO_HP_B, LAYOUT_TEMPLATE_METRO(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(METRO_HP_C, LAYOUT_TEMPLATE_METRO(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(METRO_LP_A, LAYOUT_TEMPLATE_METRO(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(METRO_LP_B, LAYOUT_TEMPLATE_METRO(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(METRO_LP_C, LAYOUT_TEMPLATE_METRO(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(METRO_TRACK, LAYOUT_TEMPLATE_METRO(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_METRO_EXIT_SOUTH_BASE, {
+	define({tmp_cover}, {spr_ground_building})
+	define({tmp_layout}, {spritelayout_metro_exit(0, 1)})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO_EXIT_SOUTH, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_EXIT_SOUTH_BASE}, $@)})
+
+layout(METRO_EXIT_SOUTH_HP_A, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(METRO_EXIT_SOUTH_HP_B, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(METRO_EXIT_SOUTH_HP_C, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(METRO_EXIT_SOUTH_LP_A, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(METRO_EXIT_SOUTH_LP_B, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(METRO_EXIT_SOUTH_LP_C, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(METRO_EXIT_SOUTH_TRACK, LAYOUT_TEMPLATE_METRO_EXIT_SOUTH(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_METRO_EXIT_NORTH_BASE, {
+	define({tmp_cover}, {spr_ground_building})
+	define({tmp_layout}, {spritelayout_metro_exit(1, 1)})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO_EXIT_NORTH, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_EXIT_NORTH_BASE}, $@)})
+
+layout(METRO_EXIT_NORTH_HP_A, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(METRO_EXIT_NORTH_HP_B, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(METRO_EXIT_NORTH_HP_C, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(METRO_EXIT_NORTH_LP_A, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(METRO_EXIT_NORTH_LP_B, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(METRO_EXIT_NORTH_LP_C, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(METRO_EXIT_NORTH_TRACK, LAYOUT_TEMPLATE_METRO_EXIT_NORTH(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_METRO_PARK_BASE, {
+	define({tmp_cover}, {spr_ground_metro_park})
+	define({tmp_layout}, {})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO_PARK, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_PARK_BASE}, $@)})
+
+layout(METRO_PARK_HP_A, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(METRO_PARK_HP_B, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(METRO_PARK_HP_C, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(METRO_PARK_LP_A, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(METRO_PARK_LP_B, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(METRO_PARK_LP_C, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(METRO_PARK_TRACK, LAYOUT_TEMPLATE_METRO_PARK(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+define(LAYOUT_TEMPLATE_METRO_TREE_BASE, {
+	define({tmp_cover}, {spr_ground_metro_park})
+	define({tmp_layout}, {spritelayout_metro_tree()})
+	LAYOUT_TEMPLATE_METRO_BASE($@)
+})
+
+define(LAYOUT_TEMPLATE_METRO_TREE, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_METRO_TREE_BASE}, $@)})
+
+layout(METRO_TREE_HP_A, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_A, PLT_TYPE_HIGH))
+layout(METRO_TREE_HP_B, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_B, PLT_TYPE_HIGH))
+layout(METRO_TREE_HP_C, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_C, PLT_TYPE_HIGH))
+
+layout(METRO_TREE_LP_A, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_A, PLT_TYPE_LOW))
+layout(METRO_TREE_LP_B, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_B, PLT_TYPE_LOW))
+layout(METRO_TREE_LP_C, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_C, PLT_TYPE_LOW))
+
+layout(METRO_TREE_TRACK, LAYOUT_TEMPLATE_METRO_TREE(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+layout(METRO_EXIT_SOUTH_NONTRACK, 
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		spritelayout_metro_snow_overlay(0)
+		spritelayout_metro_exit(0, 0)
+	})
+)
+
+layout(METRO_EXIT_NORTH_NONTRACK, 
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		spritelayout_metro_snow_overlay(0)
+		spritelayout_metro_exit(1, 0)
+	})
+)
+
+// switches
+def(40, sw_metro_overlap_back_slope_sub2) tinfo_slope(pos(2, 0),
+	cbr(6) if(SOUTH+WEST)
+	cbr(0) else
+)
+
+def(41, sw_metro_overlap_back_slope_sub) tinfo_slope(pos(1, 0),
+	cbr(0) if(NORTH+EAST, NORTH, EAST)
+	ref(sw_metro_overlap_back_slope_sub2) else
+)
+
+def(42, sw_metro_overlap_back_len_sub) tinfo_lclass(pos(2, 0),
+	ref(sw_metro_overlap_back_slope_sub) if(LC_TUNNELBRIDGE)
+	cbr(0) else
+)
+
+def(43, sw_metro_overlap_back_slope) tinfo_slope(pos(1, 0),
+	cbr(2) if(SOUTH+WEST)
+	ref(sw_metro_overlap_back_len_sub) else
+)
+
+def(44, sw_metro_overlap_back_len) tinfo_lclass(pos(1, 0),
+	ref(sw_metro_overlap_back_slope) if(LC_TUNNELBRIDGE)
+	ref(sw_metro_overlap_back_len_sub) else
+)
+
+def(45, sw_metro_overlap_front_slope_sub2) tinfo_slope(pos(-2, 0),
+	cbr(8) if(NORTH+EAST)
+	cbr(0) else
+)
+
+def(46, sw_metro_overlap_front_slope_sub) tinfo_slope(pos(-1, 0),
+	cbr(0) if(SOUTH+WEST, SOUTH, WEST)
+	ref(sw_metro_overlap_front_slope_sub2) else
+)
+
+def(47, sw_metro_overlap_front_len_sub) tinfo_lclass(pos(-2, 0),
+	ref(sw_metro_overlap_front_slope_sub) if(LC_TUNNELBRIDGE)
+	cbr(0) else
+)
+
+def(48, sw_metro_overlap_front_slope) tinfo_slope(pos(-1, 0),
+	cbr(4) if(NORTH+EAST)
+	ref(sw_metro_overlap_front_len_sub) else
+)
+
+def(49, sw_metro_overlap_front_len) tinfo_lclass(pos(-1, 0),
+	ref(sw_metro_overlap_front_slope) if(LC_TUNNELBRIDGE)
+	ref(sw_metro_overlap_front_len_sub) else
+)
+
+def(50, sw_metro_overlap_back) plt_posrev(
+	ref(sw_metro_overlap_back_len) if(0)
+	cbr(0) else
+)
+
+def(51, sw_metro_overlap_front) plt_pos(
+	ref(sw_metro_overlap_front_len) if(0)
+	ref(sw_metro_overlap_back) else
+)
+
+def(52, sw_metro_layout) plt_length(
+	cbr(0) if(1)
+	ref(sw_metro_overlap_front) else
+)
+
+// multi-platform calculation
+def(40, sw_metro_platformA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 10 + subroutine(sw_metro_layout)},
+	cbfail() else
+)
+
+def(41, sw_metro_platformB_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 10 + subroutine(sw_metro_layout)},
+	cbfail() else
+)
+
+def(42, sw_metro_multi_layout) subroutine(sw_platform_multi_check,
+	ref(sw_metro_platformA_multi_layout) if(1)
+	ref(sw_metro_platformB_multi_layout) if(2)
+	ref(sw_metro_layout) else
+)
+
+def(43, sw_metro_exit_animframe) anim_frame(
+	animframe(0) if(8,12)
+	animframe(A_STOP) if(0)
+	animframe(A_NEXT) else
+)
+
+def(44, sw_metro_exit_animctrl_sub) anim_frame(
+	animcontrol(A_NOP) if(1 .. 8)
+	animcontrol(9) else
+)
+
+def(45, sw_metro_exit_animctrl) anim_trigger(
+	animcontrol(1) if(LEAVE)
+	ref(sw_metro_exit_animctrl_sub) if(PERIODIC)
+	animcontrol(A_NOP) else
+)
+
+// m4nfo bug :(
+def(46, sw_anim_frame) anim_frame(
+	cbfail() else
+)
+
+def(47, sw_metro_exit_frame) calculate({subroutine(sw_anim_frame) * 4},
+	cbfail() else
+)
+
+def(48, sw_metro_tree_type) random(BUILT, 18, cbr(0), cbr(1))
+
+def(49, sw_metro_tree_offset) calculate({subroutine(sw_metro_tree_type) * 2 + subroutine(sw_terrain_snow)},
+	cbfail() else
+)
+
+def(50, sw_metro_snow_random) random(BUILT, 16, cbr(0), cbr(1))
+
+def(51, sw_metro_reg) setregisters(REGISTER_METRO_EXIT_OFFSET, {sub(sw_metro_exit_frame), sub(sw_metro_tree_offset), sub(sw_terrain_snow), sub(sw_metro_snow_random)}, ref(sw_set_registers))
+def(52, sw_metro_reg_purchase) setregisters(REGISTER_METRO_EXIT_OFFSET, {0, 0, 0, 0}, ref(sw_set_registers))
+
+def(53, sw_metro_cb) callback(
+	ref(sw_metro_multi_layout) if(CB_LAYOUT)
+	ref(sw_metro_reg) else
+)
+
+def(54, sw_metro_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_metro_reg_purchase) else
+)
+
+def(55, sw_metro_exit_cb) callback(
+	ref(sw_metro_exit_animctrl) if(CB_ACONTROL)
+	ref(sw_metro_exit_animframe) if(CB_AFRAME)
+	ref(sw_metro_multi_layout) if(CB_LAYOUT)
+	ref(sw_metro_reg) else
+)
+
+def(56, sw_metro_exit_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_metro_reg_purchase) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_HP_A .. METRO_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_LP_A .. METRO_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_HP_A .. METRO_EXIT_SOUTH_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_SOUTH_LP_A .. METRO_EXIT_SOUTH_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_EXIT_SOUTH_TRACK, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_HP_A .. METRO_EXIT_NORTH_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))}, METRO_EXIT_NORTH_LP_A .. METRO_EXIT_NORTH_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_EXIT_NORTH_TRACK, link(ref(sw_metro_exit_cb_purchase), MENU) default(ref(sw_metro_exit_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_EXIT_SOUTH_NONTRACK .. METRO_EXIT_NORTH_NONTRACK)
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_HP_A .. METRO_PARK_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_PARK_LP_A .. METRO_PARK_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_PARK_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))
+
+forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_HP_A .. METRO_TREE_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))}, METRO_TREE_LP_A .. METRO_TREE_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+makestation(METRO_TREE_TRACK, link(ref(sw_metro_cb_purchase), MENU) default(ref(sw_metro_cb)))

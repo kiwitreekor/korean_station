@@ -24,7 +24,7 @@ NFOFILES = $(STATION_NFOFILES) $(OBJECT_NFOFILES)
 OBJFILES = $(patsubst $(NFO_DIR)/%.nfo,$(OBJ_DIR)/%.grf,$(NFOFILES))
 
 OBJFILES_PART1 = $(addprefix obj/stations/,kws_part1.grf sprites.grf switches.grf platforms.grf crossings.grf buildings.grf overpasses.grf facilities.grf strings_part1.grf) obj/objects/kws_object.grf
-OBJFILES_PART2 = $(addprefix obj/stations/,kws_part2.grf sprites.grf switches.grf crossings_high.grf psd_extra.grf buffers.grf seoul.grf gangneung.grf gwangmyeong.grf metro.grf suseo.grf overpass_stairs.grf sinhaeundae.grf jije.grf signals.grf strings_part2.grf) 
+OBJFILES_PART2 = $(addprefix obj/stations/,kws_part2.grf sprites.grf switches.grf crossings_high.grf psd_extra.grf buffers.grf seoul.grf gangneung.grf gwangmyeong.grf metro.grf suseo.grf overpass_stairs.grf sinhaeundae.grf jije.grf signals.grf hannam.grf strings_part2.grf) 
 
 DEPFILES = $(patsubst %.nfo,%.d,$(NFOFILES))
 

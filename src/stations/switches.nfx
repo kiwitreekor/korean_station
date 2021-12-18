@@ -435,10 +435,16 @@ def(232, sw_psd_start_pA_opposite) tinfo_statid(pos(-1, -1), shiftmask(11, 0x1),
 	cbr(0) else
 )
 
+def(234, sw_psd_start_pA_special_part2) tinfo_statid(pos(-1, 0), shiftmask(12,0x3),
+	cbr(1) if(1)
+	cbr(0) else
+)
+
 def(233, sw_psd_start_pA_part2) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(1) if(PSD_PLATFORM_A_PART2)
 	cbr(1) if(PSD_PLATFORM_C_PART2)
 	ref(sw_psd_start_pA_opposite) if(PSD_PLATFORM_B_PART2)
+	ref(sw_psd_start_pA_special_part2) if(PSD_PLATFORM_SPECIAL_PART2)
 	cbr(0) else
 )
 
@@ -491,21 +497,27 @@ def(233, sw_psd_end_pA_opposite) tinfo_statid(pos(1, -1), shiftmask(11, 0x1),
 	cbr(0) else
 )
 
-def(234, sw_psd_end_pA_part2) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	cbr(2) if(PSD_PLATFORM_A_PART2)
-	cbr(2) if(PSD_PLATFORM_C_PART2)
-	ref(sw_psd_end_pA_opposite) if(PSD_PLATFORM_B_PART2)
+def(234, sw_psd_end_pA_special_part2) tinfo_statid(pos(1, 0), shiftmask(12,0x3),
+	cbr(2) if(1)
 	cbr(0) else
 )
 
-def(235, sw_psd_end_pA_part1) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+def(235, sw_psd_end_pA_part2) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	cbr(2) if(PSD_PLATFORM_A_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_end_pA_opposite) if(PSD_PLATFORM_B_PART2)
+	ref(sw_psd_end_pA_special_part2) if(PSD_PLATFORM_SPECIAL_PART2)
+	cbr(0) else
+)
+
+def(236, sw_psd_end_pA_part1) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 	cbr(2) if(PSD_PLATFORM_A_PART1)
 	cbr(2) if(PSD_PLATFORM_C_PART1)
 	ref(sw_psd_end_pA_opposite) if(PSD_PLATFORM_B_PART1)
 	cbr(0) else
 )
 
-def(236, sw_psd_end_pA_sub) tinfo_grfid(pos(1, 0),
+def(237, sw_psd_end_pA_sub) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_end_pA_part1) if(label(GRFID_KWS_PART1))
 	ref(sw_psd_end_pA_part2) if(label(GRFID_KWS_PART2))
@@ -513,7 +525,7 @@ def(236, sw_psd_end_pA_sub) tinfo_grfid(pos(1, 0),
 )
 
 // parallel check
-def(237, sw_psd_end_pA) tinfo_statid(pos(1, 0), shiftmask(11, 0x1),
+def(238, sw_psd_end_pA) tinfo_statid(pos(1, 0), shiftmask(11, 0x1),
 	ref(sw_psd_end_pA_sub) if(0)
 	cbr(0) else
 )
@@ -570,21 +582,27 @@ def(231, sw_psd_start_pB_opposite) tinfo_statid(pos(-1, 1), shiftmask(11, 0x1),
 	cbr(0) else
 )
 
-def(232, sw_psd_start_pB_part2) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
-	cbr(1) if(PSD_PLATFORM_B_PART2)
-	cbr(1) if(PSD_PLATFORM_C_PART2)
-	ref(sw_psd_start_pB_opposite) if(PSD_PLATFORM_A_PART2)
+def(232, sw_psd_start_pB_special_part2) tinfo_statid(pos(-1, 0), shiftmask(12,0x3),
+	cbr(1) if(0)
 	cbr(0) else
 )
 
-def(233, sw_psd_start_pB_part1) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+def(233, sw_psd_start_pB_part2) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
+	cbr(1) if(PSD_PLATFORM_B_PART2)
+	cbr(1) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_start_pB_opposite) if(PSD_PLATFORM_A_PART2)
+	ref(sw_psd_start_pB_special_part2) if(PSD_PLATFORM_SPECIAL_PART2)
+	cbr(0) else
+)
+
+def(234, sw_psd_start_pB_part1) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(1) if(PSD_PLATFORM_B_PART1)
 	cbr(1) if(PSD_PLATFORM_C_PART1)
 	ref(sw_psd_start_pB_opposite) if(PSD_PLATFORM_A_PART1)
 	cbr(0) else
 )
 
-def(234, sw_psd_start_pB_sub) tinfo_grfid(pos(-1, 0),
+def(235, sw_psd_start_pB_sub) tinfo_grfid(pos(-1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_start_pB_part1) if(label(GRFID_KWS_PART1))
 	ref(sw_psd_start_pB_part2) if(label(GRFID_KWS_PART2))
@@ -626,21 +644,27 @@ def(233, sw_psd_end_pB_opposite) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
 	cbr(0) else
 )
 
-def(234, sw_psd_end_pB_part2) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
-	ref(sw_psd_end_pB_opposite) if(PSD_PLATFORM_A_PART2)
-	cbr(2) if(PSD_PLATFORM_B_PART2)
-	cbr(2) if(PSD_PLATFORM_C_PART2)
+def(234, sw_psd_end_pB_special_part2) tinfo_statid(pos(1, 0), shiftmask(12,0x3),
+	cbr(2) if(0)
 	cbr(0) else
 )
 
-def(235, sw_psd_end_pB_part1) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+def(235, sw_psd_end_pB_part2) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
+	ref(sw_psd_end_pB_opposite) if(PSD_PLATFORM_A_PART2)
+	cbr(2) if(PSD_PLATFORM_B_PART2)
+	cbr(2) if(PSD_PLATFORM_C_PART2)
+	ref(sw_psd_end_pB_special_part2) if(PSD_PLATFORM_SPECIAL_PART2)
+	cbr(0) else
+)
+
+def(236, sw_psd_end_pB_part1) tinfo_statid(pos(1, 0), shiftmask(0,0xFF),
 	ref(sw_psd_end_pB_opposite) if(PSD_PLATFORM_A_PART1)
 	cbr(2) if(PSD_PLATFORM_B_PART1)
 	cbr(2) if(PSD_PLATFORM_C_PART1)
 	cbr(0) else
 )
 
-def(236, sw_psd_end_pB_sub) tinfo_grfid(pos(1, 0),
+def(237, sw_psd_end_pB_sub) tinfo_grfid(pos(1, 0),
 	cbr(0) if(0)
 	ref(sw_psd_end_pB_part1) if(label(GRFID_KWS_PART1))
 	ref(sw_psd_end_pB_part2) if(label(GRFID_KWS_PART2))
@@ -687,6 +711,7 @@ def(230, sw_psd_check_sound_part2) tinfo_statid(pos(-1, 0), shiftmask(0,0xFF),
 	cbr(0) if(PSD_PLATFORM_A_PART2)
 	cbr(0) if(PSD_PLATFORM_B_PART2)
 	cbr(0) if(PSD_PLATFORM_C_PART2)
+	cbr(0) if(PSD_PLATFORM_SPECIAL_PART2)
 	cbr(1) else
 )
 

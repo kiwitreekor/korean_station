@@ -289,7 +289,7 @@ def(47, sw_gwangmyeong_part1_cb_purchase) callback(
 )
 
 def(45, sw_gwangmyeong_part2_sprtype) spritetype(
-	ref(sprset_gwangmyeong_foundation) if(2)
+	ref(sprset_concrete_foundation) if(2)
 	ref(sw_gwangmyeong_reg) else
 )
 

@@ -2,7 +2,8 @@
 
 
 define(sprset_default, 0)
-define(sprset_gwangmyeong_foundation, 1)
+define(sprset_concrete_foundation, 1)
+define(sprset_hannam_foundation, 2)
 
 define(sw_terrain_snow, 200)
 define(sw_set_reg_overpass, 201)

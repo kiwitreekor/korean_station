@@ -1,4 +1,5 @@
 include(src/includes/templates.m4)
+include(src/stations/switches.m4)
 
 setfeature(_STATION)
 setpath(images)
@@ -527,16 +528,49 @@ spriteblock(
 		tmpl_signal_hsr(spr_signal_10, signals.png, 167, 402)
 		tmpl_signal_common(spr_signal_11, signals.png, 167, 439)
 		tmpl_signal_common(spr_signal_12, signals.png, 167, 476)
+
+// Hannam Station
+		sprite(spr_hannam, 
+		       hannam.png 8bpp   10  70 64 45 -31 -13 normal)
+		sprite(hannam.png 8bpp   10  10 64 45 -31 -13 normal)
+		sprite(hannam.png 8bpp   90  70 65 21 -31  -1 normal)
+		sprite(hannam.png 8bpp   90  10 65 21 -32  -1 normal)
+		sprite(hannam.png 8bpp  170  70 34 30 -33 -12 normal)
+		sprite(hannam.png 8bpp  170  10 34 30   1 -12 normal)
+		sprite(hannam.png 8bpp  220  70 40 19 -31  -3 normal)
+		sprite(hannam.png 8bpp  220  10 40 19  -7  -3 normal)
+		sprite(hannam.png 8bpp  280  70 31 20   3   3 normal)
+		sprite(hannam.png 8bpp  280  10 31 20   0   3 normal)
+		sprite(hannam.png 8bpp  330  70 13  7   1   7 normal)
+		sprite(hannam.png 8bpp  330  10 13  7  26   7 normal)
+		
+		sprite(spr_hannam_underpass, 
+		       hannam.png 8bpp  360  70 36 31 -23  -1 normal)
+		sprite(hannam.png 8bpp  360  10 36 31 -11  -1 normal)
+		sprite(hannam.png 8bpp  410  70 38 30 -23 -13 normal)
+		sprite(hannam.png 8bpp  410  10 38 30 -13 -13 normal)
+		
+		sprite(spr_hannam_snow,
+		       hannam.png 8bpp  470  70 64 45   0   0 normal)
+		sprite(hannam.png 8bpp  470  10 64 45   0   0 normal)
+		sprite(hannam.png 8bpp  550  70 65 21   0   0 normal)
+		sprite(hannam.png 8bpp  550  10 65 21   0   0 normal)
 	)
 )
 
-def(0, sprset_default) spriteset(little(0), lots(0))
+def(sprset_default) spriteset(little(0), lots(0))
 
 spriteblock(
 	tmpl_foundation_set(gwm.png, 1010, 280)
 )
 
-def(1, sprset_gwangmyeong_foundation) spriteset(little(0), lots(0))
+def(sprset_concrete_foundation) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(hannam.png, 10, 130)
+)
+
+def(sprset_hannam_foundation) spriteset(little(0), lots(0))
 
 setpath(sounds)
 soundtable(

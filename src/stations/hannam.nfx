@@ -1,0 +1,250 @@
+// Hannam Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+definestation(HANNAM, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	setcargotriggers({PASS})
+	include_widths({2})
+)
+
+definestation(HANNAM_PSD, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	flags({FOUNDATIONS})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_widths({2})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	setcargotriggers({PASS})
+	include_widths({1})
+	include_lengths({1})
+)}, HANNAM_UNDERPASS_HP_A .. HANNAM_UNDERPASS_HP_B)
+
+// layouts
+layout(HANNAM,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_hannam+2, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_HANNAM_SNOW_SKIP}))
+		regular(spr_hannam+6, xyz(0,0,3), dxdydz(16,1,8))
+		glass(spr_hannam+10, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_hannam, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_HANNAM_SNOW_SKIP}))
+		regular(spr_hannam+4, xyz(0,16,3), dxdydz(16,0,8))
+		glass(spr_hannam+8, xyoff(0,0))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_hannam+2, xyz(0,-16,16), dxdydz(16,16,4))
+		regular(spr_hannam+6, xyz(0,-16,3), dxdydz(16,1,8))
+		glass(spr_hannam+10, xyoff(0,0))
+		regular(spr_hannam, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam+4, xyz(0,16,3), dxdydz(16,0,8))
+		glass(spr_hannam+8, xyoff(0,0))
+	})
+)
+
+layout(HANNAM_PSD,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_A, PLT_TYPE_HIGH)
+		regular(spr_hannam+2, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_HANNAM_SNOW_SKIP}))
+		regular(spr_hannam+6, xyz(0,0,3), dxdydz(16,1,8))
+		glass(spr_hannam+10, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_B, PLT_TYPE_HIGH)
+		regular(spr_hannam, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_HANNAM_SNOW_SKIP}))
+		regular(spr_hannam+4, xyz(0,16,3), dxdydz(16,0,8))
+		glass(spr_hannam+8, xyoff(0,0))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_B, PLT_TYPE_HIGH)
+		regular(spr_hannam+2, xyz(0,-16,16), dxdydz(16,16,4))
+		regular(spr_hannam+6, xyz(0,-16,3), dxdydz(16,1,8))
+		glass(spr_hannam+10, xyoff(0,0))
+		regular(spr_hannam, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_hannam+4, xyz(0,16,3), dxdydz(16,0,8))
+		glass(spr_hannam+8, xyoff(0,0))
+	})
+)
+
+layout(HANNAM_UNDERPASS_HP_A,
+	xtile({
+		spritelayout_ground()
+		spritelayout_platform(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass+2, xyz(0,0,3), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_platform(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass+2, xyz(4,0,3), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground_snow()
+		spritelayout_platform(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass+2, xyz(0,0,3), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground_snow()
+		spritelayout_platform(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass+2, xyz(4,0,3), dxdydz(12,6,8))
+	})
+)
+	
+layout(HANNAM_UNDERPASS_HP_B,
+	xtile({
+		spritelayout_ground()
+		spritelayout_platform(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass, xyz(0,10,16), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_platform(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass, xyz(4,10,16), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground_snow()
+		spritelayout_platform(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass, xyz(0,10,16), dxdydz(12,6,8))
+	})
+	
+	xtile({
+		spritelayout_ground_snow()
+		spritelayout_platform(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_FALSE)
+		regular(spr_hannam_underpass, xyz(4,10,16), dxdydz(12,6,8))
+	})
+)
+
+
+// switches
+def(54, sw_hannam_register) setregisters(REGISTER_HANNAM_SNOW_SKIP, sub(sw_terrain_snow), ref(sw_set_registers))
+
+def(49, sw_hannam_sprtype) spritetype(
+	ref(sprset_concrete_foundation) if(2)
+	ref(sw_hannam_register) else
+)
+
+def(48, sw_hannam_psd_sprtype) spritetype(
+	ref(sprset_concrete_foundation) if(2)
+	ref(sw_set_reg_psd) else
+)
+
+def(51, sw_hannam_underpass_sprtype) spritetype(
+	ref(sprset_hannam_foundation) if(2)
+	ref(sw_set_registers) else
+)
+
+def(47, sw_hannam_tiletype) test_num(
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(52, sw_hannam_underpass_layout_sub1) subroutine(sw_terrain_snow,
+	cbr(0) if(0)
+	cbr(4) else
+)
+
+def(53, sw_hannam_underpass_layout_sub2) subroutine(sw_terrain_snow,
+	cbr(2) if(0)
+	cbr(6) else
+)
+
+def(50, sw_hannam_underpass_layout) plt_pos(
+	ref(sw_hannam_underpass_layout_sub2) if(0)
+	ref(sw_hannam_underpass_layout_sub1) else
+)
+
+def(40, sw_hannam_layout) plt_num(
+	self(
+		cbr(2) if(1)
+		cbr(0) else
+	)
+)
+
+def(41, sw_hannam_cb) callback(
+	ref(sw_hannam_layout) if(CB_LAYOUT)
+	ref(sw_hannam_sprtype) else
+)
+
+def(42, sw_hannam_cb_purchase) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(43, sw_hannam_psd_cb) callback(
+	ref(sw_hannam_layout) if(CB_LAYOUT)
+	ref(sw_hannam_tiletype) if(CB_TILETYPE)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_hannam_psd_sprtype) else
+)
+
+def(44, sw_hannam_psd_cb_purchase) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_set_reg_psd_purchase) else
+)
+
+def(45, sw_hannam_underpass_cb) callback(
+	ref(sw_hannam_underpass_layout) if(CB_LAYOUT)
+	ref(sw_hannam_underpass_sprtype) else
+)
+
+def(46, sw_hannam_underpass_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(HANNAM, link(ref(sw_hannam_cb_purchase), MENU) default(ref(sw_hannam_cb)))
+makestation(HANNAM_PSD, link(ref(sw_hannam_psd_cb_purchase), MENU) default(ref(sw_hannam_psd_cb)))
+makestation(HANNAM_UNDERPASS_HP_A, link(ref(sw_hannam_underpass_cb_purchase), MENU) default(ref(sw_hannam_underpass_cb)))
+makestation(HANNAM_UNDERPASS_HP_B, link(ref(sw_hannam_underpass_cb_purchase), MENU) default(ref(sw_hannam_underpass_cb)))

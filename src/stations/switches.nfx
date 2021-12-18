@@ -488,7 +488,7 @@ def(234, sw_psd_end_pA_opposite_sub) tinfo_grfid(pos(1, -1),
 
 // parallel, slope check
 def(232, sw_psd_end_pA_opposite_slope) calculate({0xF1 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
-	ref(sw_psd_end_pA_opposite_sub) if(0)
+	ref(sw_psd_end_pA_opposite_sub) if(1)
 	cbr(0) else
 )
 
@@ -635,7 +635,7 @@ def(234, sw_psd_end_pB_opposite_sub) tinfo_grfid(pos(1, 1),
 
 // parallel, slope check
 def(232, sw_psd_end_pB_opposite_slope) calculate({0x11 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
-	ref(sw_psd_end_pB_opposite_sub) if(0)
+	ref(sw_psd_end_pB_opposite_sub) if(1)
 	cbr(0) else
 )
 

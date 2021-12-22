@@ -1,5 +1,4 @@
 divert(-1)
-syscmd(del m4_sprite)
 define(_sprite, defn({sprite}))
 define({sprite}, {_sprite($@) ifelse($#,2,{syscmd(echo {define({$1},}$1{)} >>m4_sprite)})})
 define(_defsnd, defn({defsnd}))

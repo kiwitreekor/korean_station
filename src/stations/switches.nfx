@@ -436,7 +436,7 @@ def(232, sw_psd_start_pA_opposite) tinfo_statid(pos(-1, -1), shiftmask(11, 0x1),
 )
 
 def(234, sw_psd_start_pA_special_part2) tinfo_statid(pos(-1, 0), shiftmask(12,0x3),
-	cbr(1) if(1)
+	cbr(1) if(0)
 	cbr(0) else
 )
 
@@ -498,7 +498,7 @@ def(233, sw_psd_end_pA_opposite) tinfo_statid(pos(1, -1), shiftmask(11, 0x1),
 )
 
 def(234, sw_psd_end_pA_special_part2) tinfo_statid(pos(1, 0), shiftmask(12,0x3),
-	cbr(2) if(1)
+	cbr(2) if(0)
 	cbr(0) else
 )
 
@@ -583,7 +583,7 @@ def(231, sw_psd_start_pB_opposite) tinfo_statid(pos(-1, 1), shiftmask(11, 0x1),
 )
 
 def(232, sw_psd_start_pB_special_part2) tinfo_statid(pos(-1, 0), shiftmask(12,0x3),
-	cbr(1) if(0)
+	cbr(1) if(1)
 	cbr(0) else
 )
 
@@ -645,7 +645,7 @@ def(233, sw_psd_end_pB_opposite) tinfo_statid(pos(1, 1), shiftmask(11, 0x1),
 )
 
 def(234, sw_psd_end_pB_special_part2) tinfo_statid(pos(1, 0), shiftmask(12,0x3),
-	cbr(2) if(0)
+	cbr(2) if(1)
 	cbr(0) else
 )
 

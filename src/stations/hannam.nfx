@@ -169,6 +169,8 @@ layout(HANNAM_UNDERPASS_HP_B,
 // switches
 def(54, sw_hannam_register) setregisters(REGISTER_HANNAM_SNOW_SKIP, sub(sw_terrain_snow), ref(sw_set_registers))
 
+def(55, sw_hannam_psd_register) setregisters(REGISTER_HANNAM_SNOW_SKIP, sub(sw_terrain_snow), ref(sw_set_reg_psd))
+
 def(49, sw_hannam_sprtype) spritetype(
 	ref(sprset_concrete_foundation) if(2)
 	ref(sw_hannam_register) else
@@ -176,7 +178,7 @@ def(49, sw_hannam_sprtype) spritetype(
 
 def(48, sw_hannam_psd_sprtype) spritetype(
 	ref(sprset_concrete_foundation) if(2)
-	ref(sw_set_reg_psd) else
+	ref(sw_hannam_psd_register) else
 )
 
 def(51, sw_hannam_underpass_sprtype) spritetype(
@@ -223,7 +225,6 @@ def(42, sw_hannam_cb_purchase) callback(
 
 def(43, sw_hannam_psd_cb) callback(
 	ref(sw_hannam_layout) if(CB_LAYOUT)
-	ref(sw_hannam_tiletype) if(CB_TILETYPE)
 	ref(sw_psd_animctrl) if(CB_ACONTROL)
 	ref(sw_psd_animframe) if(CB_AFRAME)
 	ref(sw_hannam_psd_sprtype) else
@@ -231,6 +232,7 @@ def(43, sw_hannam_psd_cb) callback(
 
 def(44, sw_hannam_psd_cb_purchase) callback(
 	cbr(4) if(CB_LAYOUT)
+	ref(sw_hannam_tiletype) if(CB_TILETYPE)
 	ref(sw_set_reg_psd_purchase) else
 )
 

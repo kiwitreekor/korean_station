@@ -562,5 +562,8 @@ ifelse(file_index, 1, {
 	defstationname(HANNAM_PSD, {"한남역 + PSD"})
 	defstationname(HANNAM_UNDERPASS_HP_A, {"한남역 지하도 (고상홈 A)"})
 	defstationname(HANNAM_UNDERPASS_HP_B, {"한남역 지하도 (고상홈 B)"})
+	
+	defstationname(SINDAEBANG, {"신대방역"})
+	defstationname(SINDAEBANG_PSD, {"신대방역 + PSD"})
 })
 divert

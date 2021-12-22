@@ -229,7 +229,7 @@ def(41, sw_sindaebang_cb) callback(
 )
 
 def(42, sw_sindaebang_cb_purchase) callback(
-	cbr(0) if(CB_LAYOUT)
+	cbr(2) if(CB_LAYOUT)
 	ref(sw_set_registers) else
 )
 
@@ -241,7 +241,7 @@ def(51, sw_sindaebang_psd_cb) callback(
 )
 
 def(52, sw_sindaebang_psd_cb_purchase) callback(
-	cbr(0) if(CB_LAYOUT)
+	cbr(2) if(CB_LAYOUT)
 	ref(sw_sindaebang_tiletype) if(CB_TILETYPE)
 	ref(sw_set_reg_psd_purchase) else
 )

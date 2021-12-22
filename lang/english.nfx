@@ -560,5 +560,13 @@ ifelse(file_index, 1, {
 	defstationname(JIJE_PART4_LP_B, {"Pyeongtaek Jije Stn. pt.4 + Low Platform B"})
 	defstationname(JIJE_PART4_TRACK, {"Pyeongtaek Jije Stn. pt.4"})
 	defstationname(JIJE_PART5, {"Pyeongtaek Jije Stn. pt.5"})
+	
+	defstationname(HANNAM, {"Hannam Stn."})
+	defstationname(HANNAM_PSD, {"Hannam Stn. + PSD"})
+	defstationname(HANNAM_UNDERPASS_HP_A, {"Hannam Stn. Underpass (Platform A)"})
+	defstationname(HANNAM_UNDERPASS_HP_B, {"Hannam Stn. Underpass (Platform B)"})
+	
+	defstationname(SINDAEBANG, {"Sindaebang Stn."})
+	defstationname(SINDAEBANG_PSD, {"Sindaebang Stn. + PSD"})
 })
 divert

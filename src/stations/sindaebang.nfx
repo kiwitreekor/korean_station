@@ -1,0 +1,250 @@
+// Sindaebang Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+include(src/includes/templates.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+setpath(images)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+// sprites
+spriteblock(
+	tmpl_foundation_set(sindaebang.png, 330, 10)
+)
+def(80, sprset_sindaebang_foundation_nw) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(sindaebang.png, 330, 80)
+)
+def(81, sprset_sindaebang_end_foundation_nw) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(sindaebang.png, 330, 150)
+)
+def(82, sprset_sindaebang_foundation_ne) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(sindaebang.png, 330, 220)
+)
+def(83, sprset_sindaebang_end_foundation_ne) spriteset(little(0), lots(0))
+
+
+definestation(SINDAEBANG, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	setcargotriggers({PASS})
+	include_widths({2})
+	exclude_lengths({1})
+)
+
+definestation(SINDAEBANG_PSD, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	flags({FOUNDATIONS})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_widths({2})
+	exclude_lengths({1})
+)
+
+// layouts
+layout(SINDAEBANG,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang+6, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+8, xyz(16,0,0), dxdydz(0,6,16))
+		regular(spr_sindaebang+10, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+2, xyz(16,10,0), dxdydz(0,6,16))
+		regular(spr_sindaebang+4, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang+16, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+18, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang+12, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+14, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang+24, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+26, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_sindaebang+20, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+22, xyz(0,0,16), dxdydz(16,16,4))
+	})
+)
+
+layout(SINDAEBANG_PSD,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_A, PLT_TYPE_HIGH)
+		regular(spr_sindaebang+6, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+8, xyz(16,0,0), dxdydz(0,6,16))
+		regular(spr_sindaebang+10, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_B, PLT_TYPE_HIGH)
+		regular(spr_sindaebang, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+2, xyz(16,10,0), dxdydz(0,6,16))
+		regular(spr_sindaebang+4, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_A, PLT_TYPE_HIGH)
+		regular(spr_sindaebang+16, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+18, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_B, PLT_TYPE_HIGH)
+		regular(spr_sindaebang+12, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+14, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_A, PLT_TYPE_HIGH)
+		regular(spr_sindaebang+24, xyz(0,0,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+26, xyz(0,0,16), dxdydz(16,16,4))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		spritelayout_psd(PLT_TYPE_B, PLT_TYPE_HIGH)
+		regular(spr_sindaebang+20, xyz(0,16,0), dxdydz(16,0,16))
+		regular(spr_sindaebang+22, xyz(0,0,16), dxdydz(16,16,4))
+	})
+)
+
+// switches
+def(49, sw_sindaebang_tiletype) test_num(
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(48, sw_sindaebang_sprtype_sub1) foundation_tiletype(
+	ref(sprset_sindaebang_end_foundation_ne) if(8, 10)
+	ref(sprset_sindaebang_foundation_ne) if(0, 2, 4, 6)
+	ref(sprset_sindaebang_end_foundation_nw) if(9, 11)
+	ref(sprset_sindaebang_foundation_nw) else
+)
+
+def(47, sw_sindaebang_sprtype) spritetype(
+	ref(sw_sindaebang_sprtype_sub1) if(2)
+	ref(sw_set_registers) else
+)
+
+def(50, sw_sindaebang_psd_sprtype) spritetype(
+	ref(sw_sindaebang_sprtype_sub1) if(2)
+	ref(sw_set_reg_psd) else
+)
+
+def(46, sw_sindaebang_layout_back) plt_num(
+	self(
+		cbr(10) if(1)
+		cbr(8) else
+	)
+)
+
+def(45, sw_sindaebang_layout_middle) plt_num(
+	self(
+		cbr(6) if(1)
+		cbr(4) else
+	)
+)
+
+def(43, sw_sindaebang_layout_front) plt_num(
+	self(
+		cbr(2) if(1)
+		cbr(0) else
+	)
+)
+
+def(44, sw_sindaebang_layout_sub1) plt_pos(
+	self(
+		ref(sw_sindaebang_layout_back) if(0)
+		ref(sw_sindaebang_layout_middle) else
+	)
+)
+
+def(40, sw_sindaebang_layout) plt_posrev(
+	self(
+		ref(sw_sindaebang_layout_front) if(0)
+		ref(sw_sindaebang_layout_sub1) else
+	)
+)
+
+def(41, sw_sindaebang_cb) callback(
+	ref(sw_sindaebang_layout) if(CB_LAYOUT)
+	ref(sw_sindaebang_sprtype) else
+)
+
+def(42, sw_sindaebang_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(51, sw_sindaebang_psd_cb) callback(
+	ref(sw_sindaebang_layout) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_sindaebang_psd_sprtype) else
+)
+
+def(52, sw_sindaebang_psd_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_sindaebang_tiletype) if(CB_TILETYPE)
+	ref(sw_set_reg_psd_purchase) else
+)
+
+makestation(SINDAEBANG, link(ref(sw_sindaebang_cb_purchase), MENU) default(ref(sw_sindaebang_cb)))
+makestation(SINDAEBANG_PSD, link(ref(sw_sindaebang_psd_cb_purchase), MENU) default(ref(sw_sindaebang_psd_cb)))

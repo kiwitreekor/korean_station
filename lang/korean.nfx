@@ -565,5 +565,10 @@ ifelse(file_index, 1, {
 	
 	defstationname(SINDAEBANG, {"신대방역"})
 	defstationname(SINDAEBANG_PSD, {"신대방역 + PSD"})
+	
+	defstationname(JUNGNANG_PART1, {"중랑역 pt.1"})
+	defstationname(JUNGNANG_PART2, {"중랑역 pt.2"})
+	defstationname(JUNGNANG_PART1_PSD, {"중랑역 pt.1 + PSD"})
+	defstationname(JUNGNANG_PART2_PSD, {"중랑역 pt.2 + PSD"})
 })
 divert

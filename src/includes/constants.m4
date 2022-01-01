@@ -721,6 +721,6 @@ define(GRFID_KWS_PART2, 4B 57 00 02)
 define(GRF_VERSION, 720)
 define(GRF_MIN_VERSION, 640)
 
-define(GRF_STABLE, 0)
+define(GRF_STABLE, 1)
 
-define(STR_GRF_VERSION, {"v1.2-dev"})
+define(STR_GRF_VERSION, {"v1.2"})

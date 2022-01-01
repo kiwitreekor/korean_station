@@ -1,0 +1,277 @@
+// Jungnang Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+include(src/includes/templates.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/roofs.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+setpath(images)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+// sprites
+spriteblock(
+	tmpl_foundation_set(jungnang.png, 10, 250)
+)
+def(80, sprset_jungnang_foundation) spriteset(little(0), lots(0))
+
+spriteblock(
+	tmpl_foundation_set(jungnang.png, 10, 170)
+)
+def(81, sprset_jungnang_entrance_foundation) spriteset(little(0), lots(0))
+
+
+definestation(JUNGNANG_PART1, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	setcargotriggers({PASS})
+	include_widths({2,4})
+)
+
+definestation(JUNGNANG_PART2, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	flags({FOUNDATIONS})
+	setcargotriggers({PASS})
+	include_widths({2,4})
+)
+
+definestation(JUNGNANG_PART1_PSD, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	flags({FOUNDATIONS})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_widths({2,4})
+)
+
+definestation(JUNGNANG_PART2_PSD, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	flags({FOUNDATIONS})
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	setcargotriggers({PASS})
+	anim_triggers({ARRIVE, LEAVE})
+	include_widths({2,4})
+)
+
+
+// layouts
+
+layout(JUNGNANG_PART1,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+6, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+20, xyz(0,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+8, xyz(0,0,3), dxdydz(0,16,8))
+		regular(spr_jungnang+20, xyz(16,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		regular(spr_jungnang+12, xyz(-4,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+4, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+16, xyz(16,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		regular(spr_jungnang+10, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+2, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+14, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+32, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+40, xyz(-4,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+20, xyz(0,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+8, xyz(0,0,3), dxdydz(0,16,8))
+		regular(spr_jungnang+44, xyz(16,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+20, xyz(16,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+38, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+30, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+42, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+32, xyz(0,-16,16), dxdydz(16,16,4))
+		regular(spr_jungnang+38, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+30, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+42, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+)
+
+layout(JUNGNANG_PART2,
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+28, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+20, xyz(0,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+8, xyz(0,0,3), dxdydz(0,16,8))
+		regular(spr_jungnang+20, xyz(16,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		regular(spr_jungnang+12, xyz(-4,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+26, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+16, xyz(16,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		regular(spr_jungnang+10, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+24, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+14, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+22, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_A, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+36, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+40, xyz(-4,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+20, xyz(0,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+8, xyz(0,0,3), dxdydz(0,16,8))
+		regular(spr_jungnang+44, xyz(16,0,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+20, xyz(16,0,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+38, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+34, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+42, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+	
+	
+	xtile({
+		spritelayout_ground()
+		platform_base(PLT_TYPE_B, PLT_TYPE_HIGH, SHADOW_TRUE)
+		regular(spr_jungnang+36, xyz(0,-16,16), dxdydz(16,16,4))
+		regular(spr_jungnang+38, xyz(-4,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+18, xyz(0,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_BACK_SKIP}))
+		regular(spr_jungnang+34, xyz(0,0,16), dxdydz(16,16,4))
+		regular(spr_jungnang+42, xyz(16,10,16), dxdydz(4,6,2), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+		regular(spr_jungnang+18, xyz(16,10,0), dxdydz(0,6,16), aslflags({SKIP}), registers({REGISTER_JUNGNANG_FRONT_SKIP}))
+	})
+)
+
+// switches
+def(50, sw_reg_jungnang_front) plt_posrev(
+	cbr(1) if(0)
+	cbr(0) else
+)
+
+def(49, sw_reg_jungnang_back) plt_pos(
+	cbr(1) if(0)
+	cbr(0) else
+)
+
+def(44, sw_jungnang_register) setregisters(REGISTER_JUNGNANG_FRONT_SKIP, {sub(sw_reg_jungnang_front), sub(sw_reg_jungnang_back)}, ref(sw_set_registers))
+def(51, sw_jungnang_register_purchase) setregisters(REGISTER_JUNGNANG_FRONT_SKIP, {1, 1}, ref(sw_set_registers))
+
+def(43, sw_jungnang_psd_register) setregisters(REGISTER_JUNGNANG_FRONT_SKIP, {sub(sw_reg_jungnang_front), sub(sw_reg_jungnang_back)}, ref(sw_set_reg_psd))
+
+
+def(42, sw_jungnang_part1_sprtype) spritetype(
+	ref(sprset_jungnang_foundation) if(2)
+	ref(sw_jungnang_register) else
+)
+
+def(45, sw_jungnang_part2_sprtype) spritetype(
+	ref(sprset_jungnang_entrance_foundation) if(2)
+	ref(sw_jungnang_register) else
+)
+
+def(48, sw_jungnang_layout_4) plt_num(
+	self(
+		cbr(0) if(0)
+		cbr(2) if(1)
+		cbr(4) if(2)
+		cbr(6) else
+	)
+)
+
+def(47, sw_jungnang_layout_2) plt_num(
+	self(
+		cbr(8) if(0)
+		cbr(10) else
+	)
+)
+
+def(46, sw_jungnang_layout) plt_total(
+	self(
+		ref(sw_jungnang_layout_4) if(4)
+		ref(sw_jungnang_layout_2) else
+	)
+)
+
+def(40, sw_jungnang_part1_cb) callback(
+	ref(sw_jungnang_layout) if(CB_LAYOUT)
+	ref(sw_jungnang_part1_sprtype) else
+)
+
+def(52, sw_jungnang_part2_cb) callback(
+	ref(sw_jungnang_layout) if(CB_LAYOUT)
+	ref(sw_jungnang_part2_sprtype) else
+)
+
+def(41, sw_jungnang_cb_purchase) callback(
+	cbr(12) if(CB_LAYOUT)
+	ref(sw_jungnang_register_purchase) else
+)
+
+makestation(JUNGNANG_PART1, link(ref(sw_jungnang_cb_purchase), MENU) default(ref(sw_jungnang_part1_cb)))
+makestation(JUNGNANG_PART2, link(ref(sw_jungnang_cb_purchase), MENU) default(ref(sw_jungnang_part2_cb)))
+// makestation(JUNGNANG_PART1_PSD, link(ref(sw_jungnang_psd_cb_purchase), MENU) default(ref(sw_jungnang_part1_psd_cb)))
+// makestation(JUNGNANG_PART2_PSD, link(ref(sw_jungnang_psd_cb_purchase), MENU) default(ref(sw_jungnang_part2_psd_cb)))

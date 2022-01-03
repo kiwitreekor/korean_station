@@ -88,6 +88,10 @@ spriteblock(
 		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
 		sprite(roofs.png        8bpp  10  250 33 28 -32 -12 normal) // poles for roof B, platform B
 		sprite(roofs.png        8bpp  60  250 33 28   1 -12 normal)
+// roof purchase menu info
+		sprite(spr_roof_purchaseinfo,
+		       roofs.png        8bpp  10  650 37  8   0   6 normal)
+		sprite(roofs.png        8bpp  60  650 37  8   0   6 normal)
 // crossing
 		tmpl_high_platform_crossing(spr_platform_ch, platforms.png, 230, 260)
 		tmpl_low_platform_crossing(spr_platform_c, platforms.png, 10, 140)

@@ -147,7 +147,13 @@ def(235, sw_platformB_fence_register) tinfo_statid(pos(0, 1),
 	cbr(1) if(0xFFFF)
 	ref(sw_platformB_fence_register_sub) else
 )
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)
 def(233, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_ground_nontrack_register))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
+def(233, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_ground_nontrack_register))
+
 def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register))
 
 def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_ground_nontrack_register))

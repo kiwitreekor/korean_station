@@ -51,6 +51,12 @@ grfinit(GRFID_KWS_PART1,
 			setdefault(1)
 		)
 		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_FENCE,1)
+			setname(STR_PARAM_FENCE_NAME)
+			setdescription(STR_PARAM_FENCE_DESC)
+			setdefault(1)
+		)
+		grfsetting(
 			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_BRIDGE,1)
 			setname(STR_PARAM_BRIDGE_NAME)
 			setdescription(STR_PARAM_BRIDGE_DESC)

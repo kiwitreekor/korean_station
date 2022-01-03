@@ -632,7 +632,7 @@ spriteblock(
 		sprite(jungnang.png 8bpp  170 400 64 57 -31 -10 normal)
 		sprite(jungnang.png 8bpp  170 320 64 57 -31 -10 normal)
 		sprite(jungnang.png 8bpp  260 400 67 35 -31 -12 normal)
-		sprite(jungnang.png 8bpp  260 320 67 35 -33 -12 normal)
+		sprite(jungnang.png 8bpp  260 320 67 35 -34 -12 normal)
 		
 		sprite(jungnang.png 8bpp  350 400 14 11 -16 -12 normal)
 		sprite(jungnang.png 8bpp  350 320 14 11   4 -12 normal)

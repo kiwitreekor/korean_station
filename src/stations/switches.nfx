@@ -770,12 +770,48 @@ def(sw_psd_animctrl) anim_trigger(
 )
 
 
-def(230, sw_seoul_cars_cargo) cargowaiting(PASS,
-	cbr(16) if(17 .. 256)
-	cbr(8) if(257 .. 2048)
+def(233, sw_seoul_cars_x) plt_num(
+	cbr(3) if(2, 5, 9, 13)
+	cbr(1) if(1, 3, 6, 10)
+	cbr(2) if(0, 8, 11, 15)
 	cbr(0) else
 )
-def(231, sw_seoul_cars_random) random(ARRIVE, 16, cbr(0), cbr(2), cbr(4), cbr(6))
+
+def(234, sw_seoul_cars_y) plt_pos(
+	cbr(0) if(2, 5, 9, 13)
+	cbr(1) if(1, 3, 6, 10)
+	cbr(2) if(0, 8, 11, 15)
+	cbr(3) else
+)
+
+def(231, sw_seoul_cars_random) calculate({subroutine(sw_seoul_cars_x) + subroutine(sw_seoul_cars_y) MOD 4 * 2},
+	cbfail() else
+)
+
+def(234, sw_seoul_cars_cargo_16) subroutine(sw_seoul_cars_random,
+	cbr(8) if(0)
+	cbr(16) else
+)
+
+def(233, sw_seoul_cars_cargo_256) subroutine(sw_seoul_cars_random,
+	cbr(16) if(1)
+	cbr(0) if(2)
+	cbr(8) else
+)
+
+def(232, sw_seoul_cars_cargo_1024) subroutine(sw_seoul_cars_random,
+	cbr(8) if(2 .. 3)
+	cbr(0) else
+)
+
+def(230, sw_seoul_cars_cargo) cargowaiting(PASS,
+	cbr(16) if(0 .. 16)
+	ref(sw_seoul_cars_cargo_16) if(17 .. 256)
+	ref(sw_seoul_cars_cargo_256) if(256 .. 1024)
+	ref(sw_seoul_cars_cargo_1024) if(257 .. 4096)
+	cbr(0) else
+)
+
 def(232, sw_seoul_cars_offset) calculate({subroutine(sw_seoul_cars_random) + subroutine(sw_seoul_cars_cargo)},
 	cbfail() else
 )

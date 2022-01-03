@@ -21,6 +21,7 @@ definestation(X, "",
 	class(CLASS_BUFFERS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
 	setcargotriggers({PASS})
 )}, PLATFORM_BUFFER_START .. PLATFORM_BUFFER_END)
 

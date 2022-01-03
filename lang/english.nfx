@@ -5,7 +5,7 @@ define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
 define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
 
 defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 1"})
-defstr({STR_GRF_DESC}, {"copyright 2017 - 2021 " T_WHITE "kiwitree" 
+defstr({STR_GRF_DESC}, {"copyright 2017 - 2022 " T_WHITE "kiwitree" 
 	CRLF T_BLACK "Bug Report: " T_LBLUE STR_GRF_CONTACT 
 	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
 	CRLF CRLF T_BLACK "Special Thanks: " T_GREEN "Las, EightonEight"

@@ -67,11 +67,13 @@ define(LAYOUT_TEMPLATE_OVERPASS_STAIR_SINGLE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
 	})
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
 	})
 })
@@ -126,12 +128,14 @@ define(LAYOUT_TEMPLATE_PSD_OVERPASS_STAIR_SINGLE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_FRONT)
 	})
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_overpass_stair($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_STAIR_BACK)
 	})
@@ -199,7 +203,7 @@ def(47, sw_reg_overpass_stair_offset) calculate({subroutine(sw_terrain_snow) * 4
 
 def(48, sw_set_reg_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_registers))
 
-def(49, sw_set_reg_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers))
+def(49, sw_set_reg_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers_purchase))
 
 def(50, sw_overpass_stairs_platform_cb) callback(
 	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)

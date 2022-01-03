@@ -107,44 +107,52 @@ define(LAYOUT_TEMPLATE_BUFFER, {
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_buffer(0, 1)
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_buffer(1, 1)
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 0)
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 			spritelayout_platform_bufferA($1, $2, eval(tmp_roof != ROOF_TYPE_NONE), 1)
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_buffer(0, 1)
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
 		xtile({
 			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 			platform_base($1, $2, eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_buffer(1, 1)
 			spritelayout_roof(tmp_roof, $1, $2)
 		})
@@ -205,6 +213,7 @@ def(42, sw_buffer_offset) subroutine(sw_terrain_snow,
 )
 
 def(43, sw_set_reg_buffer) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_offset), sub(sw_buffer_end_offset)}, ref(sw_set_registers))
+def(42, sw_set_reg_buffer_purchase) setregisters(REGISTER_BUFFER_OFFSET, {sub(sw_buffer_offset), sub(sw_buffer_shadow_offset), sub(sw_buffer_end_offset)}, ref(sw_set_registers_purchase))
 
 def(44, sw_buffer_layout_sub2_4) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
 	cbr(0) if(BUFFER_PLATFORM_A_PART2)
@@ -248,6 +257,11 @@ def(45, sw_buffer_cb) callback(
 	ref(sw_set_reg_buffer) else
 )
 
+def(49, sw_buffer_cb_purchase) callback(
+	ref(sw_buffer_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_buffer_purchase) else
+)
+
 def(46, sw_buffer_track_layout) calculate({subroutine(sw_terrain_snow) * 4 + subroutine(sw_buffer_layout_sub1)},
 	cbfail() else
 )
@@ -257,10 +271,15 @@ def(47, sw_buffer_track_cb) callback(
 	ref(sw_set_reg_buffer) else
 )
 
-forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_HP_A .. BUFFER_HP_C_RF_B)
+def(48, sw_buffer_track_cb_purchase) callback(
+	ref(sw_buffer_track_layout) if(CB_LAYOUT)
+	ref(sw_set_reg_buffer_purchase) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_buffer_cb_purchase), MENU) default(ref(sw_buffer_cb)))}, BUFFER_HP_A .. BUFFER_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
-	forloop(X, {makestation(X, default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_LAP_C_RF_B)
+	forloop(X, {makestation(X, link(ref(sw_buffer_cb_purchase), MENU) default(ref(sw_buffer_cb)))}, BUFFER_LP_A .. BUFFER_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(BUFFER_TRACK, default(ref(sw_buffer_track_cb)))
+makestation(BUFFER_TRACK, link(ref(sw_buffer_track_cb_purchase), MENU) default(ref(sw_buffer_track_cb)))

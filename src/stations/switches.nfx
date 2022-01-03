@@ -130,7 +130,28 @@ def(231, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
 	cbr(0) else
 )
 def(232, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
-def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_ground_nontrack_register))
+
+def(235, sw_platformA_fence_register_sub) tinfo_statid(pos(0, -1), shiftmask(0, 0xC00),
+	cbr(0) if(0x400)
+	cbr(1) else
+)
+def(234, sw_platformA_fence_register) tinfo_statid(pos(0, -1),
+	cbr(1) if(0xFFFF)
+	ref(sw_platformA_fence_register_sub) else
+)
+def(236, sw_platformB_fence_register_sub) tinfo_statid(pos(0, 1), shiftmask(0, 0xC00),
+	cbr(0) if(0x400)
+	cbr(1) else
+)
+def(235, sw_platformB_fence_register) tinfo_statid(pos(0, 1),
+	cbr(1) if(0xFFFF)
+	ref(sw_platformB_fence_register_sub) else
+)
+def(233, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_ground_nontrack_register))
+def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register))
+
+def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_ground_nontrack_register))
+def(sw_set_registers_purchase) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register_purchase))
 
 def(sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
 	cbfail() else
@@ -138,7 +159,7 @@ def(sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
 
 def(sw_platform_cb) callback(
 	ref(sw_platform_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_registers_purchase) else
 )
 
 // slope detection
@@ -346,7 +367,7 @@ def(235, sw_modular_overpass_register_sub) subroutine(sw_terrain_snow,
 )
 def(sw_modular_overpass_register) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, sub(sw_modular_overpass_register_sub), ref(sw_modular_pole_register))
 
-def(sw_modular_overpass_purchase) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers))
+def(sw_modular_overpass_purchase) setregisters(REGISTER_MODULAR_OVERPASS_OFFSET, {0, 1, 1}, ref(sw_set_registers_purchase))
 
 // multi-platform calculation
 def(230, sw_modular_overpass_platformA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 2},

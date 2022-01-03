@@ -64,6 +64,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE, {
 		xtile({
 			tmp_ground
 			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X)
 			spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		})
@@ -117,6 +118,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_signB($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -182,6 +184,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_C_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_signC($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -246,6 +249,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_LED_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_led($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -299,6 +303,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_waitingroom($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -352,6 +357,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_underpass($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -403,6 +409,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_LIGHT_BASE, {
 	xtile({
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_light($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -643,6 +650,7 @@ def(52, sw_reg_signA_platformB_offset_y) calculate({subroutine(sw_check_stasignA
 )
 
 def(53, sw_set_reg_signA) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_platformA_offset_y), sub(sw_reg_signA_platformB_offset_y)}, ref(sw_set_registers))
+def(52, sw_set_reg_signA_purchase) setregisters(REGISTER_SIGN_A_OFFSET_Y, {sub(sw_reg_signA_platformA_offset_y), sub(sw_reg_signA_platformB_offset_y)}, ref(sw_set_registers_purchase))
 
 def(54, sw_check_stasign_pos_sub2) plt_posrev(
 	cbr(2) if(0)
@@ -685,7 +693,7 @@ def(61, sw_stasignA_cb) callback(
 
 def(62, sw_stasignA_cb_purchase) callback(
 	cbr(2) if(CB_LAYOUT)
-	ref(sw_set_reg_signA) else
+	ref(sw_set_reg_signA_purchase) else
 )
 // Platform + Sign A End
 

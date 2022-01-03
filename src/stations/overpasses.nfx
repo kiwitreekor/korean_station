@@ -38,6 +38,7 @@ define(LAYOUT_TEMPLATE_OVERPASS_SINGLE, {
 	xtile({
 		tmp_ground
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)})
+		ifelse($1, PLT_TYPE_NONE, {}, {spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))})
 		spritelayout_overpass($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_OVERPASS))
 	})
 	ifelse($1, PLT_TYPE_NONE, {}, {
@@ -45,6 +46,7 @@ define(LAYOUT_TEMPLATE_OVERPASS_SINGLE, {
 			xtile({
 				tmp_ground
 				platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+				spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 				spritelayout_overpass_guide($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X, eval(tmp_roof != ROOF_TYPE_NONE))
 				spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			})
@@ -102,7 +104,7 @@ copylayout(OVERPASS_TRACK, OVERPASS_TRACK_WAYP)
 // switches
 def(40, sw_overpass_platform_cb_purchase) callback(
 	cbr(0) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_registers_purchase) else
 )
 
 def(41, sw_overpass_platform_cb) callback(

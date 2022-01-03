@@ -281,6 +281,14 @@ spriteblock(
 		sprite(spr_underpass,
 		       platforms.png    8bpp 500  400 26 15 -20  -2 normal) // underpass
 		sprite(platforms.png    8bpp 540  400 26 15  -5  -4 normal)
+		sprite(spr_stopsign,
+		       platforms.png    8bpp 500  450  6  3   0   0 normal) // stop sign
+		sprite(platforms.png    8bpp 510  450  6  3   0   0 normal)
+		sprite(platforms.png    8bpp 520  450  3 10   0   0 normal)
+		sprite(platforms.png    8bpp 530  450  3 10   0   0 normal)
+		sprite(spr_fence,
+		       platforms.png    8bpp 500  470 32 20 -31  -4 normal) // fence
+		sprite(platforms.png    8bpp 540  470 32 20   1  -4 normal)
 // psd
 		tmpl_psd(spr_psd, platforms.png, 500, 900)
 		tmpl_psd(, platforms.png, 500, 980)

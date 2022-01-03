@@ -8,8 +8,11 @@ define(spritelayout_platformA, {notransparency(get_platform_sprite($1), xyz(0, 0
 define(spritelayout_platformB, {notransparency(get_platform_sprite($1)+2, xyz(0, 10, 0), dxdydz(16, 6, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
 define(spritelayout_platform_nontrack, {notransparency(get_platform_nontrack_sprite($1), xyz(0, 0, 0), dxdydz(16, 16, get_platform_height($1)), aslflags({OFFSET_SPRITE}), registers({ifelse($2, SHADOW_FALSE, REGISTER_PLATFORM_OFFSET, REGISTER_PLATFORM_SHADOW_OFFSET)}))})
 
-define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
-define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, $1), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, get_platform_height($1)), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, get_platform_height($1)), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
+
+define(spritelayout_fenceA, {regular(spr_fence, xyz(0, 0, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_A_FENCE_SKIP}))})
+define(spritelayout_fenceB, {regular(spr_fence, xyz(0, 16, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_B_FENCE_SKIP}))})
 
 define(spritelayout_platform, {
 	ifelse($1, PLT_TYPE_A, {
@@ -27,13 +30,25 @@ define(spritelayout_platform, {
 
 define(spritelayout_passenger, {
 	ifelse($1, PLT_TYPE_A, {
-		spritelayout_passengerA(get_platform_height($2))
+		spritelayout_passengerA($2)
 	}, $1, PLT_TYPE_B, {
-		spritelayout_passengerB(get_platform_height($2))
+		spritelayout_passengerB($2)
 	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_passengerA(get_platform_height($2)) spritelayout_passengerB(get_platform_height($3))
+		spritelayout_passengerA($2) spritelayout_passengerB($3)
 	}, {
-		spritelayout_passengerA(get_platform_height($2)) spritelayout_passengerB(get_platform_height($2))
+		spritelayout_passengerA($2) spritelayout_passengerB($2)
+	})
+})
+
+define(spritelayout_fence, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_fenceA($2)
+	}, $1, PLT_TYPE_B, {
+		spritelayout_fenceB($2)
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_fenceA($2) spritelayout_fenceB($3)
+	}, {
+		spritelayout_fenceA($2) spritelayout_fenceB($2)
 	})
 })
 
@@ -47,11 +62,13 @@ define(LAYOUT_TEMPLATE_PLATFORM_SINGLE, {
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
 	xtile({
 		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
 	ifelse(tmp_roof, ROOF_TYPE_NONE, {

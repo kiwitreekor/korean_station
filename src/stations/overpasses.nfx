@@ -39,7 +39,7 @@ define(LAYOUT_TEMPLATE_OVERPASS_SINGLE, {
 	xtile({
 		tmp_ground
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)})
-		ifelse($1, PLT_TYPE_NONE, {}, {spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))})
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_overpass($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), ROOF_TYPE_OVERPASS))
 	})
 	ifelse($1, PLT_TYPE_NONE, {}, {
@@ -132,10 +132,15 @@ def(43, sw_overpass_track_cb) callback(
 	ref(sw_set_registers) else
 )
 
+def(44, sw_overpass_track_cb_purchase) callback(
+	ref(sw_overpass_track_snow) if(CB_LAYOUT)
+	ref(sw_set_registers_purchase) else
+)
+
 forloop(X, {makestation(X, link(ref(sw_overpass_platform_cb_purchase), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_HP_A .. OVERPASS_HP_C_RF_B)
 
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	forloop(X, {makestation(X, link(ref(sw_overpass_platform_cb_purchase), MENU) default(ref(sw_overpass_platform_cb)))}, OVERPASS_LP_A .. OVERPASS_LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-forloop(X, {makestation(X, default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)
+forloop(X, {makestation(X, link(ref(sw_overpass_track_cb_purchase), MENU) default(ref(sw_overpass_track_cb)))}, OVERPASS_TRACK .. OVERPASS_TRACK_WAYP)

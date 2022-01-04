@@ -10,6 +10,6 @@ railtypetranslationtable(
 	{"NAAN"}, {"NAAE"}, {"NBAN"}, {"NBAE"}  // 27 ~ 30
 	{"SADN"}, {"SADE"}, {"SBCN"}, {"SBCE"}  // 31 ~ 34
 	{"SACE"}, {"SAEE"}, {"SBEE"}, {"SUBE"}  // 35 ~ 38
-	{"NABN"}, {"NABE"}, {"NUBE"}  // 39 ~ 41
+	{"NABN"}, {"NABE"}, {"NUBE"}            // 39 ~ 41
 )
 textmode_off()

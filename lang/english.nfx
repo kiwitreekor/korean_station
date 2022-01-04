@@ -33,7 +33,14 @@ defstr({STR_PARAM_SNOW_NAME}, {"Enable snow graphics"})
 defstr({STR_PARAM_SNOW_DESC, {"If you set this setting on}, platform above snowline will covered with snow. Disable if graphical gliches occur."})
 
 defstr({STR_PARAM_FENCE_NAME}, {"Enable fence graphics"})
-defstr({STR_PARAM_FENCE_DESC, {"If you set this setting on}, it will show fence graphics on the side of platforms."})
+defstr({STR_PARAM_FENCE_DESC, {"If you set this setting on}, it will show fence graphics on the both sides of station."})
+
+defstr({STR_PARAM_CATENARY_NAME}, {"Catenary graphics"})
+defstr({STR_PARAM_CATENARY_DESC}, {"None: Disable pylon graphics" CRLF "Type A: Korean style pylon graphic" CRLF "Type B: OpenTTD style pylon graphic"})
+
+defstr({STR_PARAM_CATENARY_NONE}, {"None"})
+defstr({STR_PARAM_CATENARY_TYPE_A}, {"Type A (Default)"})
+defstr({STR_PARAM_CATENARY_TYPE_B}, {"Type B"})
 
 defstr({STR_PARAM_BRIDGE_NAME}, {"Allow stations under bridges"})
 defstr({STR_PARAM_BRIDGE_DESC}, {"Allow stations to be built under bridges." CRLF CRLF T_RED "Caution! " T_WHITE "It works properly only on JGRPP v0.26.0 or later."})

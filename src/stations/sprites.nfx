@@ -315,6 +315,11 @@ spriteblock(
 		sprite(platforms.png    8bpp 560  610  2 25   0 -16 normal)
 		sprite(platforms.png    8bpp 570  580  2 11   0 -16 normal)
 		sprite(platforms.png    8bpp 570  610  2 11   0 -16 normal)
+		sprite(spr_catenary_single,
+		       platforms.png    8bpp 500  650  9 19  -6 -19 normal)
+		sprite(platforms.png    8bpp 520  650  9 19  -4 -19 normal)
+		sprite(platforms.png    8bpp 540  650  9 21  -6 -19 normal)
+		sprite(platforms.png    8bpp 560  650  9 21  -4 -19 normal)
 		
 		sprite(spr_track_fence,
 		       fence.png        8bpp  10   10 32 25 -34 -10 normal) // custom fence

@@ -30,8 +30,15 @@ defstr({STR_PARAM_SHADOW_DESC}, {"지붕 밑의 승강장을 어둡게 표시합
 defstr({STR_PARAM_SNOW_NAME}, {"눈 그래픽 사용"})
 defstr({STR_PARAM_SNOW_DESC}, {"설선 고도보다 위에 설치된 승강장에 눈이 쌓입니다. 그래픽 오류가 발생하는 경우 비활성화하세요."})
 
-defstr({STR_PARAM_FENCE_NAME}, {"승강장 양 끝에 철조망 그래픽 보이기"})
-defstr({STR_PARAM_FENCE_DESC}, {"상대식 승강장 양 끝에 철조망 그래픽을 표시합니다."})
+defstr({STR_PARAM_FENCE_NAME}, {"울타리 그래픽 보이기"})
+defstr({STR_PARAM_FENCE_DESC}, {"철도역의 가장자리에 철조망 그래픽을 표시합니다."})
+
+defstr({STR_PARAM_CATENARY_NAME}, {"전신주 그래픽"})
+defstr({STR_PARAM_CATENARY_DESC}, {"비활성화: 전신주 그래픽을 표시하지 않습니다." CRLF "타입 A: 한국 철도 스타일의 전신주" CRLF "타입 B: 일반적인 OpenTTD 스타일의 전신주"})
+
+defstr({STR_PARAM_CATENARY_NONE}, {"비활성화"})
+defstr({STR_PARAM_CATENARY_TYPE_A}, {"타입 A (기본값)"})
+defstr({STR_PARAM_CATENARY_TYPE_B}, {"타입 B"})
 
 defstr({STR_PARAM_BRIDGE_NAME}, {"다리 밑에 역을 건설할 수 있도록 허용"})
 defstr({STR_PARAM_BRIDGE_DESC}, {"일부 역 타일을 제외하고 역 위에 다리를 건설할 수 있도록 허용합니다." CRLF CRLF T_RED "주의! " T_WHITE "JGRPP v0.26.0 이후에서만 정상적으로 동작합니다."})

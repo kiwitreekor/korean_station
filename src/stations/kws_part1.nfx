@@ -16,7 +16,7 @@ grfinit(GRFID_KWS_PART1,
 	
 	grfparameter(
 		grfsetting(
-			settype(ENUM,PARAM_MODE,0,32)
+			settype(ENUM,PARAM_MODE,0,8)
 			setname(STR_PARAM_MODE_NAME)
 			setdescription(STR_PARAM_MODE_DESC)
 			setdefault(0)
@@ -55,6 +55,18 @@ grfinit(GRFID_KWS_PART1,
 			setname(STR_PARAM_FENCE_NAME)
 			setdescription(STR_PARAM_FENCE_DESC)
 			setdefault(1)
+		)
+		grfsetting(
+			settype(ENUM,PARAM_CATENARY,0,8)
+			setname(STR_PARAM_CATENARY_NAME)
+			setdescription(STR_PARAM_CATENARY_DESC)
+			setdefault(1)
+			setlimits(0,2)
+			setvalues(
+				menuvalue(0,STR_PARAM_CATENARY_NONE)
+				menuvalue(1,STR_PARAM_CATENARY_TYPE_A)
+				menuvalue(2,STR_PARAM_CATENARY_TYPE_B)
+			)
 		)
 		grfsetting(
 			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_BRIDGE,1)

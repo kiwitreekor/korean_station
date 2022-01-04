@@ -129,7 +129,7 @@ def(231, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
 	cbr(spr_ground_nontrack_snow - spr_ground_nontrack) if(1)
 	cbr(0) else
 )
-def(232, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
+def(250, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
 
 def(234, sw_catenary_offset_register_sub) calculate({plt_length() MOD 2},
 	cbr(8) if(0)
@@ -143,7 +143,25 @@ def(235, sw_catenary_skip_register_sub) tinfo_tracktype(
 	ref(sw_catenary_skip_register_sub2) if(RAILTYPE_CATENARY)
 	cbr(0) else
 )
-def(241, sw_catenary_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub)}, ref(sw_ground_nontrack_register))
+
+def(236, sw_catenary_single_A_skip) calculate({plt_pos() / 2 + plt_num() MOD 2},
+	ref(sw_catenary_skip_register_sub) if(1)
+	cbr(0) else
+)
+
+def(237, sw_catenary_single_B_skip) calculate({plt_pos() / 2 + plt_num() MOD 2},
+	ref(sw_catenary_skip_register_sub) if(0)
+	cbr(0) else
+)
+
+def(240, sw_catenary_single_register) setregisters(REGISTER_CATENARY_SINGLE_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_single_A_skip), sub(sw_catenary_single_B_skip)}, ref(sw_ground_nontrack_register))
+def(241, sw_catenary_double_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub)}, ref(sw_ground_nontrack_register))
+
+def(242, sw_catenary_register) getparameter(PARAM_CATENARY, shiftmask(0, 0xFF),
+	ref(sw_catenary_single_register) if(2)
+	ref(sw_catenary_double_register) if(1)
+	ref(sw_ground_nontrack_register) else
+)
 
 def(235, sw_platformA_fence_register_sub) tinfo_statid(pos(0, -1), shiftmask(0, 0xC00),
 	cbr(0) if(0x400)
@@ -164,7 +182,7 @@ def(240, sw_platformB_fence_register) tinfo_statid(pos(0, 1),
 
 skipif(1, GRFACTIVE, ++, GRFID_KOREAN_TRACKS)
 def(238, sw_track_fence_type) tinfo_tracktype(
-	cbr(0) if(0)
+	cbr(0xFF) if(RAILTYPE_FENCE_NONE) 
 	cbr(0) else
 )
 
@@ -210,14 +228,15 @@ def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {
 def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_track_fence_register))
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
-def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0, 0}, ref(sw_catenary_register))
+def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0}, ref(sw_catenary_register))
 def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_track_fence_register))
 
 def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register))
 
-def(235, sw_catenary_register_purchase) setregisters(REGISTER_CATENARY_SKIP, {0}, ref(sw_ground_nontrack_register))
+def(236, sw_catenary_single_register_purchase) setregisters(REGISTER_CATENARY_SINGLE_A_SKIP, {0, 0}, ref(sw_ground_nontrack_register))
+def(235, sw_catenary_register_purchase) setregisters(REGISTER_CATENARY_SKIP, {0}, ref(sw_catenary_single_register_purchase))
 def(234, sw_track_fence_register_purchase) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0}, ref(sw_catenary_register_purchase))
-def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_catenary_register_purchase))
+def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_track_fence_register_purchase))
 def(sw_set_registers_purchase) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register_purchase))
 
 def(sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},

@@ -4,22 +4,22 @@ define(spritelayout_platform_fenceA, {regular(spr_platform_fence, xyz(0, 0, get_
 define(spritelayout_platform_fenceB, {regular(spr_platform_fence, xyz(0, 16, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_B_FENCE_SKIP}))})
 
 define(spritelayout_track_fenceA, {
-	regular(spr_ttd_fence | 0x8000, xyz(0, 1, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP}), registers({REGISTER_TRACK_A_FENCE_SKIP}))
+	regular(spr_ttd_fence+0x8000, xyz(0, 1, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_FENCE_SKIP, REGISTER_NONE}))
 	compcol(spr_track_fence, xyz(0, 1, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_CUSTOM_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
 })
 
 define(spritelayout_track_fenceB, {
-	regular(spr_ttd_fence | 0x8000, xyz(0, 15, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP}), registers({REGISTER_TRACK_B_FENCE_SKIP}))
+	regular(spr_ttd_fence+0x8000, xyz(0, 15, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_B_FENCE_SKIP, REGISTER_NONE}))
 	compcol(spr_track_fence+2, xyz(0, 15, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_B_CUSTOM_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
 })
 
 define(spritelayout_catenary_pole, {
-	regular(get_catenary_pole_sprite($1)+8, xyz(8, 0, 10), dxdydz(1, 1, 6), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, REGISTER_CATENARY_OFFSET, REGISTER_NONE}))
+	regular(get_catenary_pole_sprite($1)+8, xyz(8, 0, 10), dxdydz(1, 1, 6), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_CATENARY_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_CATENARY_OFFSET})}))
 	regular(get_catenary_pole_sprite($2), xyz(8, 16, 10), dxdydz(1, 1, 6), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_CATENARY_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_CATENARY_OFFSET})}))
 })
 
 define(spritelayout_catenaryA, {
-	regular(spr_catenary+2, xyz(8, 0, 20), dxdydz(0, 16, 4), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, REGISTER_CATENARY_OFFSET, REGISTER_NONE}))
+	regular(spr_catenary+2, xyz(8, 0, 20), dxdydz(0, 16, 4), aslflags({SKIP, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, ifelse(_ORIENT, ORIENT_NE, {REGISTER_CATENARY_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_CATENARY_OFFSET})}))
 	spritelayout_catenary_pole($1, $2)
 })
 
@@ -28,7 +28,14 @@ define(spritelayout_catenaryB, {
 	spritelayout_catenary_pole($1, $2)
 })
 
-define(spritelayout_catenary, {
+define(spritelayout_catenary_single_A, {regular(spr_catenary_single+2, xyz(8, 10, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_SKIP}))})
+define(spritelayout_catenary_single_B, {regular(spr_catenary_single, xyz(8, 6, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_SKIP}))})
+define(spritelayout_catenary_single_C, {
+	regular(spr_catenary_single+2, xyz(8, 10, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_A_SKIP}))
+	regular(spr_catenary_single, xyz(8, 6, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_B_SKIP}))
+})
+
+define(spritelayout_catenary_double, {
 	ifelse($1, PLT_TYPE_A, {
 		spritelayout_catenaryA($2, PLT_TYPE_NONE)
 	}, $1, PLT_TYPE_B, {
@@ -38,6 +45,23 @@ define(spritelayout_catenary, {
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_catenaryA($2, $3)
 	})
+})
+
+define(spritelayout_catenary_single, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_catenary_single_A()
+	}, $1, PLT_TYPE_B, {
+		spritelayout_catenary_single_B()
+	}, $1, PLT_TYPE_C, {
+		spritelayout_catenary_single_C()
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_catenary_single_C()
+	})
+})
+
+define(spritelayout_catenary, {
+	spritelayout_catenary_double($@)
+	spritelayout_catenary_single($@)
 })
 
 define(spritelayout_fence, {

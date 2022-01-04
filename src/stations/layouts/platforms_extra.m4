@@ -70,7 +70,7 @@ define(spritelayout_catenary, {
 
 define(spritelayout_fence, {
 	ifelse($1, PLT_TYPE_A, {
-		spritelayout_platform_fenceA() spritelayout_track_fenceB($2)
+		spritelayout_platform_fenceA($2) spritelayout_track_fenceB()
 	}, $1, PLT_TYPE_B, {
 		spritelayout_track_fenceA() spritelayout_platform_fenceB($2)
 	}, $1, PLT_TYPE_C, {

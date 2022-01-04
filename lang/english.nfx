@@ -1,17 +1,15 @@
 divert(-1)
 setlangid(UK)
 
-define({STR_GRF_CONTACT}, {"kiwitreekor@gmail.com"})
-define({STR_GRF_LICENSE}, {"CC-BY-NC-SA 3.0"})
+defstr({STR_GRF_NAME}, {"Korean Station Set " STR_GRF_VERSION " Part 1"})
+defstr({STR_GRF_DESC}, {
+	T_WHITE "This NewGRF provides Korean style Stations." CRLF CRLF 
+	T_BLACK "Code:" CRLF T_LBLUE "  kiwitree" CRLF CRLF 
+	T_BLACK "Graphics:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF CRLF 
+	T_BLACK "copyright 2017 - 2022 " T_WHITE "kiwitree" 
+})
 
-defstr({STR_GRF_NAME}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 1"})
-defstr({STR_GRF_DESC}, {"copyright 2017 - 2022 " T_WHITE "kiwitree" 
-	CRLF T_BLACK "Bug Report: " T_LBLUE STR_GRF_CONTACT 
-	CRLF T_BLACK "License: " T_WHITE STR_GRF_LICENSE
-	CRLF CRLF T_BLACK "Special Thanks: " T_GREEN "Las, EightonEight, Gamunbi"
-	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "Warning! " T_WHITE "This is unstable version."}, "")})
-
-defstr({STR_GRF_NAME_PART2}, {"Kiwitree Korean Station Set " STR_GRF_VERSION " Part 2"})
+defstr({STR_GRF_NAME_PART2}, {"Korean Station Set " STR_GRF_VERSION " Part 2"})
 
 defstr({STR_PARAM_MODE_NAME}, {"Mode"})
 defstr({STR_PARAM_MODE_DESC}, {"Normal: Disable compatibility mode and enable all available station tiles." 

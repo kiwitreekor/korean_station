@@ -1,6 +1,6 @@
-# Kiwitree Korean Station Set
+# Korean Station Set
   
-**Kiwitree Korean Station Set** is a NewGRF that adds several korean style station pieces into OpenTTD.  
+**Korean Station Set** is a NewGRF that adds several korean style station pieces into OpenTTD.  
 You can download this via Online content in-game, or [Github release page](https://github.com/kiwitreekor/korean_station/releases).  
   
 ## How to build

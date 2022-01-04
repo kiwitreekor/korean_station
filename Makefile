@@ -1,4 +1,4 @@
-# 'kiwitree korean station set' makefile
+# 'Korean Station Set' makefile
 
 .PHONY = all bundle clean clean_m4_sprite
 

@@ -1,15 +1,16 @@
 divert(-1)
 setlangid(KR)
 
-defstr({STR_GRF_NAME}, {"키위트리 한국역 세트 " STR_GRF_VERSION " Part 1"})
-defstr({STR_GRF_DESC}, {"copyright 2017 - 2022 " T_WHITE "kiwitree" 
-	CRLF T_BLACK "버그 제보: " T_LBLUE STR_GRF_CONTACT 
-	CRLF T_BLACK "라이선스: " T_WHITE STR_GRF_LICENSE
-	CRLF CRLF T_BLACK "Special Thanks: " T_GREEN "Las, EightonEight, Gamunbi" T_WHITE
-	ifelse(GRF_STABLE, 0, {CRLF CRLF T_RED "주의! " T_WHITE "불안정 버전입니다."}, "")
+defstr({STR_GRF_NAME}, {"한국 철도역 세트 " STR_GRF_VERSION " Part 1"})
+defstr({STR_GRF_DESC}, {
+	T_WHITE "한국 철도 스타일의 역 건물을 제공합니다." CRLF CRLF 
+	T_BLACK "코드:" CRLF T_LBLUE "  kiwitree" CRLF CRLF 
+	T_BLACK "그래픽:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF CRLF 
+	T_BLACK "copyright 2017 - 2022 " T_WHITE "kiwitree" 
+	
 })
 
-defstr({STR_GRF_NAME_PART2}, {"키위트리 한국역 세트 " STR_GRF_VERSION " Part 2"})
+defstr({STR_GRF_NAME_PART2}, {"한국 철도역 세트 " STR_GRF_VERSION " Part 2"})
 
 defstr({STR_PARAM_MODE_NAME}, {"모드"})
 defstr({STR_PARAM_MODE_DESC}, {"일반: 모든 역 조각을 사용 가능하게 합니다." 

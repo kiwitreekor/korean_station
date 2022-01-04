@@ -143,13 +143,13 @@ def(235, sw_catenary_skip_register_sub) tinfo_tracktype(
 	ref(sw_catenary_skip_register_sub2) if(RAILTYPE_CATENARY)
 	cbr(0) else
 )
-def(237, sw_catenary_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub)}, ref(sw_ground_nontrack_register))
+def(241, sw_catenary_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub)}, ref(sw_ground_nontrack_register))
 
 def(235, sw_platformA_fence_register_sub) tinfo_statid(pos(0, -1), shiftmask(0, 0xC00),
 	cbr(0) if(0x400)
 	cbr(1) else
 )
-def(234, sw_platformA_fence_register) tinfo_statid(pos(0, -1),
+def(239, sw_platformA_fence_register) tinfo_statid(pos(0, -1),
 	cbr(1) if(0xFFFF)
 	ref(sw_platformA_fence_register_sub) else
 )
@@ -157,16 +157,61 @@ def(236, sw_platformB_fence_register_sub) tinfo_statid(pos(0, 1), shiftmask(0, 0
 	cbr(0) if(0x400)
 	cbr(1) else
 )
-def(235, sw_platformB_fence_register) tinfo_statid(pos(0, 1),
+def(240, sw_platformB_fence_register) tinfo_statid(pos(0, 1),
 	cbr(1) if(0xFFFF)
 	ref(sw_platformB_fence_register_sub) else
 )
 
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)
-def(233, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_catenary_register))
+skipif(1, GRFACTIVE, ++, GRFID_KOREAN_TRACKS)
+def(238, sw_track_fence_type) tinfo_tracktype(
+	cbr(0) if(0)
+	cbr(0) else
+)
 
-skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
-def(233, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_catenary_register))
+skipif(1, GRFACTIVE, --, GRFID_KOREAN_TRACKS)
+def(238, sw_track_fence_type) tinfo_tracktype(
+	cbr(0xFF) if(RAILTYPE_FENCE_NONE) 
+	cbr(1) if(RAILTYPE_FENCE_HSR) 
+	cbr(2) if(RAILTYPE_FENCE_MAIN) 
+	cbr(3) if(RAILTYPE_FENCE_URBAN) 
+	cbr(0) else
+)
+
+def(237, sw_track_custom_fence_offset) subroutine(sw_track_fence_type,
+	cbr(4) if(2)
+	cbr(8) if(3)
+	cbr(0) else
+)
+
+def(236, sw_trackA_custom_fence_skip) subroutine(sw_track_fence_type,
+	ref(sw_platformA_fence_register) if(1 .. 3)
+	cbr(0) else
+)
+
+def(235, sw_trackB_custom_fence_skip) subroutine(sw_track_fence_type,
+	ref(sw_platformB_fence_register) if(1 .. 3)
+	cbr(0) else
+)
+
+def(234, sw_trackA_fence_skip) subroutine(sw_track_fence_type,
+	ref(sw_platformA_fence_register) if(0)
+	cbr(0) else
+)
+
+def(233, sw_trackB_fence_skip) subroutine(sw_track_fence_type,
+	ref(sw_platformB_fence_register) if(0)
+	cbr(0) else
+)
+
+skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)
+def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {
+	sub(sw_trackA_fence_skip), sub(sw_trackB_fence_skip), sub(sw_trackA_custom_fence_skip), sub(sw_trackB_custom_fence_skip), sub(sw_track_custom_fence_offset)
+}, ref(sw_catenary_register))
+def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_track_fence_register))
+
+skipif(2, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
+def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0, 0}, ref(sw_catenary_register))
+def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_track_fence_register))
 
 def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register))
 

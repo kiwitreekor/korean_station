@@ -290,7 +290,7 @@ spriteblock(
 		sprite(platforms.png    8bpp 510  450  6  3   0   0 normal)
 		sprite(platforms.png    8bpp 520  450  3 10   0   0 normal)
 		sprite(platforms.png    8bpp 530  450  3 10   0   0 normal)
-		sprite(spr_fence,
+		sprite(spr_platform_fence,
 		       platforms.png    8bpp 500  470 32 20 -31  -4 normal) // fence
 		sprite(platforms.png    8bpp 540  470 32 20   1  -4 normal)
 		sprite(spr_catenary,
@@ -315,6 +315,20 @@ spriteblock(
 		sprite(platforms.png    8bpp 560  610  2 25   0 -16 normal)
 		sprite(platforms.png    8bpp 570  580  2 11   0 -16 normal)
 		sprite(platforms.png    8bpp 570  610  2 11   0 -16 normal)
+		
+		sprite(spr_track_fence,
+		       fence.png        8bpp  10   10 32 25 -34 -10 normal) // custom fence
+		sprite(fence.png        8bpp  50   10 32 25   3 -10 normal)
+		sprite(fence.png        8bpp  10   10 32 25 -30  -8 normal)
+		sprite(fence.png        8bpp  50   10 32 25  -2  -8 normal)
+		sprite(fence.png        8bpp  90   10 32 25 -34 -10 normal)
+		sprite(fence.png        8bpp 130   10 32 25   3 -10 normal)
+		sprite(fence.png        8bpp  90   10 32 25 -30  -8 normal)
+		sprite(fence.png        8bpp 130   10 32 25  -2  -8 normal)
+		sprite(fence.png        8bpp 170   10 32 25 -34 -10 normal)
+		sprite(fence.png        8bpp 210   10 32 25   3 -10 normal)
+		sprite(fence.png        8bpp 170   10 32 25 -30  -8 normal)
+		sprite(fence.png        8bpp 210   10 32 25  -2  -8 normal)
 // psd
 		tmpl_psd(spr_psd, platforms.png, 500, 900)
 		tmpl_psd(, platforms.png, 500, 980)

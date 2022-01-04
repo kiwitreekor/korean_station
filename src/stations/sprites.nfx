@@ -695,6 +695,89 @@ spriteblock(
 		sprite(jungnang.png 8bpp  420 320 18 11  -4 -13 normal)
 		sprite(jungnang.png 8bpp  460 400 17  9   5  -3 normal)
 		sprite(jungnang.png 8bpp  460 320 17  9 -20  -3 normal)
+
+// Cheongnyangni Station (old)
+		sprite(spr_cheongnyangni_old, 
+		       cheongnyangni_old.png 8bpp   10  10 62 50 -32 -20 normal)
+		sprite(cheongnyangni_old.png 8bpp   10  90 62 50 -28 -20 normal)
+		sprite(cheongnyangni_old.png 8bpp   90  10 64 61 -32 -31 normal)
+		sprite(cheongnyangni_old.png 8bpp   90  90 64 61 -30 -31 normal)
+		sprite(cheongnyangni_old.png 8bpp  170  10 63 63 -32 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp  170  90 63 63 -30 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp  250  10 64 65 -32 -35 normal)
+		sprite(cheongnyangni_old.png 8bpp  250  90 64 65 -30 -35 normal)
+		sprite(cheongnyangni_old.png 8bpp  330  10 64 42 -31 -11 normal)
+		sprite(cheongnyangni_old.png 8bpp  330  90 64 42 -31 -11 normal)
+		sprite(cheongnyangni_old.png 8bpp  410  10 65 41 -32 -10 normal)
+		sprite(cheongnyangni_old.png 8bpp  410  90 65 41 -31 -10 normal)
+		sprite(cheongnyangni_old.png 8bpp  490  10 66 45 -33 -14 normal)
+		sprite(cheongnyangni_old.png 8bpp  490  90 66 45 -31 -14 normal)
+		sprite(cheongnyangni_old.png 8bpp  570  10 64 44 -31 -13 normal)
+		sprite(cheongnyangni_old.png 8bpp  570  90 64 44 -31 -13 normal)
+		
+		sprite(spr_cheongnyangni_old_back, 
+		       cheongnyangni_old.png 8bpp   10 480 58 46 -27 -20 normal)
+		sprite(cheongnyangni_old.png 8bpp   10 560 58 46 -29 -20 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 480 64 63 -31 -29 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 560 64 63 -31 -29 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 480 63 65 -31 -31 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 560 63 65 -31 -31 normal)
+		sprite(cheongnyangni_old.png 8bpp  250 480 64 67 -31 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp  250 560 64 67 -31 -33 normal)
+		
+		sprite(spr_cheongnyangni_old_purchase,
+		       cheongnyangni_old.png 8bpp   10 300 64 64 -31 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 300 64 64 -31 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp  330 300 64 64 -31 -33 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 300 64 64 -31 -33 normal)
+		
+		sprite(spr_cheongnyangni_old_overpass,
+		       cheongnyangni_old.png 8bpp   10 380 64 56 -31 -17 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 380 64 56 -31 -17 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 380 64 56 -31 -17 normal)
+		sprite(cheongnyangni_old.png 8bpp  250 380 64 56 -31 -17 normal)
+		sprite(cheongnyangni_old.png 8bpp  330 380 64 80 -31 -37 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 380 64 80 -31 -37 normal)
+		sprite(cheongnyangni_old.png 8bpp  490 380 64 80 -31 -37 normal)
+		sprite(cheongnyangni_old.png 8bpp  570 380 64 80 -31 -37 normal)
+		
+		sprite(spr_cheongnyangni_old_ground,
+		       cheongnyangni_old.png 8bpp   10 170 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp   10 220 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 170 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp   90 220 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 170 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 220 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  250 170 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  250 220 64 31 -31   0 normal)
+		
+		sprite(spr_cheongnyangni_old_ground_back,
+		       cheongnyangni_old.png 8bpp  330 480 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  330 530 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 480 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 530 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  490 480 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  490 530 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  570 480 64 31 -31   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  570 530 64 31 -31   0 normal)
+
+		sprite(spr_cheongnyangni_old_pole,
+			   cheongnyangni_old.png 8bpp  330 190 32 26 -31 -11 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 190 32 26   1 -11 normal)
+		sprite(cheongnyangni_old.png 8bpp  330 230 32 28 -31 -13 normal)
+		sprite(cheongnyangni_old.png 8bpp  410 230 32 28   1 -13 normal)
+		sprite(cheongnyangni_old.png 8bpp  370 190 32 29 -31 -14 normal)
+		sprite(cheongnyangni_old.png 8bpp  450 190 32 29   1 -14 normal)
+		
+		sprite(spr_cheongnyangni_old_catenary,
+			   cheongnyangni_old.png 8bpp  330 170  8  8   3  -1 normal)
+		sprite(cheongnyangni_old.png 8bpp  350 170  8  8  -9  -1 normal)
+		sprite(cheongnyangni_old.png 8bpp  370 170  9  9  -1  -5 normal)
+		sprite(cheongnyangni_old.png 8bpp  390 170  9  9  -7  -5 normal)
+		
+		sprite(spr_cheongnyangni_old_snow,
+		       cheongnyangni_old.png 8bpp  170 300 64 31   0   0 normal)
+		sprite(cheongnyangni_old.png 8bpp  170 300 64 31   0   0 normal)
 	)
 )
 

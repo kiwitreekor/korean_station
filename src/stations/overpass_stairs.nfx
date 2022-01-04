@@ -171,6 +171,7 @@ def(41, sw_overpass_stair_back_part2) tinfo_statid(pos(1, 0), shiftmask(0, 0xFF)
 	cbr(2) if(PSD_MODULAR_START .. PSD_MODULAR_END)
 	cbr(2) if(JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
 	cbr(2) if(JIJE_PART4_HP_A .. JIJE_PART4_TRACK)
+	cbr(2) if(CHEONGNYANGNI_OLD_LOW_HP_A .. CHEONGNYANGNI_OLD_HIGH_TRACK)
 	cbr(0) else
 )
 

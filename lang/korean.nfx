@@ -4,8 +4,8 @@ setlangid(KR)
 defstr({STR_GRF_NAME}, {"한국 철도역 세트 " STR_GRF_VERSION " Part 1"})
 defstr({STR_GRF_DESC}, {
 	T_WHITE "한국 철도 스타일의 역 건물을 제공합니다." CRLF CRLF 
-	T_BLACK "코드:" CRLF T_LBLUE "  kiwitree" CRLF CRLF 
-	T_BLACK "그래픽:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF CRLF 
+	T_BLACK "코드:" CRLF T_LBLUE "  kiwitree" CRLF CRLF
+	T_BLACK "그래픽:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF "  초저항" CRLF CRLF 
 	T_BLACK "copyright 2017 - 2022 " T_WHITE "kiwitree" 
 	
 })
@@ -581,5 +581,23 @@ ifelse(file_index, 1, {
 	defstationname(JUNGNANG_PART2, {"중랑역 pt.2"})
 	defstationname(JUNGNANG_PART1_PSD, {"중랑역 pt.1 + PSD"})
 	defstationname(JUNGNANG_PART2_PSD, {"중랑역 pt.2 + PSD"})
+	
+	defstationname(CHEONGNYANGNI_OLD_FRONT, {"구 청량리역 (전면)"})
+	defstationname(CHEONGNYANGNI_OLD_BACK, {"구 청량리역 (후면)"})
+
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_A, {"구 청량리역 (저층) + 고상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_B, {"구 청량리역 (저층) + 고상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_C, {"구 청량리역 (저층) + 고상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_A, {"구 청량리역 (고층) + 고상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_B, {"구 청량리역 (고층) + 고상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_C, {"구 청량리역 (고층) + 고상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_A, {"구 청량리역 (저층) + 저상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_B, {"구 청량리역 (저층) + 저상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_C, {"구 청량리역 (저층) + 저상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_A, {"구 청량리역 (고층) + 저상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_B, {"구 청량리역 (고층) + 저상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"구 청량리역 (고층) + 저상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"구 청량리역 (저층)"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"구 청량리역 (고층)"})
 })
 divert

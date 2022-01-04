@@ -1,0 +1,328 @@
+// Cheongnyangni Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
+
+setfeature(_STATION)
+
+deflabel(LABEL_HIGHPLATFORM_MODE)
+
+define(REGISTER_CHEONGNYANGNI_OLD_SPRITE_OFFSET, 128)
+define(REGISTER_CHEONGNYANGNI_OLD_CATENARY_SKIP, 129)
+define(REGISTER_CHEONGNYANGNI_OLD_CATENARY_SPRITE_OFFSET, 130)
+define(REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP, 131)
+
+definestation(CHEONGNYANGNI_OLD_FRONT, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+	nontrack(TTD_ALLTILES)
+	include_widths({2})
+	include_lengths({4})
+)
+
+definestation(CHEONGNYANGNI_OLD_BACK, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+	nowires(TTD_ALLTILES)
+	nontrack(TTD_ALLTILES)
+	include_widths({2})
+	include_lengths({4})
+)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	setcargotriggers({PASS})
+)}, CHEONGNYANGNI_OLD_LOW_HP_A .. CHEONGNYANGNI_OLD_HIGH_TRACK)
+
+// layouts
+
+define(get_cheong_old_overpass_sprite, {ifelse($1, MODULAR_TYPE_LOW, spr_cheongnyangni_old_overpass, spr_cheongnyangni_old_overpass+4)})
+define(get_cheong_old_pole_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_cheongnyangni_old_pole, $1, PLT_TYPE_LOW, spr_cheongnyangni_old_pole+2, spr_cheongnyangni_old_pole+4)})
+
+define(spritelayout_cheong_old_overpass, {
+	regular(get_cheong_old_overpass_sprite($1), xyz(0, 0, 12), dxdydz(16, 16, 30), aslflags({OFFSET_SPRITE}), registers({REGISTER_CHEONGNYANGNI_OLD_SPRITE_OFFSET}))
+	regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+})
+define(spritelayout_cheong_old_overpass_pole, {regular(get_cheong_old_pole_sprite($1), xyz(0, eval($2*16), get_platform_height($1)), dxdydz(16, 0, eval(12 - get_platform_height($1))), aslflags({SKIP}), registers({REGISTER_MODULAR_POLE_SKIP + $2}))})
+
+define(spritelayout_cheong_old_overpass_catenaryA, {regular(spr_cheongnyangni_old_catenary, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_CATENARY_SKIP}))})
+define(spritelayout_cheong_old_overpass_catenaryB, {regular(spr_cheongnyangni_old_catenary+2, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_CATENARY_SKIP}))})
+define(spritelayout_cheong_old_overpass_catenaryC, {regular(spr_cheongnyangni_old_catenary, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_CHEONGNYANGNI_OLD_CATENARY_SKIP, REGISTER_CHEONGNYANGNI_OLD_CATENARY_SPRITE_OFFSET}))})
+
+define(cheong_old_overpass_pole, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_cheong_old_overpass_pole($2, 0)
+		spritelayout_cheong_old_overpass_pole(PLT_TYPE_NONE, 1)
+	}, $1, PLT_TYPE_B, {
+		spritelayout_cheong_old_overpass_pole(PLT_TYPE_NONE, 0)
+		spritelayout_cheong_old_overpass_pole($2, 1)
+	}, $1, PLT_TYPE_C, {
+		spritelayout_cheong_old_overpass_pole($2, 0)
+		spritelayout_cheong_old_overpass_pole($2, 1)
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_cheong_old_overpass_pole($2, 0)
+		spritelayout_cheong_old_overpass_pole($3, 1)
+	}, $1, PLT_TYPE_NONE, {
+		spritelayout_cheong_old_overpass_pole(PLT_TYPE_NONE, 0)
+		spritelayout_cheong_old_overpass_pole(PLT_TYPE_NONE, 1)
+	})
+})
+
+define(cheong_old_overpass_catenary, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_cheong_old_overpass_catenaryA()
+	}, $1, PLT_TYPE_B, {
+		spritelayout_cheong_old_overpass_catenaryB()
+	}, $1, PLT_TYPE_C, {
+		spritelayout_cheong_old_overpass_catenaryC()
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_cheong_old_overpass_catenaryC()
+	}, $1, PLT_TYPE_NONE, {
+		spritelayout_cheong_old_overpass_catenaryC()
+	})
+})
+
+layout(CHEONGNYANGNI_OLD_FRONT, 
+	xtile({
+		ground(spr_cheongnyangni_old_ground, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+2, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+4, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+6, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground+2, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+8, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground+4, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+10, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground+6, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+12, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old+14, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_purchase, xyz(0,0,0), dxdydz(16,16,40))
+	})
+)
+
+layout(CHEONGNYANGNI_OLD_BACK, 
+	xtile({
+		ground(spr_cheongnyangni_old_ground_back+2, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground_back+4, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground_back+6, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		ground(spr_cheongnyangni_old_ground_back, REVERSE, CUSTOM)
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_back, xyz(0,0,0), dxdydz(16,16,40))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_back+2, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_back+4, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_back+6, xyz(0,0,0), dxdydz(16,16,40))
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	})
+	
+	
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_purchase+2, xyz(0,0,0), dxdydz(16,16,40))
+	})
+)
+
+
+define(LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS_SINGLE, {
+	define({tmp_modular_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		spritelayout_ground()
+		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)})
+		cheong_old_overpass_pole($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		cheong_old_overpass_catenary($1)
+		spritelayout_cheong_old_overpass(tmp_modular_type)
+	})
+})
+
+define(LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS_SINGLE}, $@)})
+
+layout(CHEONGNYANGNI_OLD_LOW_HP_A, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_A, PLT_TYPE_HIGH, MODULAR_TYPE_LOW))
+layout(CHEONGNYANGNI_OLD_LOW_HP_B, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_B, PLT_TYPE_HIGH, MODULAR_TYPE_LOW))
+layout(CHEONGNYANGNI_OLD_LOW_HP_C, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_C, PLT_TYPE_HIGH, MODULAR_TYPE_LOW))
+
+layout(CHEONGNYANGNI_OLD_HIGH_HP_A, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_A, PLT_TYPE_HIGH, MODULAR_TYPE_HIGH))
+layout(CHEONGNYANGNI_OLD_HIGH_HP_B, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_B, PLT_TYPE_HIGH, MODULAR_TYPE_HIGH))
+layout(CHEONGNYANGNI_OLD_HIGH_HP_C, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_C, PLT_TYPE_HIGH, MODULAR_TYPE_HIGH))
+
+layout(CHEONGNYANGNI_OLD_LOW_LP_A, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_A, PLT_TYPE_LOW, MODULAR_TYPE_LOW))
+layout(CHEONGNYANGNI_OLD_LOW_LP_B, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_B, PLT_TYPE_LOW, MODULAR_TYPE_LOW))
+layout(CHEONGNYANGNI_OLD_LOW_LP_C, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_C, PLT_TYPE_LOW, MODULAR_TYPE_LOW))
+
+layout(CHEONGNYANGNI_OLD_HIGH_LP_A, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_A, PLT_TYPE_LOW, MODULAR_TYPE_HIGH))
+layout(CHEONGNYANGNI_OLD_HIGH_LP_B, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_B, PLT_TYPE_LOW, MODULAR_TYPE_HIGH))
+layout(CHEONGNYANGNI_OLD_HIGH_LP_C, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_C, PLT_TYPE_LOW, MODULAR_TYPE_HIGH))
+
+layout(CHEONGNYANGNI_OLD_LOW_TRACK, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_NONE, PLT_TYPE_NONE, MODULAR_TYPE_LOW))
+layout(CHEONGNYANGNI_OLD_HIGH_TRACK, LAYOUT_TEMPLATE_CHEONGNYANGNI_OLD_OVERPASS(PLT_TYPE_NONE, PLT_TYPE_NONE, MODULAR_TYPE_HIGH))
+
+// switches
+def(44, sw_random_x) plt_num(
+	cbr(1) if(1, 2, 3, 5, 6, 9, 10, 13)
+	cbr(0) else
+)
+
+def(45, sw_random_y) plt_pos(
+	cbr(1) if(0, 2, 5, 8, 9, 11, 13, 15)
+	cbr(0) else
+)
+
+def(46, sw_cheongnyangni_old_random) calculate({subroutine(sw_random_x) + subroutine(sw_random_y) MOD 2 * 2},
+	cbfail() else
+)
+
+def(48, sw_catenary_sprite_offset) calculate({plt_num() MOD 2},
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(49, sw_catenary_skip_register_sub) tinfo_tracktype(
+	cbr(1) if(RAILTYPE_CATENARY)
+	cbr(0) else
+)
+
+def(47, sw_catenary_register) getparameter(PARAM_CATENARY, shiftmask(0, 0xFF),
+	cbr(0) if(0)
+	ref(sw_catenary_skip_register_sub) else
+)
+
+def(41, sw_cheongnyangni_old_overpass_register) setregisters(REGISTER_CHEONGNYANGNI_OLD_SPRITE_OFFSET, {sub(sw_cheongnyangni_old_random), sub(sw_catenary_register), sub(sw_catenary_sprite_offset), sub(sw_terrain_snow)}, ref(sw_modular_overpass_register))
+def(44, sw_cheongnyangni_old_register) setregisters(REGISTER_CHEONGNYANGNI_OLD_SPRITE_OFFSET, {sub(sw_cheongnyangni_old_random), sub(sw_catenary_register), sub(sw_catenary_sprite_offset), sub(sw_terrain_snow)}, ref(sw_set_registers))
+
+def(40, sw_cheongnyangni_old_layout) plt_index(
+	self(
+		cbr(0) if(nibble(3,0))
+		cbr(2) if(nibble(2,0))
+		cbr(4) if(nibble(1,0))
+		cbr(6) if(nibble(0,0))
+		cbr(8) if(nibble(3,1))
+		cbr(10) if(nibble(2,1))
+		cbr(12) if(nibble(1,1))
+		cbr(14) else
+	)
+)
+
+def(43, sw_cheongnyangni_old_cb) callback(
+	ref(sw_cheongnyangni_old_layout) if(CB_LAYOUT)
+	ref(sw_cheongnyangni_old_register) else
+)
+
+def(45, sw_cheongnyangni_old_back_cb) callback(
+	ref(sw_cheongnyangni_old_layout) if(CB_LAYOUT)
+	ref(sw_cheongnyangni_old_register) else
+)
+
+def(44, sw_cheongnyangni_old_cb_purchase) callback(
+	cbr(16) if(CB_LAYOUT)
+	ref(sw_set_registers_purchase) else
+)
+
+makestation(CHEONGNYANGNI_OLD_FRONT, link(ref(sw_cheongnyangni_old_cb_purchase), MENU) default(ref(sw_cheongnyangni_old_cb)))
+makestation(CHEONGNYANGNI_OLD_BACK, link(ref(sw_cheongnyangni_old_cb_purchase), MENU) default(ref(sw_cheongnyangni_old_cb)))
+
+def(42, sw_cheongnyangni_old_overpass_cb) callback(
+	ref(sw_modular_overpass_multi_layout) if(CB_LAYOUT)
+	ref(sw_cheongnyangni_old_overpass_register) else
+)
+
+def(43, sw_cheongnyangni_old_overpass_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	ref(sw_modular_overpass_purchase) else
+)
+
+forloop(X, {makestation(X, link(ref(sw_cheongnyangni_old_overpass_cb_purchase), MENU) default(ref(sw_cheongnyangni_old_overpass_cb)))}, CHEONGNYANGNI_OLD_LOW_HP_A .. CHEONGNYANGNI_OLD_HIGH_HP_C)
+
+skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
+	forloop(X, {makestation(X, link(ref(sw_cheongnyangni_old_overpass_cb_purchase), MENU) default(ref(sw_cheongnyangni_old_overpass_cb)))}, CHEONGNYANGNI_OLD_LOW_LP_A .. CHEONGNYANGNI_OLD_HIGH_LP_C)
+placelabel(LABEL_HIGHPLATFORM_MODE)
+
+forloop(X, {makestation(X, link(ref(sw_cheongnyangni_old_overpass_cb_purchase), MENU) default(ref(sw_cheongnyangni_old_overpass_cb)))}, CHEONGNYANGNI_OLD_LOW_TRACK .. CHEONGNYANGNI_OLD_HIGH_TRACK)

@@ -44,6 +44,8 @@ define(spritelayout_catenary_double, {
 		spritelayout_catenaryA($2, $2)
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_catenaryA($2, $3)
+	}, {
+		spritelayout_catenaryA(PLT_TYPE_NONE, PLT_TYPE_NONE)
 	})
 })
 
@@ -56,6 +58,8 @@ define(spritelayout_catenary_single, {
 		spritelayout_catenary_single_C()
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_catenary_single_C()
+	}, {
+		spritelayout_catenary_single_C()
 	})
 })
 
@@ -66,12 +70,14 @@ define(spritelayout_catenary, {
 
 define(spritelayout_fence, {
 	ifelse($1, PLT_TYPE_A, {
-		spritelayout_platform_fenceA($2) spritelayout_track_fenceB($2)
+		spritelayout_platform_fenceA() spritelayout_track_fenceB($2)
 	}, $1, PLT_TYPE_B, {
-		spritelayout_track_fenceA($2) spritelayout_platform_fenceB($2)
+		spritelayout_track_fenceA() spritelayout_platform_fenceB($2)
+	}, $1, PLT_TYPE_C, {
+		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($2)
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($3)
 	}, {
-		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($2)
+		spritelayout_track_fenceA() spritelayout_track_fenceB()
 	})
 })

@@ -40,7 +40,7 @@ define(spritelayout_signA, {
 		ifelse(tmp_type, 0, {
 			regular(spr_signA, xyz(2, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
 		}, tmp_type, 1, {
-			regular(spr_signA+2, xyz(7, 0, get_platform_height($2)), dxdydz(3, 0, 8))
+			regular(spr_signA+2, xyz(7, 0, get_platform_height($2)), dxdydz(3, 2, 8))
 		}, tmp_type, 2, {
 			regular(spr_signA, xyz(14, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
 		})
@@ -66,6 +66,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE, {
 			tmp_ground
 			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+			spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X)
 			spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		})
@@ -120,6 +121,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_B_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_signB($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -186,6 +188,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_SIGN_C_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_signC($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -251,6 +254,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_LED_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_led($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -305,6 +309,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_WAITINGROOM_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_waitingroom($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -359,6 +364,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_UNDERPASS_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_underpass($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})
@@ -411,6 +417,7 @@ define(LAYOUT_TEMPLATE_FACILITIES_LIGHT_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_light($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})

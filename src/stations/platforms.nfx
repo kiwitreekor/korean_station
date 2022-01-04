@@ -29,7 +29,6 @@ definestation(X, "",
 definestation(VOID_TILE, "",
 	class(CLASS_PLATFORMS)
 	setcargotriggers({PASS})
-	pylons(TTD_ALLTILES)
 	callbacks({CB_LAYOUT})
 )
 
@@ -118,9 +117,13 @@ layout(LAP_NONTRACK_RF_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_NONTRACK, PLT_TYPE_L
 layout(VOID_TILE, 
 	xtile({
 		spritelayout_ground()
+		spritelayout_fence(PLT_TYPE_NONE)
+		spritelayout_catenary(PLT_TYPE_NONE)
 	})
 	xtile({
 		spritelayout_ground_snow()
+		spritelayout_fence(PLT_TYPE_NONE)
+		spritelayout_catenary(PLT_TYPE_NONE)
 	})
 )
 
@@ -176,6 +179,16 @@ def(44, sw_platform_plain_multi_cb) callback(
 	ref(sw_set_registers) else
 )
 
+def(45, sw_void_cb) callback(
+	ref(sw_platform_cb) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(46, sw_void_cb_purchase) callback(
+	ref(sw_platform_cb) if(CB_LAYOUT)
+	ref(sw_set_registers_purchase) else
+)
+
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_plain_multi_cb)))}, HP_A .. HP_C)
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, HP_A_RF_A .. HP_C_RF_B)
 
@@ -186,7 +199,7 @@ forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platfo
 forloop(X, {makestation(X, link(ref(sw_platform_cb), MENU) default(ref(sw_platform_multi_cb)))}, LAP_A_RF_A .. LAP_C_RF_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
 
-makestation(VOID_TILE, default(ref(sw_platform_cb)))
+makestation(VOID_TILE, link(ref(sw_void_cb_purchase), MENU) default(ref(sw_void_cb)))
 
 forloop(X, {makestation(X, link(ref(sw_set_registers_purchase), MENU) default(ref(sw_set_registers)))}, HP_NONTRACK .. HP_NONTRACK_RF_B)
 

@@ -28,6 +28,7 @@ define(LAYOUT_TEMPLATE_CROSSING_BASE, {
 	xtile({
 		tmp_ground
 		notransparency(spr_crossing, xyz(7, 0, 0), dxdydz(3, 16, 0))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 0, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
@@ -35,6 +36,7 @@ define(LAYOUT_TEMPLATE_CROSSING_BASE, {
 	xtile({
 		tmp_ground
 		notransparency(spr_crossing, xyz(13, 0, 0), dxdydz(3, 16, 0))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 1, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
@@ -42,6 +44,7 @@ define(LAYOUT_TEMPLATE_CROSSING_BASE, {
 	xtile({
 		tmp_ground
 		notransparency(spr_crossing, xyz(0, 0, 0), dxdydz(3, 16, 0))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_crossing($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 2, tmp_shadow)
 		spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))

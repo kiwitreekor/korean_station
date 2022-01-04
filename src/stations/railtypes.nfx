@@ -1,0 +1,15 @@
+textmode_on()
+railtypetranslationtable(
+	{"RAIL"}, {"ELRL"}, {"MONO"}, {"MGLV"}, // 0 ~ 3
+	{"KRNR"}, {"KLSE"}, {"KDS_"}, {"KDSU"}, // 4 ~ 7
+	{"KSSU"}, {"KHS_"}, {"KMTR"},           // 8 ~ 10
+	{"SAAN"}, {"SAAE"}, {"SAA3"}, {"SAAZ"}, // 11 ~ 14
+	{"SBAN"}, {"SBAE"}, {"SBA3"}, {"SBAZ"}, // 15 ~ 18
+	{"SCAN"}, {"SCAE"}, {"SCA3"}, {"SCAZ"}, // 19 ~ 22
+	{"SDAN"}, {"SDAE"}, {"SDA3"}, {"SDAZ"}, // 23 ~ 26
+	{"NAAN"}, {"NAAE"}, {"NBAN"}, {"NBAE"}  // 27 ~ 30
+	{"SADN"}, {"SADE"}, {"SBCN"}, {"SBCE"}  // 31 ~ 34
+	{"SACE"}, {"SAEE"}, {"SBEE"}, {"SUBE"}  // 35 ~ 38
+	{"NABN"}, {"NABE"}, {"NUBE"}  // 39 ~ 41
+)
+textmode_off()

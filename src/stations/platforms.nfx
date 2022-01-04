@@ -11,6 +11,7 @@ include(src/stations/switches.m4)
 include(src/stations/layouts/layouts.m4)
 include(src/stations/layouts/roofs.m4)
 include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/platforms_extra.m4)
 include(src/stations/layouts/facilities.m4)
 
 setfeature(_STATION)
@@ -41,6 +42,33 @@ definestation(X, "",
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
 )}, NONTRACK_START .. NONTRACK_END)
+
+// layouts
+define(LAYOUT_TEMPLATE_PLATFORM_SINGLE, {
+	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
+	xtile({
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+	xtile({
+		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+	ifelse(tmp_roof, ROOF_TYPE_NONE, {
+		xtile({
+			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
+			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
+		})
+	})
+})
+
+define(LAYOUT_TEMPLATE_PLATFORM, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_PLATFORM_SINGLE}, $@)})
 
 layout(HP_A, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_A, PLT_TYPE_HIGH))
 layout(HP_B, LAYOUT_TEMPLATE_PLATFORM(PLT_TYPE_B, PLT_TYPE_HIGH))
@@ -187,6 +215,7 @@ define(LAYOUT_TEMPLATE_PSD_BASE, {
 		tmp_ground
 		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_psd($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_roof)
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 	})

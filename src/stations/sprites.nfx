@@ -293,6 +293,28 @@ spriteblock(
 		sprite(spr_fence,
 		       platforms.png    8bpp 500  470 32 20 -31  -4 normal) // fence
 		sprite(platforms.png    8bpp 540  470 32 20   1  -4 normal)
+		sprite(spr_catenary,
+		       platforms.png    8bpp 500  520 30 19   2  -4 normal) // catenary
+		sprite(platforms.png    8bpp 540  550 30 19 -30  -4 normal)
+		sprite(platforms.png    8bpp 500  550 30 19   2  -4 normal)
+		sprite(platforms.png    8bpp 540  520 30 19 -30  -4 normal)
+		sprite(spr_catenary_pole,
+		       platforms.png    8bpp 500  580  2 26   0 -16 normal)
+		sprite(platforms.png    8bpp 500  610  2 26   0 -16 normal)
+		sprite(platforms.png    8bpp 510  580  2 23   0 -16 normal)
+		sprite(platforms.png    8bpp 510  610  2 23   0 -16 normal)
+		sprite(platforms.png    8bpp 520  580  2 25   0 -16 normal)
+		sprite(platforms.png    8bpp 520  610  2 25   0 -16 normal)
+		sprite(platforms.png    8bpp 530  580  2 11   0 -16 normal)
+		sprite(platforms.png    8bpp 530  610  2 11   0 -16 normal)
+		sprite(platforms.png    8bpp 540  580  2 26   0 -16 normal)
+		sprite(platforms.png    8bpp 540  610  2 26   0 -16 normal)
+		sprite(platforms.png    8bpp 550  580  2 23   0 -16 normal)
+		sprite(platforms.png    8bpp 550  610  2 23   0 -16 normal)
+		sprite(platforms.png    8bpp 560  580  2 25   0 -16 normal)
+		sprite(platforms.png    8bpp 560  610  2 25   0 -16 normal)
+		sprite(platforms.png    8bpp 570  580  2 11   0 -16 normal)
+		sprite(platforms.png    8bpp 570  610  2 11   0 -16 normal)
 // psd
 		tmpl_psd(spr_psd, platforms.png, 500, 900)
 		tmpl_psd(, platforms.png, 500, 980)

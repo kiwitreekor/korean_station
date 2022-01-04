@@ -11,8 +11,6 @@ define(spritelayout_platform_nontrack, {notransparency(get_platform_nontrack_spr
 define(spritelayout_passengerA, {regular(spr_passengers, xyz(0, 0, get_platform_height($1)), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
 define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, get_platform_height($1)), dxdydz(16, 6, 5), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_PASSENGER_SKIP, REGISTER_PASSENGER_OFFSET}))})
 
-define(spritelayout_fenceA, {regular(spr_fence, xyz(0, 0, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_A_FENCE_SKIP}))})
-define(spritelayout_fenceB, {regular(spr_fence, xyz(0, 16, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_B_FENCE_SKIP}))})
 
 define(spritelayout_platform, {
 	ifelse($1, PLT_TYPE_A, {
@@ -40,43 +38,9 @@ define(spritelayout_passenger, {
 	})
 })
 
-define(spritelayout_fence, {
-	ifelse($1, PLT_TYPE_A, {
-		spritelayout_fenceA($2)
-	}, $1, PLT_TYPE_B, {
-		spritelayout_fenceB($2)
-	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_fenceA($2) spritelayout_fenceB($3)
-	}, {
-		spritelayout_fenceA($2) spritelayout_fenceB($2)
-	})
-})
-
 define(platform_base, {
 	spritelayout_platform($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3, $4}, {$2, $3}))
 	spritelayout_passenger($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-})
-
-define(LAYOUT_TEMPLATE_PLATFORM_SINGLE, {
-	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
-	xtile({
-		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-	})
-	xtile({
-		ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground_snow()})
-		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-	})
-	ifelse(tmp_roof, ROOF_TYPE_NONE, {
-		xtile({
-			ifelse($1, PLT_TYPE_NONTRACK, {spritelayout_ground_nontrack()}, {spritelayout_ground()})
-			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)
-		})
-	})
 })
 
 define(LAYOUT_TEMPLATE_MULTI, {
@@ -92,5 +56,3 @@ define(LAYOUT_TEMPLATE_MULTI, {
 		$1(PLT_TYPE_MULTI, PLT_TYPE_LOW_ASPHALT, $3, tmp_roof)
 	})
 })
-
-define(LAYOUT_TEMPLATE_PLATFORM, {LAYOUT_TEMPLATE_MULTI({LAYOUT_TEMPLATE_PLATFORM_SINGLE}, $@)})

@@ -19,6 +19,8 @@ define(spr_ground_nontrack_concrete, 1420)
 define(spr_ground_nontrack_snow, 4550)
 define(spr_ground_road_concrete, 1313)
 
+define(spr_ttd_fence, 1301)
+
 define(PLATFORM_START, 0x00)
 define(HP_A, 0x00)
 define(HP_B, 0x01)
@@ -595,6 +597,8 @@ define(PSD_PLATFORM_C_PART2, {PSD_OVERPASS_HP_C, PSD_OVERPASS_HP_C_RF_A, PSD_OVE
 
 define(PSD_PLATFORM_SPECIAL_PART2, {HANNAM_PSD, SINDAEBANG_PSD, JUNGNANG_PART1_PSD, JUNGNANG_PART2_PSD})
 
+define(RAILTYPE_CATENARY, {1, 5, 7 .. 9, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 35 .. 38, 40 .. 41})
+
 define(OBJ_METRO_EXIT, 0x00)
 
 define(PARAM_MODE, 1)
@@ -677,6 +681,8 @@ define(REGISTER_JUNGNANG_FRONT_SKIP, 43)
 define(REGISTER_JUNGNANG_BACK_SKIP, 44)
 define(REGISTER_PLATFORM_A_FENCE_SKIP, 45)
 define(REGISTER_PLATFORM_B_FENCE_SKIP, 46)
+define(REGISTER_CATENARY_SKIP, 47)
+define(REGISTER_CATENARY_OFFSET, 48)
 
 define(REGISTER_OBJ_METRO_SNOW_SKIP, 1)
 define(REGISTER_OBJ_METRO_SNOW_OFFSET, 2)

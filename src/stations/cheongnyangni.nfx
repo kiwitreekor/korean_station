@@ -128,24 +128,28 @@ layout(CHEONGNYANGNI_OLD_FRONT,
 		ground(spr_cheongnyangni_old_ground+2, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+8, xyz(0,0,0), dxdydz(16,16,40))
+		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground+4, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+10, xyz(0,0,0), dxdydz(16,16,40))
+		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground+6, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+12, xyz(0,0,0), dxdydz(16,16,40))
+		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+14, xyz(0,0,0), dxdydz(16,16,40))
+		spritelayout_passengerB(0)
 	})
 	
 	
@@ -160,21 +164,25 @@ layout(CHEONGNYANGNI_OLD_BACK,
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+2, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+4, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+6, REVERSE, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
 		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		spritelayout_passengerA(0)
 	})
 	
 	xtile({

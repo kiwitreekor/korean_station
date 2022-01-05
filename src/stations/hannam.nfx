@@ -17,6 +17,8 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_HANNAM_SNOW_SKIP, 128)
+
 definestation(HANNAM, "",
 	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})

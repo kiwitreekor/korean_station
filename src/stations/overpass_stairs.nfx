@@ -18,6 +18,8 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_OVERPASS_STAIR_OFFSET, 39)
+
 forloop(X, {
 definestation(X, "",
 	class(CLASS_MODULAR)
@@ -43,21 +45,21 @@ define(get_overpass_stair_sprite, {ifelse($1, PLT_TYPE_HIGH, spr_overpass_stair,
 define(spritelayout_overpass_stair, {
 	define({tmp_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
 	ifelse($1, PLT_TYPE_A, {
-		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_B, {
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
-		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_C, {
-		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
-		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 13, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, $1, PLT_TYPE_MULTI, {
-		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($2, tmp_type), xyz(0, 0, get_platform_height($2)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
-		regular(get_overpass_stair_sprite($3, tmp_type), xyz(0, 13, get_platform_height($3)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFEST))
+		regular(get_overpass_stair_sprite($3, tmp_type), xyz(0, 13, get_platform_height($3)), dxdydz(16, 3, 16), aslflags({OFFSET_SPRITE}), registers(REGISTER_OVERPASS_STAIR_OFFSET))
 		spritelayout_roof_stair_overlay(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), tmp_type)
 	}, {})
 })
@@ -203,9 +205,9 @@ def(47, sw_reg_overpass_stair_offset) calculate({subroutine(sw_terrain_snow) * 4
 	cbfail() else
 )
 
-def(48, sw_set_reg_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_registers))
+def(48, sw_set_reg_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFSET, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_registers))
 
-def(49, sw_set_reg_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_registers_purchase))
+def(49, sw_set_reg_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFSET, {0}, ref(sw_set_registers_purchase))
 
 def(50, sw_overpass_stairs_platform_cb) callback(
 	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)
@@ -217,9 +219,9 @@ def(51, sw_overpass_stairs_platform_cb_purchase) callback(
 	ref(sw_set_reg_overpass_stair_purchase) else
 )
 
-def(52, sw_set_reg_psd_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_reg_psd))
+def(52, sw_set_reg_psd_overpass_stair) setregisters(REGISTER_OVERPASS_STAIR_OFFSET, {sub(sw_reg_overpass_stair_offset)}, ref(sw_set_reg_psd))
 
-def(53, sw_set_reg_psd_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFEST, {0}, ref(sw_set_reg_psd_purchase))
+def(53, sw_set_reg_psd_overpass_stair_purchase) setregisters(REGISTER_OVERPASS_STAIR_OFFSET, {0}, ref(sw_set_reg_psd_purchase))
 
 def(54, sw_psd_overpass_stairs_platform_cb) callback(
 	ref(sw_overpass_stair_multi_layout) if(CB_LAYOUT)

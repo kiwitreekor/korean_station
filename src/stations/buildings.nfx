@@ -17,6 +17,7 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_BUILDING_POS, 128)
 
 forloop(X, {
 definestation(X, "",

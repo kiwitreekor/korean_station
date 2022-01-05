@@ -17,6 +17,10 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_BUFFER_OFFSET, 128)
+define(REGISTER_BUFFER_SHADOW_OFFSET, 129)
+define(REGISTER_BUFFER_END_OFFSET, 130)
+
 forloop(X, {
 definestation(X, "",
 	class(CLASS_BUFFERS)

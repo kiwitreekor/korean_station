@@ -17,6 +17,11 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_METRO_EXIT_OFFSET, 128)
+define(REGISTER_METRO_TREE_OFFSET, 129)
+define(REGISTER_METRO_SNOW_SKIP, 130)
+define(REGISTER_METRO_SNOW_OFFSET, 131)
+
 forloop(X, {
 definestation(X, "",
 	class(CLASS_METRO)

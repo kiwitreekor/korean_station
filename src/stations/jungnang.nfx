@@ -19,6 +19,9 @@ setpath(images)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_JUNGNANG_FRONT_SKIP, 128)
+define(REGISTER_JUNGNANG_BACK_SKIP, 129)
+
 // sprites
 spriteblock(
 	tmpl_foundation_set(jungnang.png, 10, 250)

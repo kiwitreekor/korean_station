@@ -16,6 +16,8 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_JIJE_PART3_SKIP, 128)
+
 definestation(JIJE_PART1, "",
 	class(CLASS_BUILDINGS)
 	callbacks({CB_LAYOUT})

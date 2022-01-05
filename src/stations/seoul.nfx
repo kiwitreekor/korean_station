@@ -16,6 +16,7 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_SEOUL_OLD_SNOW_OFFSET, 128)
 
 // Seoul Stn. (old)
 definestation(SEOUL_STATION_OLD, "",

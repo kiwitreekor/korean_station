@@ -28,6 +28,11 @@ define(spritelayout_catenaryB, {
 	spritelayout_catenary_pole($1, $2)
 })
 
+define(spritelayout_catenaryC, {
+	regular(spr_catenary, xyz(8, 0, 20), dxdydz(0, 16, 4), aslflags({SKIP, OFFSET_SPRITE, OFFSET_XY}), registers({REGISTER_CATENARY_SKIP, REGISTER_CATENARY_SPRITE_OFFSET, ifelse(_ORIENT, ORIENT_NE, {REGISTER_CATENARY_OFFSET, REGISTER_NONE}, {REGISTER_NONE, REGISTER_CATENARY_OFFSET})}))
+	spritelayout_catenary_pole($1, $2)
+})
+
 define(spritelayout_catenary_single_A, {regular(spr_catenary_single+2, xyz(8, 10, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_SKIP}))})
 define(spritelayout_catenary_single_B, {regular(spr_catenary_single, xyz(8, 6, 0), dxdydz(1, 1, 10), aslflags({SKIP}), registers({REGISTER_CATENARY_SINGLE_SKIP}))})
 define(spritelayout_catenary_single_C, {
@@ -41,11 +46,11 @@ define(spritelayout_catenary_double, {
 	}, $1, PLT_TYPE_B, {
 		spritelayout_catenaryB(PLT_TYPE_NONE, $2)
 	}, $1, PLT_TYPE_C, {
-		spritelayout_catenaryA($2, $2)
+		spritelayout_catenaryC($2, $2)
 	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_catenaryA($2, $3)
+		spritelayout_catenaryC($2, $3)
 	}, {
-		spritelayout_catenaryA(PLT_TYPE_NONE, PLT_TYPE_NONE)
+		spritelayout_catenaryC(PLT_TYPE_NONE, PLT_TYPE_NONE)
 	})
 })
 

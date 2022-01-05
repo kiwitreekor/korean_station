@@ -154,8 +154,13 @@ def(237, sw_catenary_single_B_skip) calculate({plt_pos() / 2 + plt_num() MOD 2},
 	cbr(0) else
 )
 
+def(238, sw_catenary_sprite_offset) calculate({plt_pos() / 2 + plt_num() MOD 2},
+	cbr(2) if(1)
+	cbr(0) else
+)
+
 def(240, sw_catenary_single_register) setregisters(REGISTER_CATENARY_SINGLE_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_single_A_skip), sub(sw_catenary_single_B_skip)}, ref(sw_ground_nontrack_register))
-def(241, sw_catenary_double_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub)}, ref(sw_ground_nontrack_register))
+def(241, sw_catenary_double_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub), sub(sw_catenary_sprite_offset)}, ref(sw_ground_nontrack_register))
 
 def(242, sw_catenary_register) getparameter(PARAM_CATENARY, shiftmask(0, 0xFF),
 	ref(sw_catenary_single_register) if(2)

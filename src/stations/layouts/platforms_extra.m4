@@ -4,13 +4,11 @@ define(spritelayout_platform_fenceA, {regular(spr_platform_fence, xyz(0, 0, get_
 define(spritelayout_platform_fenceB, {regular(spr_platform_fence, xyz(0, 16, get_platform_height($1)), dxdydz(16, 1, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_B_FENCE_SKIP}))})
 
 define(spritelayout_track_fenceA, {
-	regular(spr_ttd_fence+0x8000, xyz(0, 1, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_FENCE_SKIP, REGISTER_NONE}))
-	compcol(spr_track_fence, xyz(0, 1, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_CUSTOM_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
+	compcol(spr_track_fence, xyz(0, 1, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
 })
 
 define(spritelayout_track_fenceB, {
-	regular(spr_ttd_fence+0x8000, xyz(0, 15, 0), dxdydz(16, 1, 6), TTD, aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_B_FENCE_SKIP, REGISTER_NONE}))
-	compcol(spr_track_fence+2, xyz(0, 15, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_B_CUSTOM_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
+	compcol(spr_track_fence+2, xyz(0, 15, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_B_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))
 })
 
 define(spritelayout_catenary_pole, {

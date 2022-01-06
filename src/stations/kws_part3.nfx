@@ -1,0 +1,41 @@
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+include(lang/english.nfx)
+include(lang/korean.nfx)
+
+setfeature(_STATION)
+
+textmode_on()
+grfinit(GRFID_KWS_PART3,
+	grfname(STR_GRF_NAME_PART3)
+	grfdescription(STR_GRF_DESC)
+	grfurl(ALL, {"https://github.com/kiwitreekor/korean_station/"})
+	grfversion(GRF_VERSION)
+	grfminversion(GRF_MIN_VERSION)
+
+	feature_test(
+		feature(STAT_BRIDGES)
+		feature_version(1)
+	)
+	feature_propertymapping(
+		mapping(STAT_BRIDGES, {bridge_height})
+		fallback(0)
+	)
+)
+
+textmode_off()
+
+getothergrfparameter(PARAM_FLAGS, GRFID_KWS_PART1, PARAM_FLAGS)
+getothergrfparameter(PARAM_MODE, GRFID_KWS_PART1, PARAM_MODE)
+getothergrfparameter(PARAM_ROOF_COLOUR, GRFID_KWS_PART1, PARAM_ROOF_COLOUR)
+getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART1, VERSION)
+getothergrfparameter(PARAM_SIGNAL_SIDE, GRFID_KWS_PART1, PARAM_SIGNAL_SIDE)
+getothergrfparameter(PARAM_CATENARY, GRFID_KWS_PART1, PARAM_CATENARY)
+
+skipif(1, GRFACTIVE, -, GRFID_KWS_PART1)
+skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
+error(FATAL, ALL, 05, "kws_part1.grf")
+
+skipif(1, GRFACTIVE, +, GRFID_KWS_PART2)
+error(FATAL, ALL, 05, "kws_part2.grf")

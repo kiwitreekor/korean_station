@@ -734,4 +734,24 @@ define(tmpl_signal_common, {
 })
 
 define(tmpl_signal_hsr, defn({tmpl_signal_slowapproach}))
+
+define(tmpl_track_fence, {
+		sprite(ifelse($1,,,{$1,})
+		       $2 8bpp eval($3)      eval($4) 32 25 -33 -10 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+40)   eval($4) 32 25   3 -10 normal)
+		sprite($2 8bpp eval($3)      eval($4) 32 25 -30  -8 normal)
+		sprite($2 8bpp eval($3+40)   eval($4) 32 25  -2  -8 normal)
+		sprite($2 8bpp eval($3+80)   eval($4) 32 25 -33 -10 normal)
+		sprite($2 8bpp eval($3+120)  eval($4) 32 25   3 -10 normal)
+		sprite($2 8bpp eval($3+80)   eval($4) 32 25 -30  -8 normal)
+		sprite($2 8bpp eval($3+120)  eval($4) 32 25  -2  -8 normal)
+		sprite($2 8bpp eval($3+160)  eval($4) 32 25 -33 -10 normal)
+		sprite($2 8bpp eval($3+200)  eval($4) 32 25   3 -10 normal)
+		sprite($2 8bpp eval($3+160)  eval($4) 32 25 -30  -8 normal)
+		sprite($2 8bpp eval($3+200)  eval($4) 32 25  -2  -8 normal)
+		sprite($2 8bpp eval($3+240)  eval($4) 33 25 -31  -9 normal)
+		sprite($2 8bpp eval($3+280)  eval($4) 33 25   0  -9 normal)
+		sprite($2 8bpp eval($3+240)  eval($4) 33 25 -31  -9 normal)
+		sprite($2 8bpp eval($3+280)  eval($4) 33 25   0  -9 normal)
+})
 divert

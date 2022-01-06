@@ -1,0 +1,21 @@
+divert(-1)
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+define({file_index}, 3)
+
+setfeature(_STATION)
+divert
+
+include(lang/english.nfx)
+include(lang/korean.nfx)
+
+
+// bridge_height
+property_mapping(STAT_BRIDGES, {bridge_height})
+
+deflabel(LABEL_ALLOW_BRIDGE)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), MAPPING, !=, STAT_BRIDGES)
+skipif(reflabel(LABEL_ALLOW_BRIDGE), getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_BRIDGE)
+
+placelabel(LABEL_ALLOW_BRIDGE)

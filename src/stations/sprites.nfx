@@ -30,6 +30,13 @@ spriteblock(
 		tmpl_high_platform_nontrack(spr_platform_snow_nontrack, platforms.png, 230, 780)
 		tmpl_low_platform_nontrack(spr_platform_l_snow_nontrack, platforms.png, 230, 820)
 		tmpl_low_platform_nontrack(spr_platform_la_snow_nontrack, platforms.png, 230, 860)
+// platform ends
+		tmpl_high_platform(spr_platform_start, platforms_end.png, 10, 10)
+		tmpl_low_platform(spr_platform_l_start, platforms_end.png, 10, 50)
+		tmpl_low_platform(spr_platform_la_start, platforms_end.png, 10, 90)
+		tmpl_high_platform(spr_platform_end, platforms_end.png, 10, 130)
+		tmpl_low_platform(spr_platform_l_end, platforms_end.png, 10, 170)
+		tmpl_low_platform(spr_platform_la_end, platforms_end.png, 10, 210)
 // passengers
 		sprite(spr_passengers, 
 			   platforms.png    8bpp 500  160 44 23 -31  -4 normal) // passenger 1, platform A
@@ -299,6 +306,11 @@ spriteblock(
 		sprite(spr_platform_fence,
 		       platforms.png    8bpp 500  470 32 20 -31  -4 normal) // fence
 		sprite(platforms.png    8bpp 540  470 32 20   1  -4 normal)
+		sprite(spr_platform_end_fence,
+		       platforms.png    8bpp 540  500 16 12 -15  -4 normal)
+		sprite(platforms.png    8bpp 560  500 16 12   1  -4 normal)
+		sprite(platforms.png    8bpp 500  500 12 10   1  -4 normal)
+		sprite(platforms.png    8bpp 520  500 12 10 -11  -4 normal)
 		sprite(spr_catenary,
 		       platforms.png    8bpp 500  520 30 19   2  -4 normal) // catenary
 		sprite(platforms.png    8bpp 540  550 30 19 -30  -4 normal)
@@ -327,19 +339,9 @@ spriteblock(
 		sprite(platforms.png    8bpp 540  650  9 21  -6 -19 normal)
 		sprite(platforms.png    8bpp 560  650  9 21  -4 -19 normal)
 		
-		sprite(spr_track_fence,
-		       fence.png        8bpp  10   10 32 25 -33 -10 normal) // custom fence
-		sprite(fence.png        8bpp  50   10 32 25   3 -10 normal)
-		sprite(fence.png        8bpp  10   10 32 25 -30  -8 normal)
-		sprite(fence.png        8bpp  50   10 32 25  -2  -8 normal)
-		sprite(fence.png        8bpp  90   10 32 25 -33 -10 normal)
-		sprite(fence.png        8bpp 130   10 32 25   3 -10 normal)
-		sprite(fence.png        8bpp  90   10 32 25 -30  -8 normal)
-		sprite(fence.png        8bpp 130   10 32 25  -2  -8 normal)
-		sprite(fence.png        8bpp 170   10 32 25 -33 -10 normal)
-		sprite(fence.png        8bpp 210   10 32 25   3 -10 normal)
-		sprite(fence.png        8bpp 170   10 32 25 -30  -8 normal)
-		sprite(fence.png        8bpp 210   10 32 25  -2  -8 normal)
+		tmpl_track_fence(spr_track_fence, fence.png, 10, 10) // custom fence
+		tmpl_track_fence(spr_track_fence_front, fence.png, 10, 50)
+		tmpl_track_fence(spr_track_fence_back, fence.png, 10, 90)
 // psd
 		tmpl_psd(spr_psd, platforms.png, 500, 900)
 		tmpl_psd(, platforms.png, 500, 980)

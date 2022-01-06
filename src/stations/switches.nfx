@@ -17,6 +17,8 @@ def(sw_terrain_snow) tinfo_terrain(
 	cbr(0) else
 )
 
+def(233, sw_set_reg_snow_skip) setregisters(REGISTER_SNOW_SKIP, {sub(sw_terrain_snow)}, ref(sprset_default))
+
 // sw_reg_roof_colour
 def(230) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0x1F + 0x307 - 1},
 	cbfail() else
@@ -27,7 +29,7 @@ def(231, sw_reg_roof_colour) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0x1F),
 	ref(230) else
 )
 
-def(232, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
+def(232, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sw_set_reg_snow_skip))
 
 def(230, sw_reg_overpass_guide) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
 	cbr(spr_overpass_guide_s - spr_overpass_guide) if(1)
@@ -220,45 +222,34 @@ def(238, sw_track_fence_type) tinfo_tracktype(
 def(237, sw_track_custom_fence_offset) subroutine(sw_track_fence_type,
 	cbr(4) if(2)
 	cbr(8) if(3)
-	cbr(0) else
-)
-
-def(236, sw_trackA_custom_fence_skip) subroutine(sw_track_fence_type,
-	ref(sw_platformA_fence_register) if(1 .. 3)
-	cbr(0) else
-)
-
-def(235, sw_trackB_custom_fence_skip) subroutine(sw_track_fence_type,
-	ref(sw_platformB_fence_register) if(1 .. 3)
+	cbr(12) if(0)
 	cbr(0) else
 )
 
 def(234, sw_trackA_fence_skip) subroutine(sw_track_fence_type,
-	ref(sw_platformA_fence_register) if(0)
-	cbr(0) else
+	cbr(0) if(0xFF)
+	ref(sw_platformA_fence_register) else
 )
 
 def(233, sw_trackB_fence_skip) subroutine(sw_track_fence_type,
-	ref(sw_platformB_fence_register) if(0)
-	cbr(0) else
+	cbr(0) if(0xFF)
+	ref(sw_platformB_fence_register) else
 )
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)
-def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {
-	sub(sw_trackA_fence_skip), sub(sw_trackB_fence_skip), sub(sw_trackA_custom_fence_skip), sub(sw_trackB_custom_fence_skip), sub(sw_track_custom_fence_offset)
-}, ref(sw_catenary_register))
-def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register)}, ref(sw_track_fence_register))
+def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {sub(sw_trackA_fence_skip), sub(sw_trackB_fence_skip), sub(sw_track_custom_fence_offset)}, ref(sw_catenary_register))
+def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {sub(sw_platformA_fence_register), sub(sw_platformB_fence_register), 1}, ref(sw_track_fence_register))
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
-def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0}, ref(sw_catenary_register))
-def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_track_fence_register))
+def(232, sw_track_fence_register) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0}, ref(sw_catenary_register))
+def(231, sw_platform_fence_register) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0, 0}, ref(sw_track_fence_register))
 
 def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register))
 
 def(236, sw_catenary_single_register_purchase) setregisters(REGISTER_CATENARY_SINGLE_A_SKIP, {0, 0}, ref(sw_ground_nontrack_register))
 def(235, sw_catenary_register_purchase) setregisters(REGISTER_CATENARY_SKIP, {0}, ref(sw_catenary_single_register_purchase))
-def(234, sw_track_fence_register_purchase) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0, 0, 0}, ref(sw_catenary_register_purchase))
-def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0}, ref(sw_track_fence_register_purchase))
+def(234, sw_track_fence_register_purchase) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0}, ref(sw_catenary_register_purchase))
+def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0, 0}, ref(sw_track_fence_register_purchase))
 def(sw_set_registers_purchase) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register_purchase))
 
 def(sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},
@@ -346,13 +337,24 @@ def(231, sw_platformA_check_opposite_part2) tinfo_statid(pos(0, 1), shiftmask(0,
 	cbr(0) else
 )
 
-def(232, sw_platformA_check_opposite_sub) tinfo_grfid(pos(0, 1),
-	ref(sw_platformA_check_opposite_part1) if(label(GRFID_KWS_PART1))
-	ref(sw_platformA_check_opposite_part2) if(label(GRFID_KWS_PART2))
+def(232, sw_platformA_check_opposite_part3) tinfo_statid(pos(0, 1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_A_PART3)
+	cbr(1) if(HIGH_PLATFORM_C_PART3)
+	cbr(2) if(LOW_PLATFORM_A_PART3)
+	cbr(2) if(LOW_PLATFORM_C_PART3)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_A_PART3)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART3)
 	cbr(0) else
 )
 
-def(233, sw_platformA_check_opposite_slope) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+def(233, sw_platformA_check_opposite_sub) tinfo_grfid(pos(0, 1),
+	ref(sw_platformA_check_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_platformA_check_opposite_part2) if(label(GRFID_KWS_PART2))
+	ref(sw_platformA_check_opposite_part3) if(label(GRFID_KWS_PART3))
+	cbr(0) else
+)
+
+def(234, sw_platformA_check_opposite_slope) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
 	ref(sw_platformA_check_opposite_sub) if(1)
 	cbr(0) else
 )
@@ -382,13 +384,24 @@ def(231, sw_platformB_check_opposite_part2) tinfo_statid(pos(0, -1), shiftmask(0
 	cbr(0) else
 )
 
-def(232, sw_platformB_check_opposite_sub) tinfo_grfid(pos(0, -1),
-	ref(sw_platformB_check_opposite_part1) if(label(GRFID_KWS_PART1))
-	ref(sw_platformB_check_opposite_part2) if(label(GRFID_KWS_PART2))
+def(232, sw_platformB_check_opposite_part3) tinfo_statid(pos(0, -1), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_B_PART3)
+	cbr(1) if(HIGH_PLATFORM_C_PART3)
+	cbr(2) if(LOW_PLATFORM_B_PART3)
+	cbr(2) if(LOW_PLATFORM_C_PART3)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_B_PART3)
+	cbr(3) if(LOW_ASPHALT_PLATFORM_C_PART3)
 	cbr(0) else
 )
 
-def(233, sw_platformB_check_opposite_slope) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
+def(233, sw_platformB_check_opposite_sub) tinfo_grfid(pos(0, -1),
+	ref(sw_platformB_check_opposite_part1) if(label(GRFID_KWS_PART1))
+	ref(sw_platformB_check_opposite_part2) if(label(GRFID_KWS_PART2))
+	ref(sw_platformB_check_opposite_part3) if(label(GRFID_KWS_PART3))
+	cbr(0) else
+)
+
+def(234, sw_platformB_check_opposite_slope) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_check_slope)},
 	ref(sw_platformB_check_opposite_sub) if(1)
 	cbr(0) else
 )
@@ -418,9 +431,20 @@ def(231, sw_platform_multi_check_part2) tinfo_statid(pos(0, 0), shiftmask(0, 0xF
 	cbr(0) else
 )
 
+def(231, sw_platform_multi_check_part3) tinfo_statid(pos(0, 0), shiftmask(0, 0xFF),
+	cbr(1) if(HIGH_PLATFORM_A_PART3)
+	cbr(2) if(HIGH_PLATFORM_B_PART3)
+	cbr(1) if(LOW_PLATFORM_A_PART3)
+	cbr(2) if(LOW_PLATFORM_B_PART3)
+	cbr(1) if(LOW_ASPHALT_PLATFORM_A_PART3)
+	cbr(2) if(LOW_ASPHALT_PLATFORM_B_PART3)
+	cbr(0) else
+)
+
 def(sw_platform_multi_check) tinfo_grfid(pos(0, 0),
 	ref(sw_platform_multi_check_part1) if(label(GRFID_KWS_PART1))
 	ref(sw_platform_multi_check_part2) if(label(GRFID_KWS_PART2))
+	ref(sw_platform_multi_check_part3) if(label(GRFID_KWS_PART3))
 	cbr(0) else
 )
 

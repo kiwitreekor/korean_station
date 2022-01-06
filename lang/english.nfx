@@ -10,6 +10,7 @@ defstr({STR_GRF_DESC}, {
 })
 
 defstr({STR_GRF_NAME_PART2}, {"Korean Station Set " STR_GRF_VERSION " Part 2"})
+defstr({STR_GRF_NAME_PART3}, {"Korean Station Set " STR_GRF_VERSION " Part 3"})
 
 defstr({STR_PARAM_MODE_NAME}, {"Mode"})
 defstr({STR_PARAM_MODE_DESC}, {"Normal: Disable compatibility mode and enable all available station tiles." 
@@ -599,5 +600,8 @@ ifelse(file_index, 1, {
 	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform C"})
 	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"Old Cheongnyangni Stn. (Low Overpass) "})
 	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"Old Cheongnyangni Stn. (High Overpass)"})
+}, file_index, 3, {
+	// kws_part3.grf
+	
 })
 divert

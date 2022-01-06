@@ -36,3 +36,6 @@ getothergrfparameter(PARAM_CATENARY, GRFID_KWS_PART1, PARAM_CATENARY)
 skipif(1, GRFACTIVE, -, GRFID_KWS_PART1)
 skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
 error(FATAL, ALL, 05, "kws_part1.grf")
+
+skipif(1, GRFACTIVE, -+, GRFID_KWS_PART3)
+error(FATAL, ALL, 04, "kws_part3.grf")

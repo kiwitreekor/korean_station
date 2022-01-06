@@ -132,4 +132,10 @@ skipif(1, GRFACTIVE, --, GRFID_KWS_PART2)
 skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
 error(FATAL, ALL, 04, "kws_part2.grf")
 
+getothergrfparameter(PARAM_VERSION, GRFID_KWS_PART3, VERSION)
+
+skipif(1, GRFACTIVE, --, GRFID_KWS_PART3)
+skipif(1, getowngrfparameter(PARAM_VERSION), ==, GRF_VERSION)
+error(FATAL, ALL, 04, "kws_part3.grf")
+
 deflabel(LABEL_HIGHPLATFORM_MODE)

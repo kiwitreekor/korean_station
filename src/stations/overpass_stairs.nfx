@@ -18,7 +18,7 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
-define(REGISTER_OVERPASS_STAIR_OFFSET, 39)
+define(REGISTER_OVERPASS_STAIR_OFFSET, 128)
 
 forloop(X, {
 definestation(X, "",

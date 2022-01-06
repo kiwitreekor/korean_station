@@ -341,6 +341,7 @@ define(LAYOUT_TEMPLATE_MODULAR_OVERPASS_SINGLE, {
 		spritelayout_ground()
 		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), SHADOW_TRUE)})
 		building_overpass_pole($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		building_overpass_catenary($1)
 		spritelayout_building_overpass(tmp_modular_type)
 	})
 })

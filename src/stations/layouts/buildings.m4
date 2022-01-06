@@ -8,6 +8,10 @@ define(spritelayout_building, {compcol(get_building_sprite($1), xyz(0, 0, 0), dx
 define(spritelayout_building_overpass, {compcol(get_building_overpass_sprite($1), xyz(0, 0, 12), dxdydz(16, 16, get_building_height($1)-12), aslflags({OFFSET_SPRITE}), registers({REGISTER_MODULAR_OVERPASS_OFFSET}))})
 define(spritelayout_building_pole, {regular(get_building_pole_sprite($1), xyz( 0, eval($2*16), get_platform_height($1)), dxdydz(16, 0, eval(12 - get_platform_height($1))), aslflags({SKIP}), registers({REGISTER_MODULAR_POLE_SKIP + $2}))})
 
+define(spritelayout_building_overpass_catenaryA, {regular(spr_building_catenary, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP}), registers({REGISTER_BUILDING_CATENARY_SKIP}))})
+define(spritelayout_building_overpass_catenaryB, {regular(spr_building_catenary+2, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP}), registers({REGISTER_BUILDING_CATENARY_SKIP}))})
+define(spritelayout_building_overpass_catenaryC, {regular(spr_building_catenary, xyz(16, 6, 10), dxdydz(0, 4, 2), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_BUILDING_CATENARY_SKIP, REGISTER_BUILDING_CATENARY_SPRITE_OFFSET}))})
+
 define(building_overpass_pole, {
 	ifelse($1, PLT_TYPE_A, {
 		spritelayout_building_pole($2, 0)
@@ -24,5 +28,19 @@ define(building_overpass_pole, {
 	}, $1, PLT_TYPE_NONE, {
 		spritelayout_building_pole(PLT_TYPE_NONE, 0)
 		spritelayout_building_pole(PLT_TYPE_NONE, 1)
+	})
+})
+
+define(building_overpass_catenary, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_building_overpass_catenaryA()
+	}, $1, PLT_TYPE_B, {
+		spritelayout_building_overpass_catenaryB()
+	}, $1, PLT_TYPE_C, {
+		spritelayout_building_overpass_catenaryC()
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_building_overpass_catenaryC()
+	}, $1, PLT_TYPE_NONE, {
+		spritelayout_building_overpass_catenaryC()
 	})
 })

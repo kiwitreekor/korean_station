@@ -148,6 +148,12 @@ spriteblock(
 		sprite(spr_building_high_full,
 			   buildings.png    8bpp 490   80 64 91 -31 -60 normal) // high building block
 		sprite(buildings.png    8bpp 570   80 64 91 -31 -60 normal)
+		
+		sprite(spr_building_catenary,
+			   buildings.png    8bpp  10  300  8  8   3  -1 normal)
+		sprite(buildings.png    8bpp  30  300  8  8  -9  -1 normal)
+		sprite(buildings.png    8bpp  50  300  9  9  -1  -5 normal)
+		sprite(buildings.png    8bpp  70  300  9  9  -7  -5 normal)
 // building, snow
 		sprite(spr_bdoverpass_low_snow,
 			   buildings.png    8bpp  10  610 64 47 -31 -16 normal) // low overpass
@@ -768,12 +774,6 @@ spriteblock(
 		sprite(cheongnyangni_old.png 8bpp  410 230 32 28   1 -13 normal)
 		sprite(cheongnyangni_old.png 8bpp  370 190 32 29 -31 -14 normal)
 		sprite(cheongnyangni_old.png 8bpp  450 190 32 29   1 -14 normal)
-		
-		sprite(spr_cheongnyangni_old_catenary,
-			   cheongnyangni_old.png 8bpp  330 170  8  8   3  -1 normal)
-		sprite(cheongnyangni_old.png 8bpp  350 170  8  8  -9  -1 normal)
-		sprite(cheongnyangni_old.png 8bpp  370 170  9  9  -1  -5 normal)
-		sprite(cheongnyangni_old.png 8bpp  390 170  9  9  -7  -5 normal)
 		
 		sprite(spr_cheongnyangni_old_snow,
 		       cheongnyangni_old.png 8bpp  170 300 64 31   0   0 normal)

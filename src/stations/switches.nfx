@@ -131,6 +131,23 @@ def(231, sw_ground_nontrack_register_sub) subroutine(sw_terrain_snow,
 )
 def(250, sw_ground_nontrack_register) setregisters(REGISTER_GROUND_NONTRACK_OFFSET, sub(sw_ground_nontrack_register_sub), ref(sw_set_reg_passenger))
 
+def(233, sw_building_catenary_sprite_offset) calculate({plt_num() MOD 2},
+	cbr(2) if(1)
+	cbr(0) else
+)
+
+def(232, sw_building_catenary_skip_register_sub) tinfo_tracktype(
+	cbr(1) if(RAILTYPE_CATENARY)
+	cbr(0) else
+)
+
+def(231, sw_building_catenary_skip_register) getparameter(PARAM_CATENARY, shiftmask(0, 0xFF),
+	cbr(0) if(0)
+	ref(sw_building_catenary_skip_register_sub) else
+)
+
+def(243, sw_building_catenary_register) setregisters(REGISTER_BUILDING_CATENARY_SKIP, {sub(sw_building_catenary_skip_register), sub(sw_building_catenary_sprite_offset)}, ref(sw_ground_nontrack_register))
+
 def(234, sw_catenary_offset_register_sub) calculate({plt_length() MOD 2},
 	cbr(8) if(0)
 	cbr(0) else
@@ -159,8 +176,8 @@ def(238, sw_catenary_sprite_offset) calculate({plt_pos() / 2 + plt_num() MOD 2},
 	cbr(0) else
 )
 
-def(240, sw_catenary_single_register) setregisters(REGISTER_CATENARY_SINGLE_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_single_A_skip), sub(sw_catenary_single_B_skip)}, ref(sw_ground_nontrack_register))
-def(241, sw_catenary_double_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub), sub(sw_catenary_sprite_offset)}, ref(sw_ground_nontrack_register))
+def(240, sw_catenary_single_register) setregisters(REGISTER_CATENARY_SINGLE_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_single_A_skip), sub(sw_catenary_single_B_skip)}, ref(sw_building_catenary_register))
+def(241, sw_catenary_double_register) setregisters(REGISTER_CATENARY_SKIP, {sub(sw_catenary_skip_register_sub), sub(sw_catenary_offset_register_sub), sub(sw_catenary_sprite_offset)}, ref(sw_building_catenary_register))
 
 def(242, sw_catenary_register) getparameter(PARAM_CATENARY, shiftmask(0, 0xFF),
 	ref(sw_catenary_single_register) if(2)

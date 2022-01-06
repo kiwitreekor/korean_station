@@ -16,6 +16,7 @@ define({defclassname}, {classnames($1, {_langid, UTF8 {$2}})})
 
 define(__signedbyte, {ifelse(eval($1<0),1,__byte(256 + $1),__byte($1))})
 pushdef({xyz}, {__signedbyte($1) __signedbyte($2) __signedbyte($3)})
+pushdef({xyoff}, {__signedbyte($1) __signedbyte($2) 80})
 
 define(foundation_tiletype, {85 18 00 FF FF __byte(__count)
 __postprocess(1,$1) define({__count},0) define({__wordflag},0)})

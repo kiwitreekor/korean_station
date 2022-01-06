@@ -99,55 +99,55 @@ define(cheong_old_overpass_catenary, {
 layout(CHEONGNYANGNI_OLD_FRONT, 
 	xtile({
 		ground(spr_cheongnyangni_old_ground, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old, xyz(0,0,0), dxdydz(16,16,40))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+2, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+4, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+6, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground+2, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+8, xyz(0,0,0), dxdydz(16,16,40))
 		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground+4, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+10, xyz(0,0,0), dxdydz(16,16,40))
 		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground+6, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+12, xyz(0,0,0), dxdydz(16,16,40))
 		spritelayout_passengerB(0)
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+14, xyz(0,0,0), dxdydz(16,16,40))
 		spritelayout_passengerB(0)
 	})
@@ -163,51 +163,51 @@ layout(CHEONGNYANGNI_OLD_FRONT,
 layout(CHEONGNYANGNI_OLD_BACK, 
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+2, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+4, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back+6, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		spritelayout_passengerA(0)
 	})
 	
 	xtile({
 		ground(spr_cheongnyangni_old_ground_back, REVERSE, CUSTOM)
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back, xyz(0,0,0), dxdydz(16,16,40))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+2, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+4, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
 		spritelayout_ground_nontrack_concrete()
-		regular(spr_cheongnyangni_old_snow, xyoff(225, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+6, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})

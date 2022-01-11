@@ -80,6 +80,8 @@ define(spritelayout_fence, {
 		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($2)
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($3)
+	}, $1, PLT_TYPE_NONTRACK, {
+		spritelayout_platform_fenceA($2) spritelayout_platform_fenceB($2)
 	}, {
 		spritelayout_track_fenceA() spritelayout_track_fenceB()
 	})

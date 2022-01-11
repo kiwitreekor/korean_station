@@ -1,3 +1,5 @@
+define(roof_snow_offset, eval(spr_roofA_snow - spr_roofA))
+
 define(get_roof_sprite, {
 	ifelse($1, ROOF_TYPE_NORMAL, {
 		ifelse($2, ROOF_TYPE_B, spr_roofB, spr_roofA)
@@ -12,24 +14,28 @@ define(get_roof_sprite, {
 
 define(spritelayout_roofA_A, {
 	regular(spr_poles, xyz(0, 0, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_A), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_A) + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 })
 
 define(spritelayout_roofA_B, {
 	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_A)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_NORMAL, 6, 3)}, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_NORMAL, 6, 3)}, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_A)+2 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 })
 
 define(spritelayout_roofA_stair_overlay, {
 	ifelse($1, PLT_TYPE_A, {}, {
-		recolour(get_roof_sprite($3, ROOF_TYPE_A)+4, xyz(0, 10, 10+get_platform_height($2)), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+		recolour(get_roof_sprite($3, ROOF_TYPE_A)+4, xyz(0, 10, 10+get_platform_height($2)), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+		regular(get_roof_sprite($3, ROOF_TYPE_A)+4 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 
 define(spritelayout_roofA_nontrack, {
 	regular(spr_poles, xyz(0, 0, $1), dxdydz(16, 0, 10))
 	regular(spr_poles+2, xyz(0, 16, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_A)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_A)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_A)+4 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 })
 
 define(spritelayout_roofA, {
@@ -52,27 +58,32 @@ define(spritelayout_roofA, {
 
 define(spritelayout_roofB_A, {
 	regular(spr_poles+4, xyz(0, 3, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_B), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B), xyz(0, 0, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_B) + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 })
 
 define(spritelayout_roofB_B, {
 	regular(spr_poles+6, xyz(0, 13, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_B)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_NORMAL, 6, 3)}, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B)+2, xyz(0, 10, 10+$1), dxdydz(16, {ifelse($2, ROOF_TYPE_NORMAL, 6, 3)}, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_B)+2 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	ifelse($2, ROOF_TYPE_STAIR, {
-		recolour(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 10, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+		recolour(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 10, 10+$1), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+		regular(get_roof_sprite($2, ROOF_TYPE_B)+4 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 
 define(spritelayout_roofB_stair_overlay, {
 	ifelse($1, PLT_TYPE_A, {}, {
-		recolour(get_roof_sprite($3, ROOF_TYPE_B)+4, xyz(0, 10, 10+get_platform_height($2)), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+		recolour(get_roof_sprite($3, ROOF_TYPE_B)+4, xyz(0, 10, 10+get_platform_height($2)), dxdydz(16, 6, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+		regular(get_roof_sprite($3, ROOF_TYPE_B)+4 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 
 define(spritelayout_roofB_nontrack, {
 	regular(spr_poles+4, xyz(0, 4, $1), dxdydz(16, 0, 10))
 	regular(spr_poles+6, xyz(0, 12, $1), dxdydz(16, 0, 10))
-	recolour(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), -0x42D, aslflags({OFFSET_SPRITE, OFFSET_RCSPRITE}), registers({REGISTER_ROOF_OFFSET, REGISTER_ROOF_RECOLOUR}))
+	recolour(get_roof_sprite($2, ROOF_TYPE_B)+4, xyz(0, 0, 10+$1), dxdydz(16, 16, 3), -0x42D, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_ROOF_RECOLOUR}))
+	regular(get_roof_sprite($2, ROOF_TYPE_B)+4 + roof_snow_offset, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 })
 
 define(spritelayout_roofB, {

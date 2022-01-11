@@ -40,6 +40,16 @@ spriteblock(
 		tmpl_high_platform(spr_platform_startend, platform_ends.png, 10, 250)
 		tmpl_low_platform(spr_platform_l_startend, platform_ends.png, 10, 290)
 		tmpl_low_platform(spr_platform_la_startend, platform_ends.png, 10, 330)
+		
+		tmpl_high_platform_nontrack(spr_platform_nontrack_start, platform_ends.png, 230, 10)
+		tmpl_low_platform_nontrack(spr_platform_l_nontrack_start, platform_ends.png, 230, 50)
+		tmpl_low_platform_nontrack(spr_platform_la_nontrack_start, platform_ends.png, 230, 90)
+		tmpl_high_platform_nontrack(spr_platform_nontrack_end, platform_ends.png, 230, 130)
+		tmpl_low_platform_nontrack(spr_platform_l_nontrack_end, platform_ends.png, 230, 170)
+		tmpl_low_platform_nontrack(spr_platform_la_nontrack_end, platform_ends.png, 230, 210)
+		tmpl_high_platform_nontrack(spr_platform_nontrack_startend, platform_ends.png, 230, 250)
+		tmpl_low_platform_nontrack(spr_platform_l_nontrack_startend, platform_ends.png, 230, 290)
+		tmpl_low_platform_nontrack(spr_platform_la_nontrack_startend, platform_ends.png, 230, 330)
 // passengers
 		sprite(spr_passengers, 
 			   platforms.png    8bpp 500  160 44 23 -31  -4 normal) // passenger 1, platform A
@@ -78,16 +88,16 @@ spriteblock(
 		tmpl_roofA_stairs(spr_roofA_overpass_stair_back, roofs.png, 10, 520)
 		tmpl_roofB_stairs(spr_roofB_overpass_stair_back, roofs.png, 10, 580)
 // roof with snow
-		tmpl_roofA(spr_roofA_snow, roofs.png, 10, 100)
-		tmpl_roofA_nontrack(, roofs.png, 230, 100)
-		tmpl_roofB(spr_roofB_snow, roofs.png, 10, 290)
-		tmpl_roofB_nontrack(, roofs.png, 230, 290)
-		tmpl_roofA(spr_roofA_overpass_snow, roofs.png, 10, 160)
-		tmpl_roofB(spr_roofB_overpass_snow, roofs.png, 10, 350)
-		tmpl_roofA_stairs(spr_roofA_overpass_stair_front_snow, roofs.png, 10, 430)
-		tmpl_roofB_stairs(spr_roofB_overpass_stair_front_snow, roofs.png, 10, 490)
-		tmpl_roofA_stairs(spr_roofA_overpass_stair_back_snow, roofs.png, 10, 550)
-		tmpl_roofB_stairs(spr_roofB_overpass_stair_back_snow, roofs.png, 10, 610)
+		tmpl_roofA_snow(spr_roofA_snow, roofs.png, 10, 100)
+		tmpl_roofA_nontrack_snow(, roofs.png, 230, 100)
+		tmpl_roofB_snow(spr_roofB_snow, roofs.png, 10, 290)
+		tmpl_roofB_nontrack_snow(, roofs.png, 230, 290)
+		tmpl_roofA_snow(spr_roofA_overpass_snow, roofs.png, 10, 160)
+		tmpl_roofB_snow(spr_roofB_overpass_snow, roofs.png, 10, 350)
+		tmpl_roofA_stairs_snow(spr_roofA_overpass_stair_front_snow, roofs.png, 10, 430)
+		tmpl_roofB_stairs_snow(spr_roofB_overpass_stair_front_snow, roofs.png, 10, 490)
+		tmpl_roofA_stairs_snow(spr_roofA_overpass_stair_back_snow, roofs.png, 10, 550)
+		tmpl_roofB_stairs_snow(spr_roofB_overpass_stair_back_snow, roofs.png, 10, 610)
 // pole
 		sprite(spr_poles,
 			   roofs.png        8bpp  10   60 33 25 -31  -9 normal) // poles for roof A, platform A
@@ -314,6 +324,8 @@ spriteblock(
 		sprite(platforms.png    8bpp 560  500 16 12   1  -4 normal)
 		sprite(platforms.png    8bpp 500  500 12 10   1  -4 normal)
 		sprite(platforms.png    8bpp 520  500 12 10 -11  -4 normal)
+		sprite(platforms.png    8bpp 540  470 32 20   1  -4 normal) // fence
+		sprite(platforms.png    8bpp 500  470 32 20 -31  -4 normal)
 		sprite(spr_catenary,
 		       platforms.png    8bpp 500  520 30 19   2  -4 normal) // catenary
 		sprite(platforms.png    8bpp 540  550 30 19 -30  -4 normal)

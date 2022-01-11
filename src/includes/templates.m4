@@ -65,6 +65,48 @@ define(tmpl_roofB_nontrack, {
 		sprite($2 8bpp eval($3)     eval($4)     64 34 -31  -6 normal)
 })
 
+define(tmpl_roofA_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 20   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 20   0   0 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 26   0   0 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 26   0   0 normal)
+})
+
+define(tmpl_roofA_stairs_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 20   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 20   0   0 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 26   0   0 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 26   0   0 normal)
+		sprite($2 8bpp eval($3+200) eval($4)     44 26   0   0 normal)
+		sprite($2 8bpp eval($3+250) eval($4)     44 26   0   0 normal)
+})
+
+define(tmpl_roofA_nontrack_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3+70)  eval($4)     64 34   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4)     64 34   0   0 normal)
+})
+
+define(tmpl_roofB_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 24   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 24   0   0 normal)
+})
+
+define(tmpl_roofB_stairs_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 24   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+50)  eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+100) eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+150) eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+200) eval($4)     44 24   0   0 normal)
+		sprite($2 8bpp eval($3+250) eval($4)     44 24   0   0 normal)
+})
+
+define(tmpl_roofB_nontrack_snow, {
+		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3+70)  eval($4)     64 34   0   0 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3)     eval($4)     64 34   0   0 normal)
+})
+
 define(tmpl_high_platform_crossing, {
 	tmpl_high_platform($1, $2, $3, $4)
 	tmpl_high_platform(, $2, $3, $4+40)

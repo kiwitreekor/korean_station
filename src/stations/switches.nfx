@@ -17,8 +17,6 @@ def(sw_terrain_snow) tinfo_terrain(
 	cbr(0) else
 )
 
-def(233, sw_set_reg_snow_skip) setregisters(REGISTER_SNOW_SKIP, {sub(sw_terrain_snow)}, ref(sprset_default))
-
 // sw_reg_roof_colour
 def(230) calculate({getparameter(PARAM_ROOF_COLOUR,) AND 0x1F + 0x307 - 1},
 	cbfail() else
@@ -29,7 +27,7 @@ def(231, sw_reg_roof_colour) getparameter(PARAM_ROOF_COLOUR, shiftmask(0, 0x1F),
 	ref(230) else
 )
 
-def(232, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sw_set_reg_snow_skip))
+def(232, sw_set_reg_roof_colour) setregisters(REGISTER_ROOF_RECOLOUR, {sub(sw_reg_roof_colour)}, ref(sprset_default))
 
 def(230, sw_reg_overpass_guide) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
 	cbr(spr_overpass_guide_s - spr_overpass_guide) if(1)
@@ -56,11 +54,6 @@ def(231, sw_reg_crossing) subroutine(sw_terrain_snow,
 
 def(232, sw_reg_platform_shadow) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_SHADOW, 0x1),
 	cbr(spr_platform_s - spr_platform) if(1)
-	cbr(0) else
-)
-
-def(233, sw_reg_roof) subroutine(sw_terrain_snow,
-	cbr(spr_roofA_snow - spr_roofA) if(1)
 	cbr(0) else
 )
 
@@ -119,7 +112,7 @@ setregisters(REGISTER_PASSENGER_OFFSET,
 	sub(sw_reg_passenger), 
 	sub(sw_reg_platform), 
 	sub(sw_reg_passenger_skip), 
-	sub(sw_reg_roof),
+	sub(sw_terrain_snow),
 	sub(sw_reg_platform_shadow),
 	sub(sw_reg_crossing),
 	sub(sw_reg_crossing_shadow)

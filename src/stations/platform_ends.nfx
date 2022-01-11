@@ -17,6 +17,8 @@ setfeature(_STATION)
 
 deflabel(LABEL_HIGHPLATFORM_MODE)
 
+define(REGISTER_STOP_SIGN_OFFSET, 128)
+
 forloop(X, {
 definestation(X, "",
 	class(CLASS_PLATFORMS)
@@ -81,6 +83,18 @@ define(spritelayout_platform_fenceB_single, {
 define(spritelayout_platform_nontrack_fence_single, {
 	regular(spr_platform_end_fence+4, xyz(0, 0, get_platform_height($1)), dxdydz(0, 16, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_END_FENCE_SKIP}))
 	regular(spr_platform_end_fence+4, xyz(16, 0, get_platform_height($1)), dxdydz(0, 16, 6), aslflags({SKIP}), registers({REGISTER_PLATFORM_END_FENCE_SKIP}))
+})
+
+define(spritelayout_stop_sign_A, {
+	regular(spr_stop_sign+2, xyz(8, 11, 0), dxdydz(1, 1, 8), aslflags({OFFSET_SPRITE}), registers({REGISTER_STOP_SIGN_OFFSET}))
+	regular(spr_stop_sign, xyz(7, 6, 0), dxdydz(1, 4, 1))
+})
+define(spritelayout_stop_sign_B, {
+	regular(spr_stop_sign+2, xyz(8, 5, 0), dxdydz(1, 1, 8), aslflags({OFFSET_SPRITE}), registers({REGISTER_STOP_SIGN_OFFSET}))
+	regular(spr_stop_sign, xyz(7, 6, 0), dxdydz(1, 4, 1))
+})
+define(spritelayout_stop_sign_C, {
+	regular(spr_stop_sign, xyz(7, 6, 0), dxdydz(1, 4, 1))
 })
 
 define(spritelayout_track_fenceA_front, {compcol(spr_track_fence_front, xyz(0, 1, 0), dxdydz(16, 1, 6), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_TRACK_A_FENCE_SKIP, REGISTER_TRACK_CUSTOM_FENCE_OFFSET}))})
@@ -218,6 +232,18 @@ define(spritelayout_fence_single, {
 	})
 })
 
+define(spritelayout_stop_sign, {
+	ifelse($1, PLT_TYPE_A, {
+		spritelayout_stop_sign_A()
+	}, $1, PLT_TYPE_B, {
+		spritelayout_stop_sign_B()
+	}, $1, PLT_TYPE_C, {
+		spritelayout_stop_sign_C()
+	}, $1, PLT_TYPE_MULTI, {
+		spritelayout_stop_sign_C()
+	}, {})
+})
+
 define(LAYOUT_TEMPLATE_PLATFORM_STARTEND_BASE, {
 	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
 	xtile({
@@ -225,12 +251,14 @@ define(LAYOUT_TEMPLATE_PLATFORM_STARTEND_BASE, {
 		spritelayout_platform_start($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_fence_front($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_stop_sign($1)
 	})
 	xtile({
 		tmp_ground
 		spritelayout_platform_end($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_fence_back($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_stop_sign($1)
 	})
 	xtile({
 		tmp_ground
@@ -238,6 +266,7 @@ define(LAYOUT_TEMPLATE_PLATFORM_STARTEND_BASE, {
 		spritelayout_fence_single($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_stop_sign($1)
 	})
 })
 
@@ -285,6 +314,13 @@ layout(STARTEND_LP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM_NONTRACK_STARTEND(PLT_TYPE
 layout(STARTEND_LAP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM_NONTRACK_STARTEND(PLT_TYPE_LOW_ASPHALT))
 
 // switches
+def(47, sw_stop_sign_offset) plt_posrev(
+	cbr(2) if(0)
+	cbr(0) else
+)
+
+def(48, sw_set_reg_stop_sign_offset) setregisters(REGISTER_STOP_SIGN_OFFSET, {sub(sw_stop_sign_offset)}, ref(sw_set_registers))
+
 def(41, sw_platform_startend_layout_sub2) plt_posrev(
 	cbr(2) if(0)
 	cbr(4) else
@@ -317,7 +353,7 @@ def(46, sw_platform_startend_multi_layout) subroutine(sw_platform_multi_check,
 
 def(50, sw_platform_startend_cb) callback(
 	ref(sw_platform_startend_multi_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_stop_sign_offset) else
 )
 
 def(51, sw_platform_startend_cb_purchase) callback(
@@ -327,7 +363,7 @@ def(51, sw_platform_startend_cb_purchase) callback(
 
 def(52, sw_platform_nontrack_startend_cb) callback(
 	ref(sw_platform_startend_layout) if(CB_LAYOUT)
-	ref(sw_set_registers) else
+	ref(sw_set_reg_stop_sign_offset) else
 )
 
 forloop(X, {makestation(X, link(ref(sw_platform_startend_cb_purchase), MENU) default(ref(sw_platform_startend_cb)))}, STARTEND_HP_A .. STARTEND_HP_C)

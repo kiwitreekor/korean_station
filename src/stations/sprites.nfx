@@ -353,6 +353,13 @@ spriteblock(
 		sprite(platforms.png    8bpp 520  650  9 19  -4 -19 normal)
 		sprite(platforms.png    8bpp 540  650  9 21  -6 -19 normal)
 		sprite(platforms.png    8bpp 560  650  9 21  -4 -19 normal)
+		sprite(spr_stop_sign,
+		       platforms.png    8bpp 500  450  6  3   0   0 normal)
+		sprite(platforms.png    8bpp 510  450  6  3  -5   0 normal)
+		sprite(platforms.png    8bpp 520  450  3 10  -1 -10 normal)
+		sprite(platforms.png    8bpp 530  450  3 10  -1 -10 normal)
+		sprite(platforms.png    8bpp 540  450  3 10  -1 -10 normal)
+		sprite(platforms.png    8bpp 550  450  3 10  -1 -10 normal)
 		
 		tmpl_track_fence(spr_track_fence, fence.png, 10, 10) // custom fence
 		tmpl_track_fence(spr_track_fence_front, fence.png, 10, 50)

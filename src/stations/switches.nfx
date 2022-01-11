@@ -536,16 +536,16 @@ def(231, sw_overpass_platform_layout_sub1) plt_midpos(
 		ref(sw_overpass_platform_layout_sub2) else
 	)
 )
-def(232, sw_overpass_platform_layout) calculate({subroutine(sw_terrain_snow) * 6 + subroutine(sw_overpass_platform_layout_sub1)},
+def(232, sw_overpass_platform_layout) calculate({subroutine(sw_terrain_snow) * 8 + subroutine(sw_overpass_platform_layout_sub1)},
 	cbfail() else
 )
 
 // multi-platform calculation
-def(233, sw_overpass_platformA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
+def(233, sw_overpass_platformA_multi_layout) calculate({subroutine(sw_platformA_check_opposite) * 16 + subroutine(sw_overpass_platform_layout)},
 	cbfail() else
 )
 
-def(234, sw_overpass_platformB_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 12 + subroutine(sw_overpass_platform_layout)},
+def(234, sw_overpass_platformB_multi_layout) calculate({subroutine(sw_platformB_check_opposite) * 16 + subroutine(sw_overpass_platform_layout)},
 	cbfail() else
 )
 

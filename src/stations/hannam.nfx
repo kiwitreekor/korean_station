@@ -20,7 +20,7 @@ deflabel(LABEL_HIGHPLATFORM_MODE)
 define(REGISTER_HANNAM_SNOW_SKIP, 128)
 
 definestation(HANNAM, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT})
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})
@@ -28,7 +28,7 @@ definestation(HANNAM, "",
 )
 
 definestation(HANNAM_PSD, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	flags({FOUNDATIONS})
 	anim_info({7, NOLOOP})
@@ -40,7 +40,7 @@ definestation(HANNAM_PSD, "",
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT})
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})

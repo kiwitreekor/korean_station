@@ -4,9 +4,8 @@ setlangid(UK)
 defstr({STR_GRF_NAME}, {"Korean Station Set " STR_GRF_VERSION " Part 1"})
 defstr({STR_GRF_DESC}, {
 	T_WHITE "This NewGRF provides Korean style Stations." CRLF CRLF 
-	T_BLACK "Code:" CRLF T_LBLUE "  kiwitree" CRLF CRLF
-	T_BLACK "Graphics:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF "  Chojeohang" CRLF CRLF 
-	T_BLACK "copyright 2017 - 2022 " T_WHITE "kiwitree" 
+	T_BLACK "Special thanks:" CRLF T_GREEN "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF "  Chojeohang" CRLF CRLF 
+	T_BLACK "copyright 2017 - 2022 " T_LBLUE "kiwitree" 
 })
 
 defstr({STR_GRF_NAME_PART2}, {"Korean Station Set " STR_GRF_VERSION " Part 2"})
@@ -569,6 +568,8 @@ ifelse(file_index, 1, {
 	defstationname(JIJE_PART4_LP_B, {"Pyeongtaek Jije Stn. pt.4 + Low Platform B"})
 	defstationname(JIJE_PART4_TRACK, {"Pyeongtaek Jije Stn. pt.4"})
 	defstationname(JIJE_PART5, {"Pyeongtaek Jije Stn. pt.5"})
+	
+	defclassname(HANNAM, {"Korean Station: Elevated Stations"})
 	
 	defstationname(HANNAM, {"Hannam Stn."})
 	defstationname(HANNAM_PSD, {"Hannam Stn. + PSD"})

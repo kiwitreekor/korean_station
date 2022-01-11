@@ -35,7 +35,7 @@ def(81, sprset_jungnang_entrance_foundation) spriteset(little(0), lots(0))
 
 
 definestation(JUNGNANG_PART1, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT})
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})
@@ -43,7 +43,7 @@ definestation(JUNGNANG_PART1, "",
 )
 
 definestation(JUNGNANG_PART2, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT})
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})
@@ -51,7 +51,7 @@ definestation(JUNGNANG_PART2, "",
 )
 
 definestation(JUNGNANG_PART1_PSD, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	flags({FOUNDATIONS})
 	anim_info({7, NOLOOP})
@@ -62,7 +62,7 @@ definestation(JUNGNANG_PART1_PSD, "",
 )
 
 definestation(JUNGNANG_PART2_PSD, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	flags({FOUNDATIONS})
 	anim_info({7, NOLOOP})

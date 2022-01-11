@@ -8,6 +8,7 @@ define(CLASS_NONTRACK, "KWS5")
 define(CLASS_BUILDINGS, "KWS6")
 define(CLASS_BUFFERS, "KWS7")
 define(CLASS_METRO, "KWS8")
+define(CLASS_ELEVATED, "KWS9")
 
 define(CLASS_OBJ_METRO, KWS0)
 

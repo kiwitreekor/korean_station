@@ -42,7 +42,7 @@ def(83, sprset_sindaebang_end_foundation_ne) spriteset(little(0), lots(0))
 
 
 definestation(SINDAEBANG, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT})
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})
@@ -51,7 +51,7 @@ definestation(SINDAEBANG, "",
 )
 
 definestation(SINDAEBANG_PSD, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_ELEVATED)
 	callbacks({CB_LAYOUT, CB_AFRAME})
 	flags({FOUNDATIONS})
 	anim_info({7, NOLOOP})

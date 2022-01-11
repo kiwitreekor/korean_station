@@ -4,9 +4,8 @@ setlangid(KR)
 defstr({STR_GRF_NAME}, {"한국 철도역 세트 " STR_GRF_VERSION " Part 1"})
 defstr({STR_GRF_DESC}, {
 	T_WHITE "한국 철도 스타일의 역 건물을 제공합니다." CRLF CRLF 
-	T_BLACK "코드:" CRLF T_LBLUE "  kiwitree" CRLF CRLF
-	T_BLACK "그래픽:" CRLF T_GREEN "  kiwitree" CRLF "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF "  초저항" CRLF CRLF 
-	T_BLACK "copyright 2017 - 2022 " T_WHITE "kiwitree" 
+	T_BLACK "Special thanks:" CRLF T_GREEN "  Las" CRLF "  EightonEight" CRLF "  Gamunbi" CRLF "  초저항" CRLF CRLF 
+	T_BLACK "copyright 2017 - 2022 " T_LBLUE "kiwitree" 
 	
 })
 
@@ -569,6 +568,8 @@ ifelse(file_index, 1, {
 	defstationname(JIJE_PART4_LP_B, {"평택지제역 pt.4 + 저상홈 B"})
 	defstationname(JIJE_PART4_TRACK, {"평택지제역 pt.4"})
 	defstationname(JIJE_PART5, {"평택지제역 pt.5"})
+	
+	defclassname(HANNAM, {"한국 철도역: 고가역"})
 	
 	defstationname(HANNAM, {"한남역"})
 	defstationname(HANNAM_PSD, {"한남역 + PSD"})

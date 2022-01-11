@@ -31,12 +31,15 @@ spriteblock(
 		tmpl_low_platform_nontrack(spr_platform_l_snow_nontrack, platforms.png, 230, 820)
 		tmpl_low_platform_nontrack(spr_platform_la_snow_nontrack, platforms.png, 230, 860)
 // platform ends
-		tmpl_high_platform(spr_platform_start, platforms_end.png, 10, 10)
-		tmpl_low_platform(spr_platform_l_start, platforms_end.png, 10, 50)
-		tmpl_low_platform(spr_platform_la_start, platforms_end.png, 10, 90)
-		tmpl_high_platform(spr_platform_end, platforms_end.png, 10, 130)
-		tmpl_low_platform(spr_platform_l_end, platforms_end.png, 10, 170)
-		tmpl_low_platform(spr_platform_la_end, platforms_end.png, 10, 210)
+		tmpl_high_platform(spr_platform_start, platform_ends.png, 10, 10)
+		tmpl_low_platform(spr_platform_l_start, platform_ends.png, 10, 50)
+		tmpl_low_platform(spr_platform_la_start, platform_ends.png, 10, 90)
+		tmpl_high_platform(spr_platform_end, platform_ends.png, 10, 130)
+		tmpl_low_platform(spr_platform_l_end, platform_ends.png, 10, 170)
+		tmpl_low_platform(spr_platform_la_end, platform_ends.png, 10, 210)
+		tmpl_high_platform(spr_platform_startend, platform_ends.png, 10, 250)
+		tmpl_low_platform(spr_platform_l_startend, platform_ends.png, 10, 290)
+		tmpl_low_platform(spr_platform_la_startend, platform_ends.png, 10, 330)
 // passengers
 		sprite(spr_passengers, 
 			   platforms.png    8bpp 500  160 44 23 -31  -4 normal) // passenger 1, platform A

@@ -249,7 +249,12 @@ def(sw_set_registers) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_reg
 def(236, sw_catenary_single_register_purchase) setregisters(REGISTER_CATENARY_SINGLE_A_SKIP, {0, 0}, ref(sw_ground_nontrack_register))
 def(235, sw_catenary_register_purchase) setregisters(REGISTER_CATENARY_SKIP, {0}, ref(sw_catenary_single_register_purchase))
 def(234, sw_track_fence_register_purchase) setregisters(REGISTER_TRACK_A_FENCE_SKIP, {0, 0, 0}, ref(sw_catenary_register_purchase))
+
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)
+def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0, 1}, ref(sw_track_fence_register_purchase))
+skipif(1, getowngrfparameter(PARAM_FLAGS), BITSET, PARAM_FLAGS_FENCE)
 def(233, sw_platform_fence_register_purchase) setregisters(REGISTER_PLATFORM_A_FENCE_SKIP, {0, 0, 0}, ref(sw_track_fence_register_purchase))
+
 def(sw_set_registers_purchase) setregisters(REGISTER_NONE, {0}, ref(sw_platform_fence_register_purchase))
 
 def(sw_platform_layout) calculate({subroutine(sw_terrain_snow) * 2},

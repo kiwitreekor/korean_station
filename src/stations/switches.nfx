@@ -226,14 +226,24 @@ def(237, sw_track_custom_fence_offset) subroutine(sw_track_fence_type,
 	cbr(0) else
 )
 
-def(234, sw_trackA_fence_skip) subroutine(sw_track_fence_type,
+def(235, sw_trackA_fence_skip_sub) subroutine(sw_track_fence_type,
 	cbr(0) if(0xFF)
 	ref(sw_platformA_fence_register) else
 )
 
-def(233, sw_trackB_fence_skip) subroutine(sw_track_fence_type,
+def(234, sw_trackA_fence_skip) subroutine(sw_terrain_snow,
+	cbr(0) if(1)
+	ref(sw_trackA_fence_skip_sub) else
+)
+
+def(235, sw_trackB_fence_skip_sub) subroutine(sw_track_fence_type,
 	cbr(0) if(0xFF)
 	ref(sw_platformB_fence_register) else
+)
+
+def(233, sw_trackB_fence_skip) subroutine(sw_terrain_snow,
+	cbr(0) if(1)
+	ref(sw_trackB_fence_skip_sub) else
 )
 
 skipif(2, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_FENCE)

@@ -314,9 +314,13 @@ layout(STARTEND_LP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM_NONTRACK_STARTEND(PLT_TYPE
 layout(STARTEND_LAP_NONTRACK, LAYOUT_TEMPLATE_PLATFORM_NONTRACK_STARTEND(PLT_TYPE_LOW_ASPHALT))
 
 // switches
-def(47, sw_stop_sign_offset) plt_posrev(
+def(47, sw_stop_sign_offset_sub) plt_posrev(
 	cbr(2) if(0)
 	cbr(0) else
+)
+def(49, sw_stop_sign_offset) plt_length(
+	cbr(0) if(1)
+	ref(sw_stop_sign_offset_sub) else
 )
 
 def(48, sw_set_reg_stop_sign_offset) setregisters(REGISTER_STOP_SIGN_OFFSET, {sub(sw_stop_sign_offset)}, ref(sw_set_registers))

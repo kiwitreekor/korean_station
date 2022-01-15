@@ -116,42 +116,69 @@ define(spritelayout_platform_nontrack_startend, {notransparency(get_platform_non
 define(spritelayout_platform_start, {
 	ifelse($1, PLT_TYPE_A, {
 		spritelayout_platformA_start($2, $3)
+		regular(spr_platform_start_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_B, {
 		spritelayout_platformB_start($2, $3)
+		regular(spr_platform_start_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_C, {
-		spritelayout_platformA_start($2, $3) spritelayout_platformB_start($2, $3)
+		spritelayout_platformA_start($2, $3)
+		regular(spr_platform_start_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_start($2, $3)
+		regular(spr_platform_start_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_platformA_start($2, $4) spritelayout_platformB_start($3, $4)
+		spritelayout_platformA_start($2, $4)
+		regular(spr_platform_start_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_start($3, $4)
+		regular(spr_platform_start_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_NONTRACK, {
 		spritelayout_platform_nontrack_start($2, $3)
+		regular(spr_platform_nontrack_start_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 
 define(spritelayout_platform_end, {
 	ifelse($1, PLT_TYPE_A, {
 		spritelayout_platformA_end($2, $3)
+		regular(spr_platform_end_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_B, {
 		spritelayout_platformB_end($2, $3)
+		regular(spr_platform_end_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_C, {
-		spritelayout_platformA_end($2, $3) spritelayout_platformB_end($2, $3)
+		spritelayout_platformA_end($2, $3)
+		regular(spr_platform_end_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_end($2, $3)
+		regular(spr_platform_end_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_platformA_end($2, $4) spritelayout_platformB_end($3, $4)
+		spritelayout_platformA_end($2, $4)
+		regular(spr_platform_end_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_end($3, $4)
+		regular(spr_platform_end_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_NONTRACK, {
 		spritelayout_platform_nontrack_end($2, $3)
+		regular(spr_platform_nontrack_end_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 
 define(spritelayout_platform_startend, {
 	ifelse($1, PLT_TYPE_A, {
 		spritelayout_platformA_startend($2, $3)
+		regular(spr_platform_startend_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_B, {
 		spritelayout_platformB_startend($2, $3)
+		regular(spr_platform_startend_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_C, {
-		spritelayout_platformA_startend($2, $3) spritelayout_platformB_startend($2, $3)
+		spritelayout_platformA_startend($2, $3)
+		regular(spr_platform_startend_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_startend($2, $3)
+		regular(spr_platform_startend_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_MULTI, {
-		spritelayout_platformA_startend($2, $4) spritelayout_platformB_startend($3, $4)
+		spritelayout_platformA_startend($2, $4)
+		regular(spr_platform_startend_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
+		spritelayout_platformB_startend($3, $4)
+		regular(spr_platform_startend_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	}, $1, PLT_TYPE_NONTRACK, {
 		spritelayout_platform_nontrack_startend($2, $3)
+		regular(spr_platform_nontrack_startend_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 })
 

@@ -23,6 +23,18 @@ define(tmpl_low_platform, {tmpl_base_platform($1, $2, $3, $4, 1)})
 define(tmpl_high_platform_nontrack, {tmpl_base_platform_nontrack($1, $2, $3, $4, 3)})
 define(tmpl_low_platform_nontrack, {tmpl_base_platform_nontrack($1, $2, $3, $4, 1)})
 
+define(tmpl_platform_snow, {
+	sprite(ifelse($1,,,{$1,})$2 8bpp eval($3) eval($4) 44 24 0 0 normal) ifelse($1,,,{// $1})
+	sprite($2 8bpp  eval($3+50) eval($4) 44 24 0 0 normal)
+	sprite($2 8bpp eval($3+100) eval($4) 44 24 0 0 normal)
+	sprite($2 8bpp eval($3+150) eval($4) 44 24 0 0 normal)
+})
+
+define(tmpl_platform_nontrack_snow, {
+	sprite(ifelse($1,,,{$1,})$2 8bpp eval($3) eval($4) 64 34 0 0 normal) ifelse($1,,,{// $1})
+	sprite($2 8bpp eval($3+70) eval($4) 64 34 0 0 normal)
+})
+
 define(tmpl_roofA, {
 		sprite(ifelse($1,,,{$1,})$2 8bpp eval($3)     eval($4)     44 20 -31  -2 normal) ifelse($1,,,{// $1})
 		sprite($2 8bpp eval($3+50)  eval($4)     44 20 -11  -2 normal)

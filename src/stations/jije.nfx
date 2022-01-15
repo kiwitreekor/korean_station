@@ -11,6 +11,7 @@ include(src/stations/switches.m4)
 include(src/stations/layouts/layouts.m4)
 include(src/stations/layouts/roofs.m4)
 include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/facilities.m4)
 
 setfeature(_STATION)
 
@@ -36,6 +37,19 @@ definestation(X, "",
 	include_widths({1})
 	setcargotriggers({PASS})
 )}, JIJE_PART2_HP_A .. JIJE_PART2_TRACK)
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	nowires(TTD_ALLTILES)
+	anim_info({7, NOLOOP})
+	anim_speed(3)
+	anim_triggers({ARRIVE, LEAVE})
+	include_lengths({3})
+	include_widths({1})
+	setcargotriggers({PASS})
+)}, JIJE_PART2_HP_A_PSD .. JIJE_PART2_HP_B_PSD)
 
 definestation(JIJE_PART3, "",
 	class(CLASS_BUILDINGS)
@@ -95,30 +109,45 @@ define(LAYOUT_TEMPLATE_JIJE_PART2, {
 	forloop(X, {
 		xtile({
 			spritelayout_ground()
-			ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+			ifelse($1, PLT_TYPE_NONE, {}, {
+				platform_base($1, $2, SHADOW_TRUE)
+				ifelse($3, PSD, {spritelayout_psd($1, $2)})
+			})
 			regular(spr_jije_part2+X*2, xyz(0,0,16), dxdydz(16,16,30))
 		})
 	}, 0 .. 14)
 	
 	xtile({
 		spritelayout_ground()
-		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		ifelse($1, PLT_TYPE_NONE, {}, {
+			platform_base($1, $2, SHADOW_TRUE)
+			ifelse($3, PSD, {spritelayout_psd($1, $2)})
+		})
 		regular(spr_jije_part2+6, xyz(0,0,16), dxdydz(16,16,30))
 	})
 	xtile({
 		spritelayout_ground()
-		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		ifelse($1, PLT_TYPE_NONE, {}, {
+			platform_base($1, $2, SHADOW_TRUE)
+			ifelse($3, PSD, {spritelayout_psd($1, $2)})
+		})
 		regular(spr_jije_part2+8, xyz(0,0,16), dxdydz(16,16,30))
 	})
 	xtile({
 		spritelayout_ground()
-		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		ifelse($1, PLT_TYPE_NONE, {}, {
+			platform_base($1, $2, SHADOW_TRUE)
+			ifelse($3, PSD, {spritelayout_psd($1, $2)})
+		})
 		regular(spr_jije_part2+30, xyz(0,0,16), dxdydz(16,16,30))
 	})
 	
 	xtile({
-		spritelayout_ground()
-		ifelse($1, PLT_TYPE_NONE, {}, {platform_base($1, $2, SHADOW_TRUE)})
+		spritelayout_ground
+		ifelse($1, PLT_TYPE_NONE, {}, {
+			platform_base($1, $2, SHADOW_TRUE)
+			ifelse($3, PSD, {spritelayout_psd($1, $2)})
+		})
 		regular(spr_jije_part2+28, xyz(0,0,16), dxdydz(16,16,30))
 		regular(spr_jije_part2+26, xyz(-16,0,16), dxdydz(16,16,30))
 		regular(spr_jije_part2+22, xyz(0,16,16), dxdydz(16,16,30))
@@ -130,6 +159,9 @@ layout(JIJE_PART2_HP_B, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_B, PLT_TYPE_HIGH))
 layout(JIJE_PART2_LP_A, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_A, PLT_TYPE_LOW))
 layout(JIJE_PART2_LP_B, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_B, PLT_TYPE_LOW))
 layout(JIJE_PART2_TRACK, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_NONE, PLT_TYPE_NONE))
+
+layout(JIJE_PART2_HP_A_PSD, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_A, PLT_TYPE_HIGH, PSD))
+layout(JIJE_PART2_HP_B_PSD, LAYOUT_TEMPLATE_JIJE_PART2(PLT_TYPE_B, PLT_TYPE_HIGH, PSD))
 
 define(LAYOUT_TEMPLATE_JIJE_PART3, {
 	xtile({
@@ -227,8 +259,10 @@ define(LAYOUT_TEMPLATE_JIJE_PART5, {
 
 layout(JIJE_PART5, LAYOUT_TEMPLATE_JIJE_PART5())
 
+// switches
 def(40, sw_jije_part2_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
 	cbr(1) if(0x100+JIJE_PART2_HP_A .. 0x100+JIJE_PART2_TRACK)
+	cbr(1) if(0x100+JIJE_PART2_HP_A_PSD .. 0x100+JIJE_PART2_HP_B_PSD)
 	cbr(0) else
 )
 
@@ -401,6 +435,18 @@ def(73, sw_jije_part2_cb_purchase) callback(
 	ref(sw_set_registers) else
 )
 
+def(40, sw_jije_part2_psd_cb) callback(
+	ref(sw_jije_part2_layout) if(CB_LAYOUT)
+	ref(sw_psd_animctrl) if(CB_ACONTROL)
+	ref(sw_psd_animframe) if(CB_AFRAME)
+	ref(sw_set_reg_psd) else
+)
+
+def(41, sw_jije_part2_psd_cb_purchase) callback(
+	cbr(36) if(CB_LAYOUT)
+	ref(sw_set_reg_psd_purchase) else
+)
+
 def(74, sw_jije_part3_cb) callback(
 	ref(sw_jije_part3_layout) if(CB_LAYOUT)
 	ref(sw_set_reg_jije_part3) else
@@ -439,6 +485,7 @@ forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(re
 skipif(reflabel(LABEL_HIGHPLATFORM_MODE), getowngrfparameter(PARAM_MODE), ==, PARAM_MODE_HIGHPLATFORM)
 	forloop(X, {makestation(X, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))}, JIJE_PART2_LP_A .. JIJE_PART2_LP_B)
 placelabel(LABEL_HIGHPLATFORM_MODE)
+forloop(X, {makestation(X, link(ref(sw_jije_part2_psd_cb_purchase), MENU) default(ref(sw_jije_part2_psd_cb)))}, JIJE_PART2_HP_A_PSD .. JIJE_PART2_HP_B_PSD)
 makestation(JIJE_PART2_TRACK, link(ref(sw_jije_part2_cb_purchase), MENU) default(ref(sw_jije_part2_cb)))
 
 makestation(JIJE_PART3, link(ref(sw_jije_part3_cb_purchase), MENU) default(ref(sw_jije_part3_cb)))

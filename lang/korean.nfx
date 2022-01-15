@@ -560,6 +560,8 @@ ifelse(file_index, 1, {
 	defstationname(JIJE_PART2_HP_B, {"평택지제역 pt.2 + 고상홈 B"})
 	defstationname(JIJE_PART2_LP_A, {"평택지제역 pt.2 + 저상홈 A"})
 	defstationname(JIJE_PART2_LP_B, {"평택지제역 pt.2 + 저상홈 B"})
+	defstationname(JIJE_PART2_HP_A_PSD, {"평택지제역 pt.2 + 고상홈 A + PSD"})
+	defstationname(JIJE_PART2_HP_B_PSD, {"평택지제역 pt.2 + 고상홈 B + PSD"})
 	defstationname(JIJE_PART2_TRACK, {"평택지제역 pt.2"})
 	defstationname(JIJE_PART3, {"평택지제역 pt.3"})
 	defstationname(JIJE_PART4_HP_A, {"평택지제역 pt.4 + 고상홈 A"})
@@ -573,8 +575,8 @@ ifelse(file_index, 1, {
 	
 	defstationname(HANNAM, {"한남역"})
 	defstationname(HANNAM_PSD, {"한남역 + PSD"})
-	defstationname(HANNAM_UNDERPASS_HP_A, {"한남역 지하도 (고상홈 A)"})
-	defstationname(HANNAM_UNDERPASS_HP_B, {"한남역 지하도 (고상홈 B)"})
+	defstationname(HANNAM_UNDERPASS_HP_A, {"한남역 지하도, 고상홈 A"})
+	defstationname(HANNAM_UNDERPASS_HP_B, {"한남역 지하도, 고상홈 B"})
 	
 	defstationname(SINDAEBANG, {"신대방역"})
 	defstationname(SINDAEBANG_PSD, {"신대방역 + PSD"})

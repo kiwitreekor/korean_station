@@ -560,6 +560,8 @@ ifelse(file_index, 1, {
 	defstationname(JIJE_PART2_HP_B, {"Pyeongtaek Jije Stn. pt.2 + High Platform B"})
 	defstationname(JIJE_PART2_LP_A, {"Pyeongtaek Jije Stn. pt.2 + Low Platform A"})
 	defstationname(JIJE_PART2_LP_B, {"Pyeongtaek Jije Stn. pt.2 + Low Platform B"})
+	defstationname(JIJE_PART2_HP_A_PSD, {"Pyeongtaek Jije Stn. pt.2 + High Platform A + PSD"})
+	defstationname(JIJE_PART2_HP_B_PSD, {"Pyeongtaek Jije Stn. pt.2 + High Platform B + PSD"})
 	defstationname(JIJE_PART2_TRACK, {"Pyeongtaek Jije Stn. pt.2"})
 	defstationname(JIJE_PART3, {"Pyeongtaek Jije Stn. pt.3"})
 	defstationname(JIJE_PART4_HP_A, {"Pyeongtaek Jije Stn. pt.4 + High Platform A"})
@@ -573,8 +575,8 @@ ifelse(file_index, 1, {
 	
 	defstationname(HANNAM, {"Hannam Stn."})
 	defstationname(HANNAM_PSD, {"Hannam Stn. + PSD"})
-	defstationname(HANNAM_UNDERPASS_HP_A, {"Hannam Stn. Underpass (Platform A)"})
-	defstationname(HANNAM_UNDERPASS_HP_B, {"Hannam Stn. Underpass (Platform B)"})
+	defstationname(HANNAM_UNDERPASS_HP_A, {"Hannam Stn. Underpass, Platform A"})
+	defstationname(HANNAM_UNDERPASS_HP_B, {"Hannam Stn. Underpass, Platform B"})
 	
 	defstationname(SINDAEBANG, {"Sindaebang Stn."})
 	defstationname(SINDAEBANG_PSD, {"Sindaebang Stn. + PSD"})

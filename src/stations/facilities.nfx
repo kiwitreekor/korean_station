@@ -11,6 +11,7 @@ include(src/stations/switches.m4)
 include(src/stations/layouts/layouts.m4)
 include(src/stations/layouts/roofs.m4)
 include(src/stations/layouts/platforms.m4)
+include(src/stations/layouts/platform_ends.m4)
 include(src/stations/layouts/platforms_extra.m4)
 include(src/stations/layouts/facilities.m4)
 
@@ -40,21 +41,21 @@ define(spritelayout_signA, {
 	define({tmp_type}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
 	ifelse(eval($1 == PLT_TYPE_A || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
 		ifelse(tmp_type, 0, {
-			regular(spr_signA, xyz(2, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
+			regular(spr_signA, xyz(10, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
 		}, tmp_type, 1, {
 			regular(spr_signA+2, xyz(7, 0, get_platform_height($2)), dxdydz(3, 2, 8))
 		}, tmp_type, 2, {
-			regular(spr_signA, xyz(14, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
+			regular(spr_signA, xyz(6, 0, get_platform_height($2)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y}, {REGISTER_SIGN_A_OFFSET_Y, REGISTER_NONE})}))
 		})
 	})
 	ifelse(eval($1 == PLT_TYPE_B || $1 == PLT_TYPE_C || $1 == PLT_TYPE_MULTI), 1, {
 		define({tmp_platform_type}, {ifelse($1, PLT_TYPE_MULTI, $3, $2)})
 		ifelse(tmp_type, 0, {
-			regular(spr_signA, xyz(2, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
+			regular(spr_signA, xyz(10, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
 		}, tmp_type, 1, {
 			regular(spr_signA+2, xyz(7, 16, get_platform_height(tmp_platform_type)), dxdydz(3, 0, 8))
 		}, tmp_type, 2, {
-			regular(spr_signA, xyz(14, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
+			regular(spr_signA, xyz(6, 0, get_platform_height(tmp_platform_type)), dxdydz(0, 3, 8), aslflags({OFFSET_XY}), registers({ifelse(_ORIENT, ORIENT_NE, {REGISTER_NONE, REGISTER_SIGN_A_OFFSET_Y+1}, {REGISTER_SIGN_A_OFFSET_Y+1, REGISTER_NONE})}))
 		})
 	})
 })
@@ -63,16 +64,30 @@ define(spritelayout_signA, {
 define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_BASE, {
 	define({tmp_ground}, {ifelse($1, PLT_TYPE_MULTI, $5, $4)})
 	define({tmp_roof}, {ifelse($1, PLT_TYPE_MULTI, $4, $3)})
-	forloop(X, {
-		xtile({
-			tmp_ground
-			platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
-			spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-			spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-			spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X)
-			spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
-		})
-	}, 0 .. 2)
+	xtile({
+		tmp_ground
+		spritelayout_platform_start($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_fence_front($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 0)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+	xtile({
+		tmp_ground
+		platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
+		spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 1)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
+	xtile({
+		tmp_ground
+		spritelayout_platform_end($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_fence_back($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+		spritelayout_signA($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), 2)
+		spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+	})
 })
 
 define(LAYOUT_TEMPLATE_FACILITIES_SIGN_A_SINGLE, {

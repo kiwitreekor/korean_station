@@ -25,6 +25,7 @@ definestation(X, "",
 	class(CLASS_PLATFORMS)
 	callbacks({CB_LAYOUT})
 	setcargotriggers({PASS})
+	include_lengths({1})
 )}, PLATFORM_STARTEND_START .. PLATFORM_STARTEND_END)
 
 // non-track tiles
@@ -35,6 +36,7 @@ definestation(X, "",
 	setcargotriggers({PASS})
 	nontrack(TTD_ALLTILES)
 	nowires(TTD_ALLTILES)
+	include_lengths({1})
 )}, NONTRACK_STARTEND_START .. NONTRACK_STARTEND_END)
 
 // layouts

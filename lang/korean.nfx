@@ -606,5 +606,18 @@ ifelse(file_index, 1, {
 }, file_index, 3, {
 	// kws_part3.grf
 	
+	defstationname(STARTEND_HP_A, {"승강장 끝, 고상홈 A"})
+	defstationname(STARTEND_HP_B, {"승강장 끝, 고상홈 B"})
+	defstationname(STARTEND_HP_C, {"승강장 끝, 고상홈 C"})
+	defstationname(STARTEND_LP_A, {"승강장 끝, 저상홈 A"})
+	defstationname(STARTEND_LP_B, {"승강장 끝, 저상홈 B"})
+	defstationname(STARTEND_LP_C, {"승강장 끝, 저상홈 C"})
+	defstationname(STARTEND_LAP_A, {"승강장 끝, 아스팔트 저상홈 A"})
+	defstationname(STARTEND_LAP_B, {"승강장 끝, 아스팔트 저상홈 B"})
+	defstationname(STARTEND_LAP_C, {"승강장 끝, 아스팔트 저상홈 C"})
+	
+	defstationname(STARTEND_HP_NONTRACK, {"승강장 끝, 고상홈"})
+	defstationname(STARTEND_LP_NONTRACK, {"승강장 끝, 저상홈"})
+	defstationname(STARTEND_LAP_NONTRACK, {"승강장 끝, 아스팔트 저상홈"})
 })
 divert

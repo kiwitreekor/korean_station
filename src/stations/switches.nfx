@@ -222,7 +222,7 @@ def(237, sw_track_custom_fence_offset) subroutine(sw_track_fence_type,
 
 def(236, sw_trackA_fence_skip_sub2) tinfo_trackconnect(shiftmask(8, 0x8),
 	cbr(0) if(0x8)
-	cbr(1) else
+	ref(sw_platformA_fence_register) else
 )
 def(235, sw_trackA_fence_skip_sub) subroutine(sw_track_fence_type,
 	cbr(0) if(0xFF)
@@ -236,7 +236,7 @@ def(234, sw_trackA_fence_skip) subroutine(sw_terrain_snow,
 
 def(236, sw_trackB_fence_skip_sub2) tinfo_trackconnect(shiftmask(8, 0x4),
 	cbr(0) if(0x4)
-	cbr(1) else
+	ref(sw_platformB_fence_register) else
 )
 def(235, sw_trackB_fence_skip_sub) subroutine(sw_track_fence_type,
 	cbr(0) if(0xFF)

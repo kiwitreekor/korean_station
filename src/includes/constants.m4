@@ -718,9 +718,9 @@ define(ROOF_TYPE_NONE, 0)
 define(GRFID_KWS_PART1, 4B 57 00 01)
 define(GRFID_KWS_PART2, 4B 57 00 02)
 
-define(GRF_VERSION, 721)
+define(GRF_VERSION, 722)
 define(GRF_MIN_VERSION, 640)
 
 define(GRF_STABLE, 1)
 
-define(STR_GRF_VERSION, {"v1.2.1"})
+define(STR_GRF_VERSION, {"v1.2.2"})

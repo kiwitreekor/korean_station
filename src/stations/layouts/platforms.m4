@@ -33,7 +33,7 @@ define(spritelayout_passenger, {
 		spritelayout_passengerB(get_platform_height($2))
 	}, $1, PLT_TYPE_MULTI, {
 		spritelayout_passengerA(get_platform_height($2)) spritelayout_passengerB(get_platform_height($3))
-	}, {
+	}, $1, PLT_TYPE_NONTRACK, {
 		spritelayout_passengerA(get_platform_height($2)) spritelayout_passengerB(get_platform_height($2))
 	})
 })

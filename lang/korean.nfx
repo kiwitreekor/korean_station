@@ -619,5 +619,20 @@ ifelse(file_index, 1, {
 	defstationname(STARTEND_HP_NONTRACK, {"승강장 끝, 고상홈"})
 	defstationname(STARTEND_LP_NONTRACK, {"승강장 끝, 저상홈"})
 	defstationname(STARTEND_LAP_NONTRACK, {"승강장 끝, 아스팔트 저상홈"})
+	
+	defclassname(DEPOT_A, {"한국 철도역: 차량기지"})
+	
+	defstationname(DEPOT_A, {"차량기지 A"})
+	defstationname(DEPOT_A_NORTH, {"차량기지 A (북쪽 연장)"})
+	defstationname(DEPOT_A_SOUTH, {"차량기지 A (남쪽 연장)"})
+	defstationname(DEPOT_B, {"차량기지 B"})
+	defstationname(DEPOT_B_NORTH, {"차량기지 B (북쪽 연장)"})
+	defstationname(DEPOT_B_SOUTH, {"차량기지 B (남쪽 연장)"})
+	defstationname(DEPOT_C, {"차량기지 C"})
+	defstationname(DEPOT_C_NORTH, {"차량기지 C (북쪽 연장)"})
+	defstationname(DEPOT_C_SOUTH, {"차량기지 C (남쪽 연장)"})
+	defstationname(DEPOT_D, {"차량기지 D"})
+	defstationname(DEPOT_D_NORTH, {"차량기지 D (북쪽 연장)"})
+	defstationname(DEPOT_D_SOUTH, {"차량기지 D (남쪽 연장)"})
 })
 divert

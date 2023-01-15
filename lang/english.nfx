@@ -619,5 +619,20 @@ ifelse(file_index, 1, {
 	defstationname(STARTEND_HP_NONTRACK, {"Platform End, High Platform"})
 	defstationname(STARTEND_LP_NONTRACK, {"Platform End, Low Platform"})
 	defstationname(STARTEND_LAP_NONTRACK, {"Platform End, Low Asphalt Platform"})
+	
+	defclassname(DEPOT_A, {"Korean Station: Depots"})
+	
+	defstationname(DEPOT_A, {"Depot, Type A"})
+	defstationname(DEPOT_A_NORTH, {"Depot, Type A (Northern Extension)"})
+	defstationname(DEPOT_A_SOUTH, {"Depot, Type A (Southern Extension)"})
+	defstationname(DEPOT_B, {"Depot, Type B"})
+	defstationname(DEPOT_B_NORTH, {"Depot, Type B (Northern Extension)"})
+	defstationname(DEPOT_B_SOUTH, {"Depot, Type B (Southern Extension)"})
+	defstationname(DEPOT_C, {"Depot, Type C"})
+	defstationname(DEPOT_C_NORTH, {"Depot, Type C (Northern Extension)"})
+	defstationname(DEPOT_C_SOUTH, {"Depot, Type C (Southern Extension)"})
+	defstationname(DEPOT_D, {"Depot, Type D"})
+	defstationname(DEPOT_D_NORTH, {"Depot, Type D (Northern Extension)"})
+	defstationname(DEPOT_D_SOUTH, {"Depot, Type D (Southern Extension)"})
 })
 divert

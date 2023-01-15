@@ -1,0 +1,172 @@
+// depots
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+
+setfeature(_STATION)
+
+define(REGISTER_DEPOT_FRAME, 128)
+
+// depots
+
+forloop(X, {
+definestation(X, "",
+	class(CLASS_DEPOT)
+	callbacks({CB_LAYOUT, CB_AFRAME})
+	anim_info({16, LOOP})
+	anim_speed(1)
+	anim_triggers({BUILT, PERIODIC})
+)}, DEPOT_A .. DEPOT_D_SOUTH)
+
+// layouts
+define(get_depot_front_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot, spr_depot)})
+define(get_depot_back_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot+2, spr_depot+2)})
+define(get_depot_nontrack_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot+4, spr_depot+4)})
+define(get_depot_gate_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot_gate, spr_depot_gate)})
+
+define(spritelayout_depot, {
+	compcol(get_depot_front_sprite($1), xyz($2, 14, 0), dxdydz(16, 2, 30))
+	compcol(get_depot_back_sprite($1), xyz($2, 0, 0), dxdydz(16, 2, 30))
+	regular(get_depot_gate_sprite($1), xyz($2+16, 4, 0), dxdydz(0, 8, 16), aslflags({OFFSET_SPRITE}), registers({REGISTER_DEPOT_FRAME}))
+	
+	// TODO: snow graphic
+	// regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+})
+
+define(spritelayout_depot_nontrack, {
+	compcol(get_depot_nontrack_sprite($1), xyz($2, 14, 0), dxdydz(16, 2, 30))
+})
+
+define(LAYOUT_TEMPLATE_DEPOT, {
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot($1, 0)
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot_nontrack($1, 0)
+	})
+})
+
+define(LAYOUT_TEMPLATE_DEPOT_NORTH, {
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot_nontrack($1, -16)
+		spritelayout_depot($1, 0)
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot_nontrack($1, -16)
+		spritelayout_depot_nontrack($1, 0)
+	})
+})
+
+define(LAYOUT_TEMPLATE_DEPOT_SOUTH, {
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot($1, 0)
+		spritelayout_depot_nontrack($1, 16)
+	})
+	
+	xtile({
+		spritelayout_ground()
+		spritelayout_depot_nontrack($1, 0)
+		spritelayout_depot_nontrack($1, 16)
+	})
+})
+
+layout(DEPOT_A, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_A))
+layout(DEPOT_A_NORTH, LAYOUT_TEMPLATE_DEPOT_NORTH(DEPOT_TYPE_A))
+layout(DEPOT_A_SOUTH, LAYOUT_TEMPLATE_DEPOT_SOUTH(DEPOT_TYPE_A))
+// layout(DEPOT_B, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_B))
+// layout(DEPOT_C, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_C))
+// layout(DEPOT_D, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_D))
+
+// switches
+def(44, sw_depot_reserved_frame) anim_frame(
+	cbr(1) if(0)
+	cbr(2) if(1)
+	cbr(3) if(2)
+	cbr(4) if(3)
+	cbr(5) if(4)
+	cbr(6) if(5)
+	cbr(7) if(6)
+	cbr(7) if(7)
+	cbr(0) if(15)
+	cbr(1) if(14)
+	cbr(2) if(13)
+	cbr(3) if(12)
+	cbr(4) if(11)
+	cbr(5) if(10)
+	cbr(6) if(9)
+	cbr(7) if(8)
+	cbr(0xFE) else
+)
+def(43, sw_depot_unreserved_frame) anim_frame(
+	cbr(15) if(0)
+	cbr(14) if(1)
+	cbr(13) if(2)
+	cbr(12) if(3)
+	cbr(11) if(4)
+	cbr(10) if(5)
+	cbr(9) if(6)
+	cbr(8) if(7)
+	cbr(9) if(8)
+	cbr(10) if(9)
+	cbr(11) if(10)
+	cbr(12) if(11)
+	cbr(13) if(12)
+	cbr(14) if(13)
+	cbr(15) if(14)
+	cbr(15) if(15)
+	cbr(0xFE) else
+)
+def(42, sw_depot_frame) pbsinfo(
+	ref(sw_depot_unreserved_frame) if(PBSUNRESERVED)
+	ref(sw_depot_reserved_frame) else
+)
+
+def(62, sw_depot_frame_reg) anim_frame(
+	cbr(0) if(0, 15)
+	cbr(2) if(1, 14)
+	cbr(4) if(2, 13)
+	cbr(6) if(3, 12)
+	cbr(8) if(4, 11)
+	cbr(10) if(5, 10)
+	cbr(12) if(6, 9)
+	cbr(14) else
+)
+
+def(60, sw_depot_registers) setregisters(REGISTER_DEPOT_FRAME, {sub(sw_depot_frame_reg)}, ref(sw_set_registers))
+def(61, sw_depot_registers_purchase) setregisters(REGISTER_DEPOT_FRAME, {0}, ref(sw_set_registers))
+
+def(45, sw_depot_trackconnect) tinfo_trackconnect(shiftmask(0, 0x01),
+	cbr(0) if(1)
+	cbr(2) else
+)
+
+def(40, sw_depot_cb) callback(
+	ref(sw_depot_trackconnect) if(CB_LAYOUT)
+	cbr(A_START) if(CB_ACONTROL)
+	ref(sw_depot_frame) if(CB_AFRAME)
+	ref(sw_depot_registers) else
+)
+
+def(41, sw_depot_cb_purchase) callback(
+	cbr(0) if(CB_LAYOUT)
+	cbr(0) if(CB_ACONTROL)
+	cbr(0) if(CB_AFRAME)
+	ref(sw_depot_registers_purchase) else
+)
+
+// spriteset links
+forloop(X, {makestation(X, link(ref(sw_depot_cb_purchase), MENU) default(ref(sw_depot_cb)))}, DEPOT_A .. DEPOT_A_SOUTH)

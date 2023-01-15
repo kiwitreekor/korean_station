@@ -810,6 +810,34 @@ spriteblock(
 		sprite(spr_cheongnyangni_old_snow,
 		       cheongnyangni_old.png 8bpp  170 300 64 31   0   0 normal)
 		sprite(cheongnyangni_old.png 8bpp  170 300 64 31   0   0 normal)
+
+// Depot
+	
+		sprite(spr_depot,
+			   depot.png 8bpp   10  10 64 51 -59 -34 normal)
+		sprite(depot.png 8bpp   10  80 64 51  -3 -34 normal)
+		sprite(depot.png 8bpp   90  10 21 18 -31   2 normal)
+		sprite(depot.png 8bpp   90  80 21 18  12   2 normal)
+		sprite(depot.png 8bpp  130  10 64 51 -59 -34 normal)
+		sprite(depot.png 8bpp  130  80 64 51  -3 -34 normal)
+		
+		sprite(spr_depot_gate,
+			   depot.png 8bpp  210  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  210  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  240  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  240  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  270  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  270  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  300  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  300  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  330  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  330  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  360  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  360  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  390  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  390  80 14 21 -14 -14 normal)
+		sprite(depot.png 8bpp  420  10 14 21   2 -14 normal)
+		sprite(depot.png 8bpp  420  80 14 21 -14 -14 normal)
 	)
 )
 

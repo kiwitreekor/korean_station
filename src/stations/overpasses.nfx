@@ -48,6 +48,7 @@ define(LAYOUT_TEMPLATE_OVERPASS_SINGLE, {
 				tmp_ground
 				platform_base($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), eval(tmp_roof != ROOF_TYPE_NONE))
 				spritelayout_fence($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
+				spritelayout_catenary($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 				spritelayout_overpass_guide($1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}), X, eval(tmp_roof != ROOF_TYPE_NONE))
 				spritelayout_roof(tmp_roof, $1, ifelse($1, PLT_TYPE_MULTI, {$2, $3}, {$2}))
 			})

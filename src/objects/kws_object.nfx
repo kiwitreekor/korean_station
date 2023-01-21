@@ -41,6 +41,11 @@ spriteblock(+14,
 	)
 )
 
+spriteblock(+16,
+	set(sprite(buildings.png   8bpp   10  250 64 31 -31   0 normal))
+	set(sprite(metro.png       8bpp  510   10 64 31 -31   0 normal))
+)
+
 asl_on()
 
 skipif(1, getowngrfparameter(PARAM_FLAGS), BITCLR, PARAM_FLAGS_SNOW)
@@ -56,7 +61,7 @@ def(0, sw_terrain_snow) objinfo_terrain(
 )
 
 def(40) spriteset(
-	ground(spr_ground_nontrack_concrete, TTD)
+	ground(16)
 	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
 	regular(0, xyz(3,5,0), dxdydz(10,6,10))
 	glass(4, xyoff(0,0))
@@ -65,7 +70,7 @@ def(40) spriteset(
 )
 
 def(41) spriteset(
-	ground(spr_ground_nontrack_concrete, TTD)
+	ground(16)
 	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
 	regular(1, xyz(5,3,0), dxdydz(6,10,10))
 	glass(5, xyoff(0,0))
@@ -74,7 +79,7 @@ def(41) spriteset(
 )
 
 def(42) spriteset(
-	ground(spr_ground_nontrack_concrete, TTD)
+	ground(16)
 	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
 	regular(2, xyz(3,5,0), dxdydz(10,6,10))
 	glass(6, xyoff(0,0))
@@ -83,7 +88,7 @@ def(42) spriteset(
 )
 
 def(43) spriteset(
-	ground(spr_ground_nontrack_concrete, TTD)
+	ground(16)
 	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
 	regular(3, xyz(5,3,0), dxdydz(6,10,10))
 	glass(7, xyoff(0,0))

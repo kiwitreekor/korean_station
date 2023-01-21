@@ -34,6 +34,7 @@ definestation(BUFFER_TRACK, "",
 	class(CLASS_BUFFERS)
 	callbacks({CB_LAYOUT})
 	nontrack(TTD_ALLTILES)
+	pylons(TTD_ALLTILES)
 	setcargotriggers({PASS})
 )
 

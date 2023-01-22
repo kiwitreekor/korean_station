@@ -48,6 +48,7 @@ definestation(JUNGNANG_PART2, "",
 	flags({FOUNDATIONS})
 	setcargotriggers({PASS})
 	include_widths({2,4})
+	include_lengths({1})
 )
 
 definestation(JUNGNANG_PART1_PSD, "",
@@ -70,6 +71,7 @@ definestation(JUNGNANG_PART2_PSD, "",
 	setcargotriggers({PASS})
 	anim_triggers({ARRIVE, LEAVE})
 	include_widths({2,4})
+	include_lengths({1})
 )
 
 

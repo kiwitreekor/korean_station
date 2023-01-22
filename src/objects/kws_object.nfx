@@ -11,6 +11,11 @@ include(lang/korean.nfx)
 setfeature(_OBJECT)
 setpath(images)
 
+define(REGISTER_OBJ_METRO_SNOW_SKIP, 1)
+define(REGISTER_OBJ_METRO_SNOW_OFFSET, 2)
+define(REGISTER_OBJ_METRO_COLOUR_OFFSET, 3)
+define(REGISTER_OBJ_METRO_TREE_OFFSET, 4)
+
 define(tmpl_metro_exit, {
 	set(sprite($1 8bpp eval($2)     eval($3) 34 26 -22  -4 normal))
 	set(sprite($1 8bpp eval($2+50)  eval($3) 34 26 -12  -4 normal))
@@ -42,8 +47,17 @@ spriteblock(+14,
 )
 
 spriteblock(+16,
-	set(sprite(buildings.png   8bpp   10  250 64 31 -31   0 normal))
-	set(sprite(metro.png       8bpp  510   10 64 31 -31   0 normal))
+	set(sprite(buildings.png   8bpp   10 250 64 31 -31   0 normal))
+	set(sprite(metro.png       8bpp  510  10 64 31 -31   0 normal))
+)
+
+spriteblock(+18,
+	set(
+		sprite(metro.png       8bpp  510 100 35 44 -18 -34 normal)
+		sprite(metro.png       8bpp  560 100 35 44 -18 -34 normal)
+		sprite(metro.png       8bpp  510 150 26 53 -12 -42 normal)
+		sprite(metro.png       8bpp  560 150 26 53 -12 -42 normal)
+	)
 )
 
 asl_on()
@@ -59,6 +73,9 @@ def(0, sw_terrain_snow) objinfo_terrain(
 	cbr(0) if(SNOW)
 	cbr(0) else
 )
+
+
+// ID 0x00: Metro Exit (concrete)
 
 def(40) spriteset(
 	ground(16)
@@ -133,4 +150,164 @@ defineobject(OBJ_METRO_EXIT,
 makeobject(OBJ_METRO_EXIT,
 	link(ref(sw_metro_exit_purchase), MENU)
 	default(ref(sw_metro_exit))
+)
+
+
+// ID 0x01: Metro Exit (pavement)
+
+def(40) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(0, xyz(3,5,0), dxdydz(10,6,10))
+	glass(4, xyoff(0,0))
+	glass(8, xyoff(0,0))
+	recolour(12, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(41) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(1, xyz(5,3,0), dxdydz(6,10,10))
+	glass(5, xyoff(0,0))
+	glass(9, xyoff(0,0))
+	recolour(13, xyz(13,13,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(42) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(2, xyz(3,5,0), dxdydz(10,6,10))
+	glass(6, xyoff(0,0))
+	glass(10, xyoff(0,0))
+	recolour(12, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(43) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(3, xyz(5,3,0), dxdydz(6,10,10))
+	glass(7, xyoff(0,0))
+	glass(11, xyoff(0,0))
+	recolour(13, xyz(1,1,0), dxdydz(2,2,16), 0x307, aslflags({OFFSET_RCSPRITE}), registers({REGISTER_OBJ_METRO_COLOUR_OFFSET}))
+)
+
+def(5, obj_metro_exit_layout) getviews(
+	ref(40) if(0)
+	ref(41) if(1)
+	ref(42) if(2)
+	ref(43) else
+)
+
+def(3, sw_metro_exit) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random), sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
+def(4, sw_metro_exit_purchase) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0, sub(sw_obj_colour)}, ref(obj_metro_exit_layout))
+
+defineobject(OBJ_METRO_EXIT_PAVEMENT,
+	classid(CLASS_OBJ_METRO)
+	objectname(text_metro_exit)
+	
+	climate(TEMPERATE, ARCTIC, TROPIC, TOYLAND)
+	timeframe(1900-01-01 .. 500000-01-01)
+	
+	numviews(4)
+	size(1,1)
+	buildingheight(2)
+	
+	price(10)
+)
+
+makeobject(OBJ_METRO_EXIT_PAVEMENT,
+	link(ref(sw_metro_exit_purchase), MENU)
+	default(ref(sw_metro_exit))
+)
+
+
+// ID 0x02: Ground
+
+def(40) spriteset(
+	ground(16)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+)
+
+def(41) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+)
+
+def(5, obj_ground_layout) getviews(
+	ref(40) if(0)
+	ref(41) else
+)
+
+def(3, sw_obj_ground) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random), sub(sw_obj_colour)}, ref(obj_ground_layout))
+def(4, sw_obj_ground_purchase) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0, sub(sw_obj_colour)}, ref(obj_ground_layout))
+
+deftxt(text_ground, STR_OBJ_GROUND)
+
+defineobject(OBJ_GROUND,
+	classid(CLASS_OBJ_METRO)
+	objectname(text_ground)
+	
+	climate(TEMPERATE, ARCTIC, TROPIC, TOYLAND)
+	timeframe(1900-01-01 .. 500000-01-01)
+	
+	numviews(2)
+	size(1,1)
+	buildingheight(1)
+	
+	price(10)
+)
+
+makeobject(OBJ_GROUND,
+	link(ref(sw_obj_ground_purchase), MENU)
+	default(ref(sw_obj_ground))
+)
+
+
+// ID 0x03: Tree
+
+def(40) spriteset(
+	ground(16)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(18, xyz(6,6,0), dxdydz(4,4,16), aslflags({OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_TREE_OFFSET}))
+)
+
+def(41) spriteset(
+	ground(17)
+	regular(14, xyz(0,0,0), dxdydz(16,16,0), aslflags({SKIP, OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_SNOW_SKIP, REGISTER_OBJ_METRO_SNOW_OFFSET}))
+	regular(18, xyz(6,6,0), dxdydz(4,4,16), aslflags({OFFSET_SPRITE}), registers({REGISTER_OBJ_METRO_TREE_OFFSET}))
+)
+
+def(5, obj_metro_tree_layout) getviews(
+	ref(40) if(0)
+	ref(41) else
+)
+
+def(6, sw_metro_tree_type) randomrel(CONSTRUCT, 1, cbr(0), cbr(1))
+
+def(7, sw_metro_tree_offset) calculate({subroutine(sw_metro_tree_type) * 2 + subroutine(sw_terrain_snow)},
+	cbfail() else
+)
+
+def(3, sw_obj_metro_tree) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {sub(sw_terrain_snow), sub(sw_metro_snow_random), sub(sw_obj_colour), sub(sw_metro_tree_offset)}, ref(obj_metro_tree_layout))
+def(4, sw_obj_metro_tree_purchase) setregisters(REGISTER_OBJ_METRO_SNOW_SKIP, {0, 0, sub(sw_obj_colour), 0}, ref(obj_metro_tree_layout))
+
+deftxt(text_tree, STR_OBJ_METRO_TREE)
+
+defineobject(OBJ_METRO_TREE,
+	classid(CLASS_OBJ_METRO)
+	objectname(text_tree)
+	
+	climate(TEMPERATE, ARCTIC, TROPIC, TOYLAND)
+	timeframe(1900-01-01 .. 500000-01-01)
+	
+	numviews(2)
+	size(1,1)
+	buildingheight(1)
+	
+	price(10)
+)
+
+makeobject(OBJ_METRO_TREE,
+	link(ref(sw_obj_metro_tree_purchase), MENU)
+	default(ref(sw_obj_metro_tree))
 )

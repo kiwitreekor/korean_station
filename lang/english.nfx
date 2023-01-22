@@ -77,6 +77,8 @@ defstr({STR_PARAM_SIGNAL_SIDE_RIGHT}, {"On the right"})
 
 defstr({STR_OBJ_CLASS_METRO}, {"Korean Station: Metro Stations"})
 defstr({STR_OBJ_METRO_EXIT}, {"Metro Entrance"})
+defstr({STR_OBJ_GROUND}, {"Ground"})
+defstr({STR_OBJ_METRO_TREE}, {"Tree"})
 divert
 
 divert(2)

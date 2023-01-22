@@ -57,6 +57,12 @@ grfinit(GRFID_KWS_PART1,
 			setdefault(1)
 		)
 		grfsetting(
+			settype(BOOL,PARAM_FLAGS,PARAM_FLAGS_DEPOT_GATE,1)
+			setname(STR_PARAM_DEPOT_GATE_NAME)
+			setdescription(STR_PARAM_DEPOT_GATE_DESC)
+			setdefault(0)
+		)
+		grfsetting(
 			settype(ENUM,PARAM_CATENARY,0,8)
 			setname(STR_PARAM_CATENARY_NAME)
 			setdescription(STR_PARAM_CATENARY_DESC)

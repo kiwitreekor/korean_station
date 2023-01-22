@@ -13,6 +13,7 @@ include(src/stations/layouts/layouts.m4)
 setfeature(_STATION)
 
 define(REGISTER_DEPOT_FRAME, 128)
+define(REGISTER_DEPOT_SNOW_SKIP, 129)
 
 // depots
 
@@ -26,73 +27,80 @@ definestation(X, "",
 )}, DEPOT_A .. DEPOT_D_SOUTH)
 
 // layouts
-define(get_depot_front_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot, spr_depot)})
-define(get_depot_back_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot+2, spr_depot+2)})
-define(get_depot_nontrack_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot+4, spr_depot+4)})
-define(get_depot_gate_sprite, {ifelse($1, DEPOT_TYPE_A, spr_depot_gate, spr_depot_gate)})
 
 define(spritelayout_depot, {
-	compcol(get_depot_front_sprite($1), xyz($2, 14, 0), dxdydz(16, 2, 30))
-	compcol(get_depot_back_sprite($1), xyz($2, 0, 0), dxdydz(16, 2, 30))
-	regular(get_depot_gate_sprite($1), xyz($2+16, 4, 0), dxdydz(0, 8, 16), aslflags({OFFSET_SPRITE}), registers({REGISTER_DEPOT_FRAME}))
-	
-	// TODO: snow graphic
-	// regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
+	compcol(spr_depot + ($1) * 6, xyz($2, 14, 0), dxdydz(16, 2, 30))
+	regular(spr_depot_snow + ($1) * 6, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_DEPOT_SNOW_SKIP}))
+	compcol(spr_depot + ($1) * 6 + 2, xyz($2, 0, 0), dxdydz(16, 2, 30))
+	regular(spr_depot_snow + ($1) * 6 + 2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_DEPOT_SNOW_SKIP}))
+	regular(spr_depot_gate, xyz($2+16, 4, 0), dxdydz(0, 8, 16), aslflags({OFFSET_SPRITE}), registers({REGISTER_DEPOT_FRAME}))
 })
 
 define(spritelayout_depot_nontrack, {
-	compcol(get_depot_nontrack_sprite($1), xyz($2, 14, 0), dxdydz(16, 2, 30))
+	compcol(spr_depot + ($1) * 6 + 4, xyz($2, 14, 0), dxdydz(16, 2, 30))
+	regular(spr_depot_snow + ($1) * 6 + 4, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_DEPOT_SNOW_SKIP}))
 })
 
 define(LAYOUT_TEMPLATE_DEPOT, {
 	xtile({
 		spritelayout_ground()
+		ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1, -16)})
 		spritelayout_depot($1, 0)
+		ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1, 16)})
 	})
 	
 	xtile({
 		spritelayout_ground()
+		ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1, -16)})
 		spritelayout_depot_nontrack($1, 0)
-	})
-})
-
-define(LAYOUT_TEMPLATE_DEPOT_NORTH, {
-	xtile({
-		spritelayout_ground()
-		spritelayout_depot_nontrack($1, -16)
-		spritelayout_depot($1, 0)
+		ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1, 16)})
 	})
 	
-	xtile({
-		spritelayout_ground()
-		spritelayout_depot_nontrack($1, -16)
-		spritelayout_depot_nontrack($1, 0)
+	ifelse($3, DOUBLE, {
+		xtile({
+			spritelayout_ground()
+			ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1+1, -16)})
+			spritelayout_depot($1+1, 0)
+			ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1+1, 16)})
+		})
+		
+		xtile({
+			spritelayout_ground()
+			ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1+1, -16)})
+			spritelayout_depot_nontrack($1+1, 0)
+			ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1+1, 16)})
+		})
+		
+		xtile({
+			spritelayout_ground()
+			ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1+2, -16)})
+			spritelayout_depot($1+2, 0)
+			ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1+2, 16)})
+		})
+		
+		xtile({
+			spritelayout_ground()
+			ifelse($2, EXT_NORTH, {spritelayout_depot_nontrack($1+2, -16)})
+			spritelayout_depot_nontrack($1+2, 0)
+			ifelse($2, EXT_SOUTH, {spritelayout_depot_nontrack($1+2, 16)})
+		})
 	})
 })
 
-define(LAYOUT_TEMPLATE_DEPOT_SOUTH, {
-	xtile({
-		spritelayout_ground()
-		spritelayout_depot($1, 0)
-		spritelayout_depot_nontrack($1, 16)
-	})
-	
-	xtile({
-		spritelayout_ground()
-		spritelayout_depot_nontrack($1, 0)
-		spritelayout_depot_nontrack($1, 16)
-	})
-})
+layout(DEPOT_A, LAYOUT_TEMPLATE_DEPOT(0, NORMAL))
+layout(DEPOT_A_NORTH, LAYOUT_TEMPLATE_DEPOT(0, EXT_NORTH))
+layout(DEPOT_A_SOUTH, LAYOUT_TEMPLATE_DEPOT(0, EXT_SOUTH))
 
-layout(DEPOT_A, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_A))
-layout(DEPOT_A_NORTH, LAYOUT_TEMPLATE_DEPOT_NORTH(DEPOT_TYPE_A))
-layout(DEPOT_A_SOUTH, LAYOUT_TEMPLATE_DEPOT_SOUTH(DEPOT_TYPE_A))
-// layout(DEPOT_B, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_B))
-// layout(DEPOT_C, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_C))
-// layout(DEPOT_D, LAYOUT_TEMPLATE_DEPOT(DEPOT_TYPE_D))
+layout(DEPOT_B, LAYOUT_TEMPLATE_DEPOT(1, NORMAL, DOUBLE))
+layout(DEPOT_B_NORTH, LAYOUT_TEMPLATE_DEPOT(1, EXT_NORTH, DOUBLE))
+layout(DEPOT_B_SOUTH, LAYOUT_TEMPLATE_DEPOT(1, EXT_SOUTH, DOUBLE))
+
+layout(DEPOT_C, LAYOUT_TEMPLATE_DEPOT(4, NORMAL, DOUBLE))
+layout(DEPOT_C_NORTH, LAYOUT_TEMPLATE_DEPOT(4, EXT_NORTH, DOUBLE))
+layout(DEPOT_C_SOUTH, LAYOUT_TEMPLATE_DEPOT(4, EXT_SOUTH, DOUBLE))
 
 // switches
-def(44, sw_depot_reserved_frame) anim_frame(
+def(47, sw_depot_reserved_frame) anim_frame(
 	cbr(1) if(0)
 	cbr(2) if(1)
 	cbr(3) if(2)
@@ -111,7 +119,7 @@ def(44, sw_depot_reserved_frame) anim_frame(
 	cbr(7) if(8)
 	cbr(0xFE) else
 )
-def(43, sw_depot_unreserved_frame) anim_frame(
+def(46, sw_depot_unreserved_frame) anim_frame(
 	cbr(15) if(0)
 	cbr(14) if(1)
 	cbr(13) if(2)
@@ -130,12 +138,12 @@ def(43, sw_depot_unreserved_frame) anim_frame(
 	cbr(15) if(15)
 	cbr(0xFE) else
 )
-def(42, sw_depot_frame) pbsinfo(
+def(45, sw_depot_frame) pbsinfo(
 	ref(sw_depot_unreserved_frame) if(PBSUNRESERVED)
 	ref(sw_depot_reserved_frame) else
 )
 
-def(62, sw_depot_frame_reg) anim_frame(
+def(62, sw_depot_frame_offset) anim_frame(
 	cbr(0) if(0, 15)
 	cbr(2) if(1, 14)
 	cbr(4) if(2, 13)
@@ -146,12 +154,47 @@ def(62, sw_depot_frame_reg) anim_frame(
 	cbr(14) else
 )
 
-def(60, sw_depot_registers) setregisters(REGISTER_DEPOT_FRAME, {sub(sw_depot_frame_reg)}, ref(sw_set_registers))
-def(61, sw_depot_registers_purchase) setregisters(REGISTER_DEPOT_FRAME, {0}, ref(sw_set_registers))
+def(63, sw_depot_frame_reg) getparameter(PARAM_FLAGS, shiftmask(PARAM_FLAGS_DEPOT_GATE, 1),
+	ref(sw_depot_frame_offset) if(0)
+	cbr(14) else
+)
 
-def(45, sw_depot_trackconnect) tinfo_trackconnect(shiftmask(0, 0x01),
+def(60, sw_depot_registers) setregisters(REGISTER_DEPOT_FRAME, {sub(sw_depot_frame_reg), sub(sw_terrain_snow)}, ref(sw_set_registers))
+def(61, sw_depot_registers_purchase) setregisters(REGISTER_DEPOT_FRAME, {0, 0}, ref(sw_set_registers))
+
+def(44, sw_depot_trackconnect) tinfo_trackconnect(shiftmask(0, 0x01),
 	cbr(0) if(1)
 	cbr(2) else
+)
+
+def(46, sw_depot_double_even_layout) plt_even_num(
+	self(
+		cbr(4) if(0)
+		cbr(8) else
+	)
+)
+
+def(47, sw_depot_double_odd_layout) plt_numrev(
+	self(
+		cbr(0) if(0)
+		ref(sw_depot_double_even_layout) else
+	)
+)
+
+def(48, sw_depot_double_layout_sub) calculate({plt_total(self()) MOD 2},
+	ref(sw_depot_double_even_layout) if(0)
+	ref(sw_depot_double_odd_layout) else
+)
+
+def(43, sw_depot_double_layout) calculate({subroutine(sw_depot_double_layout_sub) + subroutine(sw_depot_trackconnect)},
+	cbr(0) else
+)
+
+def(42, sw_depot_double_cb) callback(
+	ref(sw_depot_double_layout) if(CB_LAYOUT)
+	cbr(A_START) if(CB_ACONTROL)
+	ref(sw_depot_frame) if(CB_AFRAME)
+	ref(sw_depot_registers) else
 )
 
 def(40, sw_depot_cb) callback(
@@ -170,3 +213,4 @@ def(41, sw_depot_cb_purchase) callback(
 
 // spriteset links
 forloop(X, {makestation(X, link(ref(sw_depot_cb_purchase), MENU) default(ref(sw_depot_cb)))}, DEPOT_A .. DEPOT_A_SOUTH)
+forloop(X, {makestation(X, link(ref(sw_depot_cb_purchase), MENU) default(ref(sw_depot_double_cb)))}, DEPOT_B .. DEPOT_C_SOUTH)

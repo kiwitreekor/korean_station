@@ -34,6 +34,9 @@ defstr({STR_PARAM_SNOW_DESC}, {"설선 고도보다 위에 설치된 승강장�
 defstr({STR_PARAM_FENCE_NAME}, {"울타리 그래픽 보이기"})
 defstr({STR_PARAM_FENCE_DESC}, {"철도역의 가장자리에 철조망 그래픽을 표시합니다."})
 
+defstr({STR_PARAM_DEPOT_GATE_NAME}, {"차량기지 문을 항상 열기"})
+defstr({STR_PARAM_DEPOT_GATE_DESC}, {"차량기지의 문을 항상 연 상태로 고정합니다. 차량기지 문이 늦게 열리거나 제대로 열리지 않는 경우 설정하십시오."})
+
 defstr({STR_PARAM_CATENARY_NAME}, {"전신주 그래픽"})
 defstr({STR_PARAM_CATENARY_DESC}, {"비활성화: 전신주 그래픽을 표시하지 않습니다." CRLF "타입 A: 한국 철도 스타일의 전신주" CRLF "타입 B: 일반적인 OpenTTD 스타일의 전신주"})
 

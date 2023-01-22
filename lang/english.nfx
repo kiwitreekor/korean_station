@@ -33,6 +33,9 @@ defstr({STR_PARAM_SNOW_DESC, {"If you set this setting on}, platform above snowl
 defstr({STR_PARAM_FENCE_NAME}, {"Enable fence graphics"})
 defstr({STR_PARAM_FENCE_DESC, {"If you set this setting on}, it will show fence graphics on the both sides of station."})
 
+defstr({STR_PARAM_DEPOT_GATE_NAME}, {"Make depot gate always open"})
+defstr({STR_PARAM_DEPOT_GATE_DESC, {"If you set this setting on}, depot gate will be always opened."})
+
 defstr({STR_PARAM_CATENARY_NAME}, {"Catenary graphics"})
 defstr({STR_PARAM_CATENARY_DESC}, {"None: Disable pylon graphics" CRLF "Type A: Korean style pylon graphic" CRLF "Type B: OpenTTD style pylon graphic"})
 

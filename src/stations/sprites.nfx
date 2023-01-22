@@ -619,6 +619,8 @@ spriteblock(
 		tmpl_signal_hsr(spr_signal_10, signals.png, 167, 402)
 		tmpl_signal_common(spr_signal_11, signals.png, 167, 439)
 		tmpl_signal_common(spr_signal_12, signals.png, 167, 476)
+		tmpl_signal_common(spr_signal_13, signals.png, 167, 510)
+		tmpl_signal_common(spr_signal_14, signals.png, 167, 547)
 
 // Hannam Station
 		sprite(spr_hannam, 

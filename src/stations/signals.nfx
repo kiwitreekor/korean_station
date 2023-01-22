@@ -21,6 +21,12 @@ definestation(X, "",
 	callbacks({CB_LAYOUT})
 )}, SIGNAL_START .. SIGNAL_END)
 
+forloop(X, {
+definestation(X, "",
+	class(CLASS_WAYPOINT)
+	callbacks({CB_LAYOUT})
+)}, SIGNAL_13_A .. SIGNAL_14_B)
+
 // layouts
 define(LAYOUT_TEMPLATE_SIGNAL_FRONT, {
 	xtile({
@@ -86,6 +92,10 @@ layout(SIGNAL_11_A, LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_11))
 layout(SIGNAL_11_B, LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_11))
 layout(SIGNAL_12_A, LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_12))
 layout(SIGNAL_12_B, LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_12))
+layout(SIGNAL_13_A, LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_13))
+layout(SIGNAL_13_B, LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_13))
+layout(SIGNAL_14_A, LAYOUT_TEMPLATE_SIGNAL_FRONT(spr_signal_14))
+layout(SIGNAL_14_B, LAYOUT_TEMPLATE_SIGNAL_BACK(spr_signal_14))
 
 // switches
 def(40, sw_signal_side_left) plt_axis(
@@ -124,3 +134,4 @@ def(46, sw_signal_cb_purchase) callback(
 )
 
 forloop(X, {makestation(X, link(ref(sw_signal_cb_purchase), MENU) default(ref(sw_signal_cb)))}, SIGNAL_START .. SIGNAL_END)
+forloop(X, {makestation(X, link(ref(sw_signal_cb_purchase), MENU) default(ref(sw_signal_cb)))}, SIGNAL_13_A .. SIGNAL_14_B)

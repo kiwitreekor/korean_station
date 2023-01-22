@@ -765,10 +765,10 @@ define(tmpl_jije_part5_back, {
 
 define(tmpl_signal_shunting, {
 		sprite(ifelse($1,,,{$1,})
-		       $2 8bpp eval($3)      eval($4)      4  8  -2  -8 normal) ifelse($1,,,{// $1})
-		sprite($2 8bpp eval($3+60)   eval($4)      4  8  -2  -8 normal)
-		sprite($2 8bpp eval($3+41)   eval($4)      4  8  -2  -8 normal)
-		sprite($2 8bpp eval($3+19)   eval($4)      4  8  -2  -8 normal)
+		       $2 8bpp eval($3)      eval($4)      3  8  -2  -8 normal) ifelse($1,,,{// $1})
+		sprite($2 8bpp eval($3+60)   eval($4)      3  8  -2  -8 normal)
+		sprite($2 8bpp eval($3+41)   eval($4)      3  8  -2  -8 normal)
+		sprite($2 8bpp eval($3+19)   eval($4)      3  8  -2  -8 normal)
 })
 
 define(tmpl_signal_slowapproach, {

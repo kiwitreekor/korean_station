@@ -513,6 +513,14 @@ spriteblock(
 		sprite(gwm.png         8bpp 1350  10 32 53   0 -39 normal)
 		sprite(gwm.png         8bpp 1410  10 32 53 -31 -39 normal)
 		sprite(gwm.png         8bpp 1460  10 32 53   0 -39 normal)
+		sprite(gwm.png         8bpp 1520  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1570  10 32 53   0 -39 normal)
+		sprite(gwm.png         8bpp 1630  10 32 53 -31 -39 normal)
+		sprite(gwm.png         8bpp 1680  10 32 53   0 -39 normal)
+		
+		sprite(spr_gwangmyeong_purchase,
+			   gwm.png         8bpp 1300  80 64 58 -31 -27 normal)
+		sprite(gwm.png         8bpp 1390  80 64 58 -31 -27 normal)
 
 // Simple station
 		sprite(spr_simple_stn,

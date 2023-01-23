@@ -460,7 +460,10 @@ ifelse(file_index, 1, {
 	
 	defstationname(GANGNEUNG_NONTRACK, {"강릉역"})
 	
-	defstationname(GWANGMYEONG_STN_PART1, {"광명역"})
+	defstationname(GWANGMYEONG_STN_PART1, {"광명역 (지하)"})
+	defstationname(GWANGMYEONG_STN_PART1_B, {"광명역 (지상)"})
+	defstationname(GWANGMYEONG_STN_PART1_C, {"광명역 (지하, 통과선 없음)"})
+	defstationname(GWANGMYEONG_STN_PART1_D, {"광명역 (지상, 통과선 없음)"})
 	defstationname(GWANGMYEONG_STN_PART2A, {"광명역 (앞)"})
 	defstationname(GWANGMYEONG_STN_PART2B, {"광명역 (뒤)"})
 	
@@ -590,24 +593,6 @@ ifelse(file_index, 1, {
 	defstationname(JUNGNANG_PART2, {"중랑역 pt.2"})
 	defstationname(JUNGNANG_PART1_PSD, {"중랑역 pt.1 + PSD"})
 	defstationname(JUNGNANG_PART2_PSD, {"중랑역 pt.2 + PSD"})
-	
-	defstationname(CHEONGNYANGNI_OLD_FRONT, {"구 청량리역 (전면)"})
-	defstationname(CHEONGNYANGNI_OLD_BACK, {"구 청량리역 (후면)"})
-
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_A, {"구 청량리역 (저층) + 고상홈 A"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_B, {"구 청량리역 (저층) + 고상홈 B"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_C, {"구 청량리역 (저층) + 고상홈 C"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_A, {"구 청량리역 (고층) + 고상홈 A"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_B, {"구 청량리역 (고층) + 고상홈 B"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_C, {"구 청량리역 (고층) + 고상홈 C"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_A, {"구 청량리역 (저층) + 저상홈 A"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_B, {"구 청량리역 (저층) + 저상홈 B"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_C, {"구 청량리역 (저층) + 저상홈 C"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_A, {"구 청량리역 (고층) + 저상홈 A"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_B, {"구 청량리역 (고층) + 저상홈 B"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"구 청량리역 (고층) + 저상홈 C"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"구 청량리역 (저층)"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"구 청량리역 (고층)"})
 }, file_index, 3, {
 	// kws_part3.grf
 	
@@ -639,5 +624,23 @@ ifelse(file_index, 1, {
 	defstationname(DEPOT_D, {"차량기지 D"})
 	defstationname(DEPOT_D_NORTH, {"차량기지 D (북쪽 연장)"})
 	defstationname(DEPOT_D_SOUTH, {"차량기지 D (남쪽 연장)"})
+	
+	defstationname(CHEONGNYANGNI_OLD_FRONT, {"구 청량리역 (전면)"})
+	defstationname(CHEONGNYANGNI_OLD_BACK, {"구 청량리역 (후면)"})
+
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_A, {"구 청량리역 (저층) + 고상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_B, {"구 청량리역 (저층) + 고상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_C, {"구 청량리역 (저층) + 고상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_A, {"구 청량리역 (고층) + 고상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_B, {"구 청량리역 (고층) + 고상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_C, {"구 청량리역 (고층) + 고상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_A, {"구 청량리역 (저층) + 저상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_B, {"구 청량리역 (저층) + 저상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_C, {"구 청량리역 (저층) + 저상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_A, {"구 청량리역 (고층) + 저상홈 A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_B, {"구 청량리역 (고층) + 저상홈 B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"구 청량리역 (고층) + 저상홈 C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"구 청량리역 (저층)"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"구 청량리역 (고층)"})
 })
 divert

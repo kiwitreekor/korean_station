@@ -13,7 +13,7 @@ define(spritelayout_passengerB, {regular(spr_passengers+2, xyz(0, 10, $1), dxdyd
 
 
 define(spritelayout_platform, {
-	ifelse($1, PLT_TYPE_A, {
+	ifelse($2, PLT_TYPE_NONE, {}, $1, PLT_TYPE_A, {
 		spritelayout_platformA($2, $3)
 	}, $1, PLT_TYPE_B, {
 		spritelayout_platformB($2, $3)
@@ -27,7 +27,7 @@ define(spritelayout_platform, {
 })
 
 define(spritelayout_passenger, {
-	ifelse($1, PLT_TYPE_A, {
+	ifelse($2, PLT_TYPE_NONE, {}, $1, PLT_TYPE_A, {
 		spritelayout_passengerA(get_platform_height($2))
 	}, $1, PLT_TYPE_B, {
 		spritelayout_passengerB(get_platform_height($2))

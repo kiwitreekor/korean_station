@@ -460,7 +460,10 @@ ifelse(file_index, 1, {
 	
 	defstationname(GANGNEUNG_NONTRACK, {"Gangneung Stn."})
 	
-	defstationname(GWANGMYEONG_STN_PART1, {"Gwangmyeong Stn."})
+	defstationname(GWANGMYEONG_STN_PART1, {"Gwangmyeong Stn. (Underground)"})
+	defstationname(GWANGMYEONG_STN_PART1_B, {"Gwangmyeong Stn. (Ground)"})
+	defstationname(GWANGMYEONG_STN_PART1_C, {"Gwangmyeong Stn. (Underground)"})
+	defstationname(GWANGMYEONG_STN_PART1_D, {"Gwangmyeong Stn. (Ground"})
 	defstationname(GWANGMYEONG_STN_PART2A, {"Gwangmyeong Stn. (Front)"})
 	defstationname(GWANGMYEONG_STN_PART2B, {"Gwangmyeong Stn. (Back)"})
 	
@@ -590,24 +593,6 @@ ifelse(file_index, 1, {
 	defstationname(JUNGNANG_PART2, {"Jungnang Stn. pt.2"})
 	defstationname(JUNGNANG_PART1_PSD, {"Jungnang Stn. pt.1 + PSD"})
 	defstationname(JUNGNANG_PART2_PSD, {"Jungnang Stn. pt.2 + PSD"})
-	
-	defstationname(CHEONGNYANGNI_OLD_FRONT, {"Old Cheongnyangni Stn. (Front)"})
-	defstationname(CHEONGNYANGNI_OLD_BACK, {"Old Cheongnyangni Stn. (Back)"})
-
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_A, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform A"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_B, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform B"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_HP_C, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform C"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_A, {"Old Cheongnyangni Stn. (High Overpass) + High Platform A"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_B, {"Old Cheongnyangni Stn. (High Overpass) + High Platform B"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_C, {"Old Cheongnyangni Stn. (High Overpass) + High Platform C"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_A, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform A"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_B, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform B"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_LP_C, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform C"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_A, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform A"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_B, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform B"})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform C"})
-	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"Old Cheongnyangni Stn. (Low Overpass) "})
-	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"Old Cheongnyangni Stn. (High Overpass)"})
 }, file_index, 3, {
 	// kws_part3.grf
 	
@@ -639,5 +624,23 @@ ifelse(file_index, 1, {
 	defstationname(DEPOT_D, {"Depot, Type D"})
 	defstationname(DEPOT_D_NORTH, {"Depot, Type D (Northern Extension)"})
 	defstationname(DEPOT_D_SOUTH, {"Depot, Type D (Southern Extension)"})
+	
+	defstationname(CHEONGNYANGNI_OLD_FRONT, {"Old Cheongnyangni Stn. (Front)"})
+	defstationname(CHEONGNYANGNI_OLD_BACK, {"Old Cheongnyangni Stn. (Back)"})
+
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_A, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_B, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_HP_C, {"Old Cheongnyangni Stn. (Low Overpass) + High Platform C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_A, {"Old Cheongnyangni Stn. (High Overpass) + High Platform A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_B, {"Old Cheongnyangni Stn. (High Overpass) + High Platform B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_HP_C, {"Old Cheongnyangni Stn. (High Overpass) + High Platform C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_A, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform A"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_B, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform B"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_LP_C, {"Old Cheongnyangni Stn. (Low Overpass) + Low Platform C"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_A, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform A"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_B, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform B"})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform C"})
+	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"Old Cheongnyangni Stn. (Low Overpass) "})
+	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"Old Cheongnyangni Stn. (High Overpass)"})
 })
 divert

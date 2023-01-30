@@ -32,7 +32,7 @@ setproperties(SUSEO_NONTRACK,
 
 forloop(X, {
 definestation(X, "",
-	class(CLASS_BUILDINGS)
+	class(CLASS_METRO)
 	callbacks({CB_LAYOUT})
 	nowires(TTD_ALLTILES)
 )}, SUSEO_PARKING_LOT_NONTRACK .. SUSEO_PARKING_LOT_TRACK)

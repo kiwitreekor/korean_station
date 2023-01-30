@@ -260,6 +260,16 @@ define(LAYOUT_TEMPLATE_JIJE_PART5, {
 layout(JIJE_PART5, LAYOUT_TEMPLATE_JIJE_PART5())
 
 // switches
+def(51) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x400},
+	cbr(1) if(0x400)
+	cbr(0) else
+)
+
+def(50, sw_jije_part1_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0xFF},
+	cbr(0) if(0xFF)
+	ref(51) else
+)
+
 def(40, sw_jije_part2_check) calculate({register(REGISTER_FUNCTION_PARAM) RESTORE tinfo_statid(REGISTER,) AND 0x1FF},
 	cbr(1) if(0x100+JIJE_PART2_HP_A .. 0x100+JIJE_PART2_TRACK)
 	cbr(1) if(0x100+JIJE_PART2_HP_A_PSD .. 0x100+JIJE_PART2_HP_B_PSD)
@@ -284,9 +294,14 @@ def(43, sw_jije_part1_layout_sub1) plt_index(
 	)
 )
 
-def(44, sw_jije_part1_layout_direction) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part2_check)},
-	cbr(0) if(0)
+def(52) calculate({0xF0 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part1_check)},
+	cbr(0) if(1)
 	cbr(6) else
+)
+
+def(44, sw_jije_part1_layout_direction) calculate({0x10 store(REGISTER_FUNCTION_PARAM) subroutine(sw_jije_part1_check)},
+	ref(52) if(1)
+	cbr(0) else
 )
 
 def(45, sw_jije_part1_layout) calculate({subroutine(sw_jije_part1_layout_sub1) + subroutine(sw_jije_part1_layout_direction)},

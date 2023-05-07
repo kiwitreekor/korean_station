@@ -1,0 +1,57 @@
+// Ilsan Stn.
+
+include(src/includes/constants.m4)
+include(src/includes/functions.m4)
+
+import(m4_sprite)
+
+asl_on()
+
+include(src/stations/switches.m4)
+include(src/stations/layouts/layouts.m4)
+
+setfeature(_STATION)
+
+definestation(ILSAN_STATION, "",
+	class(CLASS_BUILDINGS)
+	callbacks({CB_LAYOUT})
+	include_widths({1})
+	include_lengths({2})
+	nontrack(TTD_ALLTILES)
+	nowires(TTD_ALLTILES)
+)
+
+
+layout(ILSAN_STATION, 
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_ilsan, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_ilsan+2, xyz(0,0,0), dxdydz(16,16,30))
+	})
+	xtile({
+		spritelayout_ground_nontrack_concrete()
+		regular(spr_ilsan_purchase, xyz(0,0,0), dxdydz(16,16,30))
+	})
+)
+
+def(41, sw_ilsan_layout) plt_pos(
+	self(
+		cbr(2) if(0)
+		cbr(0) else
+	)
+)
+
+def(42, sw_ilsan_cb) callback(
+	ref(sw_ilsan_layout) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+def(43, sw_ilsan_cb_purchase) callback(
+	cbr(4) if(CB_LAYOUT)
+	ref(sw_set_registers) else
+)
+
+makestation(ILSAN_STATION, link(ref(sw_ilsan_cb_purchase), MENU) default(ref(sw_ilsan_cb)))

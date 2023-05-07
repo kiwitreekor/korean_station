@@ -642,5 +642,7 @@ ifelse(file_index, 1, {
 	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"Old Cheongnyangni Stn. (High Overpass) + Low Platform C"})
 	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"Old Cheongnyangni Stn. (Low Overpass) "})
 	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"Old Cheongnyangni Stn. (High Overpass)"})
+	
+	defstationname(ILSAN_STATION, {"Ilsan Stn. (old)"})
 })
 divert

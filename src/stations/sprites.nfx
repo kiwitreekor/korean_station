@@ -940,6 +940,17 @@ spriteblock(
 		sprite(depot.png 8bpp  390  80 14 21 -14 -14 normal)
 		sprite(depot.png 8bpp  420  10 14 21   2 -14 normal)
 		sprite(depot.png 8bpp  420  80 14 21 -14 -14 normal)
+
+// Ilsan Station
+		sprite(spr_ilsan,
+			   ilsan.png 8bpp   10  10 64 48 -31 -17 normal)
+		sprite(ilsan.png 8bpp   90  10 64 48 -31 -17 normal)
+		sprite(ilsan.png 8bpp  170  10 47 43 -14 -12 normal)
+		sprite(ilsan.png 8bpp  230  10 47 43 -31 -12 normal)
+		
+		sprite(spr_ilsan_purchase,
+			   ilsan.png 8bpp  290  10 96 60 -46 -22 normal)
+		sprite(ilsan.png 8bpp  400  10 96 60 -46 -22 normal)
 	)
 )
 

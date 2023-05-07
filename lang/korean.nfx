@@ -642,5 +642,7 @@ ifelse(file_index, 1, {
 	defstationname(CHEONGNYANGNI_OLD_HIGH_LP_C, {"구 청량리역 (고층) + 저상홈 C"})
 	defstationname(CHEONGNYANGNI_OLD_LOW_TRACK, {"구 청량리역 (저층)"})
 	defstationname(CHEONGNYANGNI_OLD_HIGH_TRACK, {"구 청량리역 (고층)"})
+	
+	defstationname(ILSAN_STATION, {"구 일산역"})
 })
 divert

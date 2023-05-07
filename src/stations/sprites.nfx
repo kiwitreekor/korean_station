@@ -434,7 +434,7 @@ spriteblock(
 // Seoul Station
 		tmpl_seoul_old(spr_seoul_old, seoul.png, 10, 10)
 		tmpl_seoul_old(spr_seoul_old_snow, seoul.png, 10, 620)
-		
+		 
 		tmpl_seoul_building(spr_seoul_building, seoul.png, 350, 10)
 		tmpl_seoul_part1(spr_seoul_part1, seoul.png, 350, 200)
 	

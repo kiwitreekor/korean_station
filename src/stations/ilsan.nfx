@@ -26,10 +26,12 @@ layout(ILSAN_STATION,
 	xtile({
 		spritelayout_ground_nontrack_concrete()
 		regular(spr_ilsan, xyz(0,0,0), dxdydz(16,16,30))
+		regular(spr_ilsan_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 	xtile({
 		spritelayout_ground_nontrack_concrete()
 		regular(spr_ilsan+2, xyz(0,0,0), dxdydz(16,16,30))
+		regular(spr_ilsan_snow+2, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_SNOW_SKIP}))
 	})
 	xtile({
 		spritelayout_ground_nontrack_concrete()

@@ -951,6 +951,12 @@ spriteblock(
 		sprite(spr_ilsan_purchase,
 			   ilsan.png 8bpp  290  10 96 60 -46 -22 normal)
 		sprite(ilsan.png 8bpp  400  10 96 60 -46 -22 normal)
+		
+		sprite(spr_ilsan_snow,
+			   ilsan.png 8bpp   10  80 64 48   0   0 normal)
+		sprite(ilsan.png 8bpp   90  80 64 48   0   0 normal)
+		sprite(ilsan.png 8bpp  170  80 47 43   0   0 normal)
+		sprite(ilsan.png 8bpp  230  80 47 43   0   0 normal)
 	)
 )
 

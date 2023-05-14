@@ -86,21 +86,21 @@ layout(CHEONGNYANGNI_OLD_FRONT,
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+2, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+4, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+6, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
@@ -128,7 +128,7 @@ layout(CHEONGNYANGNI_OLD_FRONT,
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old+14, xyz(0,0,0), dxdydz(16,16,40))
 		spritelayout_passengerB(0)
@@ -136,7 +136,7 @@ layout(CHEONGNYANGNI_OLD_FRONT,
 	
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_purchase, xyz(0,0,0), dxdydz(16,16,40))
 	})
@@ -162,7 +162,7 @@ layout(CHEONGNYANGNI_OLD_BACK,
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		spritelayout_passengerA(0)
 	})
@@ -174,21 +174,21 @@ layout(CHEONGNYANGNI_OLD_BACK,
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+2, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+4, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 	})
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(-31, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_back+6, xyz(0,0,0), dxdydz(16,16,40))
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
@@ -196,7 +196,7 @@ layout(CHEONGNYANGNI_OLD_BACK,
 	
 	
 	xtile({
-		spritelayout_ground_nontrack_concrete()
+		_ground(spr_cheongnyangni_old_ground_plain, CUSTOM)
 		regular(spr_cheongnyangni_old_snow, xyoff(0, 0), aslflags({SKIP}), registers({REGISTER_CHEONGNYANGNI_OLD_SNOW_SKIP}))
 		regular(spr_cheongnyangni_old_purchase+2, xyz(0,0,0), dxdydz(16,16,40))
 	})

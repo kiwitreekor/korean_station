@@ -808,6 +808,9 @@ spriteblock(
 		sprite(cheongnyangni_old.png 8bpp  490 530 64 31 -31   0 normal)
 		sprite(cheongnyangni_old.png 8bpp  570 480 64 31 -31   0 normal)
 		sprite(cheongnyangni_old.png 8bpp  570 530 64 31 -31   0 normal)
+		
+		sprite(spr_cheongnyangni_old_ground_plain,
+			   cheongnyangni_old.png 8bpp  330 580 64 31 -31   0 normal)
 
 		sprite(spr_cheongnyangni_old_pole,
 			   cheongnyangni_old.png 8bpp  330 190 32 26 -31 -11 normal)

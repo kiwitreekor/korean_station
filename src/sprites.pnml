@@ -110,7 +110,7 @@ const spr_building_ground               = spr_building_catenary + 4;
 
 const spr_building_snow_offset 			= spr_building_overpass_snow - spr_building_overpass;
 
-spriteset(sprset_buliding, "images/buildings.png") {
+spriteset(sprset_building, "images/buildings.png") {
 // spr_building_overpass
 	tmpl_building_overpass_low(10, 10)
 	tmpl_building_overpass_high(10, 70)
@@ -153,5 +153,5 @@ spriteset(sprset_buliding, "images/buildings.png") {
 }
 
 spritegroup sprgroup_building {
-	lots: sprset_buliding;
+	lots: sprset_building;
 }

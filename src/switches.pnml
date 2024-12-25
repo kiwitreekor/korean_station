@@ -125,3 +125,13 @@ switch(FEAT_STATIONS, SELF, sw_prepare_platform, [
 ]) {
 	CB_FAILED;
 }
+
+switch(FEAT_STATIONS, SELF, sw_building_nearby_info_parallel, nearby_tile_perpendicular(LOAD_TEMP(126), LOAD_TEMP(127))) {
+    1: return 2;
+    return 1;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_nearby_info, nearby_tile_station_id(LOAD_TEMP(126), LOAD_TEMP(127))) {
+    0x2E .. 0x2F: sw_building_nearby_info_parallel;
+    return 0;
+}

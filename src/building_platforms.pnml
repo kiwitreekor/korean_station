@@ -1,0 +1,399 @@
+{%include 'layouts/building_platforms.pnml' %}
+
+switch(FEAT_STATIONS, SELF, sw_hide_building_poleA, [STORE_TEMP(0, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+	1 .. 2: return 1;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_hide_building_poleB, [STORE_TEMP(0, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+	1 .. 2: return 1;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_hide_building_catenary, param_catenary) {
+	0: return 1;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_prepare_building_platform, [
+	STORE_TEMP(sw_company_color(), 4), 
+	STORE_TEMP(sw_terrain_snow() * spr_building_snow_offset, 5), 
+	STORE_TEMP(sw_hide_building_poleA(), 6), 
+	STORE_TEMP(sw_hide_building_poleB(), 7), 
+	STORE_TEMP(sw_hide_building_catenary(), 8), 
+	STORE_TEMP(platform_number_from_start(PLATFORM_SAME_STATION) % 2, 9), 
+]) {
+	sw_prepare_platform;
+}
+
+switch(FEAT_STATIONS, SELF, sw_purchase_prepare_building_platform, [
+	STORE_TEMP(sw_company_color(), 4), 
+	STORE_TEMP(0, 5), 
+	STORE_TEMP(0, 6), 
+	STORE_TEMP(0, 7), 
+	STORE_TEMP(0, 8), 
+	STORE_TEMP(platform_number_from_start(PLATFORM_SAME_STATION) % 2, 9), 
+]) {
+	sw_prepare_platform;
+}
+
+item(FEAT_STATIONS, item_high_platformA_modular_low, 0x32) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_HP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformA_modular_low_X, layout_high_platformA_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformB_modular_low, 0x33) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_HP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformB_modular_low_X, layout_high_platformB_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformC_modular_low, 0x34) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_HP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformC_modular_low_X, layout_high_platformC_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformA_modular_low, 0x35) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformA_modular_low_X, layout_low_platformA_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformB_modular_low, 0x36) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformB_modular_low_X, layout_low_platformB_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformC_modular_low, 0x37) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformC_modular_low_X, layout_low_platformC_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformA_modular_low, 0x38) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LAP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformA_modular_low_X, layout_low_asphalt_platformA_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformB_modular_low, 0x39) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LAP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformB_modular_low_X, layout_low_asphalt_platformB_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformC_modular_low, 0x3A) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_LAP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformC_modular_low_X, layout_low_asphalt_platformC_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+
+item(FEAT_STATIONS, item_high_platformA_modular_high, 0x3B) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_HP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformA_modular_high_X, layout_high_platformA_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformB_modular_high, 0x3C) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_HP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformB_modular_high_X, layout_high_platformB_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformC_modular_high, 0x3D) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_HP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformC_modular_high_X, layout_high_platformC_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformA_modular_high, 0x3E) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformA_modular_high_X, layout_low_platformA_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformB_modular_high, 0x3F) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformB_modular_high_X, layout_low_platformB_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformC_modular_high, 0x40) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformC_modular_high_X, layout_low_platformC_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformA_modular_high, 0x41) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LAP_A);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformA_modular_high_X, layout_low_asphalt_platformA_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformB_modular_high, 0x42) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LAP_B);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformB_modular_high_X, layout_low_asphalt_platformB_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformC_modular_high, 0x43) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH_LAP_C);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformC_modular_high_X, layout_low_asphalt_platformC_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_track_modular_low, 0x44) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_TRACK);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_track_modular_low_X, layout_track_modular_low_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_track_modular_high, 0x45) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW_TRACK);
+		cargo_random_triggers: [PASS];
+        hide_wire_tiles: STAT_ALL_TILES;
+        draw_pylon_tiles: 0;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_track_modular_high_X, layout_track_modular_high_Y];
+		custom_spritesets: [sprset_building];
+		prepare_layout: sw_prepare_building_platform();
+		purchase_prepare_layout: sw_purchase_prepare_building_platform();
+	}
+}

@@ -12,16 +12,6 @@ const MODULAR_TILE_SWE  = 8;
 const MODULAR_TILE_NWS  = 9;
 const MODULAR_TILE_FULL = 10;
 
-switch(FEAT_STATIONS, SELF, sw_building_nearby_info_parallel, nearby_tile_perpendicular(LOAD_TEMP(126), LOAD_TEMP(127))) {
-    1: return 2;
-    return 1;
-}
-
-switch(FEAT_STATIONS, SELF, sw_building_nearby_info, nearby_tile_station_id(LOAD_TEMP(126), LOAD_TEMP(127))) {
-    0x2E .. 0x2F: sw_building_nearby_info_parallel;
-    return 0;
-}
-
 // sw_building_layout_single_sub3
 switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub3_1, [STORE_TEMP(-1, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
     1 .. 2: return MODULAR_TILE_NES;

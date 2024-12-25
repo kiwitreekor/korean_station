@@ -1,0 +1,237 @@
+{% import 'layouts/layouts.pnml' as layouts %}
+{% import 'layouts/platforms.pnml' as platforms %}
+
+{% macro building_modular_station_overpass(orientation, offset, h) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_building_overpass + {} + LOAD_TEMP(5))".format(offset),
+		0,  0, 12, 16, 16, h-12, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(4)") }}
+{%- endmacro %}
+
+{% macro building_modular_station_pole(orientation, y, h) -%}
+    {%- if h == 3 -%}
+        {%- set offset = 0 -%}
+    {%- elif h == 1 -%}
+        {%- set offset = 2 -%}
+    {%- else -%}
+        {%- set offset = 4 -%}
+    {%- endif -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_building_pole + {})".format(offset),
+		0, y*16, h, 16, 0, 12-h, hide_sprite = "LOAD_TEMP({})".format(6 + y)) }}
+{%- endmacro %}
+
+{% macro building_modular_station_catenaryA(orientation) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_building_catenary)",
+		16, 6, 10,  0,  4,  2, hide_sprite = "LOAD_TEMP(8)") }}
+{%- endmacro %}
+
+{% macro building_modular_station_catenaryB(orientation) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_building_catenary + 2)",
+		16, 6, 10,  0,  4,  2, hide_sprite = "LOAD_TEMP(8)") }}
+{%- endmacro %}
+
+{% macro building_modular_station_catenaryC(orientation) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_building_catenary + LOAD_TEMP(9))",
+		16, 6, 10,  0,  4,  2, hide_sprite = "LOAD_TEMP(8)") }}
+{%- endmacro %}
+
+{% macro building_modular_station_overpass_low(x) -%}
+	{{ building_modular_station_overpass(x, 0, 26) }}
+{%- endmacro %}
+
+{% macro building_modular_station_overpass_high(x) -%}
+	{{ building_modular_station_overpass(x, 2, 50) }}
+{%- endmacro %}
+
+
+{% macro layout_high_platformA_modular_low(x) -%}
+	{{ platforms.building_high_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 3) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_modular_low(x) -%}
+	{{ platforms.building_high_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 3) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_modular_low(x) -%}
+	{{ platforms.building_high_platformA(x, roof = True) }}
+	{{ platforms.building_high_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 3) }}
+	{{ building_modular_station_pole(x, 1, 3) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_modular_low(x) -%}
+	{{ platforms.building_low_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_modular_low(x) -%}
+	{{ platforms.building_low_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_modular_low(x) -%}
+	{{ platforms.building_low_platformA(x, roof = True) }}
+	{{ platforms.building_low_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_modular_low(x) -%}
+	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_modular_low(x) -%}
+	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_modular_low(x) -%}
+	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
+	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+
+{% macro layout_high_platformA_modular_high(x) -%}
+	{{ platforms.building_high_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 3) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_modular_high(x) -%}
+	{{ platforms.building_high_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 3) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_modular_high(x) -%}
+	{{ platforms.building_high_platformA(x, roof = True) }}
+	{{ platforms.building_high_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 3) }}
+	{{ building_modular_station_pole(x, 1, 3) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_modular_high(x) -%}
+	{{ platforms.building_low_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_modular_high(x) -%}
+	{{ platforms.building_low_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_modular_high(x) -%}
+	{{ platforms.building_low_platformA(x, roof = True) }}
+	{{ platforms.building_low_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_modular_high(x) -%}
+	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_modular_high(x) -%}
+	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_modular_high(x) -%}
+	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
+	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_modular_station_pole(x, 0, 1) }}
+	{{ building_modular_station_pole(x, 1, 1) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+
+{% macro layout_track_modular_low(x) -%}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_low(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+{% macro layout_track_modular_high(x) -%}
+	{{ building_modular_station_pole(x, 0, 0) }}
+	{{ building_modular_station_pole(x, 1, 0) }}
+	{{ building_modular_station_overpass_high(x) }}
+	{{ building_modular_station_catenaryC(x) }}
+{%- endmacro %}
+
+
+{{ layouts.layout_auto_orient("layout_high_platformA_modular_low", layout_high_platformA_modular_low) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_modular_low", layout_high_platformB_modular_low) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_modular_low", layout_high_platformC_modular_low) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_modular_low", layout_low_platformA_modular_low) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_modular_low", layout_low_platformB_modular_low) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_modular_low", layout_low_platformC_modular_low) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_modular_low", layout_low_asphalt_platformA_modular_low) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_modular_low", layout_low_asphalt_platformB_modular_low) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_modular_low", layout_low_asphalt_platformC_modular_low) }}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_modular_high", layout_high_platformA_modular_high) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_modular_high", layout_high_platformB_modular_high) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_modular_high", layout_high_platformC_modular_high) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_modular_high", layout_low_platformA_modular_high) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_modular_high", layout_low_platformB_modular_high) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_modular_high", layout_low_platformC_modular_high) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_modular_high", layout_low_asphalt_platformA_modular_high) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_modular_high", layout_low_asphalt_platformB_modular_high) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_modular_high", layout_low_asphalt_platformC_modular_high) }}
+
+{{ layouts.layout_auto_orient("layout_track_modular_low", layout_track_modular_low) }}
+{{ layouts.layout_auto_orient("layout_track_modular_high", layout_track_modular_high) }}

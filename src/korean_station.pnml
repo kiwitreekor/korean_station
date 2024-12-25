@@ -74,7 +74,7 @@ grf{
 	}
 	
 	param 2 {
-		param_flags_depot_gate {
+		param_catenary {
 			type: int;
 			name: string(STR_PARAM_CATENARY_NAME);
 			desc: string(STR_PARAM_CATENARY_DESC);
@@ -157,3 +157,4 @@ cargotable {
 {% include 'crossings.pnml' %}
 
 {% include 'buildings.pnml' %}
+{% include 'building_platforms.pnml' %}

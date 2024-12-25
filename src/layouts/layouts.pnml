@@ -1,0 +1,65 @@
+{%- set ORIENTATION_X = 0 -%}
+{%- set ORIENTATION_Y = 1 -%}
+
+{% macro sprite_auto_orient(orientation, original) -%}
+    {%- set open_paren = original.find('(') -%}
+    {%- set close_paren = original.rfind(')') -%}
+
+    {%- if open_paren != -1 and close_paren != -1 and close_paren > open_paren and orientation == ORIENTATION_Y -%}
+        {%- set num_str = original[open_paren + 1 : close_paren] -%}
+        {{ original[:open_paren+1] }}{{ num_str + " + 1" }}{{ original[close_paren:] }}
+    {%- else -%}
+        {{ original }}
+    {%- endif -%}
+{%- endmacro %}
+
+{% macro building_auto_orient(orientation, sprite, xoffs, yoffs, zoffs, xext, yext, zext, always_draw = 0, hide_sprite = 0, palette = "") -%}
+	building {
+		sprite: {{ sprite_auto_orient(orientation, sprite) }};
+		always_draw: {{ always_draw }};
+		hide_sprite: {{ hide_sprite }};
+	{% if orientation == ORIENTATION_X -%}
+		xoffset: {{ xoffs }};
+		yoffset: {{ yoffs }};
+		xextent: {{ xext }};
+		yextent: {{ yext }};
+	{% else %}
+		xoffset: {{ yoffs }};
+		yoffset: {{ xoffs }};
+		xextent: {{ yext }};
+		yextent: {{ xext }};
+	{%- endif %}
+		zoffset: {{ zoffs }};
+		zextent: {{ zext }};
+		
+	{%- if palette != "" %}
+		recolour_mode: RECOLOUR_REMAP;
+		palette: {{ palette }};
+	{%- endif %}
+	}
+{%- endmacro %}
+
+{% macro childsprite(orientation, sprite, xoffs = 0, yoffs = 0, always_draw = 0, hide_sprite = 0) -%}
+	childsprite {
+		sprite: {{ sprite_auto_orient(orientation, sprite) }};
+		xoffset: {{ xoffs }};
+		yoffset: {{ yoffs }};
+		hide_sprite: {{ hide_sprite }};
+	}
+{%- endmacro %}
+
+{% macro layout_auto_orient(name, buildings) -%}
+spritelayout {{ name + "_X" }} {
+	ground {
+		sprite: GROUNDSPRITE_RAIL_X;
+	}
+	{{ buildings(ORIENTATION_X) }}
+}
+
+spritelayout {{ name + "_Y" }} {
+	ground {
+		sprite: GROUNDSPRITE_RAIL_Y;
+	}
+	{{ buildings(ORIENTATION_Y) }}
+}
+{%- endmacro %}

@@ -1,0 +1,437 @@
+{%include 'layouts/crossings.pnml' %}
+
+
+switch(FEAT_STATIONS, SELF, sw_crossing_offset_from_end, platform_position_from_end(PLATFORM_SAME_STATION)) {
+	0: return 4;
+	return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_crossing_offset_from_start, platform_position_from_start(PLATFORM_SAME_STATION)) {
+	0: return 8;
+	sw_crossing_offset_from_end;
+}
+
+switch(FEAT_STATIONS, SELF, sw_crossing_offset, platform_length(PLATFORM_SAME_STATION)) {
+	1: return 0;
+	sw_crossing_offset_from_start;
+}
+
+
+switch(FEAT_STATIONS, SELF, sw_crossing_xoffset_from_end, platform_position_from_end(PLATFORM_SAME_STATION)) {
+	0: return 13;
+	return 7;
+}
+
+switch(FEAT_STATIONS, SELF, sw_crossing_xoffset_from_start, platform_position_from_start(PLATFORM_SAME_STATION)) {
+	0: return 0;
+	sw_crossing_xoffset_from_end;
+}
+
+switch(FEAT_STATIONS, SELF, sw_crossing_xoffset, platform_length(PLATFORM_SAME_STATION)) {
+	1: return 7;
+	sw_crossing_xoffset_from_start;
+}
+
+switch(FEAT_STATIONS, SELF, sw_prepare_crossings, [
+	STORE_TEMP(sw_crossing_offset(), 4),
+	STORE_TEMP(sw_crossing_xoffset(), 5),
+]) {
+	sw_prepare_platform;
+}
+
+item(FEAT_STATIONS, item_high_platformA_crossings, 0x100) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_A);
+		classname: string(STR_STATION_CLASS_CROSSING);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformA_crossings_X, layout_high_platformA_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformB_crossings, 0x101) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformB_crossings_X, layout_high_platformB_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformC_crossings, 0x102) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_C);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformC_crossings_X, layout_high_platformC_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformA_crossings_roofA, 0x103) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_A_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformA_crossings_roofA_X, layout_high_platformA_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformB_crossings_roofA, 0x104) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_B_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformB_crossings_roofA_X, layout_high_platformB_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformC_crossings_roofA, 0x105) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_C_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformC_crossings_roofA_X, layout_high_platformC_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformA_crossings_roofB, 0x106) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_A_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformA_crossings_roofB_X, layout_high_platformA_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformB_crossings_roofB, 0x107) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_B_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformB_crossings_roofB_X, layout_high_platformB_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platformC_crossings_roofB, 0x108) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_HP_C_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platformC_crossings_roofB_X, layout_high_platformC_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformA_crossings, 0x1B) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformA_crossings_X, layout_low_platformA_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformB_crossings, 0x1C) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformB_crossings_X, layout_low_platformB_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformC_crossings, 0x1D) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_C);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformC_crossings_X, layout_low_platformC_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformA_crossings_roofA, 0x1E) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_A_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformA_crossings_roofA_X, layout_low_platformA_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformB_crossings_roofA, 0x1F) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_B_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformB_crossings_roofA_X, layout_low_platformB_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformC_crossings_roofA, 0x20) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_C_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformC_crossings_roofA_X, layout_low_platformC_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformA_crossings_roofB, 0x21) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_A_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformA_crossings_roofB_X, layout_low_platformA_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformB_crossings_roofB, 0x22) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_B_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformB_crossings_roofB_X, layout_low_platformB_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platformC_crossings_roofB, 0x23) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LP_C_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platformC_crossings_roofB_X, layout_low_platformC_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformA_crossings, 0x24) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformA_crossings_X, layout_low_asphalt_platformA_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformB_crossings, 0x25) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformB_crossings_X, layout_low_asphalt_platformB_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformC_crossings, 0x26) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_C);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformC_crossings_X, layout_low_asphalt_platformC_crossings_Y];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformA_crossings_roofA, 0x27) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_A_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformA_crossings_roofA_X, layout_low_asphalt_platformA_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformB_crossings_roofA, 0x28) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_B_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformB_crossings_roofA_X, layout_low_asphalt_platformB_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformC_crossings_roofA, 0x29) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_C_RF_A);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformC_crossings_roofA_X, layout_low_asphalt_platformC_crossings_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformA_crossings_roofB, 0x2A) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_A_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformA_crossings_roofB_X, layout_low_asphalt_platformA_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformB_crossings_roofB, 0x2B) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_B_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformB_crossings_roofB_X, layout_low_asphalt_platformB_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platformC_crossings_roofB, 0x2C) {
+	property {
+		class: "KWS1";
+		name: string(STR_STATION_CROSSING_LAP_C_RF_B);
+		cargo_random_triggers: [PASS];
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platformC_crossings_roofB_X, layout_low_asphalt_platformC_crossings_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_crossings();
+	}
+}

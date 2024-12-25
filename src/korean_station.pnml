@@ -1,0 +1,157 @@
+// Korean Station Set
+
+grf{
+	grfid: "KW\00\01";
+	name: string(STR_GRF_NAME);
+	desc: string(STR_GRF_DESC);
+	url: string(STR_GRF_URL);
+	version: 800;
+	min_compatible_version: 800;
+	
+	param 0 {
+		param_mode {
+			type: int;
+			name: string(STR_PARAM_MODE_NAME);
+			desc: string(STR_PARAM_MODE_DESC);
+			def_value: 0;
+			min_value: 0;
+			max_value: 1;
+			names: {
+				0: string(STR_PARAM_MODE_LIST_NORMAL);
+				1: string(STR_PARAM_MODE_LIST_HIGHPLATFORMS);
+			};
+		}
+	}
+	
+	param 1 {
+		param_flags_psdsfx {
+			type: bool;
+			name: string(STR_PARAM_PSDSFX_NAME);
+			desc: string(STR_PARAM_PSDSFX_DESC);
+			def_value: 1;
+			bit: 0;
+		}
+		
+		param_flags_passenger {
+			type: bool;
+			name: string(STR_PARAM_PASSENGER_NAME);
+			desc: string(STR_PARAM_PASSENGER_DESC);
+			def_value: 1;
+			bit: 1;
+		}
+		
+		param_flags_shadow {
+			type: bool;
+			name: string(STR_PARAM_SHADOW_NAME);
+			desc: string(STR_PARAM_SHADOW_DESC);
+			def_value: 1;
+			bit: 2;
+		}
+		
+		param_flags_snow {
+			type: bool;
+			name: string(STR_PARAM_SNOW_NAME);
+			desc: string(STR_PARAM_SNOW_DESC);
+			def_value: 1;
+			bit: 3;
+		}
+		
+		param_flags_fence {
+			type: bool;
+			name: string(STR_PARAM_FENCE_NAME);
+			desc: string(STR_PARAM_FENCE_DESC);
+			def_value: 1;
+			bit: 4;
+		}
+		
+		param_flags_depot_gate {
+			type: bool;
+			name: string(STR_PARAM_DEPOT_GATE_NAME);
+			desc: string(STR_PARAM_DEPOT_GATE_DESC);
+			def_value: 0;
+			bit: 5;
+		}
+	}
+	
+	param 2 {
+		param_flags_depot_gate {
+			type: int;
+			name: string(STR_PARAM_CATENARY_NAME);
+			desc: string(STR_PARAM_CATENARY_DESC);
+			def_value: 1;
+			min_value: 0;
+			max_value: 2;
+			names: {
+				0: string(STR_PARAM_CATENARY_NONE);
+				1: string(STR_PARAM_CATENARY_TYPE_A);
+				2: string(STR_PARAM_CATENARY_TYPE_B);
+			};
+		}
+	}
+		
+	param 1 {
+		param_flags_bridge {
+			type: bool;
+			name: string(STR_PARAM_BRIDGE_NAME);
+			desc: string(STR_PARAM_BRIDGE_DESC);
+			def_value: 0;
+			bit: 6;
+		}
+	}
+	
+	param 3 {
+		param_flags_roof_color {
+			type: int;
+			name: string(STR_PARAM_ROOF_COLOUR_NAME);
+			desc: string(STR_PARAM_ROOF_COLOUR_DESC);
+			def_value: 9;
+			min_value: 0;
+			max_value: 16;
+			names: {
+				0: string(STR_PARAM_ROOF_COLOUR_CC);
+				1: string(STR_PARAM_ROOF_COLOUR_DBLUE);
+				2: string(STR_PARAM_ROOF_COLOUR_PGREEN);
+				3: string(STR_PARAM_ROOF_COLOUR_PINK);
+				4: string(STR_PARAM_ROOF_COLOUR_YELLOW);
+				5: string(STR_PARAM_ROOF_COLOUR_RED);
+				6: string(STR_PARAM_ROOF_COLOUR_LTBLUE);
+				7: string(STR_PARAM_ROOF_COLOUR_GREEN);
+				8: string(STR_PARAM_ROOF_COLOUR_DGREEN);
+				9: string(STR_PARAM_ROOF_COLOUR_BLUE);
+				10: string(STR_PARAM_ROOF_COLOUR_CREAM);
+				11: string(STR_PARAM_ROOF_COLOUR_MAUVE);
+				12: string(STR_PARAM_ROOF_COLOUR_PURPLE);
+				13: string(STR_PARAM_ROOF_COLOUR_ORANGE);
+				14: string(STR_PARAM_ROOF_COLOUR_BROWN);
+				15: string(STR_PARAM_ROOF_COLOUR_GREY);
+				16: string(STR_PARAM_ROOF_COLOUR_WHITE);
+			};
+		}
+	}
+	
+	param 4 {
+		param_flags_signal_side {
+			type: int;
+			name: string(STR_PARAM_SIGNAL_SIDE_NAME);
+			desc: string(STR_PARAM_SIGNAL_SIDE_DESC);
+			def_value: 1;
+			min_value: 0;
+			max_value: 2;
+			names: {
+				0: string(STR_PARAM_SIGNAL_SIDE_LEFT);
+				1: string(STR_PARAM_SIGNAL_SIDE_DRIVING);
+				2: string(STR_PARAM_SIGNAL_SIDE_RIGHT);
+			};
+		}
+	}
+}
+
+cargotable {
+	PASS, MAIL, GOOD
+}
+
+{% include 'sprites.pnml' %}
+{% include 'switches.pnml' %}
+
+{% include 'platforms.pnml' %}
+{% include 'crossings.pnml' %}

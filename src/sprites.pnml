@@ -1,0 +1,98 @@
+{%include 'templates.pnml' %}
+
+// sprites
+const spr_platform_normal       = 0;
+const spr_platform_shadow       = spr_platform_normal + 18;
+const spr_platform_snow	        = spr_platform_shadow + 18;
+const spr_passengers            = spr_platform_snow + 18;
+const spr_crossing			    = spr_passengers + 24;
+const spr_crossing_shadow       = spr_crossing + 36;
+const spr_crossing_snow         = spr_crossing_shadow + 36;
+const spr_crossing_track        = spr_crossing_snow + 36;
+
+const spr_platform_snow_offset  = spr_platform_snow - spr_platform_normal;
+const spr_crossing_snow_offset  = spr_crossing_snow - spr_crossing;
+
+spriteset(sprset_platform, "images/platforms.png") {
+// spr_platform_normal
+	tmpl_platform(10, 10)
+	tmpl_platform_nontrack(230, 10)
+	
+// spr_platform_shadow
+	tmpl_platform(10, 400)
+	tmpl_platform_nontrack(230, 400)
+	
+// spr_platform_snow
+	tmpl_platform(10, 780)
+	tmpl_platform_nontrack(230, 780)
+
+// spr_passengers
+	tmpl_platform_passengers(500, 160)
+	tmpl_platform_passengers(500, 130)
+	tmpl_platform_passengers(500, 100)
+	tmpl_platform_passengers(500, 70)
+	tmpl_platform_passengers(500, 40)
+	tmpl_platform_passengers(500, 10)
+	
+// spr_crossing
+	tmpl_platform_high_crossings(230, 260)
+	tmpl_platform_low_crossings(10, 140)
+	tmpl_platform_low_crossings(10, 260)
+	
+// spr_crossing_shadow
+	tmpl_platform_high_crossings(230, 650)
+	tmpl_platform_low_crossings(10, 530)
+	tmpl_platform_low_crossings(10, 650)
+	
+// spr_crossing_snow
+	tmpl_platform_high_crossings(230, 1030)
+	tmpl_platform_low_crossings(10, 910)
+	tmpl_platform_low_crossings(10, 1030)
+	
+// spr_crossing_track
+	tmpl_crossing_track(230, 140)
+}
+
+const spr_roof							= 0;
+const spr_roofA							= spr_roof;
+const spr_roofB							= spr_roofA + 6;
+const spr_roofA_overpass				= spr_roofB + 6;
+const spr_roofB_overpass				= spr_roofA_overpass + 4;
+const spr_roofA_overpass_stair_front	= spr_roofB_overpass + 4;
+const spr_roofB_overpass_stair_front	= spr_roofA_overpass_stair_front + 6;
+const spr_roofA_overpass_stair_back		= spr_roofB_overpass_stair_front + 6;
+const spr_roofB_overpass_stair_back		= spr_roofA_overpass_stair_back + 6;
+const spr_roof_snow						= spr_roofB_overpass_stair_back + 6;
+const spr_roof_pole						= spr_roof_snow * 2;
+
+spriteset(sprset_roof, "images/roofs.png") {
+// spr_roof
+	tmpl_roofA(10, 10)
+	tmpl_roofA_nontrack(230, 10)
+	tmpl_roofB(10, 200)
+	tmpl_roofB_nontrack(230, 200)
+	tmpl_roofA(10, 130)
+	tmpl_roofB(10, 320)
+	tmpl_roofA_stairs(10, 400)
+	tmpl_roofB_stairs(10, 460)
+	tmpl_roofA_stairs(10, 520)
+	tmpl_roofB_stairs(10, 580)
+// spr_roof_snow
+	tmpl_roofA_snow(10, 100)
+	tmpl_roofA_nontrack_snow(230, 100)
+	tmpl_roofB_snow(10, 290)
+	tmpl_roofB_nontrack_snow(230, 290)
+	tmpl_roofA_snow(10, 160)
+	tmpl_roofB_snow(10, 350)
+	tmpl_roofA_stairs_snow(10, 430)
+	tmpl_roofB_stairs_snow(10, 490)
+	tmpl_roofA_stairs_snow(10, 550)
+	tmpl_roofB_stairs_snow(10, 610)
+// spr_roof_pole
+	tmpl_roofA_pole(10, 60)
+	tmpl_roofB_pole(10, 250)
+}
+
+spritegroup sprgroup_platform {
+	lots: sprset_platform;
+}

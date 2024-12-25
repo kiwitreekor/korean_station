@@ -1,0 +1,164 @@
+
+
+// templates
+template tmpl_platform_base(x, y, h) {
+	[x,     y, 44, 21+h, -31, -h]
+	[x+50,  y, 44, 21+h, -11, -h]
+	[x+100, y, 44, 21+h, -31, -h]
+	[x+150, y, 44, 21+h, -11, -h]
+}
+	
+template tmpl_platform_nontrack_base(x, y, h) {
+	[x,    y, 64, 31+h, -31, -h]
+	[x+70, y, 64, 31+h, -31, -h]
+}
+
+template tmpl_platform_high(x, y) {
+	tmpl_platform_base(x, y, 3)
+}
+
+template tmpl_platform_low(x, y) {
+	tmpl_platform_base(x, y, 1)
+}
+
+template tmpl_platform(x, y) {
+	tmpl_platform_high(x, y)
+	tmpl_platform_low(x, y+40)
+	tmpl_platform_low(x, y+80)
+}
+
+template tmpl_platform_high_crossings(x, y) {
+	tmpl_platform_high(x, y)
+	tmpl_platform_high(x, y+40)
+	tmpl_platform_high(x, y+80)
+}
+
+template tmpl_platform_low_crossings(x, y) {
+	tmpl_platform_low(x, y)
+	tmpl_platform_low(x, y+40)
+	tmpl_platform_low(x, y+80)
+}
+	
+template tmpl_crossing_track(x, y) {
+	[x,    y, 38, 18,  -5, 0]
+	[x+50, y, 38, 18, -31, 0]
+}
+
+template tmpl_platform_nontrack_high(x, y) {
+	tmpl_platform_nontrack_base(x, y, 3)
+}
+
+template tmpl_platform_nontrack_low(x, y) {
+	tmpl_platform_nontrack_base(x, y, 1)
+}
+
+template tmpl_platform_nontrack(x, y) {
+	tmpl_platform_nontrack_high(x, y)
+	tmpl_platform_nontrack_low(x, y+40)
+	tmpl_platform_nontrack_low(x, y+80)
+}
+
+template tmpl_platform_passengers(x, y) {
+	[x,     y, 44, 23, -31, -4]
+	[x+50,  y, 44, 23, -11, -4]
+	[x+100, y, 44, 23, -31, -4]
+	[x+150, y, 44, 23, -11, -4]
+}
+
+template tmpl_roofA(x, y) {
+	[x,     y, 44, 20, -31, -2]
+	[x+50,  y, 44, 20, -11, -2]
+	[x+100, y, 44, 26, -31, -5]
+	[x+150, y, 44, 26, -11, -5]
+}
+
+template tmpl_roofA_stairs(x, y) {
+	[x,     y, 44, 20, -31, -2]
+	[x+50,  y, 44, 20, -11, -2]
+	[x+100, y, 44, 26, -31, -5]
+	[x+150, y, 44, 26, -11, -5]
+	[x+200, y, 44, 26, -31, -5]
+	[x+250, y, 44, 26, -11, -5]
+}
+
+template tmpl_roofA_nontrack(x, y) {
+	[x+70,  y, 64, 34, -31, -2]
+	[x,     y, 64, 34, -31, -2]
+}
+
+template tmpl_roofB(x, y) {
+	[x,     y, 44, 24, -31, -6]
+	[x+50,  y, 44, 24, -11, -6]
+	[x+100, y, 44, 24, -31, -6]
+	[x+150, y, 44, 24, -11, -6]
+}
+
+template tmpl_roofB_stairs(x, y) {
+	[x,     y, 44, 24, -31, -6]
+	[x+50,  y, 44, 24, -11, -6]
+	[x+100, y, 44, 24, -31, -6]
+	[x+150, y, 44, 24, -11, -6]
+	[x+200, y, 44, 24, -31, -6]
+	[x+250, y, 44, 24, -11, -6]
+}
+
+template tmpl_roofB_nontrack(x, y) {
+	[x+70,  y, 64, 34, -31, -6]
+	[x,     y, 64, 34, -31, -6]
+}
+
+template tmpl_roofA_snow(x, y) {
+	[x,     y, 44, 20, 0, 0]
+	[x+50,  y, 44, 20, 0, 0]
+	[x+100, y, 44, 26, 0, 0]
+	[x+150, y, 44, 26, 0, 0]
+}
+
+template tmpl_roofA_stairs_snow(x, y) {
+	[x,     y, 44, 20, 0, 0]
+	[x+50,  y, 44, 20, 0, 0]
+	[x+100, y, 44, 26, 0, 0]
+	[x+150, y, 44, 26, 0, 0]
+	[x+200, y, 44, 26, 0, 0]
+	[x+250, y, 44, 26, 0, 0]
+}
+
+template tmpl_roofA_nontrack_snow(x, y) {
+	[x+70,  y, 64, 34, 0, 0]
+	[x,     y, 64, 34, 0, 0]
+}
+
+template tmpl_roofB_snow(x, y) {
+	[x,     y, 44, 24, 0, 0]
+	[x+50,  y, 44, 24, 0, 0]
+	[x+100, y, 44, 24, 0, 0]
+	[x+150, y, 44, 24, 0, 0]
+}
+
+template tmpl_roofB_stairs_snow(x, y) {
+	[x,     y, 44, 24, 0, 0]
+	[x+50,  y, 44, 24, 0, 0]
+	[x+100, y, 44, 24, 0, 0]
+	[x+150, y, 44, 24, 0, 0]
+	[x+200, y, 44, 24, 0, 0]
+	[x+250, y, 44, 24, 0, 0]
+}
+
+template tmpl_roofB_nontrack_snow(x, y) {
+	[x+70,  y, 64, 34, 0, 0]
+	[x,     y, 64, 34, 0, 0]
+}
+
+template tmpl_roofA_pole(x, y) {
+	[x,     y, 33, 25, -31,  -9]
+	[x+50,  y, 33, 25,   0,  -9]
+	[x,     y, 33, 25, -32, -10]
+	[x+50,  y, 33, 25,   1, -10]
+}
+
+template tmpl_roofB_pole(x, y) {
+	[x,     y, 33, 28, -32, -12]
+	[x+50,  y, 33, 28,   1, -12]
+	[x,     y, 33, 28, -32, -12]
+	[x+50,  y, 33, 28,   1, -12]
+}

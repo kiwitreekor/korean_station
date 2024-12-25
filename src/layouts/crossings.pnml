@@ -1,0 +1,262 @@
+{% import 'layouts/layouts.pnml' as layouts %}
+{% import 'layouts/platforms.pnml' as platforms %}
+
+{% macro building_platformA_crossings(orientation, offset, h, roof = False) -%}
+{% if roof -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing_shadow + {} + LOAD_TEMP(4))".format(offset),
+		0,  0,  0, 16,  6,  h, always_draw = 1) }}
+{%- else -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing + {} + LOAD_TEMP(2) * spr_crossing_snow_offset + LOAD_TEMP(4))".format(offset),
+		0,  0,  0, 16,  6,  h, always_draw = 1) }}
+{%- endif %}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_passengers + LOAD_TEMP(1))",
+		0,  0,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
+{%- endmacro %}
+
+{% macro building_platformB_crossings(orientation, offset, h, roof = False) -%}
+{% if roof -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing_shadow + {} + 2 + LOAD_TEMP(4))".format(offset),
+		0, 10,  0, 16,  6,  h, always_draw = 1) }}
+{%- else -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing + {} + 2 + LOAD_TEMP(2) * spr_crossing_snow_offset + LOAD_TEMP(4))".format(offset),
+		0, 10,  0, 16,  6,  h, always_draw = 1) }}
+{%- endif %}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_passengers + 2 + LOAD_TEMP(1))",
+		0, 10,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
+{%- endmacro %}
+
+{% macro building_crossing_track(orientation) -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing_track)",
+		"LOAD_TEMP(5)",  0,  0, 3,  16,  0) }}
+{%- endmacro %}
+
+{% macro building_high_platformA_crossings(x, roof = False) -%}
+	{{ building_platformA_crossings(x, 0, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_high_platformB_crossings(x, roof = False) -%}
+	{{ building_platformB_crossings(x, 0, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_platformA_crossings(x, roof = False) -%}
+	{{ building_platformA_crossings(x, 12, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_platformB_crossings(x, roof = False) -%}
+	{{ building_platformB_crossings(x, 12, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_asphalt_platformA_crossings(x, roof = False) -%}
+	{{ building_platformA_crossings(x, 24, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_asphalt_platformB_crossings(x, roof = False) -%}
+	{{ building_platformB_crossings(x, 24, 3, roof = roof) }}
+{%- endmacro %}
+
+
+{% macro layout_high_platformA_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x) }}
+	{{ building_high_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformA_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 3) }}
+	{{ building_high_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformA_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_high_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 3) }}
+	{{ building_high_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 3) }}
+{%- endmacro %}
+
+
+{% macro layout_low_platformA_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x) }}
+	{{ building_low_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 1) }}
+	{{ building_low_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 1) }}
+	{{ building_low_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+
+{% macro layout_low_asphalt_platformA_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_crossings(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x) }}
+	{{ building_low_asphalt_platformB_crossings(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_crossings_roofA(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofA(x, 1) }}
+	{{ building_low_asphalt_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_crossings_roofB(x) -%}
+	{{ building_crossing_track(x) }}
+	{{ building_low_asphalt_platformA_crossings(x, roof = True) }}
+	{{ platforms.building_platformA_roofB(x, 1) }}
+	{{ building_low_asphalt_platformB_crossings(x, roof = True) }}
+	{{ platforms.building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_crossings", layout_high_platformA_crossings) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_crossings", layout_high_platformB_crossings) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_crossings", layout_high_platformC_crossings) }}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_crossings_roofA", layout_high_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_crossings_roofA", layout_high_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_crossings_roofA", layout_high_platformC_crossings_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_crossings_roofB", layout_high_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_crossings_roofB", layout_high_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_crossings_roofB", layout_high_platformC_crossings_roofB) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_crossings", layout_low_platformA_crossings) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_crossings", layout_low_platformB_crossings) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_crossings", layout_low_platformC_crossings) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_crossings_roofA", layout_low_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_crossings_roofA", layout_low_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_crossings_roofA", layout_low_platformC_crossings_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_crossings_roofB", layout_low_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_crossings_roofB", layout_low_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_crossings_roofB", layout_low_platformC_crossings_roofB) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings", layout_low_asphalt_platformA_crossings) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings", layout_low_asphalt_platformB_crossings) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings", layout_low_asphalt_platformC_crossings) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings_roofA", layout_low_asphalt_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings_roofA", layout_low_asphalt_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings_roofA", layout_low_asphalt_platformC_crossings_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings_roofB", layout_low_asphalt_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings_roofB", layout_low_asphalt_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings_roofB", layout_low_asphalt_platformC_crossings_roofB) }}

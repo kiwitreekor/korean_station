@@ -1,0 +1,261 @@
+{% import 'layouts/layouts.pnml' as layouts %}
+
+// platform buildings
+{% macro building_platformA(orientation, offset, h, roof = False) -%}
+{% if roof -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_platform_shadow + {})".format(offset),
+		0,  0,  0, 16,  6,  h, always_draw = 1) }}
+{%- else -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_platform_normal + {} + LOAD_TEMP(2) * spr_platform_snow_offset)".format(offset),
+		0,  0,  0, 16,  6,  h, always_draw = 1) }}
+{%- endif %}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_passengers + LOAD_TEMP(1))",
+		0,  0,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
+{%- endmacro %}
+
+{% macro building_platformA_roofA(orientation, h) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole)",
+		0,  0,      h, 16,  0, 10) }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA)",
+		0,  0, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{ layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+{%- endmacro %}
+
+{% macro building_platformA_roofB(orientation, h) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 4)",
+		0,  3,      h, 16,  0, 10) }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB)",
+		0,  0, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+{%- endmacro %}
+
+{% macro building_platformB(orientation, offset, h, roof = False) -%}
+{% if roof -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_platform_shadow + {} + 2)".format(offset),
+		0, 10,  0, 16,  6,  h, always_draw = 1) }}
+{%- else -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_platform_normal + {} + 2 + LOAD_TEMP(2) * spr_platform_snow_offset)".format(offset),
+		0, 10,  0, 16,  6,  h, always_draw = 1) }}
+{%- endif %}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_passengers + 2 + LOAD_TEMP(1))",
+		0, 10,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
+{%- endmacro %}
+
+{% macro building_platformB_roofA(orientation, h) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 2)",
+		0, 10,      h, 16,  0, 10) }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA + 2)",
+		0, 10, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + 2 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+{%- endmacro %}
+
+{% macro building_platformB_roofB(orientation, h) -%}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 4)",
+		0, 13,      h, 16,  0, 10) }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB + 2)",
+		0, 10, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + 2 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+{%- endmacro %}
+
+{% macro building_high_platformA(x, roof = False) -%}
+	{{ building_platformA(x, 0, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_high_platformB(x, roof = False) -%}
+	{{ building_platformB(x, 0, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_platformA(x, roof = False) -%}
+	{{ building_platformA(x, 4, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_platformB(x, roof = False) -%}
+	{{ building_platformB(x, 4, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_asphalt_platformA(x, roof = False) -%}
+	{{ building_platformA(x, 8, 3, roof = roof) }}
+{%- endmacro %}
+
+{% macro building_low_asphalt_platformB(x, roof = False) -%}
+	{{ building_platformB(x, 8, 3, roof = roof) }}
+{%- endmacro %}
+
+// layouts
+
+{% macro layout_high_platformA(x) -%}
+	{{ building_high_platformA(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB(x) -%}
+	{{ building_high_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC(x) -%}
+	{{ building_high_platformA(x) }}
+	{{ building_high_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_high_platformA_roofA(x) -%}
+	{{ building_high_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_roofA(x) -%}
+	{{ building_high_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_roofA(x) -%}
+	{{ building_high_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 3) }}
+	{{ building_high_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformA_roofB(x) -%}
+	{{ building_high_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformB_roofB(x) -%}
+	{{ building_high_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_high_platformC_roofB(x) -%}
+	{{ building_high_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 3) }}
+	{{ building_high_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 3) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA(x) -%}
+	{{ building_low_platformA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB(x) -%}
+	{{ building_low_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC(x) -%}
+	{{ building_low_platformA(x) }}
+	{{ building_low_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_roofA(x) -%}
+	{{ building_low_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_roofA(x) -%}
+	{{ building_low_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_roofA(x) -%}
+	{{ building_low_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 1) }}
+	{{ building_low_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformA_roofB(x) -%}
+	{{ building_low_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformB_roofB(x) -%}
+	{{ building_low_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_platformC_roofB(x) -%}
+	{{ building_low_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 1) }}
+	{{ building_low_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA(x) -%}
+	{{ building_low_asphalt_platformA(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB(x) -%}
+	{{ building_low_asphalt_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC(x) -%}
+	{{ building_low_asphalt_platformA(x) }}
+	{{ building_low_asphalt_platformB(x) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_roofA(x) -%}
+	{{ building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_roofA(x) -%}
+	{{ building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_roofA(x) -%}
+	{{ building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_platformA_roofA(x, 1) }}
+	{{ building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_platformB_roofA(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformA_roofB(x) -%}
+	{{ building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformB_roofB(x) -%}
+	{{ building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{% macro layout_low_asphalt_platformC_roofB(x) -%}
+	{{ building_low_asphalt_platformA(x, roof = True) }}
+	{{ building_platformA_roofB(x, 1) }}
+	{{ building_low_asphalt_platformB(x, roof = True) }}
+	{{ building_platformB_roofB(x, 1) }}
+{%- endmacro %}
+
+{{ layouts.layout_auto_orient("layout_high_platformA", layout_high_platformA) }}
+{{ layouts.layout_auto_orient("layout_high_platformB", layout_high_platformB) }}
+{{ layouts.layout_auto_orient("layout_high_platformC", layout_high_platformC) }}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_roofA", layout_high_platformA_roofA) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_roofA", layout_high_platformB_roofA) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_roofA", layout_high_platformC_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_high_platformA_roofB", layout_high_platformA_roofB) }}
+{{ layouts.layout_auto_orient("layout_high_platformB_roofB", layout_high_platformB_roofB) }}
+{{ layouts.layout_auto_orient("layout_high_platformC_roofB", layout_high_platformC_roofB) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA", layout_low_platformA) }}
+{{ layouts.layout_auto_orient("layout_low_platformB", layout_low_platformB) }}
+{{ layouts.layout_auto_orient("layout_low_platformC", layout_low_platformC) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_roofA", layout_low_platformA_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_roofA", layout_low_platformB_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_roofA", layout_low_platformC_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_low_platformA_roofB", layout_low_platformA_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_platformB_roofB", layout_low_platformB_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_platformC_roofB", layout_low_platformC_roofB) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA", layout_low_asphalt_platformA) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB", layout_low_asphalt_platformB) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC", layout_low_asphalt_platformC) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_roofA", layout_low_asphalt_platformA_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_roofA", layout_low_asphalt_platformB_roofA) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_roofA", layout_low_asphalt_platformC_roofA) }}
+
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_roofB", layout_low_asphalt_platformA_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_roofB", layout_low_asphalt_platformB_roofB) }}
+{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_roofB", layout_low_asphalt_platformC_roofB) }}

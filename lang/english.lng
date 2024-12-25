@@ -1,0 +1,355 @@
+##grflangid 0x01
+
+# GRF name and description
+STR_GRF_NAME								:Korean Station Set v2.0
+STR_GRF_DESC								:{WHITE}This newgrf provides Korean style station tiles.{}{}{BLACK}Special thanks:{}{GREEN}  Las{}  EightonEight{}  Gamunbi{}  Chojeohang{}{}{BLACK} copyright 2017 - 2025 {LTBLUE}kiwitree
+STR_GRF_URL									:https://github.com/kiwitreekor/korean_station
+
+STR_PARAM_MODE_NAME							:Mode
+STR_PARAM_MODE_DESC							:Normal: Disable compatibility mode and enable all available station tiles.{}High platforms only: Enable only high platforms and disable the others.
+STR_PARAM_MODE_LIST_NORMAL					:Normal
+STR_PARAM_MODE_LIST_HIGHPLATFORMS			:High platforms only
+
+STR_PARAM_PSDSFX_NAME						:Play sound effects when screendoor closes or opens
+STR_PARAM_PSDSFX_DESC						:If you set this setting on, it will make sound when screendoor closes or opens.
+
+STR_PARAM_PASSENGER_NAME					:Show passenger graphics by waiting amount
+STR_PARAM_PASSENGER_DESC					:If you set this setting on, it will show passenger graphics by waiting amount.
+
+STR_PARAM_SHADOW_NAME						:Make shadow under roof
+STR_PARAM_SHADOW_DESC						:If you set this setting on, platform under roof will shown dark.
+
+STR_PARAM_SNOW_NAME							:Enable snow graphics
+STR_PARAM_SNOW_DESC							:If you set this setting on, platform above snowline will covered with snow. Disable if graphical gliches occur.
+
+STR_PARAM_FENCE_NAME						:Enable fence graphics
+STR_PARAM_FENCE_DESC						:If you set this setting on, it will show fence graphics on the both sides of station.
+
+STR_PARAM_DEPOT_GATE_NAME					:Make depot gate always open
+STR_PARAM_DEPOT_GATE_DESC					:If you set this setting on, depot gate will be always opened.
+
+STR_PARAM_CATENARY_NAME						:Catenary graphics
+STR_PARAM_CATENARY_DESC						:None: Disable pylon graphics {}Type A: Korean style pylon graphic {}Type B: OpenTTD style pylon graphic
+
+STR_PARAM_CATENARY_NONE						:None
+STR_PARAM_CATENARY_TYPE_A					:Type A (Default)
+STR_PARAM_CATENARY_TYPE_B					:Type B
+
+STR_PARAM_BRIDGE_NAME						:Allow stations under bridges
+STR_PARAM_BRIDGE_DESC						:Allow stations to be built under bridges. {}{}{RED}Caution!  {WHITE}It works properly only on JGRPP v0.26.0 or later.
+
+STR_PARAM_ROOF_COLOUR_NAME					:Roof colour
+STR_PARAM_ROOF_COLOUR_DESC					:Select the colour of the roofs.
+
+STR_PARAM_ROOF_COLOUR_CC					:Use Company Colour
+STR_PARAM_ROOF_COLOUR_DBLUE					:Dark blue
+STR_PARAM_ROOF_COLOUR_PGREEN				:Pale green
+STR_PARAM_ROOF_COLOUR_PINK					:Pink
+STR_PARAM_ROOF_COLOUR_YELLOW				:Yellow
+STR_PARAM_ROOF_COLOUR_RED					:Red
+STR_PARAM_ROOF_COLOUR_LTBLUE					:Light blue
+STR_PARAM_ROOF_COLOUR_GREEN					:Green
+STR_PARAM_ROOF_COLOUR_DGREEN				:Dark green
+STR_PARAM_ROOF_COLOUR_BLUE					:Blue (Default)
+STR_PARAM_ROOF_COLOUR_CREAM					:Cream
+STR_PARAM_ROOF_COLOUR_MAUVE					:Mauve
+STR_PARAM_ROOF_COLOUR_PURPLE				:Purple
+STR_PARAM_ROOF_COLOUR_ORANGE				:Orange
+STR_PARAM_ROOF_COLOUR_BROWN					:Brown
+STR_PARAM_ROOF_COLOUR_GREY					:Grey
+STR_PARAM_ROOF_COLOUR_WHITE					:White
+
+STR_PARAM_SIGNAL_SIDE_NAME					:Show signals
+STR_PARAM_SIGNAL_SIDE_DESC					:Select on which side of the track to place signals.
+
+STR_PARAM_SIGNAL_SIDE_LEFT					:On the left
+STR_PARAM_SIGNAL_SIDE_DRIVING				:On the driving side
+STR_PARAM_SIGNAL_SIDE_RIGHT					:On the right
+
+STR_OBJ_CLASS_METRO							:Korean Station: Metro Stations
+STR_OBJ_METRO_EXIT							:Metro Entrance
+STR_OBJ_GROUND								:Ground
+STR_OBJ_METRO_TREE							:Tree
+
+STR_STATION_CLASS_PLATFORM					:Korean Station: Platforms
+
+STR_STATION_HP_A							:High Platform A
+STR_STATION_HP_B							:High Platform B
+STR_STATION_HP_C							:High Platform C
+STR_STATION_HP_A_RF_A						:High Platform A + Roof A
+STR_STATION_HP_B_RF_A						:High Platform B + Roof A
+STR_STATION_HP_C_RF_A						:High Platform C + Roof A
+STR_STATION_HP_A_RF_B						:High Platform A + Roof B
+STR_STATION_HP_B_RF_B						:High Platform B + Roof B
+STR_STATION_HP_C_RF_B						:High Platform C + Roof B
+
+STR_STATION_LP_A							:Low Platform A
+STR_STATION_LP_B							:Low Platform B
+STR_STATION_LP_C							:Low Platform C
+STR_STATION_LP_A_RF_A						:Low Platform A + Roof A
+STR_STATION_LP_B_RF_A						:Low Platform B + Roof A
+STR_STATION_LP_C_RF_A						:Low Platform C + Roof A
+STR_STATION_LP_A_RF_B						:Low Platform A + Roof B
+STR_STATION_LP_B_RF_B						:Low Platform B + Roof B
+STR_STATION_LP_C_RF_B						:Low Platform C + Roof B
+
+STR_STATION_LAP_A							:Low Asphalt Platform A
+STR_STATION_LAP_B							:Low Asphalt Platform B
+STR_STATION_LAP_C							:Low Asphalt Platform C
+STR_STATION_LAP_A_RF_A						:Low Asphalt Platform A + Roof A
+STR_STATION_LAP_B_RF_A						:Low Asphalt Platform B + Roof A
+STR_STATION_LAP_C_RF_A						:Low Asphalt Platform C + Roof A
+STR_STATION_LAP_A_RF_B						:Low Asphalt Platform A + Roof B
+STR_STATION_LAP_B_RF_B						:Low Asphalt Platform B + Roof B
+STR_STATION_LAP_C_RF_B						:Low Asphalt Platform C + Roof B
+
+STR_STATION_CLASS_CROSSING					:Korean Station: Crossings
+
+STR_STATION_CROSSING_HP_A					:High Platform A + Crossing
+STR_STATION_CROSSING_HP_B					:High Platform B + Crossing
+STR_STATION_CROSSING_HP_C					:High Platform C + Crossing
+STR_STATION_CROSSING_HP_A_RF_A				:High Platform A + Roof A + Crossing
+STR_STATION_CROSSING_HP_B_RF_A				:High Platform B + Roof A + Crossing
+STR_STATION_CROSSING_HP_C_RF_A				:High Platform C + Roof A + Crossing
+STR_STATION_CROSSING_HP_A_RF_B				:High Platform A + Roof B + Crossing
+STR_STATION_CROSSING_HP_B_RF_B				:High Platform B + Roof B + Crossing
+STR_STATION_CROSSING_HP_C_RF_B				:High Platform C + Roof B + Crossing
+
+STR_STATION_CROSSING_LP_A					:Low Platform A + Crossing
+STR_STATION_CROSSING_LP_B					:Low Platform B + Crossing
+STR_STATION_CROSSING_LP_C					:Low Platform C + Crossing
+STR_STATION_CROSSING_LP_A_RF_A				:Low Platform A + Roof A + Crossing
+STR_STATION_CROSSING_LP_B_RF_A				:Low Platform B + Roof A + Crossing
+STR_STATION_CROSSING_LP_C_RF_A				:Low Platform C + Roof A + Crossing
+STR_STATION_CROSSING_LP_A_RF_B				:Low Platform A + Roof B + Crossing
+STR_STATION_CROSSING_LP_B_RF_B				:Low Platform B + Roof B + Crossing
+STR_STATION_CROSSING_LP_C_RF_B				:Low Platform C + Roof B + Crossing
+
+STR_STATION_CROSSING_LAP_A					:Low Asphalt Platform A + Crossing
+STR_STATION_CROSSING_LAP_B					:Low Asphalt Platform B + Crossing
+STR_STATION_CROSSING_LAP_C					:Low Asphalt Platform C + Crossing
+STR_STATION_CROSSING_LAP_A_RF_A				:Low Asphalt Platform A + Roof A + Crossing
+STR_STATION_CROSSING_LAP_B_RF_A				:Low Asphalt Platform B + Roof A + Crossing
+STR_STATION_CROSSING_LAP_C_RF_A				:Low Asphalt Platform C + Roof A + Crossing
+STR_STATION_CROSSING_LAP_A_RF_B				:Low Asphalt Platform A + Roof B + Crossing
+STR_STATION_CROSSING_LAP_B_RF_B				:Low Asphalt Platform B + Roof B + Crossing
+STR_STATION_CROSSING_LAP_C_RF_B				:Low Asphalt Platform C + Roof B + Crossing
+
+STR_STATION_CROSSING_TRACK					:Crossing
+
+STR_STATION_CLASS_MODULAR					:Korean Station: Modular Stations
+
+STR_STATION_MODULAR_LOW						:Low Building Block
+STR_STATION_MODULAR_HIGH					:High Building Block
+STR_STATION_MODULAR_LOW_ENTRANCE			:Low Building Entrance
+STR_STATION_MODULAR_HIGH_ENTRANCE			:High Building Entrance
+
+STR_STATION_MODULAR_LOW_HP_A				:High Platform A + Low Overpass
+STR_STATION_MODULAR_LOW_HP_B				:High Platform B + Low Overpass
+STR_STATION_MODULAR_LOW_HP_C				:High Platform C + Low Overpass
+STR_STATION_MODULAR_HIGH_HP_A				:High Platform A + High Overpass
+STR_STATION_MODULAR_HIGH_HP_B				:High Platform B + High Overpass
+STR_STATION_MODULAR_HIGH_HP_C				:High Platform C + High Overpass
+STR_STATION_MODULAR_LOW_LP_A				:Low Platform A + Low Overpass
+STR_STATION_MODULAR_LOW_LP_B				:Low Platform B + Low Overpass
+STR_STATION_MODULAR_LOW_LP_C				:Low Platform C + Low Overpass
+STR_STATION_MODULAR_HIGH_LP_A				:Low Platform A + High Overpass
+STR_STATION_MODULAR_HIGH_LP_B				:Low Platform B + High Overpass
+STR_STATION_MODULAR_HIGH_LP_C				:Low Platform C + High Overpass
+STR_STATION_MODULAR_LOW_LAP_A				:Low Asphalt Platform A + Low Overpass
+STR_STATION_MODULAR_LOW_LAP_B				:Low Asphalt Platform B + Low Overpass
+STR_STATION_MODULAR_LOW_LAP_C				:Low Asphalt Platform C + Low Overpass
+STR_STATION_MODULAR_HIGH_LAP_A				:Low Asphalt Platform A + High Overpass
+STR_STATION_MODULAR_HIGH_LAP_B				:Low Asphalt Platform B + High Overpass
+STR_STATION_MODULAR_HIGH_LAP_C				:Low Asphalt Platform C + High Overpass
+STR_STATION_MODULAR_LOW_TRACK				:Low Overpass
+STR_STATION_MODULAR_HIGH_TRACK				:High Overpass
+
+STR_STATION_CLASS_NONTRACK_START			:Korean Station: Non-track Platforms
+
+STR_STATION_HP_NONTRACK						:High Platform
+STR_STATION_HP_NONTRACK_RF_A				:High Platform + Roof A
+STR_STATION_HP_NONTRACK_RF_B				:High Platform + Roof B
+STR_STATION_LP_NONTRACK						:Low Platform
+STR_STATION_LP_NONTRACK_RF_A				:Low Platform + Roof A
+STR_STATION_LP_NONTRACK_RF_B				:Low Platform + Roof B
+STR_STATION_LAP_NONTRACK					:Low Asphalt Platform
+STR_STATION_LAP_NONTRACK_RF_A				:Low Asphalt Platform + Roof A
+STR_STATION_LAP_NONTRACK_RF_B				:Low Asphalt Platform + Roof B
+
+STR_STATION_OVERPASS_HP_A					:High Platform A + Overpass
+STR_STATION_OVERPASS_HP_B					:High Platform B + Overpass
+STR_STATION_OVERPASS_HP_C					:High Platform C + Overpass
+STR_STATION_OVERPASS_HP_A_RF_A				:High Platform A + Overpass + Roof A
+STR_STATION_OVERPASS_HP_B_RF_A				:High Platform B + Overpass + Roof A
+STR_STATION_OVERPASS_HP_C_RF_A				:High Platform C + Overpass + Roof A
+STR_STATION_OVERPASS_HP_A_RF_B				:High Platform A + Overpass + Roof B
+STR_STATION_OVERPASS_HP_B_RF_B				:High Platform B + Overpass + Roof B
+STR_STATION_OVERPASS_HP_C_RF_B				:High Platform C + Overpass + Roof B
+STR_STATION_OVERPASS_LP_A					:Low Platform A + Overpass
+STR_STATION_OVERPASS_LP_B					:Low Platform B + Overpass
+STR_STATION_OVERPASS_LP_C					:Low Platform C + Overpass
+STR_STATION_OVERPASS_LP_A_RF_A				:Low Platform A + Overpass + Roof A
+STR_STATION_OVERPASS_LP_B_RF_A				:Low Platform B + Overpass + Roof A
+STR_STATION_OVERPASS_LP_C_RF_A				:Low Platform C + Overpass + Roof A
+STR_STATION_OVERPASS_LP_A_RF_B				:Low Platform A + Overpass + Roof B
+STR_STATION_OVERPASS_LP_B_RF_B				:Low Platform B + Overpass + Roof B
+STR_STATION_OVERPASS_LP_C_RF_B				:Low Platform C + Overpass + Roof B
+STR_STATION_OVERPASS_LAP_A					:Low Asphalt Platform A + Overpass
+STR_STATION_OVERPASS_LAP_B					:Low Asphalt Platform B + Overpass
+STR_STATION_OVERPASS_LAP_C					:Low Asphalt Platform C + Overpass
+STR_STATION_OVERPASS_LAP_A_RF_A				:Low Asphalt Platform A + Overpass + Roof A
+STR_STATION_OVERPASS_LAP_B_RF_A				:Low Asphalt Platform B + Overpass + Roof A
+STR_STATION_OVERPASS_LAP_C_RF_A				:Low Asphalt Platform C + Overpass + Roof A
+STR_STATION_OVERPASS_LAP_A_RF_B				:Low Asphalt Platform A + Overpass + Roof B
+STR_STATION_OVERPASS_LAP_B_RF_B				:Low Asphalt Platform B + Overpass + Roof B
+STR_STATION_OVERPASS_LAP_C_RF_B				:Low Asphalt Platform C + Overpass + Roof B
+STR_STATION_OVERPASS_TRACK					:Overpass
+
+STR_STATION_CLASS_PLATFORM_FACILITIES		:Korean Station: Facilities
+
+STR_STATION_SIGN_A_HP_A						:High Platform A + Sign A
+STR_STATION_SIGN_A_HP_B						:High Platform B + Sign A
+STR_STATION_SIGN_A_HP_C						:High Platform C + Sign A
+STR_STATION_SIGN_A_LP_A						:Low Platform A + Sign A
+STR_STATION_SIGN_A_LP_B						:Low Platform B + Sign A
+STR_STATION_SIGN_A_LP_C						:Low Platform C + Sign A
+STR_STATION_SIGN_A_LAP_A					:Low Asphalt Platform A + Sign A
+STR_STATION_SIGN_A_LAP_B					:Low Asphalt Platform B + Sign A
+STR_STATION_SIGN_A_LAP_C					:Low Asphalt Platform C + Sign A
+
+STR_STATION_SIGN_B_HP_B_RF_A				:High Platform B + Roof A + Sign B
+STR_STATION_SIGN_B_HP_C_RF_A				:High Platform C + Roof A + Sign B
+STR_STATION_SIGN_B_HP_A_RF_B				:High Platform A + Roof B + Sign B
+STR_STATION_SIGN_B_HP_B_RF_B				:High Platform B + Roof B + Sign B
+STR_STATION_SIGN_B_HP_C_RF_B				:High Platform C + Roof B + Sign B
+STR_STATION_SIGN_B_LP_B_RF_A				:Low Platform B + Roof A + Sign B
+STR_STATION_SIGN_B_LP_C_RF_A				:Low Platform C + Roof A + Sign B
+STR_STATION_SIGN_B_LP_A_RF_B				:Low Platform A + Roof B + Sign B
+STR_STATION_SIGN_B_LP_B_RF_B				:Low Platform B + Roof B + Sign B
+STR_STATION_SIGN_B_LP_C_RF_B				:Low Platform C + Roof B + Sign B
+STR_STATION_SIGN_B_LAP_B_RF_A				:Low Asphalt Platform B + Roof A + Sign B
+STR_STATION_SIGN_B_LAP_C_RF_A				:Low Asphalt Platform C + Roof A + Sign B
+STR_STATION_SIGN_B_LAP_A_RF_B				:Low Asphalt Platform A + Roof B + Sign B
+STR_STATION_SIGN_B_LAP_B_RF_B				:Low Asphalt Platform B + Roof B + Sign B
+STR_STATION_SIGN_B_LAP_C_RF_B				:Low Asphalt Platform C + Roof B + Sign B
+
+STR_STATION_SIGN_C_HP_A						:High Platform A + Sign C
+STR_STATION_SIGN_C_HP_B						:High Platform B + Sign C
+STR_STATION_SIGN_C_HP_C						:High Platform C + Sign C
+STR_STATION_SIGN_C_HP_A_RF_A				:High Platform A + Roof A + Sign C
+STR_STATION_SIGN_C_HP_B_RF_A				:High Platform B + Roof A + Sign C
+STR_STATION_SIGN_C_HP_C_RF_A				:High Platform C + Roof A + Sign C
+STR_STATION_SIGN_C_HP_A_RF_B				:High Platform A + Roof B + Sign C
+STR_STATION_SIGN_C_HP_B_RF_B				:High Platform B + Roof B + Sign C
+STR_STATION_SIGN_C_HP_C_RF_B				:High Platform C + Roof B + Sign C
+STR_STATION_SIGN_C_LP_A						:Low Platform A + Sign C
+STR_STATION_SIGN_C_LP_B						:Low Platform B + Sign C
+STR_STATION_SIGN_C_LP_C						:Low Platform C + Sign C
+STR_STATION_SIGN_C_LP_A_RF_A				:Low Platform A + Roof A + Sign C
+STR_STATION_SIGN_C_LP_B_RF_A				:Low Platform B + Roof A + Sign C
+STR_STATION_SIGN_C_LP_C_RF_A				:Low Platform C + Roof A + Sign C
+STR_STATION_SIGN_C_LP_A_RF_B				:Low Platform A + Roof B + Sign C
+STR_STATION_SIGN_C_LP_B_RF_B				:Low Platform B + Roof B + Sign C
+STR_STATION_SIGN_C_LP_C_RF_B				:Low Platform C + Roof B + Sign C
+STR_STATION_SIGN_C_LAP_A					:Low Asphalt Platform A + Sign C
+STR_STATION_SIGN_C_LAP_B					:Low Asphalt Platform B + Sign C
+STR_STATION_SIGN_C_LAP_C					:Low Asphalt Platform C + Sign C
+STR_STATION_SIGN_C_LAP_A_RF_A				:Low Asphalt Platform A + Roof A + Sign C
+STR_STATION_SIGN_C_LAP_B_RF_A				:Low Asphalt Platform B + Roof A + Sign C
+STR_STATION_SIGN_C_LAP_C_RF_A				:Low Asphalt Platform C + Roof A + Sign C
+STR_STATION_SIGN_C_LAP_A_RF_B				:Low Asphalt Platform A + Roof B + Sign C
+STR_STATION_SIGN_C_LAP_B_RF_B				:Low Asphalt Platform B + Roof B + Sign C
+STR_STATION_SIGN_C_LAP_C_RF_B				:Low Asphalt Platform C + Roof B + Sign C
+
+STR_STATION_LED_HP_A_RF_A					:High Platform A + Roof A + LED
+STR_STATION_LED_HP_B_RF_A					:High Platform B + Roof A + LED
+STR_STATION_LED_HP_C_RF_A					:High Platform C + Roof A + LED
+STR_STATION_LED_HP_A_RF_B					:High Platform A + Roof B + LED
+STR_STATION_LED_HP_B_RF_B					:High Platform B + Roof B + LED
+STR_STATION_LED_HP_C_RF_B					:High Platform C + Roof B + LED
+STR_STATION_LED_LP_A_RF_A					:Low Platform A + Roof A + LED
+STR_STATION_LED_LP_B_RF_A					:Low Platform B + Roof A + LED
+STR_STATION_LED_LP_C_RF_A					:Low Platform C + Roof A + LED
+STR_STATION_LED_LP_A_RF_B					:Low Platform A + Roof B + LED
+STR_STATION_LED_LP_B_RF_B					:Low Platform B + Roof B + LED
+STR_STATION_LED_LP_C_RF_B					:Low Platform C + Roof B + LED
+STR_STATION_LED_LAP_A_RF_A					:Low Asphalt Platform A + Roof A + LED
+STR_STATION_LED_LAP_B_RF_A					:Low Asphalt Platform B + Roof A + LED
+STR_STATION_LED_LAP_C_RF_A					:Low Asphalt Platform C + Roof A + LED
+STR_STATION_LED_LAP_A_RF_B					:Low Asphalt Platform A + Roof B + LED
+STR_STATION_LED_LAP_B_RF_B					:Low Asphalt Platform B + Roof B + LED
+STR_STATION_LED_LAP_C_RF_B					:Low Asphalt Platform C + Roof B + LED
+
+STR_STATION_WAITINGROOM_HP_A				:High Platform A + Waiting room
+STR_STATION_WAITINGROOM_HP_B				:High Platform B + Waiting room
+STR_STATION_WAITINGROOM_HP_C				:High Platform C + Waiting room
+STR_STATION_WAITINGROOM_HP_A_RF_A			:High Platform A + Roof A + Waiting room
+STR_STATION_WAITINGROOM_HP_B_RF_A			:High Platform B + Roof A + Waiting room
+STR_STATION_WAITINGROOM_HP_C_RF_A			:High Platform C + Roof A + Waiting room
+STR_STATION_WAITINGROOM_HP_A_RF_B			:High Platform A + Roof B + Waiting room
+STR_STATION_WAITINGROOM_HP_B_RF_B			:High Platform B + Roof B + Waiting room
+STR_STATION_WAITINGROOM_HP_C_RF_B			:High Platform C + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LP_A				:Low Platform A + Waiting room
+STR_STATION_WAITINGROOM_LP_B				:Low Platform B + Waiting room
+STR_STATION_WAITINGROOM_LP_C				:Low Platform C + Waiting room
+STR_STATION_WAITINGROOM_LP_A_RF_A			:Low Platform A + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LP_B_RF_A			:Low Platform B + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LP_C_RF_A			:Low Platform C + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LP_A_RF_B			:Low Platform A + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LP_B_RF_B			:Low Platform B + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LP_C_RF_B			:Low Platform C + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LAP_A				:Low Asphalt Platform A + Waiting room
+STR_STATION_WAITINGROOM_LAP_B				:Low Asphalt Platform B + Waiting room
+STR_STATION_WAITINGROOM_LAP_C				:Low Asphalt Platform C + Waiting room
+STR_STATION_WAITINGROOM_LAP_A_RF_A			:Low Asphalt Platform A + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LAP_B_RF_A			:Low Asphalt Platform B + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LAP_C_RF_A			:Low Asphalt Platform C + Roof A + Waiting room
+STR_STATION_WAITINGROOM_LAP_A_RF_B			:Low Asphalt Platform A + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LAP_B_RF_B			:Low Asphalt Platform B + Roof B + Waiting room
+STR_STATION_WAITINGROOM_LAP_C_RF_B			:Low Asphalt Platform C + Roof B + Waiting room
+
+STR_STATION_LIGHT_HP_A						:High Platform A + Light
+STR_STATION_LIGHT_HP_B						:High Platform B + Light
+STR_STATION_LIGHT_HP_C						:High Platform C + Light
+STR_STATION_LIGHT_LP_A						:Low Platform A + Light
+STR_STATION_LIGHT_LP_B						:Low Platform B + Light
+STR_STATION_LIGHT_LP_C						:Low Platform C + Light
+STR_STATION_LIGHT_LAP_A						:Low Asphalt Platform A + Light
+STR_STATION_LIGHT_LAP_B						:Low Asphalt Platform B + Light
+STR_STATION_LIGHT_LAP_C						:Low Asphalt Platform C + Light
+
+STR_STATION_UNDERPASS_HP_A_RF_A				:High Platform A + Roof A + Underpass
+STR_STATION_UNDERPASS_HP_B_RF_A				:High Platform B + Roof A + Underpass
+STR_STATION_UNDERPASS_HP_C_RF_A				:High Platform C + Roof A + Underpass
+STR_STATION_UNDERPASS_HP_A_RF_B				:High Platform A + Roof B + Underpass
+STR_STATION_UNDERPASS_HP_B_RF_B				:High Platform B + Roof B + Underpass
+STR_STATION_UNDERPASS_HP_C_RF_B				:High Platform C + Roof B + Underpass
+STR_STATION_UNDERPASS_LP_A_RF_A				:Low Platform A + Roof A + Underpass
+STR_STATION_UNDERPASS_LP_B_RF_A				:Low Platform B + Roof A + Underpass
+STR_STATION_UNDERPASS_LP_C_RF_A				:Low Platform C + Roof A + Underpass
+STR_STATION_UNDERPASS_LP_A_RF_B				:Low Platform A + Roof B + Underpass
+STR_STATION_UNDERPASS_LP_B_RF_B				:Low Platform B + Roof B + Underpass
+STR_STATION_UNDERPASS_LP_C_RF_B				:Low Platform C + Roof B + Underpass
+STR_STATION_UNDERPASS_LAP_A_RF_A			:Low Asphalt Platform A + Roof A + Underpass
+STR_STATION_UNDERPASS_LAP_B_RF_A			:Low Asphalt Platform B + Roof A + Underpass
+STR_STATION_UNDERPASS_LAP_C_RF_A			:Low Asphalt Platform C + Roof A + Underpass
+STR_STATION_UNDERPASS_LAP_A_RF_B			:Low Asphalt Platform A + Roof B + Underpass
+STR_STATION_UNDERPASS_LAP_B_RF_B			:Low Asphalt Platform B + Roof B + Underpass
+STR_STATION_UNDERPASS_LAP_C_RF_B			:Low Asphalt Platform C + Roof B + Underpass
+
+STR_STATION_CLASS_PSD						:Korean Station: PSD
+
+STR_STATION_PSD_HP_A						:High Platform A + PSD
+STR_STATION_PSD_HP_B						:High Platform B + PSD
+STR_STATION_PSD_HP_C						:High Platform C + PSD
+STR_STATION_PSD_HP_A_RF_A					:High Platform A + Roof A + PSD
+STR_STATION_PSD_HP_B_RF_A					:High Platform B + Roof A + PSD
+STR_STATION_PSD_HP_C_RF_A					:High Platform C + Roof A + PSD
+STR_STATION_PSD_HP_A_RF_B					:High Platform A + Roof B + PSD
+STR_STATION_PSD_HP_B_RF_B					:High Platform B + Roof B + PSD
+STR_STATION_PSD_HP_C_RF_B					:High Platform C + Roof B + PSD
+
+STR_STATION_VOID_TILE						:Empty Tile
+
+STR_STATION_SIMPLE_STN						:Simple Station

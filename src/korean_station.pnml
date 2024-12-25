@@ -155,3 +155,5 @@ cargotable {
 
 {% include 'platforms.pnml' %}
 {% include 'crossings.pnml' %}
+
+{% include 'buildings.pnml' %}

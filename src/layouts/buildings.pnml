@@ -1,0 +1,52 @@
+{% import 'layouts/layouts.pnml' as layouts %}
+{% import 'layouts/platforms.pnml' as platforms %}
+
+{% macro building_modular_station(orientation, offset, h) -%}
+	{{ layouts.building_auto_orient(orientation, "DEFAULT({} + LOAD_TEMP({}))".format(offset, orientation + 1),
+		0,  0,  0, 16, 16,  h, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(0)", sprite_offset = False) }}
+{%- endmacro %}
+
+{% macro building_modular_station_low(x) -%}
+	{{ building_modular_station(x, "spr_building_low", 26) }}
+{%- endmacro %}
+
+{% macro building_modular_station_high(x) -%}
+	{{ building_modular_station(x, "spr_building_high", 50) }}
+{%- endmacro %}
+
+
+{% macro layout_modular_station_low(x) -%}
+	{{ building_modular_station_low(x) }}
+{%- endmacro %}
+
+{% macro layout_modular_station_high(x) -%}
+	{{ building_modular_station_high(x) }}
+{%- endmacro %}
+
+spritelayout layout_modular_station_low_X {
+	ground {
+        sprite: DEFAULT(spr_building_ground + LOAD_TEMP(3));
+	}
+    {{ layout_modular_station_low(layouts.ORIENTATION_X) }}
+}
+
+spritelayout layout_modular_station_low_Y {
+	ground {
+        sprite: DEFAULT(spr_building_ground + LOAD_TEMP(4));
+	}
+    {{ layout_modular_station_low(layouts.ORIENTATION_Y) }}
+}
+
+spritelayout layout_modular_station_high_X {
+	ground {
+        sprite: DEFAULT(spr_building_ground + LOAD_TEMP(3));
+	}
+    {{ layout_modular_station_high(layouts.ORIENTATION_X) }}
+}
+
+spritelayout layout_modular_station_high_Y {
+	ground {
+        sprite: DEFAULT(spr_building_ground + LOAD_TEMP(4));
+	}
+    {{ layout_modular_station_high(layouts.ORIENTATION_Y) }}
+}

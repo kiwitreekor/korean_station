@@ -13,9 +13,13 @@
     {%- endif -%}
 {%- endmacro %}
 
-{% macro building_auto_orient(orientation, sprite, xoffs, yoffs, zoffs, xext, yext, zext, always_draw = 0, hide_sprite = 0, palette = "") -%}
+{% macro building_auto_orient(orientation, sprite, xoffs, yoffs, zoffs, xext, yext, zext, always_draw = 0, hide_sprite = 0, palette = "", sprite_offset = True) -%}
 	building {
+	{% if sprite_offset %}
 		sprite: {{ sprite_auto_orient(orientation, sprite) }};
+	{% else %}
+		sprite: {{ sprite }};
+	{% endif %}
 		always_draw: {{ always_draw }};
 		hide_sprite: {{ hide_sprite }};
 	{% if orientation == ORIENTATION_X -%}
@@ -48,17 +52,25 @@
 	}
 {%- endmacro %}
 
-{% macro layout_auto_orient(name, buildings) -%}
+{% macro layout_auto_orient(name, buildings, custom_ground = "", auto_orient = True) -%}
 spritelayout {{ name + "_X" }} {
 	ground {
-		sprite: GROUNDSPRITE_RAIL_X;
+		{% if custom_ground == "" %}
+			sprite: GROUNDSPRITE_RAIL_X;
+		{% else %}
+			sprite: {{ sprite_auto_orient(ORIENTATION_X, custom_ground) }};
+		{% endif %}
 	}
 	{{ buildings(ORIENTATION_X) }}
 }
 
 spritelayout {{ name + "_Y" }} {
 	ground {
-		sprite: GROUNDSPRITE_RAIL_Y;
+		{% if custom_ground == "" %}
+			sprite: GROUNDSPRITE_RAIL_Y;
+		{% else %}
+			sprite: {{ sprite_auto_orient(ORIENTATION_Y, custom_ground) }};
+		{% endif %}
 	}
 	{{ buildings(ORIENTATION_Y) }}
 }

@@ -1,7 +1,7 @@
 ##grflangid 0x01
 
 # GRF name and description
-STR_GRF_NAME								:Korean Station Set v2.0
+STR_GRF_NAME								:Korean Station Set v2.0-alpha
 STR_GRF_DESC								:{WHITE}This newgrf provides Korean style station tiles.{}{}{BLACK}Special thanks:{}{GREEN}  Las{}  EightonEight{}  Gamunbi{}  Chojeohang{}{}{BLACK} copyright 2017 - 2025 {LTBLUE}kiwitree
 STR_GRF_URL									:https://github.com/kiwitreekor/korean_station
 
@@ -47,7 +47,7 @@ STR_PARAM_ROOF_COLOUR_PGREEN				:Pale green
 STR_PARAM_ROOF_COLOUR_PINK					:Pink
 STR_PARAM_ROOF_COLOUR_YELLOW				:Yellow
 STR_PARAM_ROOF_COLOUR_RED					:Red
-STR_PARAM_ROOF_COLOUR_LTBLUE					:Light blue
+STR_PARAM_ROOF_COLOUR_LTBLUE				:Light blue
 STR_PARAM_ROOF_COLOUR_GREEN					:Green
 STR_PARAM_ROOF_COLOUR_DGREEN				:Dark green
 STR_PARAM_ROOF_COLOUR_BLUE					:Blue (Default)

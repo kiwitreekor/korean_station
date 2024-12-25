@@ -1,0 +1,312 @@
+{% include 'layouts/buildings.pnml' %}
+
+const MODULAR_TILE_NW   = 0;
+const MODULAR_TILE_SE   = 1;
+const MODULAR_TILE_N    = 2;
+const MODULAR_TILE_E    = 3;
+const MODULAR_TILE_S    = 4;
+const MODULAR_TILE_W    = 5;
+const MODULAR_TILE_NWE  = 6;
+const MODULAR_TILE_NES  = 7;
+const MODULAR_TILE_SWE  = 8;
+const MODULAR_TILE_NWS  = 9;
+const MODULAR_TILE_FULL = 10;
+
+switch(FEAT_STATIONS, SELF, sw_building_nearby_info_parallel, nearby_tile_perpendicular(LOAD_TEMP(126), LOAD_TEMP(127))) {
+    1: return 2;
+    return 1;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_nearby_info, nearby_tile_station_id(LOAD_TEMP(126), LOAD_TEMP(127))) {
+    0x2E .. 0x2F: sw_building_nearby_info_parallel;
+    return 0;
+}
+
+// sw_building_layout_single_sub3
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub3_1, [STORE_TEMP(-1, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_NES;
+    return MODULAR_TILE_SWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub3_2, rail_present & 0x3) {
+    1: return MODULAR_TILE_S;
+    2: return MODULAR_TILE_E;
+    return MODULAR_TILE_SE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub3, [STORE_TEMP(0, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1: return MODULAR_TILE_FULL;
+    2: sw_building_layout_single_sub3_1;
+    sw_building_layout_single_sub3_2;
+}
+
+// sw_building_layout_single_sub2
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_1_1, [STORE_TEMP(1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_SE;
+    return MODULAR_TILE_NWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_1_2_1, rail_present & 0x3) {
+    2: return MODULAR_TILE_SE;
+    return MODULAR_TILE_S;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_1_2, [STORE_TEMP(1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_single_sub2_2_1_2_1;
+    return MODULAR_TILE_NWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_1, [STORE_TEMP(-1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_single_sub2_2_1_1;
+    sw_building_layout_single_sub2_2_1_2;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_2_1, [STORE_TEMP(-1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_SE;
+    return MODULAR_TILE_S;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2_2, rail_present & 0x3) {
+    1: sw_building_layout_single_sub2_2_2_1;
+    return MODULAR_TILE_E;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_2, [STORE_TEMP(1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_single_sub2_2_1;
+    sw_building_layout_single_sub2_2_2;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_1_1, [STORE_TEMP(-1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_FULL;
+    return MODULAR_TILE_NWS;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2_1, [STORE_TEMP(1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_single_sub2_1_1;
+    return MODULAR_TILE_NWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub2, [STORE_TEMP(0, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1: sw_building_layout_single_sub2_1;
+    2: return MODULAR_TILE_FULL;
+    sw_building_layout_single_sub2_2;
+}
+
+// sw_building_layout_single_sub1
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_1_1, rail_present & 0x3) {
+    2: return MODULAR_TILE_NW;
+    return MODULAR_TILE_W;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_1, [STORE_TEMP(-1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_NW;
+    sw_building_layout_single_sub1_1_1_1;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_2_1_1_1, rail_present & 0x3) {
+    2: return MODULAR_TILE_NW;
+    return MODULAR_TILE_W;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_2_1_1, [STORE_TEMP(1, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    2: sw_building_layout_single_sub1_1_2_1_1_1;
+    return MODULAR_TILE_NW;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_2_1, rail_present & 0x3) {
+    2: return MODULAR_TILE_NW;
+    sw_building_layout_single_sub1_1_2_1_1;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_2, [STORE_TEMP(-1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_NW;
+    sw_building_layout_single_sub1_1_2_1;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_3_1, [STORE_TEMP(-1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_NW;
+    return MODULAR_TILE_W;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1_3, rail_present & 0x3) {
+    1: sw_building_layout_single_sub1_1_3_1;
+    return MODULAR_TILE_N;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_1, [STORE_TEMP(1, 126), STORE_TEMP(0, 127), sw_building_nearby_info()]) {
+    1: sw_building_layout_single_sub1_1_1;
+    2: sw_building_layout_single_sub1_1_2;
+    sw_building_layout_single_sub1_1_3;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1_2, rail_present & 0x3) {
+    1: return MODULAR_TILE_W;
+    2: return MODULAR_TILE_N;
+    return MODULAR_TILE_NW;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single_sub1, [STORE_TEMP(0, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    2: sw_building_layout_single_sub1_1;
+    sw_building_layout_single_sub1_2;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_single, [STORE_TEMP(0, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1: sw_building_layout_single_sub3;
+    2: sw_building_layout_single_sub2;
+    sw_building_layout_single_sub1;
+}
+
+// sw_building_layout_front
+switch(FEAT_STATIONS, SELF, sw_building_layout_front_sub2, [STORE_TEMP(-1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_FULL;
+    return MODULAR_TILE_NWS;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_front_sub1, [STORE_TEMP(1, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_front_sub2;
+    return MODULAR_TILE_NWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_front, [STORE_TEMP(0, 126), STORE_TEMP(1, 127), sw_building_nearby_info()]) {
+    1: return MODULAR_TILE_FULL;
+    2: sw_building_layout_front_sub1;
+    return MODULAR_TILE_NW;
+}
+
+// sw_building_layout_back
+switch(FEAT_STATIONS, SELF, sw_building_layout_back_sub2, [STORE_TEMP(-1, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1 .. 2: return MODULAR_TILE_FULL;
+    return MODULAR_TILE_SWE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_back_sub1, [STORE_TEMP(1, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1 .. 2: sw_building_layout_back_sub2;
+    return MODULAR_TILE_NES;
+}
+
+switch(FEAT_STATIONS, SELF, sw_building_layout_back, [STORE_TEMP(0, 126), STORE_TEMP(-1, 127), sw_building_nearby_info()]) {
+    1: return MODULAR_TILE_FULL;
+    2: sw_building_layout_back_sub1;
+    return MODULAR_TILE_SE;
+}
+
+switch(FEAT_STATIONS, SELF, sw_modular_station_layout, rail_present & 0xC) {
+    0x4: sw_building_layout_back;
+    0x8: sw_building_layout_front;
+    0xC: return MODULAR_TILE_FULL;
+    sw_building_layout_single;
+}
+
+switch(FEAT_STATIONS, SELF, sw_modular_station_offset_x, sw_modular_station_layout()) {
+    MODULAR_TILE_NW:   return 0;
+    MODULAR_TILE_SE:   return 2;
+    MODULAR_TILE_N:    return 4;
+    MODULAR_TILE_E:    return 5;
+    MODULAR_TILE_S:    return 6;
+    MODULAR_TILE_W:    return 7;
+    MODULAR_TILE_NWE:  return 8;
+    MODULAR_TILE_NES:  return 9;
+    MODULAR_TILE_SWE:  return 10;
+    MODULAR_TILE_NWS:  return 11;
+    MODULAR_TILE_FULL: return 12;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_modular_station_offset_y, sw_modular_station_layout()) {
+    MODULAR_TILE_NW:   return 1;
+    MODULAR_TILE_SE:   return 3;
+    MODULAR_TILE_N:    return 4;
+    MODULAR_TILE_E:    return 7;
+    MODULAR_TILE_S:    return 6;
+    MODULAR_TILE_W:    return 2;
+    MODULAR_TILE_NWE:  return 8;
+    MODULAR_TILE_NES:  return 11;
+    MODULAR_TILE_SWE:  return 10;
+    MODULAR_TILE_NWS:  return 9;
+    MODULAR_TILE_FULL: return 13;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_modular_station_ground_offset_x, sw_modular_station_layout()) {
+    MODULAR_TILE_NW:   return 2;
+    MODULAR_TILE_SE:   return 4;
+    MODULAR_TILE_N:    return 6;
+    MODULAR_TILE_E:    return 7;
+    MODULAR_TILE_S:    return 8;
+    MODULAR_TILE_W:    return 9;
+    MODULAR_TILE_NWE:  return 10;
+    MODULAR_TILE_NES:  return 11;
+    MODULAR_TILE_SWE:  return 12;
+    MODULAR_TILE_NWS:  return 13;
+    MODULAR_TILE_FULL: return 0;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_modular_station_ground_offset_y, sw_modular_station_layout()) {
+    MODULAR_TILE_NW:   return 3;
+    MODULAR_TILE_SE:   return 5;
+    MODULAR_TILE_N:    return 6;
+    MODULAR_TILE_E:    return 9;
+    MODULAR_TILE_S:    return 8;
+    MODULAR_TILE_W:    return 7;
+    MODULAR_TILE_NWE:  return 10;
+    MODULAR_TILE_NES:  return 13;
+    MODULAR_TILE_SWE:  return 12;
+    MODULAR_TILE_NWS:  return 11;
+    MODULAR_TILE_FULL: return 0;
+    return 0;
+}
+
+switch(FEAT_STATIONS, SELF, sw_prepare_modular_station, [
+	STORE_TEMP(sw_company_color(), 0), 
+	STORE_TEMP(sw_modular_station_offset_x() + sw_terrain_snow() * spr_building_snow_offset, 1), 
+	STORE_TEMP(sw_modular_station_offset_y() + sw_terrain_snow() * spr_building_snow_offset, 2), 
+	STORE_TEMP(sw_terrain_snow() * sw_modular_station_ground_offset_x(), 3),  
+	STORE_TEMP(sw_terrain_snow() * sw_modular_station_ground_offset_y(), 4),  
+]) {
+	CB_FAILED;
+}
+
+switch(FEAT_STATIONS, SELF, sw_purchase_prepare_modular_station, [
+	STORE_TEMP(sw_company_color(), 0), 
+	STORE_TEMP(0, 1), 
+	STORE_TEMP(1, 2), 
+	STORE_TEMP(0, 3), 
+	STORE_TEMP(0, 4), 
+]) {
+	CB_FAILED;
+}
+
+
+item(FEAT_STATIONS, item_modular_station_low, 0x2E) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_LOW);
+		classname: string(STR_STATION_CLASS_MODULAR);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_building;
+		purchase: sprgroup_building;
+		sprite_layouts: [layout_modular_station_low_X, layout_modular_station_low_Y];
+		prepare_layout: sw_prepare_modular_station();
+        purchase_prepare_layout: sw_purchase_prepare_modular_station();
+	}
+}
+
+item(FEAT_STATIONS, item_modular_station_high, 0x2F) {
+	property {
+		class: "KWS2";
+		name: string(STR_STATION_MODULAR_HIGH);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_building;
+		purchase: sprgroup_building;
+		sprite_layouts: [layout_modular_station_high_X, layout_modular_station_high_Y];
+		prepare_layout: sw_prepare_modular_station();
+        purchase_prepare_layout: sw_purchase_prepare_modular_station();
+	}
+}

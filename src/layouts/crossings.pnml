@@ -27,8 +27,9 @@
 
 {% macro building_crossing_track(orientation) -%}
 	{{ layouts.building_auto_orient(orientation, "DEFAULT(spr_crossing_track)",
-		"LOAD_TEMP(5)",  0,  0, 3,  16,  0) }}
+		"LOAD_TEMP(5)",  0,  0, 3,  16,  0, always_draw = 1) }}
 {%- endmacro %}
+
 
 {% macro building_high_platformA_crossings(x, roof = False) -%}
 	{{ building_platformA_crossings(x, 0, 3, roof = roof) }}

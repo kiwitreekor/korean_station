@@ -53,6 +53,10 @@ spriteset(sprset_platform, "images/platforms.png") {
 	tmpl_crossing_track(230, 140)
 }
 
+spritegroup sprgroup_platform {
+	lots: sprset_platform;
+}
+
 const spr_roof							= 0;
 const spr_roofA							= spr_roof;
 const spr_roofB							= spr_roofA + 6;
@@ -93,6 +97,61 @@ spriteset(sprset_roof, "images/roofs.png") {
 	tmpl_roofB_pole(10, 250)
 }
 
-spritegroup sprgroup_platform {
-	lots: sprset_platform;
+
+const spr_building_overpass				= 0;
+const spr_building_low					= spr_building_overpass + 4;
+const spr_building_high					= spr_building_low + 14;
+const spr_building_overpass_snow		= spr_building_high + 14;
+const spr_building_low_snow				= spr_building_overpass_snow + 4;
+const spr_building_high_snow			= spr_building_low_snow + 14;
+const spr_building_pole					= spr_building_high_snow + 14;
+const spr_building_catenary				= spr_building_pole + 6;
+const spr_building_ground               = spr_building_catenary + 4;
+
+const spr_building_snow_offset 			= spr_building_overpass_snow - spr_building_overpass;
+
+spriteset(sprset_buliding, "images/buildings.png") {
+// spr_building_overpass
+	tmpl_building_overpass_low(10, 10)
+	tmpl_building_overpass_high(10, 70)
+	
+// spr_building_low
+	tmpl_building_low_4(170, 10)
+	tmpl_building_low_corner(170, 180)
+	tmpl_building_low(490, 10)
+	
+// spr_building_high
+	tmpl_building_high_4(170, 80)
+	tmpl_building_high_corner(170, 250)
+	tmpl_building_high(490, 80)
+
+// spr_building_overpass_snow
+	tmpl_building_overpass_low(10, 610)
+	tmpl_building_overpass_high(10, 670)
+	
+// spr_building_low_snow
+	tmpl_building_low_4(170, 610)
+	tmpl_building_low_corner(170, 780)
+	tmpl_building_low(490, 610)
+	
+// spr_building_high_snow
+	tmpl_building_high_4(170, 680)
+	tmpl_building_high_corner(170, 850)
+	tmpl_building_high(490, 680)
+
+// spr_building_pole
+	tmpl_building_pole(10, 160, 3)
+	tmpl_building_pole(10, 200, 1)
+	tmpl_building_pole(50, 160, 0)
+
+// spr_building_catenary
+	tmpl_building_catenary(10, 300)
+
+// spr_building_grounds
+	tmpl_building_ground(10, 250)
+	tmpl_building_ground_snow(10, 800)
+}
+
+spritegroup sprgroup_building {
+	lots: sprset_buliding;
 }

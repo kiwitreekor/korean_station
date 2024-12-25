@@ -162,3 +162,79 @@ template tmpl_roofB_pole(x, y) {
 	[x,     y, 33, 28, -32, -12]
 	[x+50,  y, 33, 28,   1, -12]
 }
+
+template tmpl_building_overpass_low(x, y) {
+	[x,     y, 64, 47, -31, -16]
+	[x+80,  y, 64, 47, -31, -16]
+}
+
+template tmpl_building_overpass_high(x, y) {
+	[x,     y, 64, 79, -31, -48]
+	[x+80,  y, 64, 79, -31, -48]
+}
+
+template tmpl_building_low(x, y) {
+	[x,     y, 64, 59, -31, -28]
+	[x+80,  y, 64, 59, -31, -28]
+}
+
+template tmpl_building_high(x, y) {
+	[x,     y, 64, 91, -31, -60]
+	[x+80,  y, 64, 91, -31, -60]
+}
+
+template tmpl_building_low_4(x, y) {
+	tmpl_building_low(x,     y)
+	tmpl_building_low(x+160, y)
+}
+
+template tmpl_building_low_corner(x, y) {
+	tmpl_building_low(x,     y)
+	tmpl_building_low(x+160, y)
+	tmpl_building_low(x,     y+180)
+	tmpl_building_low(x+160, y+180)
+}
+
+template tmpl_building_high_4(x, y) {
+	tmpl_building_high(x,     y)
+	tmpl_building_high(x+160, y)
+}
+
+template tmpl_building_high_corner(x, y) {
+	tmpl_building_high(x,     y)
+	tmpl_building_high(x+160, y)
+	tmpl_building_high(x,     y+180)
+	tmpl_building_high(x+160, y+180)
+}
+
+template tmpl_building_catenary(x, y) {
+	[x,    y,  8,  8,  3, -1]
+	[x+20, y,  8,  8,  3, -1]
+	[x+40, y,  9,  9, -1, -5]
+	[x+60, y,  9,  9, -7, -5]
+}
+
+template tmpl_building_pole(x, y, h) {
+	[x,    y, 32, 27-h, -31, -12+h]
+	[x+80, y, 32, 27-h,   1, -12+h]
+}
+
+template tmpl_building_ground(x, y) {
+	[x,    y, 64, 31, -31, 0]
+	[x,    y, 64, 31, -31, 0]
+}
+
+template tmpl_building_ground_snow(x, y) {
+	[x,    y,     64, 31, -31, 0]
+	[x+80, y,     64, 31, -31, 0]
+	[x,    y+40,  64, 31, -31, 0]
+	[x+80, y+40,  64, 31, -31, 0]
+	[x,    y+80,  64, 31, -31, 0]
+	[x+80, y+80,  64, 31, -31, 0]
+	[x,    y+120, 64, 31, -31, 0]
+	[x+80, y+120, 64, 31, -31, 0]
+	[x,    y+160, 64, 31, -31, 0]
+	[x+80, y+160, 64, 31, -31, 0]
+	[x,    y+200, 64, 31, -31, 0]
+	[x+80, y+200, 64, 31, -31, 0]
+}

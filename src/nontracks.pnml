@@ -1,0 +1,143 @@
+{%include 'layouts/nontracks.pnml' %}
+
+item(FEAT_STATIONS, item_high_platform_nontrack, 0x52) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_HP_NONTRACK);
+		classname: string(STR_STATION_CLASS_NONTRACK);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platform_nontrack_X, layout_high_platform_nontrack_Y];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platform_nontrack, 0x53) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LP_NONTRACK);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platform_nontrack_X, layout_low_platform_nontrack_Y];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platform_nontrack, 0x54) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LAP_NONTRACK);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platform_nontrack_X, layout_low_asphalt_platform_nontrack_Y];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platform_nontrack_roofA, 0x55) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_HP_NONTRACK_RF_A);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platform_nontrack_roofA_X, layout_high_platform_nontrack_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platform_nontrack_roofA, 0x56) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LP_NONTRACK_RF_A);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platform_nontrack_roofA_X, layout_low_platform_nontrack_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platform_nontrack_roofA, 0x57) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LAP_NONTRACK_RF_A);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platform_nontrack_roofA_X, layout_low_asphalt_platform_nontrack_roofA_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_high_platform_nontrack_roofB, 0x58) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_HP_NONTRACK_RF_B);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_high_platform_nontrack_roofB_X, layout_high_platform_nontrack_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_platform_nontrack_roofB, 0x59) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LP_NONTRACK_RF_B);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_platform_nontrack_roofB_X, layout_low_platform_nontrack_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}
+
+item(FEAT_STATIONS, item_low_asphalt_platform_nontrack_roofB, 0x5A) {
+	property {
+		class: "KWS5";
+		name: string(STR_STATION_LAP_NONTRACK_RF_B);
+        hide_wire_tiles: STAT_ALL_TILES;
+        non_traversable_tiles: STAT_ALL_TILES;
+	}
+	graphics {
+		default: sprgroup_platform;
+		purchase: sprgroup_platform;
+		sprite_layouts: [layout_low_asphalt_platform_nontrack_roofB_X, layout_low_asphalt_platform_nontrack_roofB_Y];
+		custom_spritesets: [sprset_roof];
+		prepare_layout: sw_prepare_platform();
+	}
+}

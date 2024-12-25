@@ -165,7 +165,7 @@ STR_STATION_MODULAR_HIGH_LAP_C				:Low Asphalt Platform C + High Overpass
 STR_STATION_MODULAR_LOW_TRACK				:Low Overpass
 STR_STATION_MODULAR_HIGH_TRACK				:High Overpass
 
-STR_STATION_CLASS_NONTRACK_START			:Korean Station: Non-track Platforms
+STR_STATION_CLASS_NONTRACK      			:Korean Station: Non-track Platforms
 
 STR_STATION_HP_NONTRACK						:High Platform
 STR_STATION_HP_NONTRACK_RF_A				:High Platform + Roof A

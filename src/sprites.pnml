@@ -9,9 +9,14 @@ const spr_crossing			    = spr_passengers + 24;
 const spr_crossing_shadow       = spr_crossing + 36;
 const spr_crossing_snow         = spr_crossing_shadow + 36;
 const spr_crossing_track        = spr_crossing_snow + 36;
+const spr_overpass              = spr_crossing_track + 2;
+const spr_overpass_snow         = spr_overpass + 16;
+const spr_overpass_guide        = spr_overpass_snow + 16;
+const spr_overpass_guide_shadow = spr_overpass_guide + 8;
 
 const spr_platform_snow_offset  = spr_platform_snow - spr_platform_normal;
 const spr_crossing_snow_offset  = spr_crossing_snow - spr_crossing;
+const spr_overpass_snow_offset  = spr_overpass_snow - spr_overpass;
 
 spriteset(sprset_platform, "images/platforms.png") {
 // spr_platform_normal
@@ -51,6 +56,18 @@ spriteset(sprset_platform, "images/platforms.png") {
 	
 // spr_crossing_track
 	tmpl_crossing_track(230, 140)
+
+// spr_overpass
+	tmpl_overpass(600, 200)
+
+// spr_overpass_snow
+	tmpl_overpass(750, 200)
+
+// spr_overpass_guide
+	tmpl_overpass_guide(600, 480)
+
+// spr_overpass_guide_shadow
+	tmpl_overpass_guide(750, 480)
 }
 
 spritegroup sprgroup_platform {
@@ -59,39 +76,43 @@ spritegroup sprgroup_platform {
 
 const spr_roof							= 0;
 const spr_roofA							= spr_roof;
-const spr_roofB							= spr_roofA + 6;
-const spr_roofA_overpass				= spr_roofB + 6;
+const spr_roofB							= spr_roofA + 4;
+const spr_roofA_overpass				= spr_roofB + 4;
 const spr_roofB_overpass				= spr_roofA_overpass + 4;
 const spr_roofA_overpass_stair_front	= spr_roofB_overpass + 4;
 const spr_roofB_overpass_stair_front	= spr_roofA_overpass_stair_front + 6;
 const spr_roofA_overpass_stair_back		= spr_roofB_overpass_stair_front + 6;
 const spr_roofB_overpass_stair_back		= spr_roofA_overpass_stair_back + 6;
-const spr_roof_snow						= spr_roofB_overpass_stair_back + 6;
+const spr_roofA_nontrack   				= spr_roofB_overpass_stair_back + 6;
+const spr_roofB_nontrack				= spr_roofA_nontrack + 2;
+const spr_roof_snow						= spr_roofB_nontrack + 2;
 const spr_roof_pole						= spr_roof_snow * 2;
+
+const spr_roof_overpass_offset          = spr_roofA_overpass - spr_roofA;
 
 spriteset(sprset_roof, "images/roofs.png") {
 // spr_roof
 	tmpl_roofA(10, 10)
-	tmpl_roofA_nontrack(230, 10)
 	tmpl_roofB(10, 200)
-	tmpl_roofB_nontrack(230, 200)
 	tmpl_roofA(10, 130)
 	tmpl_roofB(10, 320)
 	tmpl_roofA_stairs(10, 400)
 	tmpl_roofB_stairs(10, 460)
 	tmpl_roofA_stairs(10, 520)
 	tmpl_roofB_stairs(10, 580)
+	tmpl_roofA_nontrack(230, 10)
+	tmpl_roofB_nontrack(230, 200)
 // spr_roof_snow
 	tmpl_roofA_snow(10, 100)
-	tmpl_roofA_nontrack_snow(230, 100)
 	tmpl_roofB_snow(10, 290)
-	tmpl_roofB_nontrack_snow(230, 290)
 	tmpl_roofA_snow(10, 160)
 	tmpl_roofB_snow(10, 350)
 	tmpl_roofA_stairs_snow(10, 430)
 	tmpl_roofB_stairs_snow(10, 490)
 	tmpl_roofA_stairs_snow(10, 550)
 	tmpl_roofB_stairs_snow(10, 610)
+	tmpl_roofA_nontrack_snow(230, 100)
+	tmpl_roofB_nontrack_snow(230, 290)
 // spr_roof_pole
 	tmpl_roofA_pole(10, 60)
 	tmpl_roofB_pole(10, 250)

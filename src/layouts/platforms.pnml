@@ -13,20 +13,20 @@
 		0,  0,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
 {%- endmacro %}
 
-{% macro building_platformA_roofA(orientation, h) -%}
+{% macro building_platformA_roofA(orientation, h, offset = 0) -%}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole)",
 		0,  0,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA)",
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA + {})".format(offset),
 		0,  0, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
-	{{ layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+	{{ layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + spr_roof_snow + {})".format(offset), hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}
 
-{% macro building_platformA_roofB(orientation, h) -%}
+{% macro building_platformA_roofB(orientation, h, offset = 0) -%}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 4)",
 		0,  3,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB)",
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB + {})".format(offset),
 		0,  0, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
-	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + spr_roof_snow + {})".format(offset), hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}
 
 {% macro building_platformB(orientation, offset, h, roof = False) -%}
@@ -41,20 +41,20 @@
 		0, 10,  h, 16,  6,  5, hide_sprite = "LOAD_TEMP(0)") }}
 {%- endmacro %}
 
-{% macro building_platformB_roofA(orientation, h) -%}
+{% macro building_platformB_roofA(orientation, h, offset = 0) -%}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 2)",
 		0, 10,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA + 2)",
-		0, 10, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
-	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + 2 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA + {} + 2)".format(offset),
+		0, 10, 10 + h, 16,  3,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + {} + 2 + spr_roof_snow)".format(offset), hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}
 
-{% macro building_platformB_roofB(orientation, h) -%}
+{% macro building_platformB_roofB(orientation, h, offset = 0) -%}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 4)",
 		0, 13,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB + 2)",
-		0, 10, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
-	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + 2 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB + {} + 2)".format(offset),
+		0, 10, 10 + h, 16,  3,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
+	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + {} + 2 + spr_roof_snow)".format(offset), hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}
 
 {% macro building_high_platformA(x, roof = False) -%}

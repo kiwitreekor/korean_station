@@ -21,7 +21,7 @@
 		0,  0,      h, 16,  0, 10) }}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 2)",
 		0, 16,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA + 4)",
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofA_nontrack)",
 		0,  0, 10 + h, 16, 16,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
 	{{ layouts.childsprite(orientation, "CUSTOM(0, spr_roofA + 4 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}
@@ -31,7 +31,7 @@
 		0,  4,      h, 16,  0, 10) }}
 	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roof_pole + 6)",
 		0, 12,      h, 16,  0, 10) }}
-	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB + 4)",
+	{{ layouts.building_auto_orient(orientation, "CUSTOM(0, spr_roofB_nontrack)",
 		0,  0, 10 + h, 16,  6,  3, palette = "PALETTE_CC_DARK_BLUE + LOAD_TEMP(3)") }}
 	{{          layouts.childsprite(orientation, "CUSTOM(0, spr_roofB + 4 + spr_roof_snow)", hide_sprite = "!LOAD_TEMP(2)") }}
 {%- endmacro %}

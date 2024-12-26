@@ -165,3 +165,39 @@ item(FEAT_STATIONS, item_low_asphalt_platformB_roofB_overpass, 0x74) {
 item(FEAT_STATIONS, item_low_asphalt_platformC_roofB_overpass, 0x75) {
     {{ item_overpass_properties("low_asphalt_platformC_roofB", "STR_STATION_OVERPASS_LAP_C_RF_B", "[sprset_roof]") }}
 }
+
+item(FEAT_STATIONS, item_track_overpass, 0x76) {
+	property {
+		class: "KWS0";
+		name: string(STR_STATION_OVERPASS_TRACK);
+		cargo_random_triggers: [PASS];
+        disabled_length: bitmask(2, 3, 4, 5, 6, 7, 8);
+	}
+	graphics {
+        default: sprgroup_platform;
+        purchase: sprgroup_platform;
+        sprite_layouts: [
+            layout_track_overpass_X, 
+            layout_track_overpass_Y,
+        ];
+        prepare_layout: sw_prepare_overpass();
+	}
+}
+
+item(FEAT_STATIONS, item_track_overpass_waypoint, 0x77) {
+	property {
+		class: "WAYP";
+		name: string(STR_STATION_OVERPASS_TRACK);
+		cargo_random_triggers: [PASS];
+        disabled_length: bitmask(2, 3, 4, 5, 6, 7, 8);
+	}
+	graphics {
+        default: sprgroup_platform;
+        purchase: sprgroup_platform;
+        sprite_layouts: [
+            layout_track_overpass_X, 
+            layout_track_overpass_Y,
+        ];
+        prepare_layout: sw_prepare_overpass();
+	}
+}

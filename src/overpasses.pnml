@@ -34,590 +34,134 @@ switch(FEAT_STATIONS, SELF, sw_purchase_prepare_overpass, [
 	sw_prepare_platform;
 }
 
-item(FEAT_STATIONS, item_high_platformA_overpass, 0x5B) {
+{% macro item_overpass_properties(x, string_code, custom_spritesets = "") -%}
 	property {
 		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_A);
+		name: string({{ string_code }});
 		cargo_random_triggers: [PASS];
         disabled_length: bitmask(4, 5, 6, 7, 8);
 	}
 	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformA_overpass_X, 
-            layout_high_platformA_overpass_Y,
-            layout_high_platformA_overpass_guide_X, 
-            layout_high_platformA_overpass_guide_Y,
+        default: sprgroup_platform;
+        purchase: sprgroup_platform;
+        sprite_layouts: [
+            layout_{{ x }}_overpass_X, 
+            layout_{{ x }}_overpass_Y,
+            layout_{{ x }}_overpass_guide_X, 
+            layout_{{ x }}_overpass_guide_Y,
         ];
+        {% if custom_spritesets -%}
+            custom_spritesets: {{ custom_spritesets }};
+        {%- endif %}
         select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
+        prepare_layout: sw_prepare_overpass();
 	}
+{%- endmacro %}
+
+item(FEAT_STATIONS, item_high_platformA_overpass, 0x5B) {
+    {{ item_overpass_properties("high_platformA", "STR_STATION_OVERPASS_HP_A") }}
 }
 
 item(FEAT_STATIONS, item_high_platformB_overpass, 0x5C) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformB_overpass_X, 
-            layout_high_platformB_overpass_Y,
-            layout_high_platformB_overpass_guide_X, 
-            layout_high_platformB_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("high_platformB", "STR_STATION_OVERPASS_HP_B") }}
 }
 
 item(FEAT_STATIONS, item_high_platformC_overpass, 0x5D) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_C);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformC_overpass_X, 
-            layout_high_platformC_overpass_Y,
-            layout_high_platformC_overpass_guide_X, 
-            layout_high_platformC_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("high_platformC", "STR_STATION_OVERPASS_HP_C") }}
 }
 
-item(FEAT_STATIONS, item_high_platformA_overpass_roofA, 0x5E) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_A_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformA_overpass_roofA_X, 
-            layout_high_platformA_overpass_roofA_Y,
-            layout_high_platformA_overpass_guide_roofA_X, 
-            layout_high_platformA_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformA_roofA_overpass, 0x5E) {
+    {{ item_overpass_properties("high_platformA_roofA", "STR_STATION_OVERPASS_HP_A_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_high_platformB_overpass_roofA, 0x5F) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_B_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformB_overpass_roofA_X, 
-            layout_high_platformB_overpass_roofA_Y,
-            layout_high_platformB_overpass_guide_roofA_X, 
-            layout_high_platformB_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformB_roofA_overpass, 0x5F) {
+    {{ item_overpass_properties("high_platformB_roofA", "STR_STATION_OVERPASS_HP_B_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_high_platformC_overpass_roofA, 0x60) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_C_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformC_overpass_roofA_X, 
-            layout_high_platformC_overpass_roofA_Y,
-            layout_high_platformC_overpass_guide_roofA_X, 
-            layout_high_platformC_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformC_roofA_overpass, 0x60) {
+    {{ item_overpass_properties("high_platformC_roofA", "STR_STATION_OVERPASS_HP_C_RF_A", "[sprset_roof]") }}
 }
 
-
-item(FEAT_STATIONS, item_high_platformA_overpass_roofB, 0x61) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_A_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformA_overpass_roofB_X, 
-            layout_high_platformA_overpass_roofB_Y,
-            layout_high_platformA_overpass_guide_roofB_X, 
-            layout_high_platformA_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformA_roofB_overpass, 0x61) {
+    {{ item_overpass_properties("high_platformA_roofB", "STR_STATION_OVERPASS_HP_A_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_high_platformB_overpass_roofB, 0x62) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_B_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformB_overpass_roofB_X, 
-            layout_high_platformB_overpass_roofB_Y,
-            layout_high_platformB_overpass_guide_roofB_X, 
-            layout_high_platformB_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformB_roofB_overpass, 0x62) {
+    {{ item_overpass_properties("high_platformB_roofB", "STR_STATION_OVERPASS_HP_B_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_high_platformC_overpass_roofB, 0x63) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_HP_C_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_high_platformC_overpass_roofB_X, 
-            layout_high_platformC_overpass_roofB_Y,
-            layout_high_platformC_overpass_guide_roofB_X, 
-            layout_high_platformC_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_high_platformC_roofB_overpass, 0x63) {
+    {{ item_overpass_properties("high_platformC_roofB", "STR_STATION_OVERPASS_HP_C_RF_B", "[sprset_roof]") }}
 }
 
 item(FEAT_STATIONS, item_low_platformA_overpass, 0x64) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformA_overpass_X, 
-            layout_low_platformA_overpass_Y,
-            layout_low_platformA_overpass_guide_X, 
-            layout_low_platformA_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_platformA", "STR_STATION_OVERPASS_LP_A") }}
 }
 
 item(FEAT_STATIONS, item_low_platformB_overpass, 0x65) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformB_overpass_X, 
-            layout_low_platformB_overpass_Y,
-            layout_low_platformB_overpass_guide_X, 
-            layout_low_platformB_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_platformB", "STR_STATION_OVERPASS_LP_B") }}
 }
 
 item(FEAT_STATIONS, item_low_platformC_overpass, 0x66) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_C);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformC_overpass_X, 
-            layout_low_platformC_overpass_Y,
-            layout_low_platformC_overpass_guide_X, 
-            layout_low_platformC_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_platformC", "STR_STATION_OVERPASS_LP_C") }}
 }
 
-item(FEAT_STATIONS, item_low_platformA_overpass_roofA, 0x67) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_A_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformA_overpass_roofA_X, 
-            layout_low_platformA_overpass_roofA_Y,
-            layout_low_platformA_overpass_guide_roofA_X, 
-            layout_low_platformA_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformA_roofA_overpass, 0x67) {
+    {{ item_overpass_properties("low_platformA_roofA", "STR_STATION_OVERPASS_LP_A_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_platformB_overpass_roofA, 0x68) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_B_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformB_overpass_roofA_X, 
-            layout_low_platformB_overpass_roofA_Y,
-            layout_low_platformB_overpass_guide_roofA_X, 
-            layout_low_platformB_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformB_roofA_overpass, 0x68) {
+    {{ item_overpass_properties("low_platformB_roofA", "STR_STATION_OVERPASS_LP_B_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_platformC_overpass_roofA, 0x69) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_C_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformC_overpass_roofA_X, 
-            layout_low_platformC_overpass_roofA_Y,
-            layout_low_platformC_overpass_guide_roofA_X, 
-            layout_low_platformC_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformC_roofA_overpass, 0x69) {
+    {{ item_overpass_properties("low_platformC_roofA", "STR_STATION_OVERPASS_LP_C_RF_A", "[sprset_roof]") }}
 }
 
-
-item(FEAT_STATIONS, item_low_platformA_overpass_roofB, 0x6A) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_A_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformA_overpass_roofB_X, 
-            layout_low_platformA_overpass_roofB_Y,
-            layout_low_platformA_overpass_guide_roofB_X, 
-            layout_low_platformA_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformA_roofB_overpass, 0x6A) {
+    {{ item_overpass_properties("low_platformA_roofB", "STR_STATION_OVERPASS_LP_A_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_platformB_overpass_roofB, 0x6B) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_B_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformB_overpass_roofB_X, 
-            layout_low_platformB_overpass_roofB_Y,
-            layout_low_platformB_overpass_guide_roofB_X, 
-            layout_low_platformB_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformB_roofB_overpass, 0x6B) {
+    {{ item_overpass_properties("low_platformB_roofB", "STR_STATION_OVERPASS_LP_B_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_platformC_overpass_roofB, 0x6C) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LP_C_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_platformC_overpass_roofB_X, 
-            layout_low_platformC_overpass_roofB_Y,
-            layout_low_platformC_overpass_guide_roofB_X, 
-            layout_low_platformC_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_platformC_roofB_overpass, 0x6C) {
+    {{ item_overpass_properties("low_platformC_roofB", "STR_STATION_OVERPASS_LP_C_RF_B", "[sprset_roof]") }}
 }
 
 item(FEAT_STATIONS, item_low_asphalt_platformA_overpass, 0x6D) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformA_overpass_X, 
-            layout_low_asphalt_platformA_overpass_Y,
-            layout_low_asphalt_platformA_overpass_guide_X, 
-            layout_low_asphalt_platformA_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_asphalt_platformA", "STR_STATION_OVERPASS_LAP_A") }}
 }
 
 item(FEAT_STATIONS, item_low_asphalt_platformB_overpass, 0x6E) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformB_overpass_X, 
-            layout_low_asphalt_platformB_overpass_Y,
-            layout_low_asphalt_platformB_overpass_guide_X, 
-            layout_low_asphalt_platformB_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_asphalt_platformB", "STR_STATION_OVERPASS_LAP_B") }}
 }
 
 item(FEAT_STATIONS, item_low_asphalt_platformC_overpass, 0x6F) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_C);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformC_overpass_X, 
-            layout_low_asphalt_platformC_overpass_Y,
-            layout_low_asphalt_platformC_overpass_guide_X, 
-            layout_low_asphalt_platformC_overpass_guide_Y,
-        ];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+    {{ item_overpass_properties("low_asphalt_platformC", "STR_STATION_OVERPASS_LAP_C") }}
 }
 
-item(FEAT_STATIONS, item_low_asphalt_platformA_overpass_roofA, 0x70) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_A_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformA_overpass_roofA_X, 
-            layout_low_asphalt_platformA_overpass_roofA_Y,
-            layout_low_asphalt_platformA_overpass_guide_roofA_X, 
-            layout_low_asphalt_platformA_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformA_roofA_overpass, 0x70) {
+    {{ item_overpass_properties("low_asphalt_platformA_roofA", "STR_STATION_OVERPASS_LAP_A_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_asphalt_platformB_overpass_roofA, 0x71) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_B_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformB_overpass_roofA_X, 
-            layout_low_asphalt_platformB_overpass_roofA_Y,
-            layout_low_asphalt_platformB_overpass_guide_roofA_X, 
-            layout_low_asphalt_platformB_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformB_roofA_overpass, 0x71) {
+    {{ item_overpass_properties("low_asphalt_platformB_roofA", "STR_STATION_OVERPASS_LAP_B_RF_A", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_asphalt_platformC_overpass_roofA, 0x72) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_C_RF_A);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformC_overpass_roofA_X, 
-            layout_low_asphalt_platformC_overpass_roofA_Y,
-            layout_low_asphalt_platformC_overpass_guide_roofA_X, 
-            layout_low_asphalt_platformC_overpass_guide_roofA_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformC_roofA_overpass, 0x72) {
+    {{ item_overpass_properties("low_asphalt_platformC_roofA", "STR_STATION_OVERPASS_LAP_C_RF_A", "[sprset_roof]") }}
 }
 
-
-item(FEAT_STATIONS, item_low_asphalt_platformA_overpass_roofB, 0x73) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_A_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformA_overpass_roofB_X, 
-            layout_low_asphalt_platformA_overpass_roofB_Y,
-            layout_low_asphalt_platformA_overpass_guide_roofB_X, 
-            layout_low_asphalt_platformA_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformA_roofB_overpass, 0x73) {
+    {{ item_overpass_properties("low_asphalt_platformA_roofB", "STR_STATION_OVERPASS_LAP_A_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_asphalt_platformB_overpass_roofB, 0x74) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_B_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformB_overpass_roofB_X, 
-            layout_low_asphalt_platformB_overpass_roofB_Y,
-            layout_low_asphalt_platformB_overpass_guide_roofB_X, 
-            layout_low_asphalt_platformB_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformB_roofB_overpass, 0x74) {
+    {{ item_overpass_properties("low_asphalt_platformB_roofB", "STR_STATION_OVERPASS_LAP_B_RF_B", "[sprset_roof]") }}
 }
 
-item(FEAT_STATIONS, item_low_asphalt_platformC_overpass_roofB, 0x75) {
-	property {
-		class: "KWS0";
-		name: string(STR_STATION_OVERPASS_LAP_C_RF_B);
-		cargo_random_triggers: [PASS];
-        disabled_length: bitmask(4, 5, 6, 7, 8);
-	}
-	graphics {
-		default: sprgroup_platform;
-		purchase: sprgroup_platform;
-		sprite_layouts: [
-            layout_low_asphalt_platformC_overpass_roofB_X, 
-            layout_low_asphalt_platformC_overpass_roofB_Y,
-            layout_low_asphalt_platformC_overpass_guide_roofB_X, 
-            layout_low_asphalt_platformC_overpass_guide_roofB_Y,
-        ];
-        custom_spritesets: [sprset_roof];
-        select_sprite_layout: sw_overpass_layout();
-		prepare_layout: sw_prepare_overpass();
-	}
+item(FEAT_STATIONS, item_low_asphalt_platformC_roofB_overpass, 0x75) {
+    {{ item_overpass_properties("low_asphalt_platformC_roofB", "STR_STATION_OVERPASS_LAP_C_RF_B", "[sprset_roof]") }}
 }

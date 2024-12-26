@@ -226,38 +226,38 @@
 	{{ platforms.building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_crossings", layout_high_platformA_crossings) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_crossings", layout_high_platformB_crossings) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_crossings", layout_high_platformC_crossings) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_crossings) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_crossings) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_crossings) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_crossings_roofA", layout_high_platformA_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_crossings_roofA", layout_high_platformB_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_crossings_roofA", layout_high_platformC_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_crossings_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_crossings_roofB", layout_high_platformA_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_crossings_roofB", layout_high_platformB_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_crossings_roofB", layout_high_platformC_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_crossings_roofB) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_crossings", layout_low_platformA_crossings) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_crossings", layout_low_platformB_crossings) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_crossings", layout_low_platformC_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_crossings) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_crossings_roofA", layout_low_platformA_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_crossings_roofA", layout_low_platformB_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_crossings_roofA", layout_low_platformC_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_crossings_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_crossings_roofB", layout_low_platformA_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_crossings_roofB", layout_low_platformB_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_crossings_roofB", layout_low_platformC_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_crossings_roofB) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings", layout_low_asphalt_platformA_crossings) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings", layout_low_asphalt_platformB_crossings) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings", layout_low_asphalt_platformC_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_crossings) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_crossings) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings_roofA", layout_low_asphalt_platformA_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings_roofA", layout_low_asphalt_platformB_crossings_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings_roofA", layout_low_asphalt_platformC_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_crossings_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_crossings_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_crossings_roofB", layout_low_asphalt_platformA_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_crossings_roofB", layout_low_asphalt_platformB_crossings_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_crossings_roofB", layout_low_asphalt_platformC_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_crossings_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_crossings_roofB) }}

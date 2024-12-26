@@ -82,13 +82,13 @@
 	{{ building_platformB_overpass_guide(x, 3) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass", layout_high_platformA_overpass) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass", layout_high_platformB_overpass) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass", layout_high_platformC_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass_guide", layout_high_platformA_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass_guide", layout_high_platformB_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass_guide", layout_high_platformC_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_overpass_guide) }}
 
 {% macro layout_low_platformA_overpass(x) -%}
 	{{ platforms.building_low_platformA(x) }}
@@ -123,13 +123,13 @@
 	{{ building_platformB_overpass_guide(x, 3) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass", layout_low_platformA_overpass) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass", layout_low_platformB_overpass) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass", layout_low_platformC_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass_guide", layout_low_platformA_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass_guide", layout_low_platformB_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass_guide", layout_low_platformC_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_overpass_guide) }}
 
 {% macro layout_low_asphalt_platformA_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x) }}
@@ -164,28 +164,28 @@
 	{{ building_platformB_overpass_guide(x, 3) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass", layout_low_asphalt_platformA_overpass) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass", layout_low_asphalt_platformB_overpass) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass", layout_low_asphalt_platformC_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass_guide", layout_low_asphalt_platformA_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass_guide", layout_low_asphalt_platformB_overpass_guide) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass_guide", layout_low_asphalt_platformC_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_overpass_guide) }}
 
 
-{% macro layout_high_platformA_overpass_roofA(x) -%}
+{% macro layout_high_platformA_roofA_overpass(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformB_overpass_roofA(x) -%}
+{% macro layout_high_platformB_roofA_overpass(x) -%}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformC_overpass_roofA(x) -%}
+{% macro layout_high_platformC_roofA_overpass(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -193,19 +193,19 @@
 	{{ platforms.building_platformB_roofA(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformA_overpass_guide_roofA(x) -%}
+{% macro layout_high_platformA_roofA_overpass_guide(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 3) }}
 {%- endmacro %}
 
-{% macro layout_high_platformB_overpass_guide_roofA(x) -%}
+{% macro layout_high_platformB_roofA_overpass_guide(x) -%}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 3) }}
 {%- endmacro %}
 
-{% macro layout_high_platformC_overpass_guide_roofA(x) -%}
+{% macro layout_high_platformC_roofA_overpass_guide(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 3) }}
@@ -214,28 +214,28 @@
 	{{ platforms.building_platformB_roofA(x, 3) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass_roofA", layout_high_platformA_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass_roofA", layout_high_platformB_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass_roofA", layout_high_platformC_overpass_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofA_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass_guide_roofA", layout_high_platformA_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass_guide_roofA", layout_high_platformB_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass_guide_roofA", layout_high_platformC_overpass_guide_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofA_overpass_guide) }}
 
 
-{% macro layout_low_platformA_overpass_roofA(x) -%}
+{% macro layout_low_platformA_roofA_overpass(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformB_overpass_roofA(x) -%}
+{% macro layout_low_platformB_roofA_overpass(x) -%}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformC_overpass_roofA(x) -%}
+{% macro layout_low_platformC_roofA_overpass(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -243,19 +243,19 @@
 	{{ platforms.building_platformB_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformA_overpass_guide_roofA(x) -%}
+{% macro layout_low_platformA_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_platformB_overpass_guide_roofA(x) -%}
+{% macro layout_low_platformB_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_platformC_overpass_guide_roofA(x) -%}
+{% macro layout_low_platformC_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1) }}
@@ -264,28 +264,28 @@
 	{{ platforms.building_platformB_roofA(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass_roofA", layout_low_platformA_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass_roofA", layout_low_platformB_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass_roofA", layout_low_platformC_overpass_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofA_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass_guide_roofA", layout_low_platformA_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass_guide_roofA", layout_low_platformB_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass_guide_roofA", layout_low_platformC_overpass_guide_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofA_overpass_guide) }}
 
 
-{% macro layout_low_asphalt_platformA_overpass_roofA(x) -%}
+{% macro layout_low_asphalt_platformA_roofA_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformB_overpass_roofA(x) -%}
+{% macro layout_low_asphalt_platformB_roofA_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformC_overpass_roofA(x) -%}
+{% macro layout_low_asphalt_platformC_roofA_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -293,19 +293,19 @@
 	{{ platforms.building_platformB_roofA(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformA_overpass_guide_roofA(x) -%}
+{% macro layout_low_asphalt_platformA_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformB_overpass_guide_roofA(x) -%}
+{% macro layout_low_asphalt_platformB_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofA(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformC_overpass_guide_roofA(x) -%}
+{% macro layout_low_asphalt_platformC_roofA_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofA(x, 1) }}
@@ -314,29 +314,29 @@
 	{{ platforms.building_platformB_roofA(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass_roofA", layout_low_asphalt_platformA_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass_roofA", layout_low_asphalt_platformB_overpass_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass_roofA", layout_low_asphalt_platformC_overpass_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofA_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofA_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass_guide_roofA", layout_low_asphalt_platformA_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass_guide_roofA", layout_low_asphalt_platformB_overpass_guide_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass_guide_roofA", layout_low_asphalt_platformC_overpass_guide_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofA_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofA_overpass_guide) }}
 
 
 
-{% macro layout_high_platformA_overpass_roofB(x) -%}
+{% macro layout_high_platformA_roofB_overpass(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformB_overpass_roofB(x) -%}
+{% macro layout_high_platformB_roofB_overpass(x) -%}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformC_overpass_roofB(x) -%}
+{% macro layout_high_platformC_roofB_overpass(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -344,19 +344,19 @@
 	{{ platforms.building_platformB_roofB(x, 3, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_high_platformA_overpass_guide_roofB(x) -%}
+{% macro layout_high_platformA_roofB_overpass_guide(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 3) }}
 {%- endmacro %}
 
-{% macro layout_high_platformB_overpass_guide_roofB(x) -%}
+{% macro layout_high_platformB_roofB_overpass_guide(x) -%}
 	{{ platforms.building_high_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 3) }}
 {%- endmacro %}
 
-{% macro layout_high_platformC_overpass_guide_roofB(x) -%}
+{% macro layout_high_platformC_roofB_overpass_guide(x) -%}
 	{{ platforms.building_high_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 3) }}
@@ -365,28 +365,28 @@
 	{{ platforms.building_platformB_roofB(x, 3) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass_roofB", layout_high_platformA_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass_roofB", layout_high_platformB_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass_roofB", layout_high_platformC_overpass_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofB_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_overpass_guide_roofB", layout_high_platformA_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_overpass_guide_roofB", layout_high_platformB_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_overpass_guide_roofB", layout_high_platformC_overpass_guide_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofB_overpass_guide) }}
 
 
-{% macro layout_low_platformA_overpass_roofB(x) -%}
+{% macro layout_low_platformA_roofB_overpass(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformB_overpass_roofB(x) -%}
+{% macro layout_low_platformB_roofB_overpass(x) -%}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformC_overpass_roofB(x) -%}
+{% macro layout_low_platformC_roofB_overpass(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -394,19 +394,19 @@
 	{{ platforms.building_platformB_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_platformA_overpass_guide_roofB(x) -%}
+{% macro layout_low_platformA_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_platformB_overpass_guide_roofB(x) -%}
+{% macro layout_low_platformB_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_platformC_overpass_guide_roofB(x) -%}
+{% macro layout_low_platformC_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1) }}
@@ -415,28 +415,28 @@
 	{{ platforms.building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass_roofB", layout_low_platformA_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass_roofB", layout_low_platformB_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass_roofB", layout_low_platformC_overpass_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofB_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_overpass_guide_roofB", layout_low_platformA_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_overpass_guide_roofB", layout_low_platformB_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_overpass_guide_roofB", layout_low_platformC_overpass_guide_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofB_overpass_guide) }}
 
 
-{% macro layout_low_asphalt_platformA_overpass_roofB(x) -%}
+{% macro layout_low_asphalt_platformA_roofB_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformB_overpass_roofB(x) -%}
+{% macro layout_low_asphalt_platformB_roofB_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformB_overpass(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformC_overpass_roofB(x) -%}
+{% macro layout_low_asphalt_platformC_roofB_overpass(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformC_overpass(x, 3) }}
@@ -444,19 +444,19 @@
 	{{ platforms.building_platformB_roofB(x, 1, "spr_roof_overpass_offset") }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformA_overpass_guide_roofB(x) -%}
+{% macro layout_low_asphalt_platformA_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformB_overpass_guide_roofB(x) -%}
+{% macro layout_low_asphalt_platformB_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformB(x, roof = True) }}
 	{{ building_platformB_overpass_guide(x, 3) }}
 	{{ platforms.building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{% macro layout_low_asphalt_platformC_overpass_guide_roofB(x) -%}
+{% macro layout_low_asphalt_platformC_roofB_overpass_guide(x) -%}
 	{{ platforms.building_low_asphalt_platformA(x, roof = True) }}
 	{{ building_platformA_overpass_guide(x, 3) }}
 	{{ platforms.building_platformA_roofB(x, 1) }}
@@ -465,10 +465,10 @@
 	{{ platforms.building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass_roofB", layout_low_asphalt_platformA_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass_roofB", layout_low_asphalt_platformB_overpass_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass_roofB", layout_low_asphalt_platformC_overpass_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofB_overpass) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofB_overpass) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_overpass_guide_roofB", layout_low_asphalt_platformA_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_overpass_guide_roofB", layout_low_asphalt_platformB_overpass_guide_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_overpass_guide_roofB", layout_low_asphalt_platformC_overpass_guide_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofB_overpass_guide) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofB_overpass_guide) }}

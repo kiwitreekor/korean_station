@@ -209,29 +209,29 @@
 {%- endmacro %}
 
 
-{{ layouts.layout_auto_orient("layout_high_platformA_modular_low", layout_high_platformA_modular_low) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_modular_low", layout_high_platformB_modular_low) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_modular_low", layout_high_platformC_modular_low) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_modular_low) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_modular_low) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_modular_low) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_modular_low", layout_low_platformA_modular_low) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_modular_low", layout_low_platformB_modular_low) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_modular_low", layout_low_platformC_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_modular_low) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_modular_low", layout_low_asphalt_platformA_modular_low) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_modular_low", layout_low_asphalt_platformB_modular_low) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_modular_low", layout_low_asphalt_platformC_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_modular_low) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_modular_low) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_modular_high", layout_high_platformA_modular_high) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_modular_high", layout_high_platformB_modular_high) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_modular_high", layout_high_platformC_modular_high) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_modular_high) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_modular_high) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_modular_high) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_modular_high", layout_low_platformA_modular_high) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_modular_high", layout_low_platformB_modular_high) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_modular_high", layout_low_platformC_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_modular_high) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_modular_high", layout_low_asphalt_platformA_modular_high) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_modular_high", layout_low_asphalt_platformB_modular_high) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_modular_high", layout_low_asphalt_platformC_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_modular_high) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_modular_high) }}
 
-{{ layouts.layout_auto_orient("layout_track_modular_low", layout_track_modular_low) }}
-{{ layouts.layout_auto_orient("layout_track_modular_high", layout_track_modular_high) }}
+{{ layouts.layout_auto_orient(layout_track_modular_low) }}
+{{ layouts.layout_auto_orient(layout_track_modular_high) }}

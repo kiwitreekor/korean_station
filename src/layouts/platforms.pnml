@@ -224,38 +224,38 @@
 	{{ building_platformB_roofB(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platformA", layout_high_platformA) }}
-{{ layouts.layout_auto_orient("layout_high_platformB", layout_high_platformB) }}
-{{ layouts.layout_auto_orient("layout_high_platformC", layout_high_platformC) }}
+{{ layouts.layout_auto_orient(layout_high_platformA) }}
+{{ layouts.layout_auto_orient(layout_high_platformB) }}
+{{ layouts.layout_auto_orient(layout_high_platformC) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_roofA", layout_high_platformA_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_roofA", layout_high_platformB_roofA) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_roofA", layout_high_platformC_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_high_platformA_roofB", layout_high_platformA_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformB_roofB", layout_high_platformB_roofB) }}
-{{ layouts.layout_auto_orient("layout_high_platformC_roofB", layout_high_platformC_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformA_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformB_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platformC_roofB) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA", layout_low_platformA) }}
-{{ layouts.layout_auto_orient("layout_low_platformB", layout_low_platformB) }}
-{{ layouts.layout_auto_orient("layout_low_platformC", layout_low_platformC) }}
+{{ layouts.layout_auto_orient(layout_low_platformA) }}
+{{ layouts.layout_auto_orient(layout_low_platformB) }}
+{{ layouts.layout_auto_orient(layout_low_platformC) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_roofA", layout_low_platformA_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_roofA", layout_low_platformB_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_roofA", layout_low_platformC_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_low_platformA_roofB", layout_low_platformA_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformB_roofB", layout_low_platformB_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platformC_roofB", layout_low_platformC_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformA_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformB_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platformC_roofB) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA", layout_low_asphalt_platformA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB", layout_low_asphalt_platformB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC", layout_low_asphalt_platformC) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_roofA", layout_low_asphalt_platformA_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_roofA", layout_low_asphalt_platformB_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_roofA", layout_low_asphalt_platformC_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformA_roofB", layout_low_asphalt_platformA_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformB_roofB", layout_low_asphalt_platformB_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platformC_roofB", layout_low_asphalt_platformC_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformA_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformB_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platformC_roofB) }}

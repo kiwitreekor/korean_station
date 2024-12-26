@@ -91,14 +91,14 @@
 	{{ building_platform_nontrack_roofB(x, 1) }}
 {%- endmacro %}
 
-{{ layouts.layout_auto_orient("layout_high_platform_nontrack", layout_high_platform_nontrack) }}
-{{ layouts.layout_auto_orient("layout_low_platform_nontrack", layout_low_platform_nontrack) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platform_nontrack", layout_low_asphalt_platform_nontrack) }}
+{{ layouts.layout_auto_orient(layout_high_platform_nontrack) }}
+{{ layouts.layout_auto_orient(layout_low_platform_nontrack) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platform_nontrack) }}
 
-{{ layouts.layout_auto_orient("layout_high_platform_nontrack_roofA", layout_high_platform_nontrack_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_platform_nontrack_roofA", layout_low_platform_nontrack_roofA) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platform_nontrack_roofA", layout_low_asphalt_platform_nontrack_roofA) }}
+{{ layouts.layout_auto_orient(layout_high_platform_nontrack_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_platform_nontrack_roofA) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platform_nontrack_roofA) }}
 
-{{ layouts.layout_auto_orient("layout_high_platform_nontrack_roofB", layout_high_platform_nontrack_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_platform_nontrack_roofB", layout_low_platform_nontrack_roofB) }}
-{{ layouts.layout_auto_orient("layout_low_asphalt_platform_nontrack_roofB", layout_low_asphalt_platform_nontrack_roofB) }}
+{{ layouts.layout_auto_orient(layout_high_platform_nontrack_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_platform_nontrack_roofB) }}
+{{ layouts.layout_auto_orient(layout_low_asphalt_platform_nontrack_roofB) }}

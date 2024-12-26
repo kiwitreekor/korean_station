@@ -52,8 +52,8 @@
 	}
 {%- endmacro %}
 
-{% macro layout_auto_orient(name, buildings, custom_ground = "", auto_orient = True) -%}
-spritelayout {{ name + "_X" }} {
+{% macro layout_auto_orient(buildings, custom_ground = "", auto_orient = True) -%}
+spritelayout {{ buildings.name + "_X" }} {
 	ground {
 		{% if custom_ground == "" -%}
 			sprite: GROUNDSPRITE_RAIL_X;
@@ -64,7 +64,7 @@ spritelayout {{ name + "_X" }} {
 	{{ buildings(ORIENTATION_X) }}
 }
 
-spritelayout {{ name + "_Y" }} {
+spritelayout {{ buildings.name + "_Y" }} {
 	ground {
 		{% if custom_ground == "" -%}
 			sprite: GROUNDSPRITE_RAIL_Y;
